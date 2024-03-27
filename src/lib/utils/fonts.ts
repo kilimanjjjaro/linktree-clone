@@ -1,9 +1,3 @@
-import { Inter } from 'next/font/google'
+import { GeistSans } from 'geist/font/sans'
 
-const interFont = Inter({
-  subsets: ['latin'],
-  display: 'swap',
-  variable: '--font-inter'
-})
-
-export const inter = interFont.variable
+export const geistSans = GeistSans.variable

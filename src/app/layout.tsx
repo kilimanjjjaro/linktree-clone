@@ -1,5 +1,5 @@
 import Wrapper from '@/components/wrapper'
-import { inter } from '@/lib/utils/fonts'
+import { geistSans } from '@/lib/utils/fonts'
 import type { Metadata } from 'next'
 import type { ChildrenType } from '@/lib/types/globals'
 import './globals.css'
@@ -8,7 +8,7 @@ export default function RootLayout({ children }: Readonly<ChildrenType>) {
   return (
     <html lang='en'>
       <body
-        className={`text-mnspc-white bg-mnspc-black font-sans antialiased ${inter}`}
+        className={`bg-linktree-black text-linktree-white font-geist-sans antialiased ${geistSans}`}
       >
         <Wrapper>{children}</Wrapper>
       </body>
@@ -17,6 +17,7 @@ export default function RootLayout({ children }: Readonly<ChildrenType>) {
 }
 
 export const metadata: Metadata = {
-  title: 'Monospace Next.js Starter Template',
-  description: 'Lorem ipsum'
+  title: 'Linktree',
+  description:
+    'Linktree makes room for all of you. Get everything you create, curate and share, wherever it’s scattered online, and put it back together again in one place – your Linktree – where it can be discovered with ease.'
 }
