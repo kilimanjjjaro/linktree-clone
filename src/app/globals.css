@@ -2,9 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
+@import url(../lib/styles/noise.css);
+
 :root {
-  --color-black: 0deg 0% 1%;
-  --color-white: 0deg 0% 97%;
+  --color-black: 0deg 0% 3%;
+  --color-white: 0deg 0% 100%;
+  --color-light-gray: 60deg 8% 93%;
+  --color-dark-gray: 0deg 0% 6%;
+  --color-green: 131deg 77% 58%;
 }
 
 @layer utilities {

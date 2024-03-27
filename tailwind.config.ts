@@ -9,11 +9,14 @@ const config: Config = {
   theme: {
     extend: {
       fontFamily: {
-        inter: ['var(--font-inter-sans)']
+        'geist-sans': ['var(--font-geist-sans)']
       },
       colors: {
-        'mnspc-black': 'hsl(var(--color-black) / <alpha-value>)',
-        'mnspc-white': 'hsl(var(--color-white) / <alpha-value>)'
+        'linktree-black': 'hsl(var(--color-black) / <alpha-value>)',
+        'linktree-white': 'hsl(var(--color-white) / <alpha-value>)',
+        'linktree-light-gray': 'hsl(var(--color-light-gray) / <alpha-value>)',
+        'linktree-dark-gray': 'hsl(var(--color-dark-gray) / <alpha-value>)',
+        'linktree-green': 'hsl(var(--color-green) / <alpha-value>)'
       }
     }
   },
