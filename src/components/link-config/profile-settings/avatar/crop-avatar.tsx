@@ -1,5 +1,7 @@
 import { useCallback, useState } from 'react'
 import Cropper, { type Area } from 'react-easy-crop'
+import { toast } from 'sonner'
+import { LoaderCircle } from 'lucide-react'
 import { Slider } from '@/components/ui/slider'
 import { Button } from '@/components/ui/button'
 import { Avatar } from '@/components/ui/avatar'
@@ -8,9 +10,15 @@ import { useStore } from '@/lib/store/store'
 import { cropImage } from '@/lib/utils/crop-image'
 import { fetchBlobData } from '@/lib/utils/fetchBlobData'
 
-export default function CropAvatar() {
+interface Props {
+  setOpen: (open: boolean) => void
+}
+
+export default function CropAvatar({ setOpen }: Props) {
   const avatarToCrop = useStore((state) => state.avatarToCrop)
+  const setAvatarToCrop = useStore((state) => state.setAvatarToCrop)
   const setAvatar = useStore((state) => state.setAvatar)
+  const [loading, setLoading] = useState(false)
   const [crop, setCrop] = useState({ x: 0, y: 0 })
   const [zoom, setZoom] = useState(1)
   const [croppedAvatar, setCroppedAvatar] = useState<string | null>(null)
@@ -26,7 +34,7 @@ export default function CropAvatar() {
     setCroppedArea(croppedAreaPixels)
   }, [])
 
-  const saveImage = useCallback(async () => {
+  const saveCrop = useCallback(async () => {
     if (avatarToCrop === null) return
 
     try {
@@ -40,22 +48,43 @@ export default function CropAvatar() {
     }
   }, [croppedArea, avatarToCrop])
 
-  const uploadAvatar = async () => {
+  const uploadAvatar = useCallback(async () => {
     if (croppedAvatar === null) return
+    setLoading(true)
 
-    const formData = new FormData()
+    try {
+      const formData = new FormData()
 
-    formData.append('file', await fetchBlobData(croppedAvatar))
+      formData.append('file', await fetchBlobData(croppedAvatar))
 
-    const response = await fetch('/api/upload-avatar', {
-      method: 'POST',
-      body: formData
-    })
+      const response = await fetch('/api/upload-avatar', {
+        method: 'POST',
+        body: formData
+      })
 
-    const avatar = await response.json()
+      if (!response.ok) {
+        throw new Error('Something happened uploading the image')
+      }
 
-    setAvatar(avatar)
-  }
+      const data = await response.json()
+      const avatar = data.eager[0].secure_url
+
+      setAvatar(avatar)
+      setOpen(false)
+      toast.success('Link avatar updated!')
+    } catch (error) {
+      toast.error('Something happened. Please try again!')
+    } finally {
+      setLoading(false)
+      setCroppedAvatar(null)
+      setAvatarToCrop(null)
+    }
+  }, [croppedAvatar, setAvatar, setAvatarToCrop, setOpen])
+
+  const deleteAvatar = useCallback(() => {
+    setCroppedAvatar(null)
+    setAvatarToCrop(null)
+  }, [setCroppedAvatar, setAvatarToCrop])
 
   return (
     <section className='mt-[49px] flex flex-col gap-3'>
@@ -91,14 +120,23 @@ export default function CropAvatar() {
         )}
       </section>
       <DialogFooter className='gap-x-3 *:w-full'>
-        <Button variant='outline'>Delete</Button>
+        <Button variant='outline' onClick={deleteAvatar}>
+          Delete
+        </Button>
         {croppedAvatar === null ? (
-          <Button variant='secondary' onClick={saveImage}>
+          <Button variant='secondary' onClick={saveCrop}>
             Crop
           </Button>
         ) : (
-          <Button variant='secondary' onClick={uploadAvatar}>
-            Upload
+          <Button variant='secondary' onClick={uploadAvatar} disabled={loading}>
+            {loading ? (
+              <>
+                <LoaderCircle className='mr-2 h-4 w-4 animate-spin' />
+                Uploading
+              </>
+            ) : (
+              'Upload'
+            )}
           </Button>
         )}
       </DialogFooter>

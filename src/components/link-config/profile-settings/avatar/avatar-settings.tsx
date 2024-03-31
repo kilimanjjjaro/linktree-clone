@@ -12,16 +12,18 @@ import {
   DialogTrigger
 } from '@/components/ui/dialog'
 import { useStore } from '@/lib/store/store'
+import { useState } from 'react'
 
 export default function AvatarSettings() {
   const avatar = useStore((state) => state.avatar)
   const avatarToCrop = useStore((state) => state.avatarToCrop)
+  const [open, setOpen] = useState(false)
 
   return (
     <div className='flex items-center gap-x-5 p-5'>
       <Avatar className='size-20' src={avatar} alt='Gonzalo' />
       <div className='grid flex-1 grid-cols-2 gap-3'>
-        <Dialog>
+        <Dialog open={open} onOpenChange={setOpen}>
           <DialogTrigger
             className={`cursor-pointer ${buttonVariants({ variant: 'secondary' })}`}
           >
@@ -31,7 +33,11 @@ export default function AvatarSettings() {
             <DialogHeader className='absolute left-0 top-0 flex h-12 w-full items-center justify-center border-b border-border p-3'>
               <DialogTitle>Upload your avatar</DialogTitle>
             </DialogHeader>
-            {avatarToCrop === null ? <DropAvatar /> : <CropAvatar />}
+            {avatarToCrop === null ? (
+              <DropAvatar />
+            ) : (
+              <CropAvatar setOpen={setOpen} />
+            )}
           </DialogContent>
         </Dialog>
         <Button variant='outline'>Remove</Button>

@@ -15,7 +15,7 @@ export async function POST(request: Request) {
   const arrayBuffer = await file.arrayBuffer()
   const buffer = Buffer.from(arrayBuffer)
 
-  const results: ApiReponseType = await new Promise((resolve, reject) => {
+  const response: ApiReponseType = await new Promise((resolve, reject) => {
     cloudinary.uploader
       .upload_stream(
         {
@@ -35,7 +35,5 @@ export async function POST(request: Request) {
       .end(buffer)
   })
 
-  const avatar = results?.eager[0].secure_url
-
-  return Response.json(avatar)
+  return Response.json(response)
 }
