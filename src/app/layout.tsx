@@ -7,8 +7,9 @@ import './globals.css'
 export default function RootLayout({ children }: Readonly<ChildrenType>) {
   return (
     <html lang='en'>
+      <meta name='color-scheme' content='dark light' />
       <body
-        className={`bg-linktree-black text-linktree-white font-geist-sans antialiased ${geistSans}`}
+        className={`bg-linktree-black font-geist-sans text-linktree-white antialiased ${geistSans}`}
       >
         <Wrapper>{children}</Wrapper>
       </body>
