@@ -39,7 +39,9 @@ export default function AvatarSettings() {
             {avatarToCrop === null ? <DropAndDrag /> : <CropAvatar />}
           </DialogContent>
         </Dialog>
-        <Button variant='outline'>Remove</Button>
+        <Button variant='outline' className='bg-transparent'>
+          Remove
+        </Button>
       </div>
     </div>
   )

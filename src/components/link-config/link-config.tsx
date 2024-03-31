@@ -44,7 +44,7 @@ export default function LinkConfig() {
               </span>
               <Input
                 id='link-name'
-                className='h-full px-3 placeholder:text-white'
+                className='rounded-none border-none bg-transparent px-3 placeholder:text-white focus-visible:bg-border focus-visible:outline-none focus-visible:ring-0 focus-visible:ring-offset-0'
                 type='text'
                 placeholder='kilimanjjjaro'
               />
@@ -76,7 +76,7 @@ export default function LinkConfig() {
             </div>
             <Textarea
               id='link-description'
-              className='p-3'
+              className='bg-transparent p-3 focus-visible:bg-border focus-visible:outline-none focus-visible:ring-0 focus-visible:ring-offset-0'
               placeholder="I'm a Full Stack Developer and these are my projects."
             />
           </div>
