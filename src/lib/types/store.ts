@@ -3,4 +3,13 @@ export interface GlobalsSliceInterface {
   setDummyState: (dummyState: boolean) => void
 }
 
-export interface StoreInterface extends GlobalsSliceInterface {}
+export interface AvatarSliceInterface {
+  avatar: string | null
+  setAvatar: (avatar: string) => void
+  avatarToCrop: string | null
+  setAvatarToCrop: (avatar: string) => void
+}
+
+export interface StoreInterface
+  extends GlobalsSliceInterface,
+    AvatarSliceInterface {}
