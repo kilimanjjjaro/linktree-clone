@@ -39,7 +39,7 @@ export default function LinkName() {
         <Button
           size='icon'
           variant='outline'
-          className='absolute right-1.5 h-6 w-6 opacity-0 transition-opacity group-hover:opacity-100'
+          className='absolute right-1.5 h-6 w-6 opacity-0 transition-opacity focus-visible:opacity-100 group-hover:opacity-100'
         >
           <Copy className='h-3 w-3' strokeWidth={1.5} />
           <span className='sr-only'>Copy Order ID</span>
