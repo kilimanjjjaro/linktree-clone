@@ -17,8 +17,8 @@ export default function Navbar() {
       <button className='group flex items-center gap-x-4'>
         <span>Hi, Gonzalo!</span>
         <Avatar
-          className='outline-3 size-10 outline outline-offset-2 outline-transparent transition-[outline] duration-300 ease-in-out xl:group-hover:outline-linktree-green'
-          src='/images/avatar.webp'
+          className='outline-3 size-10 outline outline-offset-2 outline-transparent transition-[outline] duration-300 ease-in-out xl:group-hover:outline-border'
+          src='/images/default-user-avatar.svg'
           alt='Gonzalo'
         />
       </button>

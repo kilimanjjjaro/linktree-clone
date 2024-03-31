@@ -1,5 +1,5 @@
-import LinkSettings from '@/components/link/settings/link-settings'
-import LinkPreview from '@/components/link/preview/link-preview'
+import LinkSettings from '@/components/links/settings/link-settings'
+import LinkPreview from '@/components/links/preview/link-preview'
 
 export default function Home() {
   return (

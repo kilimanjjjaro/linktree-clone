@@ -1,6 +1,6 @@
-import LinkAvatar from '@/components/link/settings/profile/avatar/link-avatar'
-import LinkName from '@/components/link/settings/profile/name/link-name'
-import LinkDescription from '@/components/link/settings/profile/description/link-description'
+import LinkAvatar from '@/components/links/settings/profile/avatar/link-avatar'
+import LinkName from '@/components/links/settings/profile/name/link-name'
+import LinkDescription from '@/components/links/settings/profile/description/link-description'
 import { TypographyH3 } from '@/components/ui/typography/typography-h3'
 import { Separator } from '@/components/ui/separator'
 

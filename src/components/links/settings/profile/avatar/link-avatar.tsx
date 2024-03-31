@@ -1,7 +1,7 @@
 'use client'
 
-import DropAvatar from '@/components/link/settings/profile/avatar/drop-avatar'
-import CropAvatar from '@/components/link/settings/profile/avatar/crop-avatar'
+import DropAvatar from '@/components/links/settings/profile/avatar/drop-avatar'
+import CropAvatar from '@/components/links/settings/profile/avatar/crop-avatar'
 import { Avatar } from '@/components/ui/avatar'
 import { Button, buttonVariants } from '@/components/ui/button'
 import {
