@@ -1,7 +1,7 @@
 'use client'
 
-import DropAvatar from '@/components/link-config/profile-settings/avatar/drop-avatar'
-import CropAvatar from '@/components/link-config/profile-settings/avatar/crop-avatar'
+import DropAvatar from '@/components/link/settings/profile/avatar/drop-avatar'
+import CropAvatar from '@/components/link/settings/profile/avatar/crop-avatar'
 import { Avatar } from '@/components/ui/avatar'
 import { Button, buttonVariants } from '@/components/ui/button'
 import {
@@ -14,7 +14,7 @@ import {
 import { useStore } from '@/lib/store/store'
 import { useState } from 'react'
 
-export default function AvatarSettings() {
+export default function LinkAvatar() {
   const avatar = useStore((state) => state.avatar)
   const avatarToCrop = useStore((state) => state.avatarToCrop)
   const [open, setOpen] = useState(false)
