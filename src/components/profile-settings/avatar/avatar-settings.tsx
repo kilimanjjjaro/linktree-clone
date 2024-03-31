@@ -12,13 +12,19 @@ import {
 import DropAndDrag from './upload-avatar'
 import { useStore } from '@/lib/store/store'
 import CropAvatar from './crop-avatar'
+import { useMemo } from 'react'
 
 export default function AvatarSettings() {
+  const avatar = useStore((state) => state.avatar)
   const avatarToCrop = useStore((state) => state.avatarToCrop)
+
+  const avatarUrl = useMemo(() => {
+    return avatar ?? '/images/avatar.webp'
+  }, [avatar])
 
   return (
     <div className='flex items-center gap-x-5 p-5'>
-      <Avatar className='size-20' src='/images/avatar.webp' alt='Gonzalo' />
+      <Avatar className='size-20' src={avatarUrl} alt='Gonzalo' />
       <div className='grid flex-1 grid-cols-2 gap-3'>
         <Dialog>
           <DialogTrigger

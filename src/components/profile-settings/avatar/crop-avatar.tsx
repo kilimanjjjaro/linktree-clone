@@ -3,11 +3,13 @@ import Cropper, { Area } from 'react-easy-crop'
 import { Slider } from '@/components/ui/slider'
 import { Button } from '@/components/ui/button'
 import { useStore } from '@/lib/store/store'
-import { getCroppedImage } from '@/lib/utils/crop-image'
+import { cropImage } from '@/lib/utils/crop-image'
 import { Avatar } from '@/components/ui/avatar'
+import { fetchBlobData } from '@/lib/utils/fetchBlobData'
 
 export default function CropAvatar() {
   const avatarToCrop = useStore((state) => state.avatarToCrop)
+  const setAvatar = useStore((state) => state.setAvatar)
   const [crop, setCrop] = useState({ x: 0, y: 0 })
   const [zoom, setZoom] = useState(1)
   const [croppedAvatar, setCroppedAvatar] = useState<string | null>(null)
@@ -23,11 +25,11 @@ export default function CropAvatar() {
     setCroppedArea(croppedAreaPixels)
   }, [])
 
-  const cropImage = useCallback(async () => {
+  const saveImage = useCallback(async () => {
     if (avatarToCrop === null) return
 
     try {
-      const croppedImage = await getCroppedImage(avatarToCrop, croppedArea)
+      const croppedImage = await cropImage(avatarToCrop, croppedArea)
 
       if (croppedImage === null) return
 
@@ -36,6 +38,23 @@ export default function CropAvatar() {
       console.error(error)
     }
   }, [croppedArea, avatarToCrop])
+
+  const uploadAvatar = async () => {
+    if (croppedAvatar === null) return
+
+    const formData = new FormData()
+
+    formData.append('file', await fetchBlobData(croppedAvatar))
+
+    const response = await fetch('/api/upload-avatar', {
+      method: 'POST',
+      body: formData
+    })
+
+    const avatar = await response.json()
+
+    setAvatar(avatar)
+  }
 
   return (
     <section className='flex flex-col gap-3'>
@@ -73,11 +92,13 @@ export default function CropAvatar() {
       <footer className='grid w-full grid-cols-2 gap-3'>
         <Button variant='outline'>Delete</Button>
         {croppedAvatar === null ? (
-          <Button variant='secondary' onClick={cropImage}>
+          <Button variant='secondary' onClick={saveImage}>
             Crop
           </Button>
         ) : (
-          <Button variant='secondary'>Upload</Button>
+          <Button variant='secondary' onClick={uploadAvatar}>
+            Upload
+          </Button>
         )}
       </footer>
     </section>

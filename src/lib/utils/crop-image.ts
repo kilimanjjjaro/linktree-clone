@@ -9,7 +9,7 @@ const createImage = async (url: string): Promise<CanvasImageSource> => {
   })
 }
 
-export async function getCroppedImage(
+export async function cropImage(
   imageUrl: string,
   croppedArea: Area
 ): Promise<string> {
@@ -39,8 +39,8 @@ export async function getCroppedImage(
   )
 
   return await new Promise((resolve) => {
-    canvas.toBlob((file) => {
-      if (file !== null) resolve(URL.createObjectURL(file))
+    canvas.toBlob((blob) => {
+      if (blob !== null) resolve(URL.createObjectURL(blob))
     }, 'image/jpeg')
   })
 }
