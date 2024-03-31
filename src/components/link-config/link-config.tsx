@@ -1,3 +1,5 @@
+import { CircleHelp, Copy } from 'lucide-react'
+import AvatarSettings from '@/components/link-config/profile-settings/avatar/avatar-settings'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Textarea } from '@/components/ui/textarea'
@@ -9,8 +11,6 @@ import {
   PopoverContent,
   PopoverTrigger
 } from '@/components/ui/popover'
-import { CircleHelp, Copy } from 'lucide-react'
-import AvatarSettings from '@/components/profile-settings/avatar/avatar-settings'
 
 export default function LinkConfig() {
   return (
