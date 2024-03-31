@@ -1,6 +1,6 @@
 import LinktreeLogo from '@/components/icons/linktree-logo'
 import LinksIcon from '@/components/icons/links-icon'
-import { Avatar } from '@/components/ui/avatar'
+import Avatar from '@/components/ui/avatar'
 
 export default function Navbar() {
   return (

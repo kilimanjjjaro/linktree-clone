@@ -7,7 +7,7 @@ interface Props {
   alt: string
 }
 
-const Avatar = ({ className, src, alt }: Props) => {
+export default function Avatar({ className, src, alt }: Props) {
   return (
     <div className={cn('relative overflow-hidden rounded-full', className)}>
       <Image
@@ -20,5 +20,3 @@ const Avatar = ({ className, src, alt }: Props) => {
     </div>
   )
 }
-
-export { Avatar }

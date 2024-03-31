@@ -2,7 +2,7 @@
 
 import DropAvatar from '@/components/links/settings/profile/avatar/drop-avatar'
 import CropAvatar from '@/components/links/settings/profile/avatar/crop-avatar'
-import { Avatar } from '@/components/ui/avatar'
+import Avatar from '@/components/ui/avatar'
 import { Button, buttonVariants } from '@/components/ui/button'
 import {
   Dialog,
