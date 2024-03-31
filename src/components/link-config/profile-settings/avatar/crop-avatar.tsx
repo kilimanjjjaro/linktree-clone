@@ -1,10 +1,11 @@
 import { useCallback, useState } from 'react'
-import Cropper, { Area } from 'react-easy-crop'
+import Cropper, { type Area } from 'react-easy-crop'
 import { Slider } from '@/components/ui/slider'
 import { Button } from '@/components/ui/button'
+import { Avatar } from '@/components/ui/avatar'
+import { DialogFooter } from '@/components/ui/dialog'
 import { useStore } from '@/lib/store/store'
 import { cropImage } from '@/lib/utils/crop-image'
-import { Avatar } from '@/components/ui/avatar'
 import { fetchBlobData } from '@/lib/utils/fetchBlobData'
 
 export default function CropAvatar() {
@@ -57,7 +58,7 @@ export default function CropAvatar() {
   }
 
   return (
-    <section className='flex flex-col gap-3'>
+    <section className='mt-[49px] flex flex-col gap-3'>
       <section className='relative aspect-square w-full overflow-hidden rounded-xl bg-border'>
         {avatarToCrop !== null && croppedAvatar === null && (
           <>
@@ -89,7 +90,7 @@ export default function CropAvatar() {
           <Avatar className='size-full' src={croppedAvatar} alt='Gonzalo' />
         )}
       </section>
-      <footer className='grid w-full grid-cols-2 gap-3'>
+      <DialogFooter className='gap-x-3 *:w-full'>
         <Button variant='outline'>Delete</Button>
         {croppedAvatar === null ? (
           <Button variant='secondary' onClick={saveImage}>
@@ -100,7 +101,7 @@ export default function CropAvatar() {
             Upload
           </Button>
         )}
-      </footer>
+      </DialogFooter>
     </section>
   )
 }

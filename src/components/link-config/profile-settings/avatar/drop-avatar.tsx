@@ -6,7 +6,7 @@ import { useCallback } from 'react'
 import { useStore } from '@/lib/store/store'
 import { ACCEPTED_FILE_TYPES } from '@/lib/constants/avatar'
 
-export default function DropAndDrag() {
+export default function DropAvatar() {
   const setAvatarToCrop = useStore((state) => state.setAvatarToCrop)
 
   const onDrop = useCallback(
@@ -28,7 +28,7 @@ export default function DropAndDrag() {
   return (
     <section
       {...getRootProps({ className: 'dropzone' })}
-      className='flex aspect-square  cursor-pointer items-center rounded-xl border-2 border-dashed border-border bg-background p-20 outline-none xl:hover:bg-black'
+      className='mt-[49px] flex aspect-square cursor-pointer items-center rounded-xl border-2 border-dashed border-border bg-background p-20 outline-none xl:hover:bg-black/30'
     >
       <input {...getInputProps()} />
       <div className='flex flex-col items-center gap-4 text-muted-foreground'>

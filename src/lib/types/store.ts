@@ -4,7 +4,7 @@ export interface GlobalsSliceInterface {
 }
 
 export interface AvatarSliceInterface {
-  avatar: string | null
+  avatar: string
   setAvatar: (avatar: string) => void
   avatarToCrop: string | null
   setAvatarToCrop: (avatar: string) => void

@@ -2,7 +2,7 @@ import { StateCreator } from 'zustand'
 import type { AvatarSliceInterface } from '@/lib/types/store'
 
 export const createAvatarSlice: StateCreator<AvatarSliceInterface> = (set) => ({
-  avatar: null,
+  avatar: '/images/default-link-avatar.webp',
   setAvatar: (avatar) => set(() => ({ avatar })),
   avatarToCrop: null,
   setAvatarToCrop: (avatarToCrop) => set(() => ({ avatarToCrop }))

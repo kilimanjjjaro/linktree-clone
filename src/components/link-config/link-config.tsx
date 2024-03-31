@@ -15,8 +15,8 @@ import {
 export default function LinkConfig() {
   return (
     <aside className='flex h-full w-96 flex-col gap-6 overflow-hidden'>
-      <section className='rounded-2xl border border-border bg-linktree-dark-gray'>
-        <div className='border-b border-b-border px-2 pb-2.5 pt-3 text-center'>
+      <section className='rounded-2xl border border-border bg-background'>
+        <div className='h-12 border-b border-b-border p-3 text-center'>
           <TypographyH3>Profile</TypographyH3>
         </div>
         <div className='flex flex-col'>
@@ -38,13 +38,13 @@ export default function LinkConfig() {
                 </PopoverContent>
               </Popover>
             </div>
-            <div className='group relative flex h-10 items-center overflow-hidden rounded-xl border border-border'>
+            <div className='group relative flex h-10 items-center overflow-hidden rounded-xl border border-border has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-ring has-[:focus-visible]:ring-offset-2 has-[:focus-visible]:ring-offset-background'>
               <span className='flex h-full cursor-not-allowed select-none items-center border-r border-border px-3 text-sm text-muted-foreground'>
                 linktr.ee/
               </span>
               <Input
                 id='link-name'
-                className='rounded-none border-none bg-transparent px-3 placeholder:text-white focus-visible:bg-border focus-visible:outline-none focus-visible:ring-0 focus-visible:ring-offset-0'
+                className='rounded-none border-none px-3 placeholder:text-white focus-visible:ring-0 focus-visible:ring-offset-0'
                 type='text'
                 placeholder='kilimanjjjaro'
               />
@@ -76,7 +76,7 @@ export default function LinkConfig() {
             </div>
             <Textarea
               id='link-description'
-              className='bg-transparent p-3 focus-visible:bg-border focus-visible:outline-none focus-visible:ring-0 focus-visible:ring-offset-0'
+              className='p-3'
               placeholder="I'm a Full Stack Developer and these are my projects."
             />
           </div>
