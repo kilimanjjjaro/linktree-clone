@@ -1,35 +1,22 @@
-import SocialMedia from "@/components/links/settings/profile/social-media/social-media";
+import Media from "@/components/links/settings/profile/social-media/media";
 import {
   Command,
   CommandEmpty,
   CommandGroup,
   CommandInput,
-  CommandItem,
   CommandList,
 } from "@/components/ui/command";
 import { SOCIAL_MEDIA } from "@/lib/constants/globals";
-import { useStore } from "@/lib/store/store";
 
 export default function MediaSelector() {
-  const selectedMedia = useStore((state) => state.selectedMedia);
-  const setSelectedMedia = useStore((state) => state.setSelectedMedia);
-
   return (
-    <Command className="rounded-xl border">
-      <CommandInput placeholder="Type to search..." />
-      <CommandList>
+    <Command className="rounded-none">
+      <CommandInput placeholder="Type to search..." className="h-10 py-0" />
+      <CommandList className="mt-5 h-60">
         <CommandEmpty>No results found.</CommandEmpty>
-        <CommandGroup>
+        <CommandGroup className="py-0 pl-0">
           {SOCIAL_MEDIA.map((media) => (
-            <CommandItem
-              key={media.value}
-              value={media.value}
-              onSelect={(value: string) => {
-                setSelectedMedia(value === selectedMedia ? "" : value);
-              }}
-            >
-              <SocialMedia media={media} />
-            </CommandItem>
+            <Media key={media.value} media={media} />
           ))}
         </CommandGroup>
       </CommandList>

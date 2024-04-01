@@ -16,15 +16,16 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { SOCIAL_MEDIA } from "@/lib/constants/globals";
-import clsx from "clsx";
 import { useStore } from "@/lib/store/store";
+import { SOCIAL_MEDIA } from "@/lib/constants/globals";
+import { cn } from "@/lib/utils";
 
 export default function LinkSocialMedia() {
   const selectedMedia = useStore((state) => state.selectedMedia);
 
-  const headline =
-    SOCIAL_MEDIA.find((media) => media.value === selectedMedia)?.label ?? "";
+  const headline = SOCIAL_MEDIA.find(
+    (media) => media.value === selectedMedia,
+  )?.label;
 
   return (
     <div className="flex flex-col gap-3 p-5">
@@ -46,19 +47,19 @@ export default function LinkSocialMedia() {
           className={`w-full cursor-pointer gap-x-1 ${buttonVariants({ variant: "outline" })}`}
         >
           <Plus className="size-4" strokeWidth={1.5} />
-          Add
+          Add icon
         </DialogTrigger>
         <DialogContent>
           <DialogHeader className="absolute left-0 top-0 flex h-12 w-full items-center justify-center border-b border-border p-3">
             <DialogTitle>
-              {selectedMedia.length === 0
+              {selectedMedia.length > 0
                 ? `Add ${headline}`
                 : "Add social media"}
             </DialogTitle>
           </DialogHeader>
           <main className="mt-12 overflow-hidden p-5">
             <section
-              className={clsx(
+              className={cn(
                 selectedMedia.length === 0
                   ? "translate-x-0"
                   : "-translate-x-[110%]",
