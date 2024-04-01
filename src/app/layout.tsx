@@ -9,7 +9,7 @@ export default function RootLayout({ children }: Readonly<ChildrenType>) {
     <html lang="en" className="dark">
       <meta name="color-scheme" content="dark light" />
       <body
-        className={`bg-background text-card-foreground font-geist-sans antialiased ${geistSans}`}
+        className={`font-geist-sans bg-background text-card-foreground antialiased ${geistSans}`}
       >
         <Wrapper>{children}</Wrapper>
       </body>
