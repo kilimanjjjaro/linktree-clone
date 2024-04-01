@@ -1,8 +1,8 @@
 /* eslint-disable jsx-a11y/alt-text */
 
+import { useCallback } from 'react'
 import { type FileWithPath, useDropzone } from 'react-dropzone'
 import { Image } from 'lucide-react'
-import { useCallback } from 'react'
 import { useStore } from '@/lib/store/store'
 import { ACCEPTED_FILE_TYPES } from '@/lib/constants/avatar'
 

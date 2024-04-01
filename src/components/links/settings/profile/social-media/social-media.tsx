@@ -1,6 +1,6 @@
-import { SocialMediaInterface } from '@/lib/types/globals'
-import { cn } from '@/lib/utils'
 import { CheckIcon } from 'lucide-react'
+import { cn } from '@/lib/utils'
+import { SocialMediaInterface } from '@/lib/types/globals'
 
 interface Props {
   media: SocialMediaInterface

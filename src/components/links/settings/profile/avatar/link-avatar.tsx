@@ -1,5 +1,6 @@
 'use client'
 
+import { useState } from 'react'
 import DropAvatar from '@/components/links/settings/profile/avatar/drop-avatar'
 import CropAvatar from '@/components/links/settings/profile/avatar/crop-avatar'
 import Avatar from '@/components/ui/avatar'
@@ -12,7 +13,6 @@ import {
   DialogTrigger
 } from '@/components/ui/dialog'
 import { useStore } from '@/lib/store/store'
-import { useState } from 'react'
 
 export default function LinkAvatar() {
   const avatar = useStore((state) => state.avatar)
