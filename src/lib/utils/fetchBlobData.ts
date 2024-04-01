@@ -1,4 +1,4 @@
-export async function fetchBlobData(blobUrl: string): Promise<Blob> {
+export async function fetchBlobData(blobUrl: string) {
   const response = await fetch(blobUrl);
 
   return await response.blob();

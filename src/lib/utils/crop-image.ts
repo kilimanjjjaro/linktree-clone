@@ -9,10 +9,7 @@ const createImage = async (url: string): Promise<CanvasImageSource> => {
   });
 };
 
-export async function cropImage(
-  imageUrl: string,
-  croppedArea: Area,
-): Promise<string> {
+export async function cropImage(imageUrl: string, croppedArea: Area) {
   const image = await createImage(imageUrl);
   const canvas = document.createElement("canvas");
   const ctx = canvas.getContext("2d");
@@ -38,7 +35,7 @@ export async function cropImage(
     croppedArea.height,
   );
 
-  return await new Promise((resolve) => {
+  return await new Promise<string>((resolve) => {
     canvas.toBlob((blob) => {
       if (blob !== null) resolve(URL.createObjectURL(blob));
     }, "image/jpeg");
