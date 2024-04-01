@@ -23,6 +23,9 @@ import { useStore } from '@/lib/store/store'
 export default function LinkSocialMedia() {
   const selectedMedia = useStore((state) => state.selectedMedia)
 
+  const headline =
+    SOCIAL_MEDIA.find((media) => media.value === selectedMedia)?.label ?? ''
+
   return (
     <div className='flex flex-col gap-3 p-5'>
       <div className='flex items-center gap-2'>
@@ -48,15 +51,17 @@ export default function LinkSocialMedia() {
         <DialogContent>
           <DialogHeader className='absolute left-0 top-0 flex h-12 w-full items-center justify-center border-b border-border p-3'>
             <DialogTitle>
-              {selectedMedia === null
-                ? `Add ${SOCIAL_MEDIA.find((media) => media.value === selectedMedia)?.label ?? ''}`
+              {selectedMedia.length === 0
+                ? `Add ${headline}`
                 : 'Add social media'}
             </DialogTitle>
           </DialogHeader>
           <main className='mt-12 overflow-hidden p-5'>
             <section
               className={clsx(
-                selectedMedia === null ? 'translate-x-0' : '-translate-x-[110%]'
+                selectedMedia.length === 0
+                  ? 'translate-x-0'
+                  : '-translate-x-[110%]'
               )}
             >
               <MediaSelector />

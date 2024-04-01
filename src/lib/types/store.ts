@@ -6,15 +6,15 @@ export interface GlobalsSliceInterface {
 export interface AvatarSliceInterface {
   avatar: string
   setAvatar: (avatar: string) => void
-  avatarToCrop: string | null
-  setAvatarToCrop: (avatar: string | null) => void
+  avatarToCrop: string
+  setAvatarToCrop: (avatar: string) => void
 }
 
 export interface SocialMediaSliceInterface {
   step: number
   setStep: (step: number) => void
-  selectedMedia: string | null
-  setSelectedMedia: (avatar: string | null) => void
+  selectedMedia: string
+  setSelectedMedia: (avatar: string) => void
 }
 
 export interface StoreInterface

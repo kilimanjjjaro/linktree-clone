@@ -34,7 +34,7 @@ export default function LinkAvatar() {
               <DialogTitle>Upload your avatar</DialogTitle>
             </DialogHeader>
             <main className='mt-12 p-5'>
-              {avatarToCrop === null ? (
+              {avatarToCrop.length === 0 ? (
                 <DropAvatar />
               ) : (
                 <CropAvatar setOpen={setOpen} />

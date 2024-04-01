@@ -7,6 +7,7 @@ import { Button } from '@/components/ui/button'
 import Avatar from '@/components/ui/avatar'
 import { DialogFooter } from '@/components/ui/dialog'
 import { useStore } from '@/lib/store/store'
+import { CROPPED_AREA_VALUES } from '@/lib/constants/avatar'
 import { cropImage } from '@/lib/utils/crop-image'
 import { fetchBlobData } from '@/lib/utils/fetchBlobData'
 
@@ -21,13 +22,8 @@ export default function CropAvatar({ setOpen }: Props) {
   const [loading, setLoading] = useState(false)
   const [crop, setCrop] = useState({ x: 0, y: 0 })
   const [zoom, setZoom] = useState(1)
-  const [croppedAvatar, setCroppedAvatar] = useState<string | null>(null)
-  const [croppedArea, setCroppedArea] = useState<Area>({
-    width: 0,
-    height: 0,
-    x: 0,
-    y: 0
-  })
+  const [croppedAvatar, setCroppedAvatar] = useState('')
+  const [croppedArea, setCroppedArea] = useState<Area>(CROPPED_AREA_VALUES)
 
   const onZoomChange = useCallback((value: [number]) => setZoom(...value), [])
   const onCropComplete = useCallback((_: Area, croppedAreaPixels: Area) => {
@@ -35,21 +31,19 @@ export default function CropAvatar({ setOpen }: Props) {
   }, [])
 
   const saveCrop = useCallback(async () => {
-    if (avatarToCrop === null) return
+    if (avatarToCrop.length === 0) return
 
     try {
       const croppedImage = await cropImage(avatarToCrop, croppedArea)
 
-      if (croppedImage === null) return
-
-      setCroppedAvatar(croppedImage)
+      if (croppedImage.length > 0) setCroppedAvatar(croppedImage)
     } catch (error) {
       console.error(error)
     }
   }, [croppedArea, avatarToCrop])
 
   const uploadAvatar = useCallback(async () => {
-    if (croppedAvatar === null) return
+    if (croppedAvatar.length === 0) return
     setLoading(true)
 
     try {
@@ -76,20 +70,20 @@ export default function CropAvatar({ setOpen }: Props) {
       toast.error('Something happened. Please try again!')
     } finally {
       setLoading(false)
-      setCroppedAvatar(null)
-      setAvatarToCrop(null)
+      setCroppedAvatar('')
+      setAvatarToCrop('')
     }
   }, [croppedAvatar, setAvatar, setAvatarToCrop, setOpen])
 
   const deleteAvatar = useCallback(() => {
-    setCroppedAvatar(null)
-    setAvatarToCrop(null)
+    setCroppedAvatar('')
+    setAvatarToCrop('')
   }, [setCroppedAvatar, setAvatarToCrop])
 
   return (
     <section className='flex flex-col gap-3'>
       <section className='relative aspect-square w-full overflow-hidden rounded-xl bg-border'>
-        {avatarToCrop !== null && croppedAvatar === null && (
+        {avatarToCrop.length > 0 && croppedAvatar.length === 0 && (
           <>
             <Cropper
               image={avatarToCrop}
@@ -115,7 +109,7 @@ export default function CropAvatar({ setOpen }: Props) {
             </div>
           </>
         )}
-        {croppedAvatar !== null && (
+        {croppedAvatar.length > 0 && (
           <Avatar className='size-full' src={croppedAvatar} alt='Gonzalo' />
         )}
       </section>
@@ -123,7 +117,7 @@ export default function CropAvatar({ setOpen }: Props) {
         <Button variant='outline' onClick={deleteAvatar}>
           Delete
         </Button>
-        {croppedAvatar === null ? (
+        {croppedAvatar.length === 0 ? (
           <Button variant='secondary' onClick={saveCrop}>
             Crop
           </Button>
