@@ -3,7 +3,7 @@ import LinkName from '@/components/links/settings/profile/name/link-name'
 import LinkDescription from '@/components/links/settings/profile/description/link-description'
 import { TypographyH3 } from '@/components/ui/typography/typography-h3'
 import { Separator } from '@/components/ui/separator'
-import LinkSocialIcons from './profile/social-icons/link-social-icons'
+import LinkSocialMedia from './profile/social-media/link-social-media'
 
 export default function LinkSettings() {
   return (
@@ -18,7 +18,7 @@ export default function LinkSettings() {
         <Separator />
         <LinkDescription />
         <Separator />
-        <LinkSocialIcons />
+        <LinkSocialMedia />
       </section>
     </aside>
   )
