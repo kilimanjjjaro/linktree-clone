@@ -1,10 +1,10 @@
 body::before {
-  content: '';
+  content: "";
   position: fixed;
   inset: -10rem;
   background-image: image-set(
-    '/images/noise.avif' type('image/avif'),
-    '/images/noise.png' type('image/png')
+    "/images/noise.avif" type("image/avif"),
+    "/images/noise.png" type("image/png")
   );
   opacity: 0.15;
   animation: noise 1s steps(2) infinite;

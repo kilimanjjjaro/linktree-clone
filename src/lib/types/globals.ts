@@ -1,8 +1,8 @@
 export interface ChildrenType {
-  children: React.ReactNode
+  children: React.ReactNode;
 }
 
 export interface SocialMediaInterface {
-  value: string
-  label: string
+  value: string;
+  label: string;
 }

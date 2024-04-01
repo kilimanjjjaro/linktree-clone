@@ -1,6 +1,6 @@
-import Navbar from '@/components/navbar/navbar'
-import { Toaster } from '@/components/ui/toaster'
-import type { ChildrenType } from '@/lib/types/globals'
+import Navbar from "@/components/navbar/navbar";
+import { Toaster } from "@/components/ui/toaster";
+import type { ChildrenType } from "@/lib/types/globals";
 
 export default function Wrapper({ children }: Readonly<ChildrenType>) {
   return (
@@ -9,5 +9,5 @@ export default function Wrapper({ children }: Readonly<ChildrenType>) {
       <Toaster />
       {children}
     </>
-  )
+  );
 }

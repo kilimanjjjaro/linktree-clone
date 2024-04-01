@@ -1,11 +1,11 @@
-import { StateCreator } from 'zustand'
-import type { SocialMediaSliceInterface } from '@/lib/types/store'
+import { StateCreator } from "zustand";
+import type { SocialMediaSliceInterface } from "@/lib/types/store";
 
 export const createSocialMediaSlice: StateCreator<SocialMediaSliceInterface> = (
-  set
+  set,
 ) => ({
   step: 1,
   setStep: (step) => set(() => ({ step })),
-  selectedMedia: '',
-  setSelectedMedia: (selectedMedia) => set(() => ({ selectedMedia }))
-})
+  selectedMedia: "",
+  setSelectedMedia: (selectedMedia) => set(() => ({ selectedMedia })),
+});

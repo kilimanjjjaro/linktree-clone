@@ -1,11 +1,11 @@
 interface Props {
-  selectedMedia: string
-  setSelectedMedia: (selectedMedia: string) => void
+  selectedMedia: string;
+  setSelectedMedia: (selectedMedia: string) => void;
 }
 
 export default function MediaOptions({
   selectedMedia,
-  setSelectedMedia
+  setSelectedMedia,
 }: Props) {
-  return <div />
+  return <div />;
 }

@@ -1,30 +1,30 @@
-import type { Area } from 'react-easy-crop'
+import type { Area } from "react-easy-crop";
 
 const createImage = async (url: string): Promise<CanvasImageSource> => {
   return await new Promise((resolve, reject) => {
-    const image = new Image()
-    image.addEventListener('load', () => resolve(image))
-    image.addEventListener('error', (error) => reject(error))
-    image.src = url
-  })
-}
+    const image = new Image();
+    image.addEventListener("load", () => resolve(image));
+    image.addEventListener("error", (error) => reject(error));
+    image.src = url;
+  });
+};
 
 export async function cropImage(
   imageUrl: string,
-  croppedArea: Area
+  croppedArea: Area,
 ): Promise<string> {
-  const image = await createImage(imageUrl)
-  const canvas = document.createElement('canvas')
-  const ctx = canvas.getContext('2d')
+  const image = await createImage(imageUrl);
+  const canvas = document.createElement("canvas");
+  const ctx = canvas.getContext("2d");
 
-  if (ctx === null) return ''
+  if (ctx === null) return "";
 
-  canvas.width = croppedArea.width
-  canvas.height = croppedArea.height
+  canvas.width = croppedArea.width;
+  canvas.height = croppedArea.height;
 
-  const croppedCtx = canvas.getContext('2d')
+  const croppedCtx = canvas.getContext("2d");
 
-  if (croppedCtx === null) return ''
+  if (croppedCtx === null) return "";
 
   croppedCtx.drawImage(
     image,
@@ -35,12 +35,12 @@ export async function cropImage(
     0,
     0,
     croppedArea.width,
-    croppedArea.height
-  )
+    croppedArea.height,
+  );
 
   return await new Promise((resolve) => {
     canvas.toBlob((blob) => {
-      if (blob !== null) resolve(URL.createObjectURL(blob))
-    }, 'image/jpeg')
-  })
+      if (blob !== null) resolve(URL.createObjectURL(blob));
+    }, "image/jpeg");
+  });
 }

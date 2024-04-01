@@ -1,9 +1,9 @@
-import { StateCreator } from 'zustand'
-import type { AvatarSliceInterface } from '@/lib/types/store'
+import { StateCreator } from "zustand";
+import type { AvatarSliceInterface } from "@/lib/types/store";
 
 export const createAvatarSlice: StateCreator<AvatarSliceInterface> = (set) => ({
-  avatar: '/images/default-link-avatar.svg',
+  avatar: "/images/default-link-avatar.svg",
   setAvatar: (avatar) => set(() => ({ avatar })),
-  avatarToCrop: '',
-  setAvatarToCrop: (avatarToCrop) => set(() => ({ avatarToCrop }))
-})
+  avatarToCrop: "",
+  setAvatarToCrop: (avatarToCrop) => set(() => ({ avatarToCrop })),
+});
