@@ -29,8 +29,8 @@ export default function LinkAvatar() {
           >
             Upload
           </DialogTrigger>
-          <DialogContent>
-            <DialogHeader className="absolute left-0 top-0 flex h-12 w-full items-center justify-center border-b border-border p-3">
+          <DialogContent className="p-0 outline-none">
+            <DialogHeader className="border-border absolute left-0 top-0 flex h-12 w-full items-center justify-center border-b p-3">
               <DialogTitle>Upload your avatar</DialogTitle>
             </DialogHeader>
             <main className="mt-12 p-5">

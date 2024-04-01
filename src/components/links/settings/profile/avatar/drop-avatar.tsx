@@ -28,10 +28,10 @@ export default function DropAvatar() {
   return (
     <section
       {...getRootProps({ className: "dropzone" })}
-      className="flex aspect-square cursor-pointer items-center rounded-xl border-2 border-dashed border-border bg-background p-20 outline-none xl:hover:bg-black/30"
+      className="border-border bg-background focus-visible:text-card-foreground focus-visible:border-card-foreground xl:hover:text-card-foreground xl:hover:border-card-foreground text-muted-foreground flex aspect-square cursor-pointer items-center rounded-xl border-2 border-dashed p-20 outline-none transition-colors"
     >
       <input {...getInputProps()} />
-      <div className="flex flex-col items-center gap-4 text-muted-foreground">
+      <div className="flex flex-col items-center gap-4">
         <Image className="size-10" strokeWidth={1.5} />
         <span className="text-balance text-center text-sm">
           Click to select your image or drag-and-drop here to upload it.

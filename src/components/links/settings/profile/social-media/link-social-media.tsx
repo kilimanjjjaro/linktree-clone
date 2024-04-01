@@ -30,13 +30,13 @@ export default function LinkSocialMedia() {
   return (
     <div className="flex flex-col gap-3 p-5">
       <div className="flex items-center gap-2">
-        <Label htmlFor="link-description">Social media</Label>
+        <Label htmlFor="link-social-media">Social media</Label>
         <Popover>
           <PopoverTrigger>
             <CircleHelp className="h-3.5 w-3.5" />
           </PopoverTrigger>
           <PopoverContent>
-            <p className="text-sm text-muted-foreground">
+            <p className="text-muted-foreground text-sm">
               Add icons linking to your social profiles, email and more.
             </p>
           </PopoverContent>
@@ -44,13 +44,14 @@ export default function LinkSocialMedia() {
       </div>
       <Dialog>
         <DialogTrigger
+          id="link-social-media"
           className={`w-full cursor-pointer gap-x-1 ${buttonVariants({ variant: "outline" })}`}
         >
           <Plus className="size-4" strokeWidth={1.5} />
           Add icon
         </DialogTrigger>
-        <DialogContent>
-          <DialogHeader className="absolute left-0 top-0 flex h-12 w-full items-center justify-center border-b border-border p-3">
+        <DialogContent className="p-0 outline-none">
+          <DialogHeader className="border-border absolute left-0 top-0 flex h-12 w-full items-center justify-center border-b p-3">
             <DialogTitle>
               {selectedMedia.length > 0
                 ? `Add ${headline}`
