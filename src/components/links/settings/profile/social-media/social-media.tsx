@@ -1,13 +1,15 @@
 import { CheckIcon } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { SocialMediaInterface } from '@/lib/types/globals'
+import { useStore } from '@/lib/store/store'
 
 interface Props {
   media: SocialMediaInterface
-  selectedMedia: string
 }
 
-export default function SocialMedia({ media, selectedMedia }: Props) {
+export default function SocialMedia({ media }: Props) {
+  const selectedMedia = useStore((state) => state.selectedMedia)
+
   return (
     <>
       {media.label}

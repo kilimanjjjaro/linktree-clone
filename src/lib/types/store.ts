@@ -10,6 +10,14 @@ export interface AvatarSliceInterface {
   setAvatarToCrop: (avatar: string | null) => void
 }
 
+export interface SocialMediaSliceInterface {
+  step: number
+  setStep: (step: number) => void
+  selectedMedia: string | null
+  setSelectedMedia: (avatar: string | null) => void
+}
+
 export interface StoreInterface
   extends GlobalsSliceInterface,
-    AvatarSliceInterface {}
+    AvatarSliceInterface,
+    SocialMediaSliceInterface {}

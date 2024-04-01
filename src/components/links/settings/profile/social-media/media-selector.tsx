@@ -8,16 +8,12 @@ import {
   CommandList
 } from '@/components/ui/command'
 import { SOCIAL_MEDIA } from '@/lib/constants/globals'
+import { useStore } from '@/lib/store/store'
 
-interface Props {
-  selectedMedia: string
-  setSelectedMedia: (selectedMedia: string) => void
-}
+export default function MediaSelector() {
+  const selectedMedia = useStore((state) => state.selectedMedia)
+  const setSelectedMedia = useStore((state) => state.setSelectedMedia)
 
-export default function MediaSelector({
-  selectedMedia,
-  setSelectedMedia
-}: Props) {
   return (
     <Command className='rounded-xl border'>
       <CommandInput placeholder='Type to search...' />
@@ -32,7 +28,7 @@ export default function MediaSelector({
                 setSelectedMedia(value === selectedMedia ? '' : value)
               }}
             >
-              <SocialMedia media={media} selectedMedia={selectedMedia} />
+              <SocialMedia media={media} />
             </CommandItem>
           ))}
         </CommandGroup>

@@ -1,6 +1,5 @@
 'use client'
 
-import { useState } from 'react'
 import { CircleHelp, Plus } from 'lucide-react'
 import MediaSelector from '@/components/links/settings/profile/social-media/media-selector'
 import { buttonVariants } from '@/components/ui/button'
@@ -18,9 +17,11 @@ import {
   DialogTrigger
 } from '@/components/ui/dialog'
 import { SOCIAL_MEDIA } from '@/lib/constants/globals'
+import clsx from 'clsx'
+import { useStore } from '@/lib/store/store'
 
 export default function LinkSocialMedia() {
-  const [selectedMedia, setSelectedMedia] = useState('')
+  const selectedMedia = useStore((state) => state.selectedMedia)
 
   return (
     <div className='flex flex-col gap-3 p-5'>
@@ -47,16 +48,19 @@ export default function LinkSocialMedia() {
         <DialogContent>
           <DialogHeader className='absolute left-0 top-0 flex h-12 w-full items-center justify-center border-b border-border p-3'>
             <DialogTitle>
-              {selectedMedia.length > 0
+              {selectedMedia === null
                 ? `Add ${SOCIAL_MEDIA.find((media) => media.value === selectedMedia)?.label ?? ''}`
                 : 'Add social media'}
             </DialogTitle>
           </DialogHeader>
-          <main className='mt-12 p-5'>
-            <MediaSelector
-              selectedMedia={selectedMedia}
-              setSelectedMedia={setSelectedMedia}
-            />
+          <main className='mt-12 overflow-hidden p-5'>
+            <section
+              className={clsx(
+                selectedMedia === null ? 'translate-x-0' : '-translate-x-[110%]'
+              )}
+            >
+              <MediaSelector />
+            </section>
           </main>
         </DialogContent>
       </Dialog>
