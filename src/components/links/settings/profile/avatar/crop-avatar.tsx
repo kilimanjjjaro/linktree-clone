@@ -9,7 +9,7 @@ import { DialogFooter } from "@/components/ui/dialog";
 import { useStore } from "@/lib/store/store";
 import { CROPPED_AREA_VALUES } from "@/lib/constants/avatar";
 import { cropImage } from "@/lib/utils/crop-image";
-import { fetchBlobData } from "@/lib/utils/fetchBlobData";
+import { fetchBlobData } from "@/lib/utils/fetch-blob-data";
 
 interface Props {
   setOpen: (open: boolean) => void;
