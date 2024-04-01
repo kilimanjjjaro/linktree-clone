@@ -29,7 +29,7 @@ export default function Media({ media }: Props) {
       <span className="flex items-center gap-2">
         <div
           className={cn(
-            "rounded-md border border-white px-1.5 text-[10px] font-normal leading-4",
+            "rounded-xl border border-white px-1.5 text-[10px] font-normal leading-4",
             selectedMedia === media.value ? "opacity-100" : "opacity-0",
           )}
         >

@@ -82,7 +82,7 @@ export default function CropAvatar({ setOpen }: Props) {
 
   return (
     <section className="flex flex-col gap-3">
-      <section className="relative aspect-square w-full overflow-hidden rounded-xl bg-border">
+      <section className="bg-border relative aspect-square w-full overflow-hidden rounded-xl">
         {avatarToCrop.length > 0 && croppedAvatar.length === 0 && (
           <>
             <Cropper
@@ -113,7 +113,7 @@ export default function CropAvatar({ setOpen }: Props) {
           <Avatar className="size-full" src={croppedAvatar} alt="Gonzalo" />
         )}
       </section>
-      <DialogFooter className="gap-x-3 *:w-full">
+      <DialogFooter className="gap-x-3 *:w-full sm:space-x-0">
         <Button variant="outline" onClick={deleteAvatar}>
           Delete
         </Button>
