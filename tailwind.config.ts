@@ -1,6 +1,7 @@
 import type { Config } from "tailwindcss";
 
 const config = {
+  darkMode: ["class"],
   content: [
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
@@ -16,15 +17,7 @@ const config = {
       },
     },
     extend: {
-      fontFamily: {
-        "geist-sans": ["var(--font-geist-sans)"],
-      },
       colors: {
-        "linktree-black": "hsl(var(--color-black) / <alpha-value>)",
-        "linktree-white": "hsl(var(--color-white) / <alpha-value>)",
-        "linktree-light-gray": "hsl(var(--color-light-gray) / <alpha-value>)",
-        "linktree-dark-gray": "hsl(var(--color-dark-gray) / <alpha-value>)",
-        "linktree-green": "hsl(var(--color-green) / <alpha-value>)",
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
@@ -63,6 +56,20 @@ const config = {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
+      },
+      keyframes: {
+        "accordion-down": {
+          from: { height: "0" },
+          to: { height: "var(--radix-accordion-content-height)" },
+        },
+        "accordion-up": {
+          from: { height: "var(--radix-accordion-content-height)" },
+          to: { height: "0" },
+        },
+      },
+      animation: {
+        "accordion-down": "accordion-down 0.2s ease-out",
+        "accordion-up": "accordion-up 0.2s ease-out",
       },
     },
   },

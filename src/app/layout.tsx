@@ -6,10 +6,10 @@ import "./globals.css";
 
 export default function RootLayout({ children }: Readonly<ChildrenType>) {
   return (
-    <html lang="en">
+    <html lang="en" className="dark">
       <meta name="color-scheme" content="dark light" />
       <body
-        className={`bg-linktree-black font-geist-sans text-linktree-white antialiased ${geistSans}`}
+        className={`bg-background text-card-foreground font-geist-sans antialiased ${geistSans}`}
       >
         <Wrapper>{children}</Wrapper>
       </body>
