@@ -28,7 +28,7 @@ export default function DropAvatar() {
   return (
     <section
       {...getRootProps({ className: 'dropzone' })}
-      className='mt-[49px] flex aspect-square cursor-pointer items-center rounded-xl border-2 border-dashed border-border bg-background p-20 outline-none xl:hover:bg-black/30'
+      className='flex aspect-square cursor-pointer items-center rounded-xl border-2 border-dashed border-border bg-background p-20 outline-none xl:hover:bg-black/30'
     >
       <input {...getInputProps()} />
       <div className='flex flex-col items-center gap-4 text-muted-foreground'>

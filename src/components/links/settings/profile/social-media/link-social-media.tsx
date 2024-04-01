@@ -52,10 +52,12 @@ export default function LinkSocialMedia() {
                 : 'Add social media'}
             </DialogTitle>
           </DialogHeader>
-          <MediaSelector
-            selectedMedia={selectedMedia}
-            setSelectedMedia={setSelectedMedia}
-          />
+          <main className='mt-12 p-5'>
+            <MediaSelector
+              selectedMedia={selectedMedia}
+              setSelectedMedia={setSelectedMedia}
+            />
+          </main>
         </DialogContent>
       </Dialog>
     </div>

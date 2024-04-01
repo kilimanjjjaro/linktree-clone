@@ -19,26 +19,24 @@ export default function MediaSelector({
   setSelectedMedia
 }: Props) {
   return (
-    <div className='mt-[49px] h-auto'>
-      <Command className='rounded-xl border'>
-        <CommandInput placeholder='Type to search...' />
-        <CommandList>
-          <CommandEmpty>No results found.</CommandEmpty>
-          <CommandGroup>
-            {SOCIAL_MEDIA.map((media) => (
-              <CommandItem
-                key={media.value}
-                value={media.value}
-                onSelect={(value: string) => {
-                  setSelectedMedia(value === selectedMedia ? '' : value)
-                }}
-              >
-                <SocialMedia media={media} selectedMedia={selectedMedia} />
-              </CommandItem>
-            ))}
-          </CommandGroup>
-        </CommandList>
-      </Command>
-    </div>
+    <Command className='rounded-xl border'>
+      <CommandInput placeholder='Type to search...' />
+      <CommandList>
+        <CommandEmpty>No results found.</CommandEmpty>
+        <CommandGroup>
+          {SOCIAL_MEDIA.map((media) => (
+            <CommandItem
+              key={media.value}
+              value={media.value}
+              onSelect={(value: string) => {
+                setSelectedMedia(value === selectedMedia ? '' : value)
+              }}
+            >
+              <SocialMedia media={media} selectedMedia={selectedMedia} />
+            </CommandItem>
+          ))}
+        </CommandGroup>
+      </CommandList>
+    </Command>
   )
 }

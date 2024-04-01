@@ -33,11 +33,13 @@ export default function LinkAvatar() {
             <DialogHeader className='absolute left-0 top-0 flex h-12 w-full items-center justify-center border-b border-border p-3'>
               <DialogTitle>Upload your avatar</DialogTitle>
             </DialogHeader>
-            {avatarToCrop === null ? (
-              <DropAvatar />
-            ) : (
-              <CropAvatar setOpen={setOpen} />
-            )}
+            <main className='mt-12 p-5'>
+              {avatarToCrop === null ? (
+                <DropAvatar />
+              ) : (
+                <CropAvatar setOpen={setOpen} />
+              )}
+            </main>
           </DialogContent>
         </Dialog>
         <Button variant='outline'>Remove</Button>
