@@ -19,15 +19,15 @@ export default function LinkName() {
             <span className="sr-only">Show help</span>
           </PopoverTrigger>
           <PopoverContent>
-            <p className="text-muted-foreground text-sm">
+            <p className="text-sm text-muted-foreground">
               This will be used as the URL for your link and for SEO. You can
               change it as many times as you want.
             </p>
           </PopoverContent>
         </Popover>
       </div>
-      <div className="border-border has-[:focus-visible]:ring-ring has-[:focus-visible]:ring-offset-background group relative flex h-10 items-center overflow-hidden rounded-xl border has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-offset-2">
-        <span className="border-border text-muted-foreground flex h-full cursor-not-allowed select-none items-center border-r px-3 text-sm">
+      <div className="group relative flex h-10 items-center overflow-hidden rounded-xl border border-border has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-ring has-[:focus-visible]:ring-offset-2 has-[:focus-visible]:ring-offset-background">
+        <span className="flex h-full cursor-not-allowed select-none items-center border-r border-border px-3 text-sm text-muted-foreground">
           linktr.ee/
         </span>
         <Input

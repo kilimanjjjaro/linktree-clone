@@ -4,7 +4,7 @@ import Avatar from "@/components/ui/avatar";
 
 export default function Navbar() {
   return (
-    <header className="border-border bg-background fixed left-4 right-4 top-4 z-50 flex items-center justify-between rounded-full border py-3 pl-6 pr-3">
+    <header className="fixed left-4 right-4 top-4 z-50 flex items-center justify-between rounded-full border border-border bg-background py-3 pl-6 pr-3">
       <div className="flex items-center gap-x-6">
         <LinktreeLogo className="w-6" />
         <nav className="flex items-center gap-x-5">
@@ -17,7 +17,7 @@ export default function Navbar() {
       <button className="group flex items-center gap-x-4">
         <span>Hi, Gonzalo!</span>
         <Avatar
-          className="outline-3 xl:group-hover:outline-border size-10 outline outline-offset-2 outline-transparent transition-[outline]"
+          className="outline-3 size-10 outline outline-offset-2 outline-transparent transition-[outline] xl:group-hover:outline-border"
           src="/images/default-user-avatar.svg"
           alt="Gonzalo"
         />

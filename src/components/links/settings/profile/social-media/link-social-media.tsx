@@ -36,7 +36,7 @@ export default function LinkSocialMedia() {
             <CircleHelp className="h-3.5 w-3.5" />
           </PopoverTrigger>
           <PopoverContent>
-            <p className="text-muted-foreground text-sm">
+            <p className="text-sm text-muted-foreground">
               Add icons linking to your social profiles, email and more.
             </p>
           </PopoverContent>
@@ -51,7 +51,7 @@ export default function LinkSocialMedia() {
           Add icon
         </DialogTrigger>
         <DialogContent className="p-0 outline-none">
-          <DialogHeader className="border-border absolute left-0 top-0 flex h-12 w-full items-center justify-center border-b p-3">
+          <DialogHeader className="absolute left-0 top-0 flex h-12 w-full items-center justify-center border-b border-border p-3">
             <DialogTitle>
               {selectedMedia.length > 0
                 ? `Add ${headline}`

@@ -82,7 +82,7 @@ export default function CropAvatar({ setOpen }: Props) {
 
   return (
     <section className="flex flex-col gap-3">
-      <section className="bg-border relative aspect-square w-full overflow-hidden rounded-xl">
+      <section className="relative aspect-square w-full overflow-hidden rounded-xl bg-border">
         {avatarToCrop.length > 0 && croppedAvatar.length === 0 && (
           <>
             <Cropper
