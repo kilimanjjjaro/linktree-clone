@@ -48,7 +48,7 @@ export default function LinkSocialMedia() {
           className={`w-full cursor-pointer gap-x-1 ${buttonVariants({ variant: "outline" })}`}
         >
           <Plus className="size-4" strokeWidth={1.5} />
-          Add icon
+          Add
         </DialogTrigger>
         <DialogContent className="p-0 outline-none">
           <DialogHeader className="absolute left-0 top-0 flex h-12 w-full items-center justify-center border-b border-border p-3">
