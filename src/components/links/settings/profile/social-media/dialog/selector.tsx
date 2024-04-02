@@ -1,4 +1,4 @@
-import Media from "@/components/links/settings/profile/social-media/media";
+import SocialMediaItem from "./item";
 import {
   Command,
   CommandEmpty,
@@ -6,9 +6,9 @@ import {
   CommandInput,
   CommandList,
 } from "@/components/ui/command";
-import { SOCIAL_MEDIA } from "@/lib/constants/globals";
+import { SOCIAL_MEDIA } from "@/lib/constants/social-media";
 
-export default function MediaSelector() {
+export default function SocialMediaSelector() {
   return (
     <Command className="rounded-none">
       <CommandInput placeholder="Type to search..." className="h-10 py-0" />
@@ -16,7 +16,7 @@ export default function MediaSelector() {
         <CommandEmpty>No results found.</CommandEmpty>
         <CommandGroup className="py-0 pl-0">
           {SOCIAL_MEDIA.map((media) => (
-            <Media key={media.value} media={media} />
+            <SocialMediaItem key={media.id} media={media} />
           ))}
         </CommandGroup>
       </CommandList>

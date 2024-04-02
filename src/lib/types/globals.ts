@@ -19,6 +19,22 @@ export type SocialMediaType =
   | "youtube";
 
 export interface SocialMediaInterface {
-  value: SocialMediaType;
-  label: string;
+  id: number;
+  name: string;
+  slug: SocialMediaType;
+  link: string;
+  form: {
+    inputType: number;
+    label: string;
+    disabledText: string;
+    placeholder: string;
+  };
 }
+
+export type LinkSocialMedia = {
+  id: number;
+  name: string;
+  slug: SocialMediaType;
+  inputValue: string | number;
+  link: string;
+};

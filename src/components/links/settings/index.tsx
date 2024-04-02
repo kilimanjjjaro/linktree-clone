@@ -1,9 +1,9 @@
-import LinkAvatar from "@/components/links/settings/profile/avatar/link-avatar";
-import LinkName from "@/components/links/settings/profile/name/link-name";
-import LinkDescription from "@/components/links/settings/profile/description/link-description";
+import LinkSocialMedia from "./profile/social-media";
+import LinkAvatar from "@/components/links/settings/profile/avatar";
+import LinkName from "@/components/links/settings/profile/name";
+import LinkDescription from "@/components/links/settings/profile/description";
 import { TypographyH3 } from "@/components/ui/typography/typography-h3";
 import { Separator } from "@/components/ui/separator";
-import LinkSocialMedia from "./profile/social-media/link-social-media";
 
 export default function LinkSettings() {
   return (

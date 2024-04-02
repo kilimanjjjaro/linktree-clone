@@ -12,10 +12,10 @@ import { cropImage } from "@/lib/utils/crop-image";
 import { fetchBlobData } from "@/lib/utils/fetch-blob-data";
 
 interface Props {
-  setOpen: (open: boolean) => void;
+  setShowDialog: (open: boolean) => void;
 }
 
-export default function CropAvatar({ setOpen }: Props) {
+export default function CropAvatar({ setShowDialog }: Props) {
   const avatarToCrop = useStore((state) => state.avatarToCrop);
   const setAvatarToCrop = useStore((state) => state.setAvatarToCrop);
   const setAvatar = useStore((state) => state.setAvatar);
@@ -64,7 +64,7 @@ export default function CropAvatar({ setOpen }: Props) {
       const avatar = data.eager[0].secure_url;
 
       setAvatar(avatar);
-      setOpen(false);
+      setShowDialog(false);
       toast.success("Link avatar updated!");
     } catch (error) {
       toast.error("Something happened. Please try again!");
@@ -73,7 +73,7 @@ export default function CropAvatar({ setOpen }: Props) {
       setCroppedAvatar("");
       setAvatarToCrop("");
     }
-  }, [croppedAvatar, setAvatar, setAvatarToCrop, setOpen]);
+  }, [croppedAvatar, setAvatar, setAvatarToCrop, setShowDialog]);
 
   const deleteAvatar = useCallback(() => {
     setCroppedAvatar("");

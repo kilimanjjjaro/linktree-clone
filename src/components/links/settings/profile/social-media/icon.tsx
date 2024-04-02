@@ -13,6 +13,12 @@ import { TwitterIcon } from "@/components/icons/twitter-icon";
 import { WhatsAppIcon } from "@/components/icons/whatsapp-icon";
 import { YouTubeIcon } from "@/components/icons/youtube-icon";
 import type { SocialMediaType } from "@/lib/types/globals";
+import { cn } from "@/lib/utils";
+
+interface Props {
+  className: string;
+  name: SocialMediaType;
+}
 
 const getIcon = (name: SocialMediaType) => {
   switch (name) {
@@ -49,11 +55,11 @@ const getIcon = (name: SocialMediaType) => {
   }
 };
 
-export default function Icon({ name }: { name: SocialMediaType }) {
+export default function SocialMediaIcon({ className, name }: Props) {
   const icon = getIcon(name);
 
   return (
-    <i aria-hidden className="size-5 text-white">
+    <i aria-hidden className={cn("inline-block", className)}>
       {icon}
     </i>
   );

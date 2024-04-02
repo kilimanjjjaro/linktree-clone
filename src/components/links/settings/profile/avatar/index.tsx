@@ -17,13 +17,13 @@ import { useStore } from "@/lib/store/store";
 export default function LinkAvatar() {
   const avatar = useStore((state) => state.avatar);
   const avatarToCrop = useStore((state) => state.avatarToCrop);
-  const [open, setOpen] = useState(false);
+  const [showDialog, setShowDialog] = useState(false);
 
   return (
     <div className="flex items-center gap-x-5 p-5">
       <Avatar className="size-20" src={avatar} alt="Gonzalo" />
       <div className="grid flex-1 grid-cols-2 gap-3">
-        <Dialog open={open} onOpenChange={setOpen}>
+        <Dialog open={showDialog} onOpenChange={setShowDialog}>
           <DialogTrigger
             className={`cursor-pointer ${buttonVariants({ variant: "secondary" })}`}
           >
@@ -37,7 +37,7 @@ export default function LinkAvatar() {
               {avatarToCrop.length === 0 ? (
                 <DropAvatar />
               ) : (
-                <CropAvatar setOpen={setOpen} />
+                <CropAvatar setShowDialog={setShowDialog} />
               )}
             </main>
           </DialogContent>

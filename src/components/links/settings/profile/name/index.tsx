@@ -32,7 +32,7 @@ export default function LinkName() {
         </span>
         <Input
           id="link-name"
-          className="rounded-none border-none px-3 placeholder:text-white focus-visible:ring-0 focus-visible:ring-offset-0"
+          className="rounded-none border-none px-3 focus-visible:ring-0 focus-visible:ring-offset-0"
           type="text"
           placeholder="kilimanjjjaro"
         />
