@@ -6,16 +6,15 @@ export const createInputAttributes = (inputType: number) => {
   if (inputType === INPUT_TYPES.TEXT) {
     attributes = {
       type: 'text',
-      minLength: 5,
       maxLength: 80
     }
   }
 
-  if (inputType === INPUT_TYPES.NUMBER) {
+  if (inputType === INPUT_TYPES.TEL) {
     attributes = {
-      type: 'number',
-      minLength: 10,
-      maxLength: 80
+      type: 'tel',
+      minLength: 7,
+      maxLength: 20
     }
   }
 

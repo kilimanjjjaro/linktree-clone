@@ -92,7 +92,7 @@ export const SOCIAL_MEDIA: SocialMediaInterface[] = [
     slug: 'telegram',
     link: '',
     form: {
-      inputType: INPUT_TYPES.NUMBER,
+      inputType: INPUT_TYPES.TEL,
       label: 'Number',
       disabledText: '',
       placeholder: '+4320000000000'
@@ -152,7 +152,7 @@ export const SOCIAL_MEDIA: SocialMediaInterface[] = [
     slug: 'whatsapp',
     link: 'https://api.whatsapp.com/send?phone=',
     form: {
-      inputType: INPUT_TYPES.NUMBER,
+      inputType: INPUT_TYPES.TEL,
       label: 'Number',
       disabledText: '',
       placeholder: '+4320000000000'

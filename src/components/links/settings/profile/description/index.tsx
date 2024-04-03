@@ -1,6 +1,6 @@
 import { CircleHelp } from 'lucide-react'
+import DescriptionInput from './input'
 import { Label } from '@/components/ui/label'
-import { Textarea } from '@/components/ui/textarea'
 import {
   Popover,
   PopoverContent,
@@ -24,11 +24,7 @@ export default function LinkDescription() {
           </PopoverContent>
         </Popover>
       </div>
-      <Textarea
-        id='link-description'
-        className='p-3'
-        placeholder="I'm a Full Stack Developer and these are my projects."
-      />
+      <DescriptionInput />
     </section>
   )
 }
