@@ -1,9 +1,11 @@
-import { StateCreator } from "zustand";
-import type { GlobalsSliceInterface } from "@/lib/types/store";
+import { type StateCreator } from 'zustand'
+import type { GlobalsSliceInterface } from '@/lib/types/store'
 
 export const createGlobalsSlice: StateCreator<GlobalsSliceInterface> = (
-  set,
+  set
 ) => ({
   dummyState: true,
-  setDummyState: (dummyState) => set(() => ({ dummyState })),
-});
+  setDummyState: (dummyState) => {
+    set(() => ({ dummyState }))
+  }
+})
