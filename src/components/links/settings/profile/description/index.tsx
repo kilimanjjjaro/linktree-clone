@@ -14,7 +14,7 @@ export default function LinkDescription() {
         <Label htmlFor="link-description">Description</Label>
         <Popover>
           <PopoverTrigger>
-            <CircleHelp className="h-3.5 w-3.5" />
+            <CircleHelp className="size-3.5" />
           </PopoverTrigger>
           <PopoverContent>
             <p className="text-sm text-muted-foreground">

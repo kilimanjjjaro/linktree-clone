@@ -1,6 +1,19 @@
 {
-  "extends": ["next/core-web-vitals", "love", "prettier"],
+  "extends": [
+    "next/core-web-vitals",
+    "love",
+    "prettier",
+    "plugin:tailwindcss/recommended"
+  ],
   "rules": {
+    "@typescript-eslint/explicit-function-return-type": "off",
+    "@typescript-eslint/no-misused-promises": "off",
+    "tailwindcss/no-custom-classname": [
+      1,
+      {
+        "whitelist": ["toaster"]
+      }
+    ],
     "import/no-relative-parent-imports": [
       "error",
       {

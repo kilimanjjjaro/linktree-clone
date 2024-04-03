@@ -31,10 +31,10 @@ export interface SocialMediaInterface {
   };
 }
 
-export type LinkSocialMedia = {
+export interface LinkSocialMedia {
   id: number;
   name: string;
   slug: SocialMediaType;
   inputValue: string | number;
   link: string;
-};
+}

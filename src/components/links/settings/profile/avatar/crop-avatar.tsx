@@ -1,88 +1,90 @@
-import { useCallback, useState } from "react";
-import Cropper, { type Area } from "react-easy-crop";
-import { toast } from "sonner";
-import { LoaderCircle } from "lucide-react";
-import { Slider } from "@/components/ui/slider";
-import { Button } from "@/components/ui/button";
-import Avatar from "@/components/ui/avatar";
-import { DialogFooter } from "@/components/ui/dialog";
-import { useStore } from "@/lib/store/store";
-import { CROPPED_AREA_VALUES } from "@/lib/constants/avatar";
-import { cropImage } from "@/lib/utils/crop-image";
-import { fetchBlobData } from "@/lib/utils/fetch-blob-data";
+import { useCallback, useState } from 'react'
+import Cropper, { type Area } from 'react-easy-crop'
+import { toast } from 'sonner'
+import { LoaderCircle } from 'lucide-react'
+import { Slider } from '@/components/ui/slider'
+import { Button } from '@/components/ui/button'
+import Avatar from '@/components/ui/avatar'
+import { DialogFooter } from '@/components/ui/dialog'
+import { useStore } from '@/lib/store/store'
+import { CROPPED_AREA_VALUES } from '@/lib/constants/avatar'
+import { cropImage } from '@/lib/utils/crop-image'
+import { fetchBlobData } from '@/lib/utils/fetch-blob-data'
 
 interface Props {
-  setShowDialog: (open: boolean) => void;
+  setShowDialog: (open: boolean) => void
 }
 
 export default function CropAvatar({ setShowDialog }: Props) {
-  const avatarToCrop = useStore((state) => state.avatarToCrop);
-  const setAvatarToCrop = useStore((state) => state.setAvatarToCrop);
-  const setAvatar = useStore((state) => state.setAvatar);
-  const [loading, setLoading] = useState(false);
-  const [crop, setCrop] = useState({ x: 0, y: 0 });
-  const [zoom, setZoom] = useState(1);
-  const [croppedAvatar, setCroppedAvatar] = useState("");
-  const [croppedArea, setCroppedArea] = useState<Area>(CROPPED_AREA_VALUES);
+  const avatarToCrop = useStore((state) => state.avatarToCrop)
+  const setAvatarToCrop = useStore((state) => state.setAvatarToCrop)
+  const setAvatar = useStore((state) => state.setAvatar)
+  const [loading, setLoading] = useState(false)
+  const [crop, setCrop] = useState({ x: 0, y: 0 })
+  const [zoom, setZoom] = useState(1)
+  const [croppedAvatar, setCroppedAvatar] = useState('')
+  const [croppedArea, setCroppedArea] = useState<Area>(CROPPED_AREA_VALUES)
 
-  const onZoomChange = useCallback((value: [number]) => setZoom(...value), []);
+  const onZoomChange = useCallback((value: [number]) => {
+    setZoom(...value)
+  }, [])
   const onCropComplete = useCallback((_: Area, croppedAreaPixels: Area) => {
-    setCroppedArea(croppedAreaPixels);
-  }, []);
+    setCroppedArea(croppedAreaPixels)
+  }, [])
 
   const saveCrop = useCallback(async () => {
-    if (avatarToCrop.length === 0) return;
+    if (avatarToCrop.length === 0) return
 
     try {
-      const croppedImage = await cropImage(avatarToCrop, croppedArea);
+      const croppedImage = await cropImage(avatarToCrop, croppedArea)
 
-      if (croppedImage.length > 0) setCroppedAvatar(croppedImage);
+      if (croppedImage.length > 0) setCroppedAvatar(croppedImage)
     } catch (error) {
-      console.error(error);
+      console.error(error)
     }
-  }, [croppedArea, avatarToCrop]);
+  }, [croppedArea, avatarToCrop])
 
   const uploadAvatar = useCallback(async () => {
-    if (croppedAvatar.length === 0) return;
-    setLoading(true);
+    if (croppedAvatar.length === 0) return
+    setLoading(true)
 
     try {
-      const formData = new FormData();
+      const formData = new FormData()
 
-      formData.append("file", await fetchBlobData(croppedAvatar));
+      formData.append('file', await fetchBlobData(croppedAvatar))
 
-      const response = await fetch("/api/upload-avatar", {
-        method: "POST",
-        body: formData,
-      });
+      const response = await fetch('/api/upload-avatar', {
+        method: 'POST',
+        body: formData
+      })
 
       if (!response.ok) {
-        throw new Error("Something happened uploading the image");
+        throw new Error('Something happened uploading the image')
       }
 
-      const data = await response.json();
-      const avatar = data.eager[0].secure_url;
+      const data = await response.json()
+      const avatar = data.eager[0].secure_url
 
-      setAvatar(avatar);
-      setShowDialog(false);
-      toast.success("Link avatar updated!");
+      setAvatar(avatar)
+      setShowDialog(false)
+      toast.success('Link avatar updated!')
     } catch (error) {
-      toast.error("Something happened. Please try again!");
+      toast.error('Something happened. Please try again!')
     } finally {
-      setLoading(false);
-      setCroppedAvatar("");
-      setAvatarToCrop("");
+      setLoading(false)
+      setCroppedAvatar('')
+      setAvatarToCrop('')
     }
-  }, [croppedAvatar, setAvatar, setAvatarToCrop, setShowDialog]);
+  }, [croppedAvatar, setAvatar, setAvatarToCrop, setShowDialog])
 
   const deleteAvatar = useCallback(() => {
-    setCroppedAvatar("");
-    setAvatarToCrop("");
-  }, [setCroppedAvatar, setAvatarToCrop]);
+    setCroppedAvatar('')
+    setAvatarToCrop('')
+  }, [setCroppedAvatar, setAvatarToCrop])
 
   return (
-    <section className="flex flex-col gap-3">
-      <section className="relative aspect-square w-full overflow-hidden rounded-xl bg-border">
+    <section className='flex flex-col gap-3'>
+      <section className='relative aspect-square w-full overflow-hidden rounded-xl bg-border'>
         {avatarToCrop.length > 0 && croppedAvatar.length === 0 && (
           <>
             <Cropper
@@ -91,14 +93,14 @@ export default function CropAvatar({ setShowDialog }: Props) {
               zoom={zoom}
               zoomSpeed={0.1}
               aspect={1 / 1}
-              cropShape="round"
+              cropShape='round'
               onCropChange={setCrop}
               onZoomChange={setZoom}
               onCropComplete={onCropComplete}
             />
-            <div className="absolute bottom-5 left-5 right-5">
+            <div className='absolute inset-x-5 bottom-5'>
               <Slider
-                aria-labelledby="Zoom"
+                aria-labelledby='Zoom'
                 defaultValue={[1]}
                 value={[zoom]}
                 min={1}
@@ -110,30 +112,30 @@ export default function CropAvatar({ setShowDialog }: Props) {
           </>
         )}
         {croppedAvatar.length > 0 && (
-          <Avatar className="size-full" src={croppedAvatar} alt="Gonzalo" />
+          <Avatar className='size-full' src={croppedAvatar} alt='Gonzalo' />
         )}
       </section>
-      <DialogFooter className="gap-x-3 *:w-full sm:space-x-0">
-        <Button variant="outline" onClick={deleteAvatar}>
+      <DialogFooter className='gap-x-3 *:w-full sm:space-x-0'>
+        <Button variant='outline' onClick={deleteAvatar}>
           Delete
         </Button>
         {croppedAvatar.length === 0 ? (
-          <Button variant="secondary" onClick={saveCrop}>
+          <Button variant='secondary' onClick={saveCrop}>
             Crop
           </Button>
         ) : (
-          <Button variant="secondary" onClick={uploadAvatar} disabled={loading}>
+          <Button variant='secondary' onClick={uploadAvatar} disabled={loading}>
             {loading ? (
               <>
-                <LoaderCircle className="mr-2 h-4 w-4 animate-spin" />
+                <LoaderCircle className='mr-2 size-4 animate-spin' />
                 Uploading
               </>
             ) : (
-              "Upload"
+              'Upload'
             )}
           </Button>
         )}
       </DialogFooter>
     </section>
-  );
+  )
 }

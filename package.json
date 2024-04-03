@@ -6,9 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
-    "prettier:check": "prettier --check src/",
-    "prettier:format": "prettier --write src/"
+    "lint": "eslint ./src",
+    "lint:debug": "eslint ./src --debug",
+    "lint:fix": "eslint ./src --fix"
   },
   "dependencies": {
     "@gsap/react": "2.1.0",
@@ -45,9 +45,9 @@
     "eslint-config-love": "44.0.0",
     "eslint-config-next": "14.1.4",
     "eslint-config-prettier": "9.1.0",
+    "eslint-plugin-tailwindcss": "^3.15.1",
     "postcss": "8.4.38",
     "prettier": "3.2.5",
-    "prettier-plugin-tailwindcss": "0.5.13",
     "tailwindcss": "3.4.3",
     "typescript": "5.4.3"
   },

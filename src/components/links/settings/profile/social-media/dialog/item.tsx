@@ -28,7 +28,7 @@ export default function SocialMediaItem({ media }: Props) {
       key={media.id}
       className="cursor-pointer justify-between rounded-xl py-2.5 pl-3 pr-2.5 text-card-foreground"
       value={media.slug}
-      onSelect={() => selectSocialMedia(media)}
+      onSelect={() => { selectSocialMedia(media); }}
     >
       <span className="flex items-center gap-2.5">
         <MediaIcon className="size-5" name={media.slug} />
@@ -39,7 +39,7 @@ export default function SocialMediaItem({ media }: Props) {
           aria-label="Already added!"
           className={cn("mr-2 h-4 w-4 opacity-0", isAdded && "opacity-100")}
         />
-        <ChevronRight aria-label="Options" className="ml-auto h-4 w-4" />
+        <ChevronRight aria-label="Options" className="ml-auto size-4" />
       </span>
     </CommandItem>
   );

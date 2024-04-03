@@ -1,4 +1,4 @@
-import { LinkSocialMedia, SocialMediaInterface } from "@/lib/types/globals";
+import { type LinkSocialMedia, type SocialMediaInterface } from "@/lib/types/globals";
 
 export interface GlobalsSliceInterface {
   dummyState: boolean;
