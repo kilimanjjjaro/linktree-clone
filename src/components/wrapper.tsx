@@ -1,4 +1,4 @@
-import Navbar from '@/components/navbar/navbar'
+import Navbar from '@/components/navbar'
 import { Toaster } from '@/components/ui/toaster'
 import type { ChildrenType } from '@/lib/types/globals'
 
