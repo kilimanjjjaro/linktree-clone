@@ -19,7 +19,7 @@ export default function SocialMediaOptions({ setShowDialog }: Props) {
 
   if (selectedMedia === null) return
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const submitForm = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
 
     try {
@@ -54,7 +54,7 @@ export default function SocialMediaOptions({ setShowDialog }: Props) {
   }
 
   return (
-    <form onSubmit={handleSubmit} className='flex flex-col gap-3'>
+    <form onSubmit={submitForm} className='flex flex-col gap-3'>
       <Label htmlFor='media-input'>{selectedMedia?.form.label}</Label>
       <div className='flex h-10 items-center overflow-hidden rounded-xl border border-border has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-ring has-[:focus-visible]:ring-offset-2 has-[:focus-visible]:ring-offset-background'>
         {selectedMedia.form.disabledText.length > 0 && (
@@ -68,15 +68,16 @@ export default function SocialMediaOptions({ setShowDialog }: Props) {
           name='mediaValue'
           placeholder={selectedMedia?.form.placeholder}
           required
+          autoFocus
           {...createInputAttributes(selectedMedia.form.inputType)}
         />
       </div>
       <footer className='grid grid-cols-2 gap-3'>
-        <Button variant='outline' onClick={goPrevStep}>
-          Back
-        </Button>
-        <Button type='submit' variant='secondary'>
+        <Button type='submit' variant='secondary' className='order-2'>
           Save
+        </Button>
+        <Button variant='outline' className='order-1' onClick={goPrevStep}>
+          Back
         </Button>
       </footer>
     </form>
