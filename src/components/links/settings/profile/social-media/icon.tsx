@@ -12,8 +12,8 @@ import { TwitchIcon } from '@/components/icons/twitch-icon'
 import { TwitterIcon } from '@/components/icons/twitter-icon'
 import { WhatsAppIcon } from '@/components/icons/whatsapp-icon'
 import { YouTubeIcon } from '@/components/icons/youtube-icon'
-import type { SocialMediaType } from '@/lib/types/globals'
 import { cn } from '@/lib/utils'
+import type { SocialMediaType } from '@/lib/types/globals'
 
 interface Props {
   className: string

@@ -1,3 +1,5 @@
+export const DEFAULT_USER_AVATAR = '/images/default-link-avatar.svg'
+
 export const ACCEPTED_FILE_TYPES = {
   'image/png': ['.png'],
   'image/jpeg': ['.jpeg']

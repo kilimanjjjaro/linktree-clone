@@ -8,10 +8,10 @@ import { Separator } from '@/components/ui/separator'
 export default function LinkSettings() {
   return (
     <aside className='h-full w-96'>
-      <section className='overflow-hidden rounded-xl border border-border bg-background'>
-        <div className='h-12 border-b border-b-border p-3 text-center'>
-          <TypographyH3>Profile</TypographyH3>
-        </div>
+      <div className='overflow-hidden rounded-xl border border-border bg-background'>
+        <TypographyH3 className='h-12 border-b border-b-border p-3 text-center'>
+          Profile
+        </TypographyH3>
         <LinkAvatar />
         <Separator />
         <LinkName />
@@ -19,7 +19,7 @@ export default function LinkSettings() {
         <LinkDescription />
         <Separator />
         <LinkSocialMedia />
-      </section>
+      </div>
     </aside>
   )
 }

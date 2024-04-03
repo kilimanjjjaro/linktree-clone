@@ -1,6 +1,4 @@
-export interface ChildrenType {
-  children: React.ReactNode
-}
+export type ChildrenType = React.ReactNode
 
 export type SocialMediaType =
   | 'email'

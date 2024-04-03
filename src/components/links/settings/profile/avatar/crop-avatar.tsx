@@ -67,7 +67,7 @@ export default function CropAvatar({ setShowDialog }: Props) {
 
       setAvatar(avatar)
       setShowDialog(false)
-      toast.success('Link avatar updated!')
+      toast.success('Your avatar was updated!')
     } catch (error) {
       toast.error('Something happened. Please try again!')
     } finally {
@@ -100,7 +100,7 @@ export default function CropAvatar({ setShowDialog }: Props) {
             />
             <div className='absolute inset-x-5 bottom-5'>
               <Slider
-                aria-labelledby='Zoom'
+                aria-label='Zoom'
                 defaultValue={[1]}
                 value={[zoom]}
                 min={1}

@@ -4,7 +4,7 @@ import type { Metadata } from 'next'
 import type { ChildrenType } from '@/lib/types/globals'
 import './globals.css'
 
-export default function RootLayout({ children }: Readonly<ChildrenType>) {
+export default function RootLayout({ children }: { children: ChildrenType }) {
   return (
     <html lang='en' className='dark'>
       <meta name='color-scheme' content='dark light' />

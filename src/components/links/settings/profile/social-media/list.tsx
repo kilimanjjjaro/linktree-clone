@@ -1,3 +1,5 @@
+'use client'
+
 import { X } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { useStore } from '@/lib/store/store'
@@ -34,6 +36,7 @@ export default function SocialMediaList() {
             <span className='flex items-center gap-2'>{media.name}</span>
           )}
           <Button
+            aria-label='Remove'
             className='h-auto rounded-full p-1'
             variant='ghost'
             onClick={() => {
@@ -41,7 +44,6 @@ export default function SocialMediaList() {
             }}
           >
             <X className='size-3' />
-            <span className='sr-only'>Remove</span>
           </Button>
         </li>
       ))}

@@ -1,5 +1,3 @@
-'use client'
-
 import { CircleHelp } from 'lucide-react'
 import SocialMediaList from './list'
 import SocialMediaDialog from './dialog'
@@ -12,7 +10,7 @@ import {
 
 export default function SocialMedia() {
   return (
-    <div className='flex flex-col gap-3 p-5'>
+    <section className='flex flex-col gap-3 p-5'>
       <div className='flex items-center gap-2'>
         <Label htmlFor='link-social-media'>Social media</Label>
         <Popover>
@@ -28,6 +26,6 @@ export default function SocialMedia() {
       </div>
       <SocialMediaList />
       <SocialMediaDialog />
-    </div>
+    </section>
   )
 }

@@ -10,7 +10,7 @@ import {
 
 export default function LinkName() {
   return (
-    <div className='flex flex-col gap-3 p-5'>
+    <section className='flex flex-col gap-3 p-5'>
       <div className='flex items-center gap-2'>
         <Label htmlFor='link-name'>Name</Label>
         <Popover>
@@ -45,6 +45,6 @@ export default function LinkName() {
           <span className='sr-only'>Copy Order ID</span>
         </Button>
       </div>
-    </div>
+    </section>
   )
 }
