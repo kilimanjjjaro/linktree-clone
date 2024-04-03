@@ -1,15 +1,15 @@
-import LinkSocialMedia from "./profile/social-media";
-import LinkAvatar from "@/components/links/settings/profile/avatar";
-import LinkName from "@/components/links/settings/profile/name";
-import LinkDescription from "@/components/links/settings/profile/description";
-import { TypographyH3 } from "@/components/ui/typography/typography-h3";
-import { Separator } from "@/components/ui/separator";
+import LinkSocialMedia from './profile/social-media'
+import LinkAvatar from '@/components/links/settings/profile/avatar'
+import LinkName from '@/components/links/settings/profile/name'
+import LinkDescription from '@/components/links/settings/profile/description'
+import { TypographyH3 } from '@/components/ui/typography/typography-h3'
+import { Separator } from '@/components/ui/separator'
 
 export default function LinkSettings() {
   return (
-    <aside className="h-full w-96">
-      <section className="overflow-hidden rounded-xl border border-border bg-background">
-        <div className="h-12 border-b border-b-border p-3 text-center">
+    <aside className='h-full w-96'>
+      <section className='overflow-hidden rounded-xl border border-border bg-background'>
+        <div className='h-12 border-b border-b-border p-3 text-center'>
           <TypographyH3>Profile</TypographyH3>
         </div>
         <LinkAvatar />
@@ -21,5 +21,5 @@ export default function LinkSettings() {
         <LinkSocialMedia />
       </section>
     </aside>
-  );
+  )
 }
