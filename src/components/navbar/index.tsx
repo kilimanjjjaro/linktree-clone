@@ -1,6 +1,7 @@
 import LinktreeLogo from '@/components/icons/linktree-logo'
 import LinksIcon from '@/components/icons/links-icon'
 import Avatar from '@/components/ui/avatar'
+import Notifications from './notifications'
 
 export default function Navbar() {
   return (
@@ -14,14 +15,19 @@ export default function Navbar() {
           </button>
         </nav>
       </div>
-      <button className='group flex items-center gap-x-4'>
-        <span>Hi, Gonzalo!</span>
-        <Avatar
-          className='size-10 outline outline-2 outline-offset-2 outline-transparent transition-[outline] xl:group-hover:outline-border'
-          src='/images/default-user-avatar.svg'
-          alt='Gonzalo'
-        />
-      </button>
+      <div className='flex gap-x-5'>
+        <Notifications />
+        <button
+          aria-label='Avatar of Gonzalo'
+          className='group flex items-center gap-x-4'
+        >
+          <Avatar
+            className='size-10 outline outline-2 outline-offset-2 outline-transparent transition-[outline] xl:group-hover:outline-border'
+            src='/images/default-user-avatar.svg'
+            alt='Gonzalo'
+          />
+        </button>
+      </div>
     </header>
   )
 }

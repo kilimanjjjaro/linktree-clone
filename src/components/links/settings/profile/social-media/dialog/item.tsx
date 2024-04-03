@@ -32,11 +32,11 @@ export default function SocialMediaItem({ media }: Props) {
         selectSocialMedia(media)
       }}
     >
-      <span className='flex items-center gap-2.5'>
+      <span className='flex items-center gap-x-2.5'>
         <MediaIcon className='size-5' name={media.slug} />
         {media.name}
       </span>
-      <span className='flex items-center gap-2'>
+      <span className='flex items-center gap-x-2'>
         <Check
           aria-label='Already added!'
           className={cn('mr-2 h-4 w-4 opacity-0', isAdded && 'opacity-100')}

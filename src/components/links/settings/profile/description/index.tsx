@@ -9,8 +9,8 @@ import {
 
 export default function LinkDescription() {
   return (
-    <section className='flex flex-col gap-3 p-5'>
-      <div className='flex items-center gap-2'>
+    <section className='flex flex-col gap-y-3 p-5'>
+      <div className='flex items-center gap-x-2'>
         <Label htmlFor='link-description'>Description</Label>
         <Popover>
           <PopoverTrigger>

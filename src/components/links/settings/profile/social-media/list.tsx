@@ -20,12 +20,12 @@ export default function SocialMediaList() {
     <ul className='flex flex-wrap gap-2'>
       {linkMedia.map((media) => (
         <li
-          className='flex items-center gap-2 rounded-full border border-border py-1 pl-3 pr-1 text-sm leading-none'
+          className='flex items-center gap-x-2 rounded-full border border-border py-1 pl-3 pr-1 text-sm leading-none'
           key={media.id}
         >
           {media.link.length > 0 ? (
             <a
-              className='flex items-center gap-2 transition-opacity xl:hover:opacity-70'
+              className='transition-opacity xl:hover:opacity-70'
               href={media.link + media.inputValue}
               target='_blank'
               rel='noopener noreferrer'
@@ -33,7 +33,7 @@ export default function SocialMediaList() {
               {media.name}
             </a>
           ) : (
-            <span className='flex items-center gap-2'>{media.name}</span>
+            <>{media.name}</>
           )}
           <Button
             aria-label='Remove'

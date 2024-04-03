@@ -31,7 +31,7 @@ export default function DropAvatar() {
       className='flex aspect-square cursor-pointer items-center justify-center rounded-xl border-2 border-dashed border-border bg-background p-28 text-muted-foreground outline-none transition-colors focus-visible:border-card-foreground focus-visible:text-card-foreground xl:hover:border-card-foreground xl:hover:text-card-foreground'
     >
       <input {...getInputProps()} />
-      <div className='flex flex-col items-center gap-4'>
+      <div className='flex flex-col items-center gap-y-4'>
         <Image className='size-10' strokeWidth={1.5} />
         <span className='text-balance text-center text-sm'>
           Click to select your image or drag-and-drop here to upload it.

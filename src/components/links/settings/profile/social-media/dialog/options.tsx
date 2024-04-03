@@ -54,7 +54,7 @@ export default function SocialMediaOptions({ setShowDialog }: Props) {
   }
 
   return (
-    <form onSubmit={submitForm} className='flex flex-col gap-3'>
+    <form onSubmit={submitForm} className='flex flex-col gap-y-3'>
       <Label htmlFor='media-input'>{selectedMedia?.form.label}</Label>
       <div className='flex h-10 items-center overflow-hidden rounded-xl border border-border has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-ring has-[:focus-visible]:ring-offset-2 has-[:focus-visible]:ring-offset-background'>
         {selectedMedia.form.disabledText.length > 0 && (
@@ -72,7 +72,7 @@ export default function SocialMediaOptions({ setShowDialog }: Props) {
           {...createInputAttributes(selectedMedia.form.inputType)}
         />
       </div>
-      <footer className='grid grid-cols-2 gap-3'>
+      <footer className='grid grid-cols-2 gap-x-3'>
         <Button type='submit' variant='secondary' className='order-2'>
           Save
         </Button>

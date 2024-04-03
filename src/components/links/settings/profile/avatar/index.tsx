@@ -34,7 +34,7 @@ export default function LinkAvatar() {
   return (
     <section className='flex items-center gap-x-5 p-5'>
       <Avatar className='size-20' src={avatar} alt='Gonzalo' />
-      <div className='grid flex-1 grid-cols-2 gap-3'>
+      <div className='grid flex-1 grid-cols-2 gap-x-3'>
         <Dialog open={showDialog} onOpenChange={setShowDialog}>
           <DialogTrigger
             className={`cursor-pointer ${buttonVariants({ variant: 'secondary' })}`}
