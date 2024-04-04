@@ -66,6 +66,7 @@ export default function CropAvatar({ setShowDialog }: Props) {
       const data = await response.json()
       const avatar = data.eager[0].secure_url
 
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
       setAvatar(avatar)
       setShowDialog(false)
       toast.success('Your avatar was updated!')
@@ -85,7 +86,7 @@ export default function CropAvatar({ setShowDialog }: Props) {
 
   return (
     <section className='flex flex-col gap-y-5'>
-      <section className='relative aspect-square w-full overflow-hidden rounded-xl bg-tl-dark-gray'>
+      <section className='relative aspect-square w-full overflow-hidden rounded-xl bg-lt-dark-gray'>
         {avatarToCrop.length > 0 && croppedAvatar.length === 0 && (
           <>
             <Cropper

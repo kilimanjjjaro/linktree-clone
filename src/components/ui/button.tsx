@@ -5,18 +5,18 @@ import { cva, type VariantProps } from 'class-variance-authority'
 import { cn } from '@/lib/utils'
 
 const buttonVariants = cva(
-  'inline-flex items-center justify-center rounded-xl text-sm font-medium ring-tl-white ring-offset-2 ring-offset-tl-gray transition focus-visible:outline-none focus-visible:ring-2 disabled:pointer-events-none disabled:opacity-50',
+  'inline-flex items-center justify-center rounded-xl text-sm font-medium ring-lt-white ring-offset-2 ring-offset-lt-gray transition focus-visible:outline-none focus-visible:ring-2 disabled:pointer-events-none disabled:opacity-50',
   {
     variants: {
       variant: {
-        default: 'bg-tl-white text-tl-black xl:hover:bg-tl-white/80',
-        destructive: 'bg-red-700 text-tl-white xl:hover:bg-red-700/80',
+        default: 'bg-lt-white text-lt-black xl:hover:bg-lt-white/80',
+        destructive: 'bg-red-700 text-lt-white xl:hover:bg-red-700/80',
         outline:
-          'border border-tl-light-gray bg-tl-darkest-gray xl:hover:bg-tl-light-gray',
+          'border border-lt-light-gray bg-lt-darkest-gray xl:hover:bg-lt-light-gray',
         secondary:
-          'bg-tl-light-gray text-tl-white xl:hover:bg-tl-light-gray/80',
-        ghost: 'text-tl-white xl:hover:bg-tl-light-gray',
-        link: 'text-tl-white underline-offset-4 xl:hover:underline'
+          'bg-lt-light-gray text-lt-white xl:hover:bg-lt-light-gray/80',
+        ghost: 'text-lt-white xl:hover:bg-lt-light-gray',
+        link: 'text-lt-white underline-offset-4 xl:hover:underline'
       },
       size: {
         default: 'h-10 px-4 py-2',

@@ -18,7 +18,7 @@ export default function Notifications() {
         </PopoverTrigger>
       </Tooltip>
       <PopoverContent collisionPadding={16} className='overflow-hidden p-0'>
-        <div className='relative flex h-12 items-center justify-center border-b border-b-tl-light-gray p-3'>
+        <div className='relative flex h-12 items-center justify-center border-b border-b-lt-light-gray p-3'>
           <TypographyH3 className='text-base leading-none'>
             Notifications
           </TypographyH3>
@@ -31,7 +31,7 @@ export default function Notifications() {
           </Button>
         </div>
         <ul className='flex flex-col'>
-          <li className='flex items-center gap-x-3 p-4 text-sm xl:hover:bg-tl-light-gray/40'>
+          <li className='flex items-center gap-x-3 p-4 text-sm xl:hover:bg-lt-light-gray/40'>
             <Button
               variant='ghost'
               className='block h-auto whitespace-normal p-0 text-left font-normal xl:hover:bg-transparent'
@@ -40,7 +40,7 @@ export default function Notifications() {
             </Button>
           </li>
           <Separator />
-          <li className='flex items-center gap-x-3 bg-tl-light-gray/40 p-4 text-sm xl:hover:bg-tl-light-gray/60'>
+          <li className='flex items-center gap-x-3 bg-lt-light-gray/40 p-4 text-sm xl:hover:bg-lt-light-gray/60'>
             <Button
               variant='ghost'
               className='block h-auto whitespace-normal p-0 text-left font-normal xl:hover:bg-transparent'
@@ -49,14 +49,14 @@ export default function Notifications() {
             </Button>
             <Button
               aria-label='Mark as read'
-              className='h-auto rounded-full p-1 xl:hover:bg-tl-white/20'
+              className='h-auto rounded-full p-1 xl:hover:bg-lt-white/20'
               variant='ghost'
             >
               <Check className='size-4' />
             </Button>
           </li>
           <Separator />
-          <li className='flex items-center gap-x-3 p-4 text-sm xl:hover:bg-tl-light-gray/40'>
+          <li className='flex items-center gap-x-3 p-4 text-sm xl:hover:bg-lt-light-gray/40'>
             <Button
               variant='ghost'
               className='block h-auto whitespace-normal p-0 text-left font-normal xl:hover:bg-transparent'

@@ -5,7 +5,7 @@ import Notifications from './notifications'
 
 export default function Navbar() {
   return (
-    <header className='fixed inset-x-4 top-4 z-50 flex items-center justify-between rounded-full border border-tl-light-gray bg-tl-gray py-3 pl-6 pr-3'>
+    <header className='fixed inset-x-4 top-4 z-50 flex items-center justify-between rounded-full border border-lt-light-gray bg-lt-gray py-3 pl-6 pr-3'>
       <div className='flex items-center gap-x-6'>
         <LinktreeLogo className='w-6' />
         <nav className='flex items-center gap-x-5'>
@@ -22,7 +22,7 @@ export default function Navbar() {
           className='group flex items-center gap-x-4'
         >
           <Avatar
-            className='size-10 ring-tl-light-gray'
+            className='size-10 ring-lt-light-gray'
             src='/images/default-user-avatar.svg'
             alt='Gonzalo'
           />

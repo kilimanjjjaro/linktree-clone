@@ -24,8 +24,8 @@ export default function LinkName() {
           </PopoverContent>
         </Popover>
       </div>
-      <div className='group relative flex h-10 items-center overflow-hidden rounded-xl border border-tl-light-gray ring-tl-white ring-offset-2 ring-offset-tl-gray transition has-[:focus-visible]:ring-2'>
-        <span className='flex h-full cursor-not-allowed select-none items-center border-r border-tl-light-gray px-3 text-sm text-tl-lightest-gray'>
+      <div className='group relative flex h-10 items-center overflow-hidden rounded-xl border border-lt-light-gray ring-lt-white ring-offset-2 ring-offset-lt-gray transition has-[:focus-visible]:ring-2'>
+        <span className='flex h-full cursor-not-allowed select-none items-center border-r border-lt-light-gray px-3 text-sm text-lt-lightest-gray'>
           linktr.ee/
         </span>
         <Input
