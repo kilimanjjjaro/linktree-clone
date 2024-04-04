@@ -9,7 +9,12 @@ interface Props {
 
 export default function Avatar({ className, src, alt }: Props) {
   return (
-    <div className={cn('relative overflow-hidden rounded-full', className)}>
+    <div
+      className={cn(
+        'relative overflow-hidden rounded-full border border-tl-light-gray ring-offset-2 ring-offset-tl-gray transition focus-visible:outline-none focus-visible:ring-2 disabled:pointer-events-none xl:hover:ring-2',
+        className
+      )}
+    >
       <Image
         className='absolute h-auto w-full object-cover object-center'
         src={src}

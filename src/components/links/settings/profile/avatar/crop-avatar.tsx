@@ -28,6 +28,7 @@ export default function CropAvatar({ setShowDialog }: Props) {
   const onZoomChange = useCallback((value: [number]) => {
     setZoom(...value)
   }, [])
+
   const onCropComplete = useCallback((_: Area, croppedAreaPixels: Area) => {
     setCroppedArea(croppedAreaPixels)
   }, [])
@@ -83,8 +84,8 @@ export default function CropAvatar({ setShowDialog }: Props) {
   }, [setCroppedAvatar, setAvatarToCrop])
 
   return (
-    <section className='flex flex-col gap-x-3'>
-      <section className='relative aspect-square w-full overflow-hidden rounded-xl bg-border'>
+    <section className='flex flex-col gap-y-5'>
+      <section className='relative aspect-square w-full overflow-hidden rounded-xl bg-tl-dark-gray'>
         {avatarToCrop.length > 0 && croppedAvatar.length === 0 && (
           <>
             <Cropper
@@ -115,7 +116,7 @@ export default function CropAvatar({ setShowDialog }: Props) {
           <Avatar className='size-full' src={croppedAvatar} alt='Gonzalo' />
         )}
       </section>
-      <DialogFooter className='gap-x-3 *:w-full sm:space-x-0'>
+      <DialogFooter className='gap-5'>
         <Button variant='outline' onClick={deleteAvatar}>
           Delete
         </Button>

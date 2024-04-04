@@ -38,7 +38,7 @@ export default function SocialMediaDialog() {
         Add
       </DialogTrigger>
       <DialogContent className='p-0 outline-none'>
-        <DialogHeader className='absolute left-0 top-0 flex h-12 w-full items-center justify-center border-b border-border p-3'>
+        <DialogHeader>
           <DialogTitle>Add social media</DialogTitle>
         </DialogHeader>
         <main className='mt-12 p-5'>

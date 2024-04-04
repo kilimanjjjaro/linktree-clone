@@ -6,11 +6,9 @@ import './globals.css'
 
 export default function RootLayout({ children }: { children: ChildrenType }) {
   return (
-    <html lang='en' className='dark'>
+    <html lang='en'>
       <meta name='color-scheme' content='dark light' />
-      <body
-        className={`bg-background text-card-foreground antialiased ${geistSans}`}
-      >
+      <body className={`bg-tl-black text-tl-white antialiased ${geistSans}`}>
         <Wrapper>{children}</Wrapper>
       </body>
     </html>

@@ -56,15 +56,15 @@ export default function SocialMediaOptions({ setShowDialog }: Props) {
   return (
     <form onSubmit={submitForm} className='flex flex-col gap-y-3'>
       <Label htmlFor='media-input'>{selectedMedia?.form.label}</Label>
-      <div className='flex h-10 items-center overflow-hidden rounded-xl border border-border has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-ring has-[:focus-visible]:ring-offset-2 has-[:focus-visible]:ring-offset-background'>
+      <div className='flex h-10 items-center overflow-hidden rounded-xl border border-tl-light-gray ring-tl-white ring-offset-2 ring-offset-tl-gray transition has-[:focus-visible]:ring-2'>
         {selectedMedia.form.disabledText.length > 0 && (
-          <span className='flex h-full cursor-not-allowed select-none items-center border-r border-border px-3 text-sm text-muted-foreground'>
+          <span className='flex h-full cursor-not-allowed select-none items-center border-r border-tl-light-gray px-3 text-sm text-tl-lightest-gray'>
             {selectedMedia?.form.disabledText}
           </span>
         )}
         <Input
           id='media-input'
-          className='rounded-none border-none px-3 focus-visible:ring-0 focus-visible:ring-offset-0'
+          className='rounded-none border-none focus-visible:ring-0 focus-visible:ring-offset-0'
           name='mediaValue'
           placeholder={selectedMedia?.form.placeholder}
           required

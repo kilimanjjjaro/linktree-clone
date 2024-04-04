@@ -5,7 +5,7 @@ import { toast } from 'sonner'
 import DropAvatar from '@/components/links/settings/profile/avatar/drop-avatar'
 import CropAvatar from '@/components/links/settings/profile/avatar/crop-avatar'
 import Avatar from '@/components/ui/custom/avatar'
-import { Button, buttonVariants } from '@/components/ui/button'
+import { Button } from '@/components/ui/button'
 import {
   Dialog,
   DialogContent,
@@ -33,16 +33,21 @@ export default function LinkAvatar() {
 
   return (
     <section className='flex items-center gap-x-5 p-5'>
-      <Avatar className='size-20' src={avatar} alt='Gonzalo' />
+      <Avatar className='size-20 ring-transparent' src={avatar} alt='Gonzalo' />
       <div className='grid flex-1 grid-cols-2 gap-x-3'>
         <Dialog open={showDialog} onOpenChange={setShowDialog}>
-          <DialogTrigger
-            className={`cursor-pointer ${buttonVariants({ variant: 'secondary' })}`}
-          >
-            Upload
+          <DialogTrigger asChild>
+            <Button
+              variant='secondary'
+              onClick={() => {
+                removeAvatar()
+              }}
+            >
+              Upload
+            </Button>
           </DialogTrigger>
           <DialogContent className='p-0 outline-none'>
-            <DialogHeader className='absolute left-0 top-0 flex h-12 w-full items-center justify-center border-b border-border p-3'>
+            <DialogHeader>
               <DialogTitle>Upload avatar</DialogTitle>
             </DialogHeader>
             <main className='mt-12 p-5'>

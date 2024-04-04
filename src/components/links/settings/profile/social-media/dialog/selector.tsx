@@ -10,11 +10,11 @@ import { SOCIAL_MEDIA } from '@/lib/constants/social-media'
 
 export default function SocialMediaSelector() {
   return (
-    <Command className='rounded-none'>
-      <CommandInput placeholder='Type to search...' className='h-10 py-0' />
+    <Command>
+      <CommandInput placeholder='Type to search...' />
       <CommandList className='mt-5 h-60'>
         <CommandEmpty>No results found.</CommandEmpty>
-        <CommandGroup className='py-0 pl-0'>
+        <CommandGroup>
           {SOCIAL_MEDIA.map((media) => (
             <SocialMediaItem key={media.id} media={media} />
           ))}

@@ -17,10 +17,8 @@ export default function LinkDescription() {
             <CircleHelp className='size-3.5' />
           </PopoverTrigger>
           <PopoverContent>
-            <p className='text-sm text-muted-foreground'>
-              Short description for your link. This will be used in the header
-              and to improve the SEO of your link.
-            </p>
+            Short description for your link. This will be used in the header and
+            to improve the SEO of your link.
           </PopoverContent>
         </Popover>
       </div>

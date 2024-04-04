@@ -18,9 +18,7 @@ export default function SocialMedia() {
             <CircleHelp className='size-3.5' />
           </PopoverTrigger>
           <PopoverContent>
-            <p className='text-sm text-muted-foreground'>
-              Add icons linking to your social profiles, email and more.
-            </p>
+            Add icons linking to your social profiles, email and more.
           </PopoverContent>
         </Popover>
       </div>

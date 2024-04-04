@@ -26,7 +26,6 @@ export default function SocialMediaItem({ media }: Props) {
   return (
     <CommandItem
       key={media.id}
-      className='cursor-pointer justify-between rounded-xl py-2.5 pl-3 pr-2.5 text-card-foreground'
       value={media.slug}
       onSelect={() => {
         selectSocialMedia(media)
