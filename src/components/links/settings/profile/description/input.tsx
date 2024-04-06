@@ -21,7 +21,7 @@ export default function DescriptionInput() {
         maxLength={120}
         onChange={updateLength}
       />
-      <span className='absolute bottom-3 right-3 text-xs leading-none text-lt-lightest-gray'>
+      <span className='absolute bottom-2.5 right-3 text-xs leading-none text-lt-lightest-gray'>
         {textareaLength}/120
       </span>
     </div>

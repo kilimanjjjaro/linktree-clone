@@ -1,32 +1,10 @@
 import LinktreeLogo from '@/components/icons/linktree-logo'
-import LinksIcon from '@/components/icons/links-icon'
-import Avatar from '@/components/ui/custom/avatar'
-import Notifications from './notifications'
 
 export default function Navbar() {
   return (
-    <header className='fixed inset-x-4 top-4 z-50 flex items-center justify-between rounded-full border border-lt-light-gray bg-lt-gray py-3 pl-6 pr-3'>
-      <div className='flex items-center gap-x-6'>
+    <header className='fixed inset-x-0 top-0 z-50 flex h-14 items-center justify-between border-b border-lt-light-gray bg-lt-gray pr-6'>
+      <div className='flex size-14 items-center justify-center border-r border-lt-light-gray'>
         <LinktreeLogo className='w-6' />
-        <nav className='flex items-center gap-x-5'>
-          <button className='flex items-center gap-x-2 text-sm'>
-            <LinksIcon className='size-4' />
-            <span>Links</span>
-          </button>
-        </nav>
-      </div>
-      <div className='flex gap-x-5'>
-        <Notifications />
-        <button
-          aria-label='Avatar of Gonzalo'
-          className='group flex items-center gap-x-4'
-        >
-          <Avatar
-            className='size-10 ring-lt-light-gray'
-            src='/images/default-user-avatar.svg'
-            alt='Gonzalo'
-          />
-        </button>
       </div>
     </header>
   )

@@ -7,16 +7,26 @@ import {
 } from '@/components/ui/popover'
 import { Separator } from '@/components/ui/separator'
 import { Button } from '@/components/ui/button'
-import Tooltip from '@/components/ui/custom/tooltip'
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger
+} from '@/components/ui/tooltip'
 
 export default function Notifications() {
   return (
     <Popover>
-      <Tooltip content='Notifications'>
-        <PopoverTrigger>
-          <Bell className='size-5' strokeWidth={1.5} />
-        </PopoverTrigger>
-      </Tooltip>
+      <TooltipProvider delayDuration={0}>
+        <Tooltip>
+          <TooltipTrigger asChild>
+            <PopoverTrigger>
+              <Bell className='size-5' strokeWidth={1.5} />
+            </PopoverTrigger>
+          </TooltipTrigger>
+          <TooltipContent side='bottom'>Notifications</TooltipContent>
+        </Tooltip>
+      </TooltipProvider>
       <PopoverContent collisionPadding={16} className='overflow-hidden p-0'>
         <div className='relative flex h-12 items-center justify-center border-b border-b-lt-light-gray p-3'>
           <TypographyH3 className='text-base leading-none'>
@@ -50,9 +60,9 @@ export default function Notifications() {
             <Button
               aria-label='Mark as read'
               className='h-auto rounded-full p-1 xl:hover:bg-lt-white/20'
-              variant='ghost'
+              variant='outline'
             >
-              <Check className='size-4' />
+              <Check className='size-3' />
             </Button>
           </li>
           <Separator />

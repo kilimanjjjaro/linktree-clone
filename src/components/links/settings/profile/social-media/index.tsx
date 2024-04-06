@@ -8,7 +8,7 @@ import {
   PopoverTrigger
 } from '@/components/ui/popover'
 
-export default function SocialMedia() {
+export default function LinkSocialMedia() {
   return (
     <section className='flex flex-col gap-y-3 p-5'>
       <div className='flex items-center gap-x-2'>

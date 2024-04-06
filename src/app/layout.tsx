@@ -8,7 +8,9 @@ export default function RootLayout({ children }: { children: ChildrenType }) {
   return (
     <html lang='en'>
       <meta name='color-scheme' content='dark light' />
-      <body className={`bg-lt-black text-lt-white antialiased ${geistSans}`}>
+      <body
+        className={`bg-lt-black font-geist-sans text-lt-white antialiased ${geistSans}`}
+      >
         <Wrapper>{children}</Wrapper>
       </body>
     </html>

@@ -8,6 +8,9 @@ const config = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        'geist-sans': ['var(--font-geist-sans)']
+      },
       colors: {
         'lt-black': 'hsl(var(--color-black) / <alpha-value>)',
         'lt-white': 'hsl(var(--color-white) / <alpha-value>)',
