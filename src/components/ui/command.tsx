@@ -42,7 +42,7 @@ const CommandInput = React.forwardRef<
   React.ComponentPropsWithoutRef<typeof CommandPrimitive.Input>
 >(({ className, ...props }, ref) => (
   <div
-    className='flex items-center rounded-xl border border-lt-light-gray px-3 outline-none'
+    className='flex items-center border-b border-lt-light-gray px-3 outline-none'
     cmdk-input-wrapper=''
   >
     <Search className='mr-2 size-4 shrink-0 text-lt-lightest-gray' />
@@ -92,7 +92,7 @@ const CommandGroup = React.forwardRef<
   <CommandPrimitive.Group
     ref={ref}
     className={cn(
-      'overflow-hidden py-0 pl-0 pr-1 text-lt-lightest-gray [&_[cmdk-group-heading]]:px-2 [&_[cmdk-group-heading]]:py-1.5 [&_[cmdk-group-heading]]:text-xs [&_[cmdk-group-heading]]:font-medium [&_[cmdk-group-heading]]:text-lt-white',
+      'overflow-hidden p-3 text-lt-lightest-gray [&_[cmdk-group-heading]]:px-2 [&_[cmdk-group-heading]]:py-1.5 [&_[cmdk-group-heading]]:text-xs [&_[cmdk-group-heading]]:font-medium [&_[cmdk-group-heading]]:text-lt-white',
       className
     )}
     {...props}
@@ -120,7 +120,7 @@ const CommandItem = React.forwardRef<
   <CommandPrimitive.Item
     ref={ref}
     className={cn(
-      'relative flex cursor-pointer select-none justify-between items-center rounded-xl py-2.5 pl-3 pr-3 text-sm outline-none aria-selected:bg-lt-light-gray aria-selected:text-lt-white',
+      'relative flex cursor-pointer select-none justify-between items-center rounded-lg py-2.5 pl-3 pr-3 text-sm outline-none aria-selected:bg-lt-light-gray aria-selected:text-lt-white',
       className
     )}
     {...props}

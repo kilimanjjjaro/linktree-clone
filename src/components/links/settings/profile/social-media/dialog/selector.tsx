@@ -10,9 +10,9 @@ import { SOCIAL_MEDIA } from '@/lib/constants/social-media'
 
 export default function SocialMediaSelector() {
   return (
-    <Command>
+    <Command className='mt-12'>
       <CommandInput placeholder='Type to search...' />
-      <CommandList className='mt-5 h-60'>
+      <CommandList className='h-[223px]'>
         <CommandEmpty>No results found.</CommandEmpty>
         <CommandGroup>
           {SOCIAL_MEDIA.map((media) => (

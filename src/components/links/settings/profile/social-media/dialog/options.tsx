@@ -54,9 +54,9 @@ export default function SocialMediaOptions({ setShowDialog }: Props) {
   }
 
   return (
-    <form onSubmit={submitForm} className='flex flex-col gap-y-3'>
+    <form onSubmit={submitForm} className='mt-12 flex flex-col gap-y-3 p-5'>
       <Label htmlFor='media-input'>{selectedMedia?.form.label}</Label>
-      <div className='flex h-10 items-center overflow-hidden rounded-xl border border-lt-light-gray ring-lt-white ring-offset-2 ring-offset-lt-gray transition has-[:focus-visible]:ring-2'>
+      <div className='flex h-10 items-center overflow-hidden rounded-xl border border-lt-light-gray'>
         {selectedMedia.form.disabledText.length > 0 && (
           <span className='flex h-full cursor-not-allowed select-none items-center border-r border-lt-light-gray px-3 text-sm text-lt-lightest-gray'>
             {selectedMedia?.form.disabledText}

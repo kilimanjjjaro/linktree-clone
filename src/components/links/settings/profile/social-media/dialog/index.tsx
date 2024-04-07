@@ -41,10 +41,8 @@ export default function SocialMediaDialog() {
         <DialogHeader>
           <DialogTitle>Add social media</DialogTitle>
         </DialogHeader>
-        <main className='mt-12 p-5'>
-          {step === 1 && <SocialMediaSelector />}
-          {step === 2 && <SocialMediaOptions setShowDialog={setShowDialog} />}
-        </main>
+        {step === 1 && <SocialMediaSelector />}
+        {step === 2 && <SocialMediaOptions setShowDialog={setShowDialog} />}
       </DialogContent>
     </Dialog>
   )

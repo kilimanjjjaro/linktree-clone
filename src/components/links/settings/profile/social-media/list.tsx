@@ -3,6 +3,7 @@
 import { X } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { useStore } from '@/lib/store/store'
+import { cn } from '@/lib/utils'
 
 export default function SocialMediaList() {
   const linkMedia = useStore((state) => state.linkMedia)
@@ -17,7 +18,9 @@ export default function SocialMediaList() {
   }
 
   return (
-    <ul className='flex flex-wrap gap-2'>
+    <ul
+      className={cn('hidden flex-wrap gap-2', linkMedia.length > 0 && 'flex')}
+    >
       {linkMedia.map((media) => (
         <li
           className='flex items-center gap-x-2 rounded-full border border-lt-light-gray py-1 pl-3 pr-1 text-sm leading-none transition-opacity xl:hover:opacity-70'
