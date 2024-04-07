@@ -32,7 +32,7 @@ export default function LinkAvatar() {
   }
 
   return (
-    <section className='flex items-center gap-x-5 p-5'>
+    <section className='flex items-center gap-x-5 border-b border-lt-light-gray p-5'>
       <Avatar className='size-20 ring-transparent' src={avatar} alt='Gonzalo' />
       <div className='grid flex-1 grid-cols-2 gap-x-3'>
         <Dialog open={showDialog} onOpenChange={setShowDialog}>
