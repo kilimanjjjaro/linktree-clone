@@ -51,7 +51,7 @@ export default function LinkSelector() {
           variant='ghost'
           role='combobox'
           aria-expanded={open}
-          className='h-auto p-0 text-lg font-normal xl:hover:bg-transparent xl:hover:opacity-70'
+          className='h-full p-0 text-xl font-normal transition-opacity xl:hover:bg-transparent xl:hover:opacity-70'
         >
           {value}
           <ChevronsUpDown className='size-4' />
