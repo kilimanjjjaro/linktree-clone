@@ -12,7 +12,7 @@ export default function SocialMediaSelector() {
   return (
     <Command className='mt-12'>
       <CommandInput placeholder='Type to search...' />
-      <CommandList className='h-[223px]'>
+      <CommandList>
         <CommandEmpty>No results found.</CommandEmpty>
         <CommandGroup>
           {SOCIAL_MEDIA.map((media) => (

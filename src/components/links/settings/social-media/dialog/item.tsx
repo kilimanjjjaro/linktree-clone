@@ -31,7 +31,7 @@ export default function SocialMediaItem({ media }: Props) {
         selectSocialMedia(media)
       }}
     >
-      <span className='flex items-center gap-x-2.5'>
+      <span className='flex items-center gap-x-2'>
         <MediaIcon className='size-5' name={media.slug} />
         {media.name}
       </span>

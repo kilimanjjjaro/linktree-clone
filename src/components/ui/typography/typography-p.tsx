@@ -1,5 +1,10 @@
 import type { ChildrenType } from '@/lib/types/globals'
 
-export function TypographyP({ children }: { children: ChildrenType }) {
-  return <p className='leading-7 [&:not(:first-child)]:mt-6'>{children}</p>
+interface Props {
+  children: ChildrenType
+  className?: string
+}
+
+export function TypographyP({ children, className }: Props) {
+  return <p className={className}>{children}</p>
 }

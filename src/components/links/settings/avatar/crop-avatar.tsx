@@ -15,7 +15,7 @@ interface Props {
   setShowDialog: (open: boolean) => void
 }
 
-export default function CropAvatar({ setShowDialog }: Props) {
+export default function CropImage({ setShowDialog }: Props) {
   const avatarToCrop = useStore((state) => state.avatarToCrop)
   const setAvatarToCrop = useStore((state) => state.setAvatarToCrop)
   const setAvatar = useStore((state) => state.setAvatar)
@@ -86,7 +86,7 @@ export default function CropAvatar({ setShowDialog }: Props) {
 
   return (
     <section className='flex flex-col gap-y-3'>
-      <section className='relative aspect-square w-full overflow-hidden rounded-xl bg-lt-dark-gray'>
+      <section className='relative aspect-square w-full overflow-hidden rounded-2xl bg-lt-dark-gray'>
         {avatarToCrop.length > 0 && croppedAvatar.length === 0 && (
           <>
             <Cropper

@@ -15,8 +15,9 @@ import {
 } from '@/components/ui/dialog'
 import { useStore } from '@/lib/store/store'
 import { DEFAULT_USER_AVATAR } from '@/lib/constants/avatar'
+import { Label } from '@/components/ui/label'
 
-export default function LinkAvatar() {
+export default function LinkProfilePicture() {
   const avatar = useStore((state) => state.avatar)
   const setAvatar = useStore((state) => state.setAvatar)
   const avatarToCrop = useStore((state) => state.avatarToCrop)
@@ -32,40 +33,49 @@ export default function LinkAvatar() {
   }
 
   return (
-    <section className='flex items-center gap-x-5 p-5'>
-      <Avatar className='size-20 ring-transparent' src={avatar} alt='Gonzalo' />
-      <div className='grid flex-1 grid-cols-2 gap-x-3'>
-        <Dialog open={showDialog} onOpenChange={setShowDialog}>
-          <DialogTrigger asChild>
-            <Button
-              onClick={() => {
-                removeAvatar()
-              }}
-            >
-              Upload
-            </Button>
-          </DialogTrigger>
-          <DialogContent className='p-0 outline-none'>
-            <DialogHeader>
-              <DialogTitle>Upload avatar</DialogTitle>
-            </DialogHeader>
-            <main className='mt-12 p-5'>
-              {avatarToCrop.length === 0 ? (
-                <DropAvatar />
-              ) : (
-                <CropAvatar setShowDialog={setShowDialog} />
-              )}
-            </main>
-          </DialogContent>
-        </Dialog>
-        <Button
-          variant='outline'
-          onClick={() => {
-            removeAvatar()
-          }}
-        >
-          Remove
-        </Button>
+    <section className='p-5'>
+      <Label htmlFor='link-avatar'>Profile picture</Label>
+      <div className='mt-2 flex items-center gap-x-5'>
+        <Avatar
+          className='size-20 ring-transparent'
+          src={avatar}
+          alt='Gonzalo'
+        />
+        <div className='grid flex-1 grid-cols-2 gap-x-3'>
+          <Dialog open={showDialog} onOpenChange={setShowDialog}>
+            <DialogTrigger asChild>
+              <Button
+                id='link-avatar'
+                variant='secondary'
+                onClick={() => {
+                  removeAvatar()
+                }}
+              >
+                Upload
+              </Button>
+            </DialogTrigger>
+            <DialogContent className='p-0 outline-none'>
+              <DialogHeader>
+                <DialogTitle>Upload avatar</DialogTitle>
+              </DialogHeader>
+              <main className='mt-12 p-5'>
+                {avatarToCrop.length === 0 ? (
+                  <DropAvatar />
+                ) : (
+                  <CropAvatar setShowDialog={setShowDialog} />
+                )}
+              </main>
+            </DialogContent>
+          </Dialog>
+          <Button
+            variant='outline'
+            onClick={() => {
+              removeAvatar()
+            }}
+          >
+            Remove
+          </Button>
+        </div>
       </div>
     </section>
   )

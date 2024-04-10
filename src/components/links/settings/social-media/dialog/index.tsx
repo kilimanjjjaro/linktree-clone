@@ -31,12 +31,12 @@ export default function SocialMediaDialog() {
       }}
     >
       <DialogTrigger asChild>
-        <Button>
+        <Button id='link-social-media' variant='secondary'>
           Add
           <Plus className='size-3.5' />
         </Button>
       </DialogTrigger>
-      <DialogContent className='p-0 outline-none'>
+      <DialogContent className='p-0'>
         <DialogHeader>
           <DialogTitle>Add social media</DialogTitle>
         </DialogHeader>

@@ -7,7 +7,7 @@ import { Separator } from '@/components/ui/separator'
 
 export default function Navbar() {
   return (
-    <header className='fixed inset-x-3 top-3 z-50 flex h-16 items-center justify-between rounded-full border border-lt-light-gray bg-lt-gray pl-6 pr-4'>
+    <header className='fixed inset-x-3 top-3 z-50 flex h-16 items-center justify-between rounded-full border border-lt-light-gray/60 bg-lt-gray pl-6 pr-3.5'>
       <nav className='flex items-center gap-x-5'>
         <Link href='/'>
           <LinktreeLogo className='w-7' />

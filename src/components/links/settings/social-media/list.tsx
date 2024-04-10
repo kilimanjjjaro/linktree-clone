@@ -23,7 +23,7 @@ export default function SocialMediaList() {
     >
       {linkMedia.map((media) => (
         <li
-          className='flex items-center gap-x-2 rounded-full border border-lt-light-gray py-1 pl-3 pr-1 text-sm leading-none transition-opacity xl:hover:opacity-70'
+          className='flex items-center gap-x-2 rounded-full border border-lt-light-gray/60 py-1 pl-3 pr-1 text-sm leading-none transition-opacity xl:hover:opacity-70'
           key={media.id}
         >
           {media.link.length > 0 ? (

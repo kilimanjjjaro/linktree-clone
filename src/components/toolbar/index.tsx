@@ -9,7 +9,7 @@ import {
 
 export default function Toolbar() {
   return (
-    <aside className='fixed bottom-0 left-0 top-14 z-50 flex w-14 flex-col justify-between border-r border-lt-light-gray bg-lt-gray p-2'>
+    <aside className='fixed bottom-0 left-0 top-14 z-50 flex w-14 flex-col justify-between border-r border-lt-light-gray/60 bg-lt-gray p-2'>
       <TooltipProvider delayDuration={0}>
         <nav className='flex flex-col gap-y-2'>
           <Tooltip>

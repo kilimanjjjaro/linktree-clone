@@ -1,16 +1,22 @@
+'use client'
+
 import { CircleHelp } from 'lucide-react'
 import { Label } from '@/components/ui/label'
-import { ToggleGroup, ToggleGroupItem } from '@/components/ui/toggle-group'
 import {
   Popover,
   PopoverContent,
   PopoverTrigger
 } from '@/components/ui/popover'
-import { LINK_STATUS } from '@/lib/constants/links'
+import { Switch } from '@/components/ui/switch'
+import { useState } from 'react'
 
 export default function LinkStatus() {
+  const [status, setStatus] = useState(false)
+
+  const text = status ? 'Published' : 'Draft'
+
   return (
-    <section className='flex flex-col gap-y-3 p-5'>
+    <section className='flex justify-between p-5'>
       <div className='flex items-center gap-x-2'>
         <Label htmlFor='link-status'>Status</Label>
         <Popover>
@@ -19,22 +25,19 @@ export default function LinkStatus() {
             <span className='sr-only'>Show help</span>
           </PopoverTrigger>
           <PopoverContent>
-            You can have your links as drafts or simply publish them. By
-            default, when you create a new one it stays as a draft.
+            By default, when you create a new one it stays as a draft.
           </PopoverContent>
         </Popover>
       </div>
-      <ToggleGroup
-        type='single'
-        variant='outline'
-        className='*:flex-1'
-        defaultValue={LINK_STATUS.DRAFT}
-      >
-        <ToggleGroupItem value={LINK_STATUS.DRAFT}>Draft</ToggleGroupItem>
-        <ToggleGroupItem value={LINK_STATUS.PUBLISHED}>
-          Published
-        </ToggleGroupItem>
-      </ToggleGroup>
+      <div className='flex items-center gap-x-3'>
+        <span className='text-sm text-lt-lightest-gray'>{text}</span>
+        <Switch
+          id='link-status'
+          checked={status}
+          onCheckedChange={setStatus}
+          required
+        />
+      </div>
     </section>
   )
 }
