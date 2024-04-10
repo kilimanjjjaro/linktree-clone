@@ -1,4 +1,4 @@
-import { CircleHelp, Copy } from 'lucide-react'
+import { CircleHelp, Copy, Share } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
@@ -10,7 +10,7 @@ import {
 
 export default function LinkName() {
   return (
-    <section className='flex flex-col gap-y-3 border-b border-lt-light-gray p-5'>
+    <section className='flex flex-col gap-y-3 p-5'>
       <div className='flex items-center gap-x-2'>
         <Label htmlFor='link-name'>Name</Label>
         <Popover>
@@ -43,6 +43,10 @@ export default function LinkName() {
           <span className='sr-only'>Copy Order ID</span>
         </Button>
       </div>
+      <Button>
+        Share
+        <Share className='size-3.5' />
+      </Button>
     </section>
   )
 }

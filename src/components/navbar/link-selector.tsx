@@ -46,24 +46,17 @@ export default function LinkSelector() {
 
   return (
     <Popover open={open} onOpenChange={setOpen}>
-      <div className='flex items-center gap-x-1'>
+      <PopoverTrigger asChild>
         <Button
           variant='ghost'
-          className='h-auto p-0 text-2xl xl:hover:bg-transparent'
+          role='combobox'
+          aria-expanded={open}
+          className='h-auto p-0 text-lg font-normal xl:hover:bg-transparent xl:hover:opacity-70'
         >
           {value}
+          <ChevronsUpDown className='size-4' />
         </Button>
-        <PopoverTrigger asChild>
-          <Button
-            variant='ghost'
-            role='combobox'
-            aria-expanded={open}
-            className='h-auto p-1'
-          >
-            <ChevronsUpDown className='size-4 opacity-50' />
-          </Button>
-        </PopoverTrigger>
-      </div>
+      </PopoverTrigger>
       <PopoverContent className='w-60 bg-lt-dark-gray p-0'>
         <Command>
           <CommandInput placeholder='Search link...' />

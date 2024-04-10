@@ -4,7 +4,7 @@ import { useState } from 'react'
 import { Plus } from 'lucide-react'
 import SocialMediaSelector from './selector'
 import SocialMediaOptions from './options'
-import { buttonVariants } from '@/components/ui/button'
+import { Button } from '@/components/ui/button'
 import {
   Dialog,
   DialogContent,
@@ -30,12 +30,11 @@ export default function SocialMediaDialog() {
         })
       }}
     >
-      <DialogTrigger
-        id='link-social-media'
-        className={`w-full cursor-pointer gap-x-1 ${buttonVariants({ variant: 'outline' })}`}
-      >
-        <Plus className='size-4' strokeWidth={1.5} />
-        Add
+      <DialogTrigger asChild>
+        <Button>
+          Add
+          <Plus className='size-3.5' />
+        </Button>
       </DialogTrigger>
       <DialogContent className='p-0 outline-none'>
         <DialogHeader>
