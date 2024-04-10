@@ -2,8 +2,8 @@
 
 import { useState } from 'react'
 import { toast } from 'sonner'
-import DropAvatar from '@/components/links/settings/profile/avatar/drop-avatar'
-import CropAvatar from '@/components/links/settings/profile/avatar/crop-avatar'
+import DropAvatar from './drop-avatar'
+import CropAvatar from './crop-avatar'
 import Avatar from '@/components/ui/custom/avatar'
 import { Button } from '@/components/ui/button'
 import {

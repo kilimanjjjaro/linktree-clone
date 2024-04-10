@@ -1,9 +1,9 @@
 import { Lock, Plus } from 'lucide-react'
 import Link from 'next/link'
-import LinkSelector from '@/components/navbar/link-selector'
+import LinkSelector from './link-selector'
 import LinktreeLogo from '@/components/icons/linktree-logo'
 import { Button } from '@/components/ui/button'
-import { Separator } from '../ui/separator'
+import { Separator } from '@/components/ui/separator'
 
 export default function Navbar() {
   return (

@@ -1,7 +1,7 @@
-import Navbar from '@/components/navbar'
-import { Toaster } from '@/components/ui/toaster'
+import Navbar from './navbar'
+import Footer from './footer'
+import { Toaster } from './ui/toaster'
 import type { ChildrenType } from '@/lib/types/globals'
-import Footer from '@/components/footer'
 
 export default function Wrapper({ children }: { children: ChildrenType }) {
   return (

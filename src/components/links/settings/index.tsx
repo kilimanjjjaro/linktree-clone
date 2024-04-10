@@ -1,7 +1,7 @@
-import LinkSocialMedia from './profile/social-media'
-import LinkAvatar from '@/components/links/settings/profile/avatar'
-import LinkName from '@/components/links/settings/profile/name'
-import LinkDescription from '@/components/links/settings/profile/description'
+import LinkSocialMedia from './social-media'
+import LinkAvatar from './avatar'
+import LinkName from './name'
+import LinkDescription from './description'
 import { TypographyH3 } from '@/components/ui/typography/typography-h3'
 import { Separator } from '@/components/ui/separator'
 
@@ -9,7 +9,7 @@ export default function LinkSettings() {
   return (
     <aside className='flex w-[340px] flex-col rounded-xl border border-lt-light-gray bg-lt-gray'>
       <TypographyH3 className='flex h-12 items-center justify-center px-4 text-lg'>
-        Profile
+        Settings
       </TypographyH3>
       <Separator />
       <LinkAvatar />

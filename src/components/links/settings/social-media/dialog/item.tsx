@@ -1,6 +1,6 @@
 import { Check, ChevronRight } from 'lucide-react'
 import { CommandItem } from '@/components/ui/command'
-import MediaIcon from '@/components/links/settings/profile/social-media/icon'
+import MediaIcon from '@/components/links/settings/social-media/icon'
 import { useStore } from '@/lib/store/store'
 import { cn } from '@/lib/utils'
 import type { SocialMediaInterface } from '@/lib/types/globals'
