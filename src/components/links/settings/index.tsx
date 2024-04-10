@@ -1,6 +1,7 @@
 import LinkSocialMedia from './social-media'
 import LinkAvatar from './avatar'
 import LinkName from './name'
+import LinkStatus from './status'
 import LinkDescription from './description'
 import { TypographyH3 } from '@/components/ui/typography/typography-h3'
 import { Separator } from '@/components/ui/separator'
@@ -15,6 +16,8 @@ export default function LinkSettings() {
       <LinkAvatar />
       <Separator />
       <LinkName />
+      <Separator />
+      <LinkStatus />
       <Separator />
       <LinkDescription />
       <Separator />

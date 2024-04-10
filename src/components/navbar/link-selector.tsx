@@ -20,8 +20,8 @@ import {
 const LINKS = [
   {
     id: 0,
-    slug: 'demostration-link',
-    name: 'Demostration link'
+    slug: 'example-link',
+    name: 'Example link'
   },
   {
     id: 1,
