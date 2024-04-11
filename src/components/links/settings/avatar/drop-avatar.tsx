@@ -32,7 +32,7 @@ export default function DropAvatar() {
     >
       <input {...getInputProps()} />
       <div className='flex flex-col items-center gap-y-4'>
-        <Image className='size-10' strokeWidth={1.5} />
+        <Image className='size-10' />
         <span className='text-balance text-center text-sm'>
           Click to select your image or drag-and-drop here to upload it.
         </span>

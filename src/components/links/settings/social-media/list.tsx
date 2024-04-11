@@ -23,20 +23,10 @@ export default function SocialMediaList() {
     >
       {linkMedia.map((media) => (
         <li
-          className='flex items-center gap-x-2 rounded-full border border-lt-light-gray/60 py-1 pl-3 pr-1 text-sm leading-none transition-opacity xl:hover:opacity-70'
+          className='flex items-center gap-x-2 rounded-full border border-lt-light-gray/60 py-1 pl-3 pr-1 text-sm leading-none'
           key={media.id}
         >
-          {media.link.length > 0 ? (
-            <a
-              href={media.link + media.inputValue}
-              target='_blank'
-              rel='noopener noreferrer'
-            >
-              {media.name}
-            </a>
-          ) : (
-            <>{media.name}</>
-          )}
+          {media.name}
           <Button
             aria-label='Remove'
             className='h-auto rounded-full p-1'

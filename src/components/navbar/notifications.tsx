@@ -21,7 +21,7 @@ export default function Notifications() {
         <Tooltip>
           <TooltipTrigger asChild>
             <PopoverTrigger>
-              <Bell className='size-5' strokeWidth={1.5} />
+              <Bell className='size-5' />
             </PopoverTrigger>
           </TooltipTrigger>
           <TooltipContent side='bottom'>Notifications</TooltipContent>

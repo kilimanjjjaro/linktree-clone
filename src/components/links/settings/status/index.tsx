@@ -21,11 +21,12 @@ export default function LinkStatus() {
         <Label htmlFor='link-status'>Status</Label>
         <Popover>
           <PopoverTrigger>
-            <CircleHelp className='size-3.5' strokeWidth={1.5} />
+            <CircleHelp className='size-3.5' />
             <span className='sr-only'>Show help</span>
           </PopoverTrigger>
           <PopoverContent>
-            By default, when you create a new one it stays as a draft.
+            By default, when you create a new link, it is in draft status. Only
+            you can access it.
           </PopoverContent>
         </Popover>
       </div>

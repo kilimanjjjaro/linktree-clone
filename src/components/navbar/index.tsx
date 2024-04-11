@@ -17,7 +17,7 @@ export default function Navbar() {
       </nav>
       <nav className='flex gap-x-3'>
         <Button variant='outline' className='h-full'>
-          Add new
+          New link
           <Plus className='size-4' aria-hidden />
         </Button>
         <Button className='h-full gap-x-1.5'>

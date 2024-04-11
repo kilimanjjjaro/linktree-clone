@@ -1,4 +1,4 @@
-import { CircleHelp, ClipboardCopy } from 'lucide-react'
+import { CircleHelp, Clipboard } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
@@ -15,7 +15,7 @@ export default function LinkUrl() {
         <Label htmlFor='link-url'>URL</Label>
         <Popover>
           <PopoverTrigger>
-            <CircleHelp className='size-3.5' strokeWidth={1.5} />
+            <CircleHelp className='size-3.5' />
             <span className='sr-only'>Show help</span>
           </PopoverTrigger>
           <PopoverContent>
@@ -37,7 +37,7 @@ export default function LinkUrl() {
       </div>
       <Button variant='secondary'>
         Copy
-        <ClipboardCopy className='size-3.5' />
+        <Clipboard className='size-3.5' />
       </Button>
     </section>
   )
