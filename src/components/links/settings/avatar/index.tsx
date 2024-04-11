@@ -1,10 +1,10 @@
 'use client'
 
 import { useState } from 'react'
+import Image from 'next/image'
 import { toast } from 'sonner'
 import DropAvatar from './drop-avatar'
 import CropAvatar from './crop-avatar'
-import Avatar from '@/components/ui/custom/avatar'
 import { Button } from '@/components/ui/button'
 import {
   Dialog,
@@ -17,7 +17,7 @@ import { useStore } from '@/lib/store/store'
 import { DEFAULT_USER_AVATAR } from '@/lib/constants/avatar'
 import { Label } from '@/components/ui/label'
 
-export default function LinkProfilePicture() {
+export default function LinkAvatar() {
   const avatar = useStore((state) => state.avatar)
   const setAvatar = useStore((state) => state.setAvatar)
   const avatarToCrop = useStore((state) => state.avatarToCrop)
@@ -36,11 +36,15 @@ export default function LinkProfilePicture() {
     <section className='p-5'>
       <Label htmlFor='link-avatar'>Profile picture</Label>
       <div className='mt-2 flex items-center gap-x-5'>
-        <Avatar
-          className='size-20 ring-transparent'
-          src={avatar}
-          alt='Gonzalo'
-        />
+        <div className='relative size-20 overflow-hidden rounded-full border border-lt-light-gray/60'>
+          <Image
+            className='absolute h-auto w-full object-cover object-center'
+            src={avatar}
+            alt='Gonzalo'
+            fill
+            sizes='(max-width: 768px) 100vw, 33vw'
+          />
+        </div>
         <div className='grid flex-1 grid-cols-2 gap-x-3'>
           <Dialog open={showDialog} onOpenChange={setShowDialog}>
             <DialogTrigger asChild>

@@ -1,10 +1,10 @@
 import { useCallback, useState } from 'react'
+import Image from 'next/image'
 import Cropper, { type Area } from 'react-easy-crop'
 import { toast } from 'sonner'
 import { LoaderCircle } from 'lucide-react'
 import { Slider } from '@/components/ui/slider'
 import { Button } from '@/components/ui/button'
-import Avatar from '@/components/ui/custom/avatar'
 import { DialogFooter } from '@/components/ui/dialog'
 import { useStore } from '@/lib/store/store'
 import { CROPPED_AREA_VALUES } from '@/lib/constants/avatar'
@@ -114,7 +114,15 @@ export default function CropImage({ setShowDialog }: Props) {
           </>
         )}
         {croppedAvatar.length > 0 && (
-          <Avatar className='size-full' src={croppedAvatar} alt='Gonzalo' />
+          <div className='relative size-full overflow-hidden rounded-full border border-lt-light-gray/60'>
+            <Image
+              className='absolute h-auto w-full object-cover object-center'
+              src={croppedAvatar}
+              alt='Gonzalo'
+              fill
+              sizes='(max-width: 768px) 100vw, 33vw'
+            />
+          </div>
         )}
       </section>
       <DialogFooter className='gap-3'>
