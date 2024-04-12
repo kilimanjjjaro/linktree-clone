@@ -11,8 +11,8 @@ export default function LinkFont() {
         <h3 className='text-sm font-medium leading-none'>Font</h3>
       </div>
       <RadioGroup
-        defaultValue={FONT_VARIANTS[0].slug}
         className='grid-cols-3 gap-3 px-5 pb-5'
+        defaultValue={FONT_VARIANTS[0].slug}
       >
         {FONT_VARIANTS.map((font) => (
           <Font key={font.id} name={font.name} slug={font.slug} />

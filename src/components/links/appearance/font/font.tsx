@@ -1,6 +1,7 @@
 import Image from 'next/image'
 import { Label } from '@/components/ui/label'
 import { RadioGroupItem } from '@/components/ui/radio-group'
+import { Check } from 'lucide-react'
 
 interface Props {
   name: string
@@ -18,16 +19,19 @@ export default function Font({ name, slug }: Props) {
       />
       <Label
         htmlFor={`${slug}-font`}
-        className='group flex aspect-square cursor-pointer flex-col items-center gap-y-2 peer-data-[state=checked]:[&>div]:border-4 peer-data-[state=checked]:[&>div]:border-lt-lightest-gray'
+        className='relative flex aspect-square cursor-pointer flex-col items-center gap-y-1.5 peer-data-[state=checked]:[&>div:nth-child(2)]:opacity-100'
       >
-        <div className='relative size-full rounded-2xl border-4 border-lt-light-gray bg-lt-light-gray transition-colors'>
+        <div className='relative size-full rounded-2xl bg-lt-light-gray'>
           <Image
-            className='bg-cover transition-opacity xl:group-hover:opacity-70'
+            className='bg-cover'
             src={`/images/font-variants/${slug}.png`}
             alt={name}
             fill
             sizes='(min-width: 1280px) 50vw, 100vw'
           />
+        </div>
+        <div className='absolute right-2 top-2 flex size-4 items-center justify-center rounded-full bg-lt-white opacity-0'>
+          <Check className='mt-px w-2.5 text-lt-black' strokeWidth={4} />
         </div>
         <span className='text-center text-xs text-lt-lightest-gray'>
           {name}

@@ -1,7 +1,9 @@
+/* eslint-disable jsx-a11y/alt-text */
 'use client'
 
 import { Label } from '@/components/ui/label'
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
+import { Check, Film, Image } from 'lucide-react'
 
 export default function LinkBackground() {
   return (
@@ -9,7 +11,10 @@ export default function LinkBackground() {
       <div className='sticky top-0 z-10 mr-2 bg-lt-gray/95 px-5 pb-3 pt-5 backdrop-blur-sm'>
         <h3 className='text-sm font-medium leading-none'>Background</h3>
       </div>
-      <RadioGroup className='grid-cols-2 gap-3 px-5 pb-5'>
+      <RadioGroup
+        className='grid-cols-2 gap-3 px-5 pb-5'
+        defaultValue='lava-lamp'
+      >
         <article>
           <RadioGroupItem
             id='lava-lamp'
@@ -19,9 +24,9 @@ export default function LinkBackground() {
           />
           <Label
             htmlFor='lava-lamp'
-            className='group flex aspect-video cursor-pointer flex-col items-center gap-y-2 peer-data-[state=checked]:[&>div]:border-4 peer-data-[state=checked]:[&>div]:border-lt-lightest-gray'
+            className='relative flex aspect-video cursor-pointer flex-col items-center gap-y-1.5 peer-data-[state=checked]:[&>div:nth-child(2)]:opacity-100'
           >
-            <div className='relative size-full rounded-2xl border-4 border-lt-light-gray bg-lt-light-gray transition-colors'>
+            <div className='size-full overflow-hidden rounded-2xl'>
               <picture>
                 <source
                   srcSet='/images/background-variants/lava-lamp.webp'
@@ -32,11 +37,14 @@ export default function LinkBackground() {
                   type='image/jpeg'
                 />
                 <img
-                  className='bg-cover transition-opacity xl:group-hover:opacity-70'
+                  className='bg-cover'
                   src='/images/background-variants/lava-lamp.jpg'
                   alt='Lava Lamp'
                 />
               </picture>
+            </div>
+            <div className='absolute right-2 top-2 flex size-4 items-center justify-center rounded-full bg-lt-white opacity-0'>
+              <Check className='mt-px w-2.5 text-lt-black' strokeWidth={4} />
             </div>
             <span className='text-center text-xs text-lt-lightest-gray'>
               Lava Lamp
@@ -44,30 +52,72 @@ export default function LinkBackground() {
           </Label>
         </article>
         <article>
-          <RadioGroupItem id='image' className='peer' value='image' hidden />
+          <RadioGroupItem
+            id='pattern'
+            className='peer'
+            value='pattern'
+            hidden
+          />
           <Label
-            htmlFor='image'
-            className='group flex aspect-video cursor-pointer flex-col items-center gap-y-2 peer-data-[state=checked]:[&>div]:border-4 peer-data-[state=checked]:[&>div]:border-lt-lightest-gray'
+            htmlFor='pattern'
+            className='relative flex aspect-video cursor-pointer flex-col items-center gap-y-2 peer-data-[state=checked]:[&>div:nth-child(2)]:opacity-100'
           >
-            <div className='relative size-full rounded-2xl border-4 border-lt-light-gray bg-lt-light-gray transition-colors'>
+            <div className='size-full overflow-hidden rounded-2xl'>
               <picture>
                 <source
-                  srcSet='/images/background-variants/image.webp'
+                  srcSet='/images/background-variants/pattern.webp'
                   type='image/webp'
                 />
                 <source
-                  srcSet='/images/background-variants/image.jpg'
+                  srcSet='/images/background-variants/pattern.jpg'
                   type='image/jpeg'
                 />
                 <img
-                  className='bg-cover transition-opacity xl:group-hover:opacity-70'
-                  src='/images/background-variants/image.jpg'
-                  alt='Image'
+                  className='bg-cover'
+                  src='/images/background-variants/pattern.jpg'
+                  alt='Pattern'
                 />
               </picture>
             </div>
+            <div className='absolute right-2 top-2 flex size-4 items-center justify-center rounded-full bg-lt-white opacity-0'>
+              <Check className='mt-px w-2.5 text-lt-black' strokeWidth={4} />
+            </div>
+            <span className='text-center text-xs text-lt-lightest-gray'>
+              Pattern
+            </span>
+          </Label>
+        </article>
+        <article>
+          <RadioGroupItem id='image' className='peer' value='image' hidden />
+          <Label
+            htmlFor='image'
+            className='relative flex aspect-video cursor-pointer flex-col items-center gap-y-2 peer-data-[state=checked]:[&>div:nth-child(2)]:opacity-100'
+          >
+            <div className='flex size-full items-center justify-center rounded-2xl bg-lt-light-gray'>
+              <Image className='size-10 text-lt-white' />
+            </div>
+            <div className='absolute right-2 top-2 flex size-4 items-center justify-center rounded-full bg-lt-white opacity-0'>
+              <Check className='mt-px w-2.5 text-lt-black' strokeWidth={4} />
+            </div>
             <span className='text-center text-xs text-lt-lightest-gray'>
               Image
+            </span>
+          </Label>
+        </article>
+        <article>
+          <RadioGroupItem id='video' className='peer' value='video' hidden />
+          <Label
+            htmlFor='video'
+            className='relative flex aspect-video cursor-pointer flex-col items-center gap-y-2 peer-data-[state=checked]:[&>div:nth-child(2)]:opacity-100'
+          >
+            <div className='flex size-full items-center justify-center rounded-2xl bg-lt-light-gray'>
+              <Film className='size-10 text-lt-white' />
+            </div>
+            <div className='absolute right-2 top-2 flex size-4 items-center justify-center rounded-full bg-lt-white opacity-0'>
+              <Check className='mt-px w-2.5 text-lt-black' strokeWidth={4} />
+            </div>
+            <span className='text-center text-xs text-lt-lightest-gray'>
+              Video
             </span>
           </Label>
         </article>
@@ -80,24 +130,11 @@ export default function LinkBackground() {
           />
           <Label
             htmlFor='gradient-color'
-            className='group flex aspect-video cursor-pointer flex-col items-center gap-y-2 peer-data-[state=checked]:[&>div]:border-4 peer-data-[state=checked]:[&>div]:border-lt-lightest-gray'
+            className='relative flex aspect-video cursor-pointer flex-col items-center gap-y-2 peer-data-[state=checked]:[&>div:nth-child(2)]:opacity-100'
           >
-            <div className='relative size-full rounded-2xl border-4 border-lt-light-gray bg-lt-light-gray transition-colors'>
-              <picture>
-                <source
-                  srcSet='/images/background-variants/gradient-color.webp'
-                  type='image/webp'
-                />
-                <source
-                  srcSet='/images/background-variants/gradient-color.jpg'
-                  type='image/jpeg'
-                />
-                <img
-                  className='bg-cover transition-opacity xl:group-hover:opacity-70'
-                  src='/images/background-variants/gradient-color.jpg'
-                  alt='Gradient Color'
-                />
-              </picture>
+            <div className='size-full rounded-2xl bg-gradient-to-t from-red-700 to-yellow-300' />
+            <div className='absolute right-2 top-2 flex size-4 items-center justify-center rounded-full bg-lt-white opacity-0'>
+              <Check className='mt-px w-2.5 text-lt-black' strokeWidth={4} />
             </div>
             <span className='text-center text-xs text-lt-lightest-gray'>
               Gradient Color
@@ -106,34 +143,21 @@ export default function LinkBackground() {
         </article>
         <article>
           <RadioGroupItem
-            id='solid-color'
+            id='flat-color'
             className='peer'
-            value='solid-color'
+            value='flat-color'
             hidden
           />
           <Label
-            htmlFor='solid-color'
-            className='group flex aspect-video cursor-pointer flex-col items-center gap-y-2 peer-data-[state=checked]:[&>div]:border-4 peer-data-[state=checked]:[&>div]:border-lt-lightest-gray'
+            htmlFor='flat-color'
+            className='relative flex aspect-video cursor-pointer flex-col items-center gap-y-2 peer-data-[state=checked]:[&>div:nth-child(2)]:opacity-100'
           >
-            <div className='relative size-full rounded-2xl border-4 border-lt-light-gray bg-lt-light-gray transition-colors'>
-              <picture>
-                <source
-                  srcSet='/images/background-variants/solid-color.webp'
-                  type='image/webp'
-                />
-                <source
-                  srcSet='/images/background-variants/solid-color.jpg'
-                  type='image/jpeg'
-                />
-                <img
-                  className='bg-cover transition-opacity xl:group-hover:opacity-70'
-                  src='/images/background-variants/solid-color.jpg'
-                  alt='Solid Color'
-                />
-              </picture>
+            <div className='size-full rounded-2xl bg-yellow-500' />
+            <div className='absolute right-2 top-2 flex size-4 items-center justify-center rounded-full bg-lt-white opacity-0'>
+              <Check className='mt-px w-2.5 text-lt-black' strokeWidth={4} />
             </div>
             <span className='text-center text-xs text-lt-lightest-gray'>
-              Solid Color
+              Flat Color
             </span>
           </Label>
         </article>

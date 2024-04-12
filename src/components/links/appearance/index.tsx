@@ -11,13 +11,12 @@ export default function LinkAppearance() {
         Appearance
       </h2>
       <Separator />
-      <ScrollArea className='h-screen'>
-        <LinkGeneral />
-        <Separator />
+      <ScrollArea className='h-screen' scrollHideDelay={0}>
         <LinkBackground />
         <Separator />
         <LinkFont />
         <Separator />
+        <LinkGeneral />
       </ScrollArea>
     </aside>
   )
