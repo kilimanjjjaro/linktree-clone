@@ -12,12 +12,10 @@ export default function LinkGeneral() {
   const contendContainerText = contendContainer ? 'Show' : 'Hide'
 
   return (
-    <section className='relative'>
-      <div className='sticky top-0 z-10 mr-2 bg-lt-gray/95 px-5 pb-3 pt-5 backdrop-blur-sm'>
-        <h3 className='text-sm font-medium leading-none'>General</h3>
-      </div>
-      <section className='flex flex-col gap-3 pb-5'>
-        <div className='flex items-center justify-between px-5 text-lt-lightest-gray'>
+    <section className='p-5'>
+      <h3 className='text-sm font-medium leading-none'>General</h3>
+      <section className='mt-3 flex flex-col gap-3'>
+        <div className='flex items-center justify-between text-lt-lightest-gray'>
           <Label htmlFor='corner-style'>Corner style</Label>
           <div className='flex items-center gap-x-3'>
             <span className='text-sm'>{cornerStyleText}</span>
@@ -29,7 +27,7 @@ export default function LinkGeneral() {
             />
           </div>
         </div>
-        <div className='flex items-center justify-between px-5 text-lt-lightest-gray'>
+        <div className='flex items-center justify-between text-lt-lightest-gray'>
           <Label htmlFor='content-container'>Content container</Label>
           <div className='flex items-center gap-x-3'>
             <span className='text-sm'>{contendContainerText}</span>

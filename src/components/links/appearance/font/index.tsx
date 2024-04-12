@@ -6,12 +6,10 @@ import { RadioGroup } from '@/components/ui/radio-group'
 
 export default function LinkFont() {
   return (
-    <section className='relative'>
-      <div className='sticky top-0 z-10 mr-2 bg-lt-gray/95 px-5 pb-3 pt-5 backdrop-blur-sm'>
-        <h3 className='text-sm font-medium leading-none'>Font</h3>
-      </div>
+    <section className='p-5'>
+      <h3 className='text-sm font-medium leading-none'>Font</h3>
       <RadioGroup
-        className='grid-cols-3 gap-3 px-5 pb-5'
+        className='mt-3 grid-cols-3 gap-3'
         defaultValue={FONT_VARIANTS[0].slug}
       >
         {FONT_VARIANTS.map((font) => (

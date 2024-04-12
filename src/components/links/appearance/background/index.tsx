@@ -7,14 +7,9 @@ import { Check, Film, Image } from 'lucide-react'
 
 export default function LinkBackground() {
   return (
-    <section className='relative'>
-      <div className='sticky top-0 z-10 mr-2 bg-lt-gray/95 px-5 pb-3 pt-5 backdrop-blur-sm'>
-        <h3 className='text-sm font-medium leading-none'>Background</h3>
-      </div>
-      <RadioGroup
-        className='grid-cols-2 gap-3 px-5 pb-5'
-        defaultValue='lava-lamp'
-      >
+    <section className='p-5'>
+      <h3 className='text-sm font-medium leading-none'>Background</h3>
+      <RadioGroup className='mt-3 grid-cols-2 gap-3' defaultValue='lava-lamp'>
         <article>
           <RadioGroupItem
             id='lava-lamp'

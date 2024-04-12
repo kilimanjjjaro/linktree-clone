@@ -19,7 +19,7 @@ export default function Notifications() {
       <TooltipProvider delayDuration={0}>
         <Tooltip>
           <TooltipTrigger asChild>
-            <PopoverTrigger className='mr-3'>
+            <PopoverTrigger className='mr-1'>
               <Zap className='size-5' />
             </PopoverTrigger>
           </TooltipTrigger>
