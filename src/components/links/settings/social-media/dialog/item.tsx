@@ -1,4 +1,4 @@
-import { Check, ChevronRight } from 'lucide-react'
+import { ChevronRight } from 'lucide-react'
 import { CommandItem } from '@/components/ui/command'
 import MediaIcon from '@/components/links/settings/social-media/icon'
 import { useStore } from '@/lib/store/store'
@@ -35,13 +35,17 @@ export default function SocialMediaItem({ media }: Props) {
         <MediaIcon className='size-5' name={media.slug} />
         {media.name}
       </span>
-      <span className='flex items-center gap-x-2'>
-        <Check
-          aria-label='Already added!'
-          className={cn('mr-2 h-4 w-4 opacity-0', isAdded && 'opacity-100')}
-        />
+      <div className='flex items-center gap-x-1'>
+        <span
+          className={cn(
+            'opacity-0 text-xs rounded-full border border-lt-lightest-gray px-2 py-1 leading-none',
+            isAdded && 'opacity-100'
+          )}
+        >
+          Added
+        </span>
         <ChevronRight className='ml-auto size-4' />
-      </span>
+      </div>
     </CommandItem>
   )
 }

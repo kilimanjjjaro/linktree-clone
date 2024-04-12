@@ -30,14 +30,13 @@ export default function Changelog() {
           <li className='relative flex items-center gap-x-4 p-4 text-lt-lightest-gray'>
             <div className='flex flex-col gap-y-2'>
               <p className='w-full text-sm font-light'>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris
-                justo risus, fermentum sit amet.
+                Lorem ipsum dolor sit amet, consectetur adipiscing.
               </p>
               <div className='flex w-full justify-between text-xs'>
                 <span className='flex items-center gap-1 leading-none'>
                   <Clock className='size-3.5' />4 hours ago
                 </span>
-                <span className='rounded-full border border-lt-light-gray px-2 py-1 font-medium leading-none'>
+                <span className='rounded-full border border-lt-light-gray px-2 py-1 leading-none'>
                   Appearence
                 </span>
               </div>
@@ -53,7 +52,7 @@ export default function Changelog() {
                 <span className='flex items-center gap-1 leading-none'>
                   <Clock className='size-3.5' />4 hours ago
                 </span>
-                <span className='rounded-full border border-lt-white px-2 py-1 font-medium leading-none'>
+                <span className='rounded-full border border-lt-white px-2 py-1 leading-none'>
                   Appearence
                 </span>
               </div>
@@ -68,14 +67,13 @@ export default function Changelog() {
           <li className='relative flex items-center gap-x-4 p-4 text-lt-lightest-gray'>
             <div className='flex flex-col gap-y-2'>
               <p className='w-full text-sm font-light'>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris
-                justo risus, fermentum sit amet.
+                Lorem ipsum dolor sit amet, consectetur. Mauris justo risus.
               </p>
               <div className='flex w-full justify-between text-xs'>
                 <span className='flex items-center gap-1 leading-none'>
                   <Clock className='size-3.5' />4 hours ago
                 </span>
-                <span className='rounded-full border border-lt-light-gray px-2 py-1 font-medium leading-none'>
+                <span className='rounded-full border border-lt-light-gray px-2 py-1 leading-none'>
                   Appearence
                 </span>
               </div>

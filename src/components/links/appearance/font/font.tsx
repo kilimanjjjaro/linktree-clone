@@ -30,7 +30,7 @@ export default function Font({ name, slug }: Props) {
             sizes='(min-width: 1280px) 50vw, 100vw'
           />
         </div>
-        <div className='absolute right-2 top-2 flex size-4 items-center justify-center rounded-full bg-lt-white opacity-0'>
+        <div className='absolute right-2 top-2 flex size-4 items-center justify-center rounded-full bg-lt-white opacity-0 transition-opacity'>
           <Check
             className='w-2.5 translate-y-px text-lt-black'
             strokeWidth={3.5}

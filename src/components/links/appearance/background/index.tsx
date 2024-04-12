@@ -38,7 +38,7 @@ export default function LinkBackground() {
                 />
               </picture>
             </div>
-            <div className='absolute right-2 top-2 flex size-4 items-center justify-center rounded-full bg-lt-white opacity-0'>
+            <div className='absolute right-2 top-2 flex size-4 items-center justify-center rounded-full bg-lt-white opacity-0 transition-opacity'>
               <Check
                 className='w-2.5 translate-y-px text-lt-black'
                 strokeWidth={3.5}
@@ -77,7 +77,7 @@ export default function LinkBackground() {
                 />
               </picture>
             </div>
-            <div className='absolute right-2 top-2 flex size-4 items-center justify-center rounded-full bg-lt-white opacity-0'>
+            <div className='absolute right-2 top-2 flex size-4 items-center justify-center rounded-full bg-lt-white opacity-0 transition-opacity'>
               <Check
                 className='w-2.5 translate-y-px text-lt-black'
                 strokeWidth={3.5}
@@ -97,7 +97,7 @@ export default function LinkBackground() {
             <div className='flex size-full items-center justify-center rounded-2xl bg-lt-light-gray'>
               <Image className='size-10 text-lt-white' />
             </div>
-            <div className='absolute right-2 top-2 flex size-4 items-center justify-center rounded-full bg-lt-white opacity-0'>
+            <div className='absolute right-2 top-2 flex size-4 items-center justify-center rounded-full bg-lt-white opacity-0 transition-opacity'>
               <Check
                 className='w-2.5 translate-y-px text-lt-black'
                 strokeWidth={3.5}
@@ -117,7 +117,7 @@ export default function LinkBackground() {
             <div className='flex size-full items-center justify-center rounded-2xl bg-lt-light-gray'>
               <Film className='size-10 text-lt-white' />
             </div>
-            <div className='absolute right-2 top-2 flex size-4 items-center justify-center rounded-full bg-lt-white opacity-0'>
+            <div className='absolute right-2 top-2 flex size-4 items-center justify-center rounded-full bg-lt-white opacity-0 transition-opacity'>
               <Check
                 className='w-2.5 translate-y-px text-lt-black'
                 strokeWidth={3.5}
@@ -140,7 +140,7 @@ export default function LinkBackground() {
             className='relative flex aspect-video cursor-pointer flex-col items-center gap-y-2 peer-data-[state=checked]:[&>div:nth-child(2)]:opacity-100'
           >
             <div className='size-full rounded-2xl bg-gradient-to-t from-red-700 to-yellow-300' />
-            <div className='absolute right-2 top-2 flex size-4 items-center justify-center rounded-full bg-lt-white opacity-0'>
+            <div className='absolute right-2 top-2 flex size-4 items-center justify-center rounded-full bg-lt-white opacity-0 transition-opacity'>
               <Check
                 className='w-2.5 translate-y-px text-lt-black'
                 strokeWidth={3.5}
@@ -163,7 +163,7 @@ export default function LinkBackground() {
             className='relative flex aspect-video cursor-pointer flex-col items-center gap-y-2 peer-data-[state=checked]:[&>div:nth-child(2)]:opacity-100'
           >
             <div className='size-full rounded-2xl bg-yellow-500' />
-            <div className='absolute right-2 top-2 flex size-4 items-center justify-center rounded-full bg-lt-white opacity-0'>
+            <div className='absolute right-2 top-2 flex size-4 items-center justify-center rounded-full bg-lt-white opacity-0 transition-opacity'>
               <Check
                 className='w-2.5 translate-y-px text-lt-black'
                 strokeWidth={3.5}
