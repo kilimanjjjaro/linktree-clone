@@ -39,7 +39,10 @@ export default function LinkBackground() {
               </picture>
             </div>
             <div className='absolute right-2 top-2 flex size-4 items-center justify-center rounded-full bg-lt-white opacity-0'>
-              <Check className='mt-px w-2.5 text-lt-black' strokeWidth={4} />
+              <Check
+                className='w-2.5 translate-y-px text-lt-black'
+                strokeWidth={3.5}
+              />
             </div>
             <span className='text-center text-xs text-lt-lightest-gray'>
               Lava Lamp
@@ -75,7 +78,10 @@ export default function LinkBackground() {
               </picture>
             </div>
             <div className='absolute right-2 top-2 flex size-4 items-center justify-center rounded-full bg-lt-white opacity-0'>
-              <Check className='mt-px w-2.5 text-lt-black' strokeWidth={4} />
+              <Check
+                className='w-2.5 translate-y-px text-lt-black'
+                strokeWidth={3.5}
+              />
             </div>
             <span className='text-center text-xs text-lt-lightest-gray'>
               Pattern
@@ -92,7 +98,10 @@ export default function LinkBackground() {
               <Image className='size-10 text-lt-white' />
             </div>
             <div className='absolute right-2 top-2 flex size-4 items-center justify-center rounded-full bg-lt-white opacity-0'>
-              <Check className='mt-px w-2.5 text-lt-black' strokeWidth={4} />
+              <Check
+                className='w-2.5 translate-y-px text-lt-black'
+                strokeWidth={3.5}
+              />
             </div>
             <span className='text-center text-xs text-lt-lightest-gray'>
               Image
@@ -109,7 +118,10 @@ export default function LinkBackground() {
               <Film className='size-10 text-lt-white' />
             </div>
             <div className='absolute right-2 top-2 flex size-4 items-center justify-center rounded-full bg-lt-white opacity-0'>
-              <Check className='mt-px w-2.5 text-lt-black' strokeWidth={4} />
+              <Check
+                className='w-2.5 translate-y-px text-lt-black'
+                strokeWidth={3.5}
+              />
             </div>
             <span className='text-center text-xs text-lt-lightest-gray'>
               Video
@@ -129,7 +141,10 @@ export default function LinkBackground() {
           >
             <div className='size-full rounded-2xl bg-gradient-to-t from-red-700 to-yellow-300' />
             <div className='absolute right-2 top-2 flex size-4 items-center justify-center rounded-full bg-lt-white opacity-0'>
-              <Check className='mt-px w-2.5 text-lt-black' strokeWidth={4} />
+              <Check
+                className='w-2.5 translate-y-px text-lt-black'
+                strokeWidth={3.5}
+              />
             </div>
             <span className='text-center text-xs text-lt-lightest-gray'>
               Gradient Color
@@ -149,7 +164,10 @@ export default function LinkBackground() {
           >
             <div className='size-full rounded-2xl bg-yellow-500' />
             <div className='absolute right-2 top-2 flex size-4 items-center justify-center rounded-full bg-lt-white opacity-0'>
-              <Check className='mt-px w-2.5 text-lt-black' strokeWidth={4} />
+              <Check
+                className='w-2.5 translate-y-px text-lt-black'
+                strokeWidth={3.5}
+              />
             </div>
             <span className='text-center text-xs text-lt-lightest-gray'>
               Flat Color

@@ -57,7 +57,7 @@ export default function LinkSelector() {
           <ChevronsUpDown className='size-4' />
         </Button>
       </PopoverTrigger>
-      <PopoverContent className='w-60 bg-lt-dark-gray p-0'>
+      <PopoverContent className='w-60 p-0'>
         <Command>
           <CommandInput placeholder='Search link...' />
           <CommandList>

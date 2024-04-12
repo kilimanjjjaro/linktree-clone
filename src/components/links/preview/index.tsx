@@ -8,7 +8,7 @@ import { TikTokIcon } from '@/components/icons/tiktok-icon'
 
 export default function LinkPreview() {
   return (
-    <div className='flex flex-col items-center self-center'>
+    <section className='flex flex-col items-center self-center'>
       <div className='relative flex aspect-[320/630] w-[360px] items-center justify-center'>
         <DeviceOverlay />
         <div className='flex h-[95%] w-[91%] flex-col items-center overflow-hidden'>
@@ -66,6 +66,6 @@ export default function LinkPreview() {
           </header>
         </div>
       </div>
-    </div>
+    </section>
   )
 }

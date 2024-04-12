@@ -1,10 +1,10 @@
 import { Lock, Plus } from 'lucide-react'
 import Link from 'next/link'
 import LinkSelector from './link-selector'
+import Changelog from './changelog'
 import LinktreeLogo from '@/components/icons/linktree-logo'
 import { Button } from '@/components/ui/button'
 import { Separator } from '@/components/ui/separator'
-import Notifications from './notifications'
 
 export default function Navbar() {
   return (
@@ -17,7 +17,7 @@ export default function Navbar() {
         <LinkSelector />
       </nav>
       <nav className='flex gap-x-3'>
-        <Notifications />
+        <Changelog />
         <Button variant='outline' className='h-full'>
           New link
           <Plus className='size-4' aria-hidden />
