@@ -1,5 +1,4 @@
-import { Bell, Check, ListChecks } from 'lucide-react'
-import { TypographyH3 } from '@/components/ui/typography/typography-h3'
+import { Check, Zap } from 'lucide-react'
 import {
   Popover,
   PopoverContent,
@@ -20,26 +19,14 @@ export default function Notifications() {
       <TooltipProvider delayDuration={0}>
         <Tooltip>
           <TooltipTrigger asChild>
-            <PopoverTrigger>
-              <Bell className='size-5' />
+            <PopoverTrigger className='mr-3'>
+              <Zap className='size-5' />
             </PopoverTrigger>
           </TooltipTrigger>
-          <TooltipContent side='bottom'>Notifications</TooltipContent>
+          <TooltipContent side='bottom'>New features</TooltipContent>
         </Tooltip>
       </TooltipProvider>
       <PopoverContent collisionPadding={16} className='overflow-hidden p-0'>
-        <div className='relative flex h-12 items-center justify-center border-b border-b-lt-light-gray p-3'>
-          <TypographyH3 className='text-base leading-none'>
-            Notifications
-          </TypographyH3>
-          <Button
-            aria-label='Mark as read'
-            className='absolute right-3 h-auto rounded-none p-1 transition-opacity xl:hover:bg-transparent xl:hover:opacity-70'
-            variant='ghost'
-          >
-            <ListChecks className='size-5' />
-          </Button>
-        </div>
         <ul className='flex flex-col'>
           <li className='flex items-center gap-x-3 p-4 text-sm xl:hover:bg-lt-light-gray/40'>
             <Button
