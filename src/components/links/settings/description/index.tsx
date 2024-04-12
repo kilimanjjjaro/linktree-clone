@@ -15,6 +15,7 @@ export default function LinkDescription() {
         <Popover>
           <PopoverTrigger>
             <CircleHelp className='size-3.5' />
+            <span className='sr-only'>Show help</span>
           </PopoverTrigger>
           <PopoverContent>
             Short description for your link. This will be used in the header and

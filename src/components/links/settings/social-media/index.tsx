@@ -16,6 +16,7 @@ export default function LinkSocialMedia() {
         <Popover>
           <PopoverTrigger>
             <CircleHelp className='size-3.5' />
+            <span className='sr-only'>Show help</span>
           </PopoverTrigger>
           <PopoverContent>
             Add icons linking to your social profiles, email and more.

@@ -32,6 +32,7 @@ export default function Font({ name, slug }: Props) {
         </div>
         <div className='absolute right-2 top-2 flex size-4 items-center justify-center rounded-full bg-lt-white opacity-0'>
           <Check className='mt-px w-2.5 text-lt-black' strokeWidth={4} />
+          <span className='sr-only'>Selected</span>
         </div>
         <span className='text-center text-xs text-lt-lightest-gray'>
           {name}

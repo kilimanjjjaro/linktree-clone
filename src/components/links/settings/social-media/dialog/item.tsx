@@ -40,7 +40,7 @@ export default function SocialMediaItem({ media }: Props) {
           aria-label='Already added!'
           className={cn('mr-2 h-4 w-4 opacity-0', isAdded && 'opacity-100')}
         />
-        <ChevronRight aria-label='Options' className='ml-auto size-4' />
+        <ChevronRight className='ml-auto size-4' />
       </span>
     </CommandItem>
   )
