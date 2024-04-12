@@ -1,6 +1,6 @@
+import Image from 'next/image'
 import { Label } from '@/components/ui/label'
 import { RadioGroupItem } from '@/components/ui/radio-group'
-import Image from 'next/image'
 
 interface Props {
   name: string
