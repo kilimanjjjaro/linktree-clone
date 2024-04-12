@@ -6,7 +6,11 @@ const config = {
     './src/components/**/*.{js,ts,jsx,tsx,mdx}',
     './src/app/**/*.{js,ts,jsx,tsx,mdx}'
   ],
+
   theme: {
+    transitionDuration: {
+      DEFAULT: '200ms'
+    },
     extend: {
       fontFamily: {
         'geist-sans': ['var(--font-geist-sans)']
