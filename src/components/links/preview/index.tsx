@@ -5,6 +5,7 @@ import { TwitchIcon } from '@/components/icons/twitch-icon'
 import { WhatsAppIcon } from '@/components/icons/whatsapp-icon'
 import { TelegramIcon } from '@/components/icons/telegram-icon'
 import { TikTokIcon } from '@/components/icons/tiktok-icon'
+import AddLink from './add-link/dialog'
 
 export default function LinkPreview() {
   return (
@@ -64,6 +65,7 @@ export default function LinkPreview() {
               </a>
             </ul>
           </header>
+          <AddLink />
         </div>
       </div>
     </section>

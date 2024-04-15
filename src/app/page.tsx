@@ -4,7 +4,7 @@ import LinkSettings from '@/components/links/settings'
 
 export default function Home() {
   return (
-    <main className='relative flex h-dvh min-h-dvh items-start justify-between p-3 pt-[88px]'>
+    <main className='relative grid h-dvh min-h-dvh grid-cols-[auto_1fr_auto] items-start justify-center p-3 pt-[88px]'>
       <LinkAppearance />
       <LinkPreview />
       <LinkSettings />
