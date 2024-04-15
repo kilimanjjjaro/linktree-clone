@@ -48,13 +48,7 @@ export default function LinkAvatar() {
         <div className='grid flex-1 grid-cols-2 gap-x-3'>
           <Dialog open={showDialog} onOpenChange={setShowDialog}>
             <DialogTrigger asChild>
-              <Button
-                id='link-avatar'
-                variant='secondary'
-                onClick={() => {
-                  removeAvatar()
-                }}
-              >
+              <Button id='link-avatar' variant='secondary'>
                 Upload
               </Button>
             </DialogTrigger>
@@ -71,12 +65,7 @@ export default function LinkAvatar() {
               </main>
             </DialogContent>
           </Dialog>
-          <Button
-            variant='outline'
-            onClick={() => {
-              removeAvatar()
-            }}
-          >
+          <Button variant='outline' onClick={removeAvatar}>
             Remove
           </Button>
         </div>

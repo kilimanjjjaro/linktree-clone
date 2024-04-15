@@ -8,7 +8,8 @@ const nextConfig = {
         hostname: 'res.cloudinary.com'
       }
     ]
-  }
+  },
+  transpilePackages: ['lucide-react']
 }
 
 export default nextConfig
