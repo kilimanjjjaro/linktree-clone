@@ -1,33 +1,32 @@
 'use client'
 
 import { useState } from 'react'
-import { Upload } from 'lucide-react'
-import { Button } from '@/components/ui/button'
 import { Label } from '@/components/ui/label'
 import { Switch } from '@/components/ui/switch'
 
-export default function HightlightLink() {
-  const [highlightedLink, setHighlightedLink] = useState(false)
+export default function FeaturedLink() {
+  const [featured, setFeatured] = useState(false)
 
   return (
     <>
       <fieldset className='flex flex-col gap-y-3'>
         <div className='flex items-center gap-x-3'>
           <div className='flex flex-col gap-y-1.5'>
-            <Label htmlFor='highligth-link'>Highlight link</Label>
+            <Label htmlFor='featured-link'>Featured link</Label>
             <p className='text-sm text-lt-lightest-gray'>
               This will be displayed with a background image. We took it from
               the link, or you can upload your own.
             </p>
           </div>
           <Switch
-            id='highligth-link'
-            checked={highlightedLink}
-            onCheckedChange={setHighlightedLink}
+            id='featured-link'
+            name='featured-link'
+            checked={featured}
+            onCheckedChange={setFeatured}
           />
         </div>
       </fieldset>
-      {highlightedLink && (
+      {/* {featured && (
         <div
           className='relative aspect-video overflow-hidden rounded-xl bg-cover bg-center'
           style={{
@@ -45,7 +44,7 @@ export default function HightlightLink() {
             <Upload className='size-4 translate-y-px' strokeWidth={2.5} />
           </Button>
         </div>
-      )}
+      )} */}
     </>
   )
 }

@@ -1,11 +1,7 @@
 import Avatar from './avatar'
 import DeviceOverlay from './device-overlay'
-import { InstagramIcon } from '@/components/icons/instagram-icon'
-import { TwitchIcon } from '@/components/icons/twitch-icon'
-import { WhatsAppIcon } from '@/components/icons/whatsapp-icon'
-import { TelegramIcon } from '@/components/icons/telegram-icon'
-import { TikTokIcon } from '@/components/icons/tiktok-icon'
-import AddLink from './add-link/dialog'
+import AddLink from './add-link'
+import SocialMedia from './social-media'
 
 export default function LinkPreview() {
   return (
@@ -22,48 +18,7 @@ export default function LinkPreview() {
               Full Stack Developer & UX/UI Designer with +6 years of work
               experiencie.
             </p>
-            <ul className='mt-4 flex flex-wrap items-center justify-center gap-3 px-6'>
-              <a
-                className='size-7 rounded-full bg-zinc-400 p-1 text-black transition-colors xl:hover:bg-zinc-200'
-                href='/'
-                target='_blank'
-                rel='noopener noreferrer'
-              >
-                <InstagramIcon />
-              </a>
-              <a
-                className='size-7 rounded-full bg-zinc-400 p-1 text-black transition-colors xl:hover:bg-zinc-200'
-                href='/'
-                target='_blank'
-                rel='noopener noreferrer'
-              >
-                <TikTokIcon />
-              </a>
-              <a
-                className='size-7 rounded-full bg-zinc-400 p-1 text-black transition-colors xl:hover:bg-zinc-200'
-                href='/'
-                target='_blank'
-                rel='noopener noreferrer'
-              >
-                <TwitchIcon />
-              </a>
-              <a
-                className='size-7 rounded-full bg-zinc-400 p-1 text-black transition-colors xl:hover:bg-zinc-200'
-                href='/'
-                target='_blank'
-                rel='noopener noreferrer'
-              >
-                <WhatsAppIcon />
-              </a>
-              <a
-                className='size-7 rounded-full bg-zinc-400 p-1 text-black transition-colors xl:hover:bg-zinc-200'
-                href='/'
-                target='_blank'
-                rel='noopener noreferrer'
-              >
-                <TelegramIcon />
-              </a>
-            </ul>
+            <SocialMedia />
           </header>
           <AddLink />
         </div>

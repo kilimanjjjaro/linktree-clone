@@ -4,10 +4,12 @@ import { X } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { useStore } from '@/lib/store/store'
 import { cn } from '@/lib/utils'
+import { useAutoAnimate } from '@formkit/auto-animate/react'
 
 export default function SocialMediaList() {
   const linkMedia = useStore((state) => state.linkMedia)
   const setLinkMedia = useStore((state) => state.setLinkMedia)
+  const [parent] = useAutoAnimate({ duration: 200 })
 
   const removeSocialMedia = (socialMediaId: number) => {
     const newSocialMedia = linkMedia.filter(
@@ -19,6 +21,7 @@ export default function SocialMediaList() {
 
   return (
     <ul
+      ref={parent}
       className={cn('hidden flex-wrap gap-2', linkMedia.length > 0 && 'flex')}
     >
       {linkMedia.map((media) => (
@@ -31,9 +34,7 @@ export default function SocialMediaList() {
             aria-label='Remove'
             className='h-auto rounded-full p-1'
             variant='ghost'
-            onClick={() => {
-              removeSocialMedia(media.id)
-            }}
+            onClick={() => removeSocialMedia(media.id)}
           >
             <X className='size-3' />
           </Button>
