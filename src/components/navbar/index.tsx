@@ -1,5 +1,5 @@
-import { Lock, Plus } from 'lucide-react'
 import Link from 'next/link'
+import { Lock, Plus } from 'lucide-react'
 import LinkSelector from './link-selector'
 import Changelog from './changelog'
 import LinktreeLogo from '@/components/icons/linktree-logo'
@@ -22,10 +22,10 @@ export default function Navbar() {
           New link
           <Plus className='size-4' aria-hidden />
         </Button>
-        <Button className='h-full gap-x-1.5'>
+        <Link className='h-full gap-x-1.5' href='/login'>
           Log in
           <Lock className='size-3.5' aria-hidden />
-        </Button>
+        </Link>
       </nav>
     </header>
   )
