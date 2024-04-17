@@ -3,7 +3,7 @@ import { Lock, Plus } from 'lucide-react'
 import LinkSelector from './link-selector'
 import Changelog from './changelog'
 import LinktreeLogo from '@/components/icons/linktree-logo'
-import { Button } from '@/components/ui/button'
+import { Button, buttonVariants } from '@/components/ui/button'
 import { Separator } from '@/components/ui/separator'
 
 export default function Navbar() {
@@ -22,7 +22,10 @@ export default function Navbar() {
           New link
           <Plus className='size-4' aria-hidden />
         </Button>
-        <Link className='h-full gap-x-1.5' href='/login'>
+        <Link
+          className={`h-full ${buttonVariants({ variant: 'default' })}`}
+          href='/login'
+        >
           Log in
           <Lock className='size-3.5' aria-hidden />
         </Link>
