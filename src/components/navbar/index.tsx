@@ -26,7 +26,7 @@ export default function Navbar() {
           className={`h-full ${buttonVariants({ variant: 'default' })}`}
           href='/login'
         >
-          Log in
+          Log In
           <Lock className='size-3.5' aria-hidden />
         </Link>
       </nav>
