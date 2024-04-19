@@ -1,12 +1,17 @@
 import Link from 'next/link'
-import { Lock, Plus } from 'lucide-react'
+import { Plus } from 'lucide-react'
 import LinkSelector from './link-selector'
 import Changelog from './changelog'
+import LogOutButton from './logout-button'
+import LogInButton from './login-button'
 import LinktreeLogo from '@/components/icons/linktree-logo'
-import { Button, buttonVariants } from '@/components/ui/button'
+import { Button } from '@/components/ui/button'
 import { Separator } from '@/components/ui/separator'
+import { auth } from '@/lib/auth'
 
-export default function Navbar() {
+export default async function Navbar() {
+  const session = await auth()
+
   return (
     <header className='fixed inset-x-3 top-3 z-50 flex h-16 justify-between rounded-full border border-lt-light-gray/60 bg-lt-gray py-3 pl-6 pr-3'>
       <nav className='flex items-center'>
@@ -22,13 +27,7 @@ export default function Navbar() {
           New link
           <Plus className='size-4' aria-hidden />
         </Button>
-        <Link
-          className={`h-full ${buttonVariants({ variant: 'default' })}`}
-          href='/login'
-        >
-          Log In
-          <Lock className='size-3.5' aria-hidden />
-        </Link>
+        {session === null ? <LogInButton /> : <LogOutButton />}
       </nav>
     </header>
   )
