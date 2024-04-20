@@ -1,17 +1,15 @@
+import { Suspense } from 'react'
 import Link from 'next/link'
 import { Plus } from 'lucide-react'
 import LinkSelector from './link-selector'
 import Changelog from './changelog'
-import LogOutButton from './logout-button'
-import LogInButton from './login-button'
+import Session from './session'
 import LinktreeLogo from '@/components/icons/linktree-logo'
 import { Button } from '@/components/ui/button'
 import { Separator } from '@/components/ui/separator'
-import { auth } from '@/lib/auth'
+import { Skeleton } from '@/components/ui/skeleton'
 
-export default async function Navbar() {
-  const session = await auth()
-
+export default function Navbar() {
   return (
     <header className='fixed inset-x-3 top-3 z-50 flex h-16 justify-between rounded-full border border-lt-light-gray/60 bg-lt-gray py-3 pl-6 pr-3'>
       <nav className='flex items-center'>
@@ -27,7 +25,13 @@ export default async function Navbar() {
           New link
           <Plus className='size-4' aria-hidden />
         </Button>
-        {session === null ? <LogInButton /> : <LogOutButton />}
+        <Suspense
+          fallback={
+            <Skeleton className='aspect-square h-full w-auto rounded-full' />
+          }
+        >
+          <Session />
+        </Suspense>
       </nav>
     </header>
   )

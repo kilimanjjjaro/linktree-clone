@@ -8,7 +8,8 @@ import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'
 import { logInWithEmail } from '@/lib/actions/login-with-email'
 
 const INITIAL_STATE = {
-  success: false
+  success: false,
+  error: false
 }
 
 export default function LogInForm() {
@@ -19,9 +20,26 @@ export default function LogInForm() {
     <form action={formAction} className='grid gap-3' ref={parent}>
       {state.success && (
         <Alert variant='success' className='text-center'>
-          <AlertTitle>Magic link sent</AlertTitle>
+          <AlertTitle>Magic link sent!</AlertTitle>
           <AlertDescription>
             Check your email, a link was sent.
+          </AlertDescription>
+        </Alert>
+      )}
+      {state.error && (
+        <Alert variant='error' className='text-center'>
+          <AlertTitle>Houston, we have a problem!</AlertTitle>
+          <AlertDescription>
+            Please try again later, or{' '}
+            <a
+              className='underline xl:hover:no-underline'
+              href='https://github.com/kilimanjjjaro'
+              target='_blank'
+              rel='noopener noreferrer'
+            >
+              contact me
+            </a>
+            .
           </AlertDescription>
         </Alert>
       )}

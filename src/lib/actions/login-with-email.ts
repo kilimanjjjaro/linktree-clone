@@ -1,7 +1,7 @@
 'use server'
 
 import { z } from 'zod'
-import { signIn } from '@/lib/auth'
+import { signIn } from '@/lib/auth/auth'
 
 const LogInWithEmailScheme = z.object({
   email: z.string().email()
@@ -13,16 +13,24 @@ export async function logInWithEmail(prevState: any, formData: FormData) {
       email: formData.get('email')
     })
 
-    await signIn('resend', { email, redirectTo: '/' })
+    const response = await signIn('resend', {
+      email,
+      redirect: false,
+      redirectTo: '/'
+    })
+
+    if (response === undefined) {
+      throw new Error('Something has happened')
+    }
 
     return {
-      success: true
+      success: true,
+      error: false
     }
   } catch (error) {
-    console.error(error)
-
     return {
-      success: false
+      success: false,
+      error: true
     }
   }
 }
