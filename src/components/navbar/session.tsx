@@ -9,7 +9,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger
 } from '@/components/ui/dropdown-menu'
-import { auth } from '@/lib/auth/auth'
+import { auth } from '@/lib/auth'
 
 export default async function Session() {
   const session = await auth()

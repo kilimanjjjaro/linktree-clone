@@ -5,7 +5,7 @@ import LogInForm from '@/components/auth/login/form'
 import GoogleButton from '@/components/auth/login/google-button'
 import GitHubButton from '@/components/auth/login/github-button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-import { auth } from '@/lib/auth/auth'
+import { auth } from '@/lib/auth'
 
 export default async function LogInPage() {
   const session = await auth()

@@ -1,7 +1,7 @@
 'use server'
 
 import { z } from 'zod'
-import { signIn } from '@/lib/auth/auth'
+import { signIn } from '@/lib/auth'
 
 const LogInWithEmailScheme = z.object({
   email: z.string().email()

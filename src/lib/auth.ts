@@ -4,7 +4,7 @@ import Google from 'next-auth/providers/google'
 import GitHub from 'next-auth/providers/github'
 import { PrismaClient } from '@prisma/client'
 import { PrismaAdapter } from '@auth/prisma-adapter'
-import { sendResendRequest } from './sendResendRequest'
+import { sendResendRequest } from '@/lib/services/sendResendRequest'
 
 const prisma = new PrismaClient()
 
