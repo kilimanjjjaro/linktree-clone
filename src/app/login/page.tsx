@@ -22,7 +22,7 @@ export default function LogInPage() {
         <Card className='w-[350px]'>
           <CardHeader className='text-center'>
             <CardTitle className='text-2xl font-medium'>
-              Log In to Linktree
+              Log in to Linktree
             </CardTitle>
             <label className='text-lt-lightest-gray' htmlFor='email'>
               Enter your email below to continue.

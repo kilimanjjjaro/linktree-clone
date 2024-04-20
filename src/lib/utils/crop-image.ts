@@ -1,6 +1,6 @@
 import type { Area } from 'react-easy-crop'
 
-const createImage = async (url: string): Promise<CanvasImageSource> => {
+async function createImage(url: string): Promise<CanvasImageSource> {
   return await new Promise((resolve) => {
     const image = new Image()
 

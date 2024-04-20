@@ -1,6 +1,6 @@
 import { INPUT_TYPES } from '@/lib/constants/globals'
 
-export const createInputAttributes = (inputType: number) => {
+export function createInputAttributes(inputType: number) {
   let attributes = {}
 
   if (inputType === INPUT_TYPES.TEXT) {
