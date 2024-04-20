@@ -1,8 +1,9 @@
-import TreeSocialProfiles from './social-profiles'
 import TreeAvatar from './avatar'
+import TreeName from './name'
 import TreeUrl from './url'
-import TreeStatus from './status'
 import TreeDescription from './description'
+import TreeSocialProfiles from './social-profiles'
+import TreeStatus from './status'
 import { Separator } from '@/components/ui/separator'
 
 export default function TreeSettings() {
@@ -13,6 +14,8 @@ export default function TreeSettings() {
       </h2>
       <Separator />
       <TreeAvatar />
+      <Separator />
+      <TreeName />
       <Separator />
       <TreeUrl />
       <Separator />

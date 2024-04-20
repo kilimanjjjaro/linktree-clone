@@ -1,4 +1,4 @@
-import { CircleHelp, Clipboard } from 'lucide-react'
+import { CircleHelp, Copy } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
@@ -24,8 +24,8 @@ export default function TreeUrl() {
           </PopoverContent>
         </Popover>
       </div>
-      <div className='flex h-10 items-center overflow-hidden rounded-full border border-lt-light-gray/60 ring-lt-white ring-offset-2 ring-offset-lt-gray transition-shadow has-[:focus-visible]:ring-2'>
-        <span className='flex h-full cursor-not-allowed select-none items-center border-r border-lt-light-gray/60 px-3 text-sm text-lt-lightest-gray'>
+      <div className='group relative flex h-10 items-center overflow-hidden rounded-full border border-lt-light-gray/60 ring-lt-white ring-offset-2 ring-offset-lt-gray has-[:focus-visible]:ring-2'>
+        <span className='flex h-full cursor-not-allowed select-none items-center border-r border-lt-light-gray px-3 text-sm text-lt-lightest-gray'>
           linktr.ee/
         </span>
         <Input
@@ -34,11 +34,15 @@ export default function TreeUrl() {
           type='text'
           placeholder='kilimanjjjaro'
         />
+        <Button
+          size='icon'
+          variant='outline'
+          className='absolute right-1.5 size-6 opacity-0 transition-opacity focus-visible:opacity-100 group-hover:opacity-100'
+        >
+          <Copy className='size-3' strokeWidth={1.5} />
+          <span className='sr-only'>Copy Order ID</span>
+        </Button>
       </div>
-      <Button variant='secondary'>
-        Copy
-        <Clipboard className='size-3.5' />
-      </Button>
     </section>
   )
 }

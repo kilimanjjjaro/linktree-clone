@@ -5,7 +5,7 @@ export const DEFAULT_THREE_VALUE = {
   slug: 'demostration-example',
   url: '/#',
   description:
-    'Full Stack Developer & UX/UI Designer with +6 years of work experiencie.',
+    'Full Stack Developer & UX/UI Designer with +6 years of work experience.',
   avatar: '',
   socialProfiles: [
     {

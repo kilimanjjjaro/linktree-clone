@@ -17,7 +17,7 @@ export default function DescriptionInput() {
       <Textarea
         id='tree-description'
         className='min-h-[86px] resize-none'
-        placeholder="I'm a Full Stack Developer and these are my projects."
+        placeholder='Full Stack Developer & UX/UI Designer with +6 years of work experience.'
         maxLength={120}
         onChange={updateLength}
       />

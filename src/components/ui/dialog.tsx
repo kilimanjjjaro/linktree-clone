@@ -46,7 +46,7 @@ const DialogContent = React.forwardRef<
       {children}
       <DialogPrimitive.Close
         aria-label='Close'
-        className='absolute right-4 top-3 cursor-pointer rounded-full p-1 ring-lt-white ring-offset-2 ring-offset-lt-gray transition-[background-color,box-shadow] focus-visible:outline-none focus-visible:ring-2 disabled:pointer-events-none xl:hover:bg-lt-light-gray'
+        className='absolute right-4 top-3 cursor-pointer rounded-full p-1 outline-none transition-colors focus-visible:ring-2 focus-visible:ring-lt-white focus-visible:ring-offset-2 focus-visible:ring-offset-lt-gray disabled:pointer-events-none xl:hover:bg-lt-light-gray'
       >
         <X className='size-4' />
       </DialogPrimitive.Close>

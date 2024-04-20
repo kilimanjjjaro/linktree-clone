@@ -1,5 +1,7 @@
 'use client'
 
+import { useEffect, useState } from 'react'
+import { useFormState } from 'react-dom'
 import { Plus } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import {
@@ -11,10 +13,8 @@ import {
 } from '@/components/ui/dialog'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
-import { useState } from 'react'
 import { Switch } from '@/components/ui/switch'
 import { saveNewLink } from '@/lib/actions/save-new-link'
-import { useFormState } from 'react-dom'
 
 const DEFAULT_VALUES = {
   error: false,
@@ -26,39 +26,7 @@ export default function AddLink() {
   const [showDialog, setShowDialog] = useState(false)
   const [featuredLink, setFeaturedLink] = useState(false)
 
-  // const saveLink = async (event: React.FormEvent<HTMLFormElement>) => {
-  //   event.preventDefault()
-
-  //   try {
-  //     const form = event.target as HTMLFormElement
-  //     const formData = new FormData(form)
-  //     const linkName = formData.get('link-name') as string
-  //     const linkUrl = formData.get('link-url') as string
-  //     let linkImage = ''
-
-  //     if (featuredLink) {
-  //       const response = await fetch('/api/get-link-image', {
-  //         method: 'POST',
-  //         body: formData
-  //       })
-
-  //       const data = await response.json()
-
-  //       linkImage = data.image
-  //     }
-
-  //     const newLink = {
-  //       name: linkName,
-  //       url: linkUrl,
-  //       featuredLink,
-  //       image: linkImage
-  //     }
-
-  //     console.log(newLink)
-  //   } catch (error) {
-  //     console.error(error)
-  //   }
-  // }
+  useEffect(() => console.log(state), [state])
 
   return (
     <footer className='absolute bottom-12 w-full px-11'>
@@ -98,15 +66,15 @@ export default function AddLink() {
                 </fieldset>
                 <fieldset className='mb-5 flex items-center gap-x-3'>
                   <div className='flex flex-col gap-y-1.5'>
-                    <Label htmlFor='highlight'>Featured link</Label>
+                    <Label htmlFor='featured-link'>Featured link</Label>
                     <p className='text-sm text-lt-lightest-gray'>
                       This will be displayed with a background image. We took it
                       from the link, or you can upload your own.
                     </p>
                   </div>
                   <Switch
-                    id='highlight'
-                    name='highlight'
+                    id='featured-link'
+                    name='featured-link'
                     checked={featuredLink}
                     onCheckedChange={setFeaturedLink}
                   />

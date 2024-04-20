@@ -20,8 +20,8 @@ import {
 const TREES = [
   {
     id: 0,
-    slug: 'example-tree',
-    name: 'Example Tree'
+    slug: 'tree-demostration',
+    name: 'Tree Demostration'
   }
 ]
 

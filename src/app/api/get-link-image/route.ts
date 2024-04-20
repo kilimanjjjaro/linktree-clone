@@ -1,9 +1,9 @@
 export async function POST(request: Request) {
   const formData = await request.formData()
-  const treeUrl = formData.get('tree-url') as string
+  const url = formData.get('url') as string
 
   try {
-    const response = await fetch(treeUrl)
+    const response = await fetch(url)
     const html = await response.text()
     let image = ''
 
@@ -19,7 +19,7 @@ export async function POST(request: Request) {
       if (elementImage != null) {
         const source = elementImage[1]
 
-        image = new URL(source, treeUrl).href
+        image = new URL(source, url).href
       }
     }
 

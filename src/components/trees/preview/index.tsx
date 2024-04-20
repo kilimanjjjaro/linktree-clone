@@ -3,7 +3,7 @@ import DeviceOverlay from './device-overlay'
 import AddLink from './add-link'
 import SocialProfiles from './social-profiles'
 
-export default function LinkPreview() {
+export default function TreePreview() {
   return (
     <section className='flex flex-col items-center self-center'>
       <div className='relative flex aspect-[320/630] w-[360px] items-center justify-center'>
@@ -16,7 +16,7 @@ export default function LinkPreview() {
             </h1>
             <p className='mt-3 text-balance text-center text-sm text-zinc-400'>
               Full Stack Developer & UX/UI Designer with +6 years of work
-              experiencie.
+              experience.
             </p>
             <SocialProfiles />
           </header>

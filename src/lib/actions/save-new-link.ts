@@ -5,17 +5,37 @@ import { z } from 'zod'
 const schema = z.object({
   name: z.string().min(5),
   url: z.string().url(),
-  highlight: z.coerce.boolean()
+  featuredLink: z.coerce.boolean()
 })
 
-export async function saveNewLink(_: any, payload: FormData) {
-  const body = schema.parse({
+export async function saveNewLink(prevState: any, payload: FormData) {
+  let linkImage = ''
+
+  const { name, url, featuredLink } = schema.parse({
     name: payload.get('name'),
     url: payload.get('url'),
-    highlight: payload.get('highlight')
+    featuredLink: payload.get('featured-link')
   })
 
-  console.log(body)
+  if (featuredLink) {
+    const response = await fetch('/api/get-link-image', {
+      method: 'POST',
+      body: url
+    })
+
+    const data = await response.json()
+
+    linkImage = data.image
+  }
+
+  const newLink = {
+    name,
+    url,
+    featuredLink,
+    image: linkImage
+  }
+
+  console.log('Link added: ', newLink)
 
   return { success: true, error: false }
 }
