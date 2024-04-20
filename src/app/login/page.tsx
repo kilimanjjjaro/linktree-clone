@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { redirect } from 'next/navigation'
 import { ArrowLeft } from 'lucide-react'
 import LogInForm from '@/components/auth/login/form'
 import GoogleButton from '@/components/auth/login/google-button'
@@ -6,8 +7,13 @@ import { GitHubIcon } from '@/components/icons/github-icon'
 import { InstagramIcon } from '@/components/icons/instagram-icon'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import { auth } from '@/lib/auth/auth'
 
-export default function LogInPage() {
+export default async function LogInPage() {
+  const session = await auth()
+
+  if (session !== null) redirect('/')
+
   return (
     <main className='grid h-dvh min-h-dvh grid-cols-2'>
       <section className='border-r border-lt-light-gray/60 bg-lt-gray' />
