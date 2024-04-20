@@ -1,6 +1,7 @@
 import NextAuth from 'next-auth'
 import Resend from 'next-auth/providers/resend'
 import Google from 'next-auth/providers/google'
+import GitHub from 'next-auth/providers/github'
 import { PrismaClient } from '@prisma/client'
 import { PrismaAdapter } from '@auth/prisma-adapter'
 import { sendResendRequest } from './sendResendRequest'
@@ -26,6 +27,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         })
       }
     }),
-    Google
+    Google,
+    GitHub
   ]
 })

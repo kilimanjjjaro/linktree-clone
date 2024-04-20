@@ -3,9 +3,7 @@ import { redirect } from 'next/navigation'
 import { ArrowLeft } from 'lucide-react'
 import LogInForm from '@/components/auth/login/form'
 import GoogleButton from '@/components/auth/login/google-button'
-import { GitHubIcon } from '@/components/icons/github-icon'
-import { InstagramIcon } from '@/components/icons/instagram-icon'
-import { Button } from '@/components/ui/button'
+import GitHubButton from '@/components/auth/login/github-button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { auth } from '@/lib/auth/auth'
 
@@ -42,14 +40,7 @@ export default async function LogInPage() {
               <div className='h-px w-full bg-lt-light-gray/60' />
             </div>
             <GoogleButton />
-            <Button className='mb-3' variant='secondary'>
-              <GitHubIcon className='size-5' aria-hidden />
-              GitHub
-            </Button>
-            <Button variant='secondary'>
-              <InstagramIcon className='size-5' aria-hidden />
-              Instagram
-            </Button>
+            <GitHubButton />
           </CardContent>
         </Card>
       </section>
