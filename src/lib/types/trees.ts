@@ -6,7 +6,7 @@ export interface TreeInterface {
   url: string
   description: string
   avatar: string
-  socialMedia: Array<{
+  socialProfiles: Array<{
     id: number
     type: number
     url: string

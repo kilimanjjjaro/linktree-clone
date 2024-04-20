@@ -1,9 +1,9 @@
-import { DEFAULT_USER_AVATAR } from '@/lib/constants/avatar'
+import { DEFAULT_TREE_AVATAR } from '@/lib/constants/trees'
 import type { StateCreator } from 'zustand'
 import type { AvatarSliceInterface } from '@/lib/types/store'
 
 export const createAvatarSlice: StateCreator<AvatarSliceInterface> = (set) => ({
-  avatar: DEFAULT_USER_AVATAR,
+  avatar: DEFAULT_TREE_AVATAR,
   setAvatar: (avatar) => {
     set(() => ({ avatar }))
   },

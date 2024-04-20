@@ -1,6 +1,6 @@
 export type ChildrenType = React.ReactNode
 
-export type SocialMediaType =
+export type SocialProfileType =
   | 'email'
   | 'facebook'
   | 'discord'
@@ -16,10 +16,10 @@ export type SocialMediaType =
   | 'whatsapp'
   | 'youtube'
 
-export interface SocialMediaInterface {
+export interface SocialProfileInterface {
   id: number
   name: string
-  slug: SocialMediaType
+  slug: SocialProfileType
   link: string
   form: {
     inputType: number
@@ -29,10 +29,10 @@ export interface SocialMediaInterface {
   }
 }
 
-export interface LinkSocialMedia {
+export interface TreeSocialProfilesInterface {
   id: number
   name: string
-  slug: SocialMediaType
+  slug: SocialProfileType
   inputValue: string | number
   link: string
 }

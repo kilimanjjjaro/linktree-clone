@@ -1,7 +1,7 @@
 import { Suspense } from 'react'
 import Link from 'next/link'
 import { Plus } from 'lucide-react'
-import LinkSelector from './link-selector'
+import TreeSelector from './tree-selector'
 import Changelog from './changelog'
 import Session from './session'
 import LinktreeLogo from '@/components/icons/linktree-logo'
@@ -17,12 +17,12 @@ export default function Navbar() {
           <LinktreeLogo className='w-7' />
         </Link>
         <Separator orientation='vertical' className='ml-[18px] mr-5 h-5' />
-        <LinkSelector />
+        <TreeSelector />
       </nav>
       <nav className='flex gap-x-3'>
         <Changelog />
         <Button variant='outline' className='h-full'>
-          New link
+          New tree
           <Plus className='size-4' aria-hidden />
         </Button>
         <Suspense

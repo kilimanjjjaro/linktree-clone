@@ -1,6 +1,6 @@
 import {
-  type LinkSocialMedia,
-  type SocialMediaInterface
+  type TreeSocialProfilesInterface,
+  type SocialProfileInterface
 } from '@/lib/types/globals'
 
 export interface GlobalsSliceInterface {
@@ -15,11 +15,13 @@ export interface AvatarSliceInterface {
   setAvatarToCrop: (avatar: string) => void
 }
 
-export interface SocialMediaSliceInterface {
-  linkMedia: LinkSocialMedia[]
-  setLinkMedia: (linkMedia: LinkSocialMedia[]) => void
-  selectedMedia: SocialMediaInterface | null
-  setSelectedMedia: (selectedMedia: SocialMediaInterface | null) => void
+export interface SocialProfilesSliceInterface {
+  socialProfiles: TreeSocialProfilesInterface[]
+  setSocialProfiles: (socialProfiles: TreeSocialProfilesInterface[]) => void
+  selectedSocialProfile: SocialProfileInterface | null
+  setSelectedSocialProfile: (
+    selectedSocialProfile: SocialProfileInterface | null
+  ) => void
   step: number
   setStep: (step: number) => void
 }
@@ -27,4 +29,4 @@ export interface SocialMediaSliceInterface {
 export interface StoreInterface
   extends GlobalsSliceInterface,
     AvatarSliceInterface,
-    SocialMediaSliceInterface {}
+    SocialProfilesSliceInterface {}
