@@ -1,5 +1,6 @@
 export const DEFAULT_THREE_VALUE = {
   id: 0,
+  authorId: 0,
   status: 0,
   name: 'Demostration example',
   slug: 'demostration-example',
