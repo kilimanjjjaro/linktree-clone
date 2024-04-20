@@ -4,7 +4,7 @@ import { useFormStatus } from 'react-dom'
 import { LoaderCircle } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 
-export default function SubmitButton() {
+export default function EmailButton() {
   const { pending } = useFormStatus()
 
   return (

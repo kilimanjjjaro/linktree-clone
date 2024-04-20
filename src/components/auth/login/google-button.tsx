@@ -1,0 +1,18 @@
+'use client'
+
+import { Button } from '@/components/ui/button'
+import { GoogleIcon } from '@/components/icons/google-icon'
+import { logInWithGoogle } from '@/lib/actions/login-with-google'
+
+export default function GoogleButton() {
+  return (
+    <Button
+      className='mb-3'
+      variant='secondary'
+      onClick={async () => await logInWithGoogle()}
+    >
+      <GoogleIcon className='size-5' aria-hidden />
+      Google
+    </Button>
+  )
+}

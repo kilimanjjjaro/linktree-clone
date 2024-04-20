@@ -2,7 +2,7 @@
 
 import { useFormState } from 'react-dom'
 import { useAutoAnimate } from '@formkit/auto-animate/react'
-import SubmitButton from './submit-buttom'
+import EmailButton from './email-button'
 import { Input } from '@/components/ui/input'
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'
 import { logInWithEmail } from '@/lib/actions/login-with-email'
@@ -52,7 +52,7 @@ export default function LogInForm() {
         required
         autoFocus
       />
-      <SubmitButton />
+      <EmailButton />
     </form>
   )
 }

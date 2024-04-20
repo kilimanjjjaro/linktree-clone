@@ -1,8 +1,8 @@
 import Link from 'next/link'
 import { ArrowLeft } from 'lucide-react'
 import LogInForm from '@/components/auth/login/form'
+import GoogleButton from '@/components/auth/login/google-button'
 import { GitHubIcon } from '@/components/icons/github-icon'
-import { GoogleIcon } from '@/components/icons/google-icon'
 import { InstagramIcon } from '@/components/icons/instagram-icon'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
@@ -35,10 +35,7 @@ export default function LogInPage() {
               <h3 className='shrink-0 text-xs uppercase'>Or continue with</h3>
               <div className='h-px w-full bg-lt-light-gray/60' />
             </div>
-            <Button className='mb-3' variant='secondary'>
-              <GoogleIcon className='size-5' aria-hidden />
-              Google
-            </Button>
+            <GoogleButton />
             <Button className='mb-3' variant='secondary'>
               <GitHubIcon className='size-5' aria-hidden />
               GitHub
