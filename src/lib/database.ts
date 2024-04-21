@@ -1,19 +1,20 @@
-// ts-ignore 7017 is used to ignore the error that the global object is not
-// defined in the global scope. This is because the global object is only
-// defined in the global scope in Node.js and not in the browser.
-
 import { PrismaClient } from '@prisma/client'
 
-// PrismaClient is attached to the `global` object in development to prevent
-// exhausting your database connection limit.
-//
-// Learn more:
-// https://pris.ly/d/help/next-js-best-practices
+// Create a singleton function for Prisma Client
+const prismaClientSingleton = () => {
+  if (globalThis.prismaGlobal == null) {
+    globalThis.prismaGlobal = new PrismaClient()
+  }
+  return globalThis.prismaGlobal
+}
 
-const globalForPrisma = global as unknown as { prisma: PrismaClient }
+// Declare global variable prismaGlobal
+declare global {
+  // eslint-disable-next-line no-var
+  var prismaGlobal: PrismaClient | undefined
+}
 
-const db = globalForPrisma.prisma ?? new PrismaClient()
-
-if (process.env.NODE_ENV !== 'production') globalForPrisma.prisma = db
+// Export the Prisma Client instance
+const db = prismaClientSingleton()
 
 export default db
