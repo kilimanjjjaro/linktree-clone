@@ -11,13 +11,14 @@ model User {
   id            String    @id @default(dbgenerated("gen_random_uuid()"))
   name          String?
   email         String    @unique
-  emailVerified DateTime?
+  emailVerified DateTime? @map("email_verified")
   image         String?
   accounts      Account[]
   sessions      Session[]
+  trees         Tree[]
 
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
 }
 
 model Account {
@@ -25,7 +26,7 @@ model Account {
   userId            String
   type              String
   provider          String
-  providerAccountId String
+  providerAccountId String   @map("provider_account_id")
   refresh_token     String?
   access_token      String?
   expires_at        Int?
@@ -33,19 +34,19 @@ model Account {
   scope             String?
   id_token          String?
   session_state     String?
-  createdAt         DateTime @default(now())
-  updatedAt         DateTime @updatedAt
+  created_at        DateTime @default(now())
+  updated_at        DateTime @updatedAt
 
   @@id([provider, providerAccountId])
 }
 
 model Session {
-  sessionToken String   @unique
+  sessionToken String   @unique @map("session_token")
   user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId       String
   expires      DateTime
-  createdAt    DateTime @default(now())
-  updatedAt    DateTime @updatedAt
+  created_at   DateTime @default(now())
+  updated_at   DateTime @updatedAt
 }
 
 model VerificationToken {
@@ -54,4 +55,16 @@ model VerificationToken {
   expires    DateTime
 
   @@id([identifier, token])
+}
+
+model Tree {
+  id          String @id @default(dbgenerated("gen_random_uuid()"))
+  author      User   @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  authorId    String @map("author_id")
+  status      Int
+  name        String
+  slug        String
+  url         String
+  description String
+  avatar      String
 }
