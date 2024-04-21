@@ -24,8 +24,6 @@ export default function TreeAvatar() {
   const [showDialog, setShowDialog] = useState(false)
 
   const removeAvatar = () => {
-    if (avatar === DEFAULT_TREE_AVATAR) return
-
     setAvatar(DEFAULT_TREE_AVATAR)
     toast.success('Your avatar was removed!')
 

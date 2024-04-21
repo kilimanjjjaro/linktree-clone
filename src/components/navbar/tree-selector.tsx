@@ -1,44 +1,34 @@
-'use client'
-
-import { useState } from 'react'
+import { Suspense } from 'react'
 import { ChevronsUpDown } from 'lucide-react'
+import SelectedTree from './tree-selector/selected'
+import TreeList from './tree-selector/list'
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger
+} from '@/components/ui/popover'
+import { Skeleton } from '@/components/ui/skeleton'
 import { Button } from '@/components/ui/button'
 import {
   Command,
   CommandEmpty,
   CommandGroup,
   CommandInput,
-  CommandItem,
   CommandList
 } from '@/components/ui/command'
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger
-} from '@/components/ui/popover'
-
-const TREES = [
-  {
-    id: 0,
-    slug: 'tree-demostration',
-    name: 'Tree Demostration'
-  }
-]
 
 export default function TreeSelector() {
-  const [open, setOpen] = useState(false)
-  const [value, setValue] = useState(TREES[0].name)
-
   return (
-    <Popover open={open} onOpenChange={setOpen}>
+    <Popover>
       <PopoverTrigger asChild>
         <Button
           variant='ghost'
           role='combobox'
-          aria-expanded={open}
           className='h-full p-0 text-xl font-normal transition-opacity xl:hover:bg-transparent xl:hover:opacity-70'
         >
-          {value}
+          <Suspense fallback={<Skeleton className='h-6 w-52 rounded-2xl' />}>
+            <SelectedTree />
+          </Suspense>
           <ChevronsUpDown className='size-4' />
         </Button>
       </PopoverTrigger>
@@ -46,21 +36,18 @@ export default function TreeSelector() {
         <Command>
           <CommandInput placeholder='Search tree...' />
           <CommandList>
-            <CommandEmpty>No trees found.</CommandEmpty>
-            <CommandGroup>
-              {TREES.map((tree) => (
-                <CommandItem
-                  key={tree.id}
-                  value={tree.name}
-                  onSelect={(currentValue) => {
-                    setValue(currentValue)
-                    setOpen(false)
-                  }}
-                >
-                  {tree.name}
-                </CommandItem>
-              ))}
-            </CommandGroup>
+            <Suspense
+              fallback={
+                <div className='h-10 w-full px-3 py-2.5'>
+                  <Skeleton className='size-full rounded-full' />
+                </div>
+              }
+            >
+              <CommandEmpty>No trees found.</CommandEmpty>
+              <CommandGroup>
+                <TreeList />
+              </CommandGroup>
+            </Suspense>
           </CommandList>
         </Command>
       </PopoverContent>

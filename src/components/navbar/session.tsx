@@ -11,7 +11,7 @@ import {
 } from '@/components/ui/dropdown-menu'
 import { auth } from '@/lib/auth'
 
-export default async function Session() {
+export default async function SessionBar() {
   const session = await auth()
 
   if (session === null) return <LogInButton />

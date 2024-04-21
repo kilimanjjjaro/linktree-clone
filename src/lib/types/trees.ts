@@ -11,7 +11,7 @@ export interface TreeInterface {
     type: number
     url: string
   }>
-  appearence: {
+  appearance: {
     background: {
       type: number
       settings: {
