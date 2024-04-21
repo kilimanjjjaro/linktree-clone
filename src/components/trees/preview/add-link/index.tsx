@@ -14,7 +14,7 @@ import {
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Switch } from '@/components/ui/switch'
-import { saveNewLink } from '@/lib/actions/save-new-link'
+import { saveNewLink } from '@/lib/actions/trees/save-new-link'
 
 const DEFAULT_VALUES = {
   error: false,

@@ -2,7 +2,7 @@
 
 import { Button } from '@/components/ui/button'
 import { GoogleIcon } from '@/components/icons/google-icon'
-import { logInWithGoogle } from '@/lib/actions/login-with-google'
+import { logInWithGoogle } from '@/lib/actions/auth/login-with-google'
 
 export default function GoogleButton() {
   return (

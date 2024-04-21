@@ -1,7 +1,7 @@
 'use client'
 
 import { LogOut } from 'lucide-react'
-import { logOut } from '@/lib/actions/logout'
+import { logOut } from '@/lib/actions/auth/logout'
 import { DropdownMenuItem } from '@/components/ui/dropdown-menu'
 
 export default function LogOutButton() {
