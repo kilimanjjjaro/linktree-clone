@@ -1,0 +1,5 @@
+-- AlterTable
+ALTER TABLE "Tree" ALTER COLUMN "id" DROP DEFAULT;
+
+-- AlterTable
+ALTER TABLE "User" ALTER COLUMN "id" DROP DEFAULT;

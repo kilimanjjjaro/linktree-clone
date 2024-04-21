@@ -8,7 +8,7 @@ datasource db {
 }
 
 model User {
-  id            String    @id @default(dbgenerated("gen_random_uuid()"))
+  id            String    @id @default(cuid())
   name          String?
   email         String    @unique
   emailVerified DateTime? @map("email_verified")
@@ -58,7 +58,7 @@ model VerificationToken {
 }
 
 model Tree {
-  id          String @id @default(dbgenerated("gen_random_uuid()"))
+  id          String @id @default(cuid())
   author      User   @relation(fields: [authorId], references: [id], onDelete: Cascade)
   authorId    String @map("author_id")
   status      Int
