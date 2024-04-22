@@ -16,6 +16,8 @@ export default function LogInForm() {
   const [state, formAction] = useFormState(logInWithEmail, INITIAL_STATE)
   const [parent] = useAutoAnimate({ duration: 200 })
 
+  console.log(state)
+
   return (
     <form action={formAction} className='grid gap-y-3' ref={parent}>
       <div className='grid gap-y-2'>
