@@ -12,13 +12,12 @@ model User {
   name          String?
   email         String    @unique
   emailVerified DateTime? @map("email_verified")
+  password      String?
   image         String?
   accounts      Account[]
-  sessions      Session[]
   trees         Tree[]
-
-  created_at DateTime @default(now())
-  updated_at DateTime @updatedAt
+  created_at    DateTime  @default(now())
+  updated_at    DateTime  @updatedAt
 }
 
 model Account {
@@ -38,23 +37,6 @@ model Account {
   updated_at        DateTime @updatedAt
 
   @@id([provider, providerAccountId])
-}
-
-model Session {
-  sessionToken String   @unique @map("session_token")
-  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-  userId       String
-  expires      DateTime
-  created_at   DateTime @default(now())
-  updated_at   DateTime @updatedAt
-}
-
-model VerificationToken {
-  identifier String
-  token      String
-  expires    DateTime
-
-  @@id([identifier, token])
 }
 
 model Tree {
