@@ -8,7 +8,7 @@ export default function LogInButton() {
       className={`h-full ${buttonVariants({ variant: 'default' })}`}
       href='/login'
     >
-      Log in
+      Log In
       <Unlock className='size-3.5' aria-hidden />
     </Link>
   )

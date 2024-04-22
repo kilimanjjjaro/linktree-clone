@@ -1,9 +1,8 @@
 import Link from 'next/link'
-import { redirect } from 'next/navigation'
 import { ArrowLeft } from 'lucide-react'
-import LogInForm from '@/components/auth/login/form'
-import GoogleButton from '@/components/auth/login/google-button'
-import GitHubButton from '@/components/auth/login/github-button'
+import LogInForm from '@/components/auth/signup/form'
+import GoogleButton from '@/components/auth/google-button'
+import GitHubButton from '@/components/auth/github-button'
 import {
   Card,
   CardContent,
@@ -11,13 +10,8 @@ import {
   CardHeader,
   CardTitle
 } from '@/components/ui/card'
-import { auth } from '@/lib/auth'
 
-export default async function LogInPage() {
-  const session = await auth()
-
-  if (session !== null) redirect('/')
-
+export default async function SignUpPage() {
   return (
     <main className='grid h-dvh min-h-dvh grid-cols-2'>
       <section className='border-r border-lt-light-gray/60 bg-lt-gray' />
@@ -33,7 +27,7 @@ export default async function LogInPage() {
           <Card className='w-[350px]'>
             <CardHeader className='text-center'>
               <CardTitle className='text-2xl font-medium'>
-                Log in to Linktree
+                Create an account
               </CardTitle>
               <CardDescription>
                 Enter your data below to continue.
@@ -52,7 +46,7 @@ export default async function LogInPage() {
               </div>
             </CardContent>
           </Card>
-          <Link href='/signup' className='text-sm xl:hover:underline'>
+          <Link href='/login' className='text-sm xl:hover:underline'>
             Already have an account?
           </Link>
         </div>

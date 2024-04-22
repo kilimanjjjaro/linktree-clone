@@ -4,7 +4,7 @@ import { useFormStatus } from 'react-dom'
 import { LoaderCircle } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 
-export default function EmailButton() {
+export default function EmailButton({ text }: { text: string }) {
   const { pending } = useFormStatus()
 
   return (
@@ -15,7 +15,7 @@ export default function EmailButton() {
           Sending
         </>
       ) : (
-        'Log in'
+        text
       )}
     </Button>
   )

@@ -2,9 +2,8 @@
 
 import { useFormState } from 'react-dom'
 import { useAutoAnimate } from '@formkit/auto-animate/react'
-import EmailButton from './email-button'
+import EmailButton from '@/components/auth/submit-button'
 import { Input } from '@/components/ui/input'
-import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'
 import { logInWithEmail } from '@/lib/actions/auth/login-with-email'
 import { Label } from '@/components/ui/label'
 
@@ -19,31 +18,6 @@ export default function LogInForm() {
 
   return (
     <form action={formAction} className='grid gap-y-3' ref={parent}>
-      {state.success && (
-        <Alert variant='success' className='text-center'>
-          <AlertTitle>Magic link sent!</AlertTitle>
-          <AlertDescription>
-            Check your email, a link was sent.
-          </AlertDescription>
-        </Alert>
-      )}
-      {state.error && (
-        <Alert variant='error' className='text-center'>
-          <AlertTitle>Houston, we have a problem!</AlertTitle>
-          <AlertDescription>
-            Please try again later, or{' '}
-            <a
-              className='underline xl:hover:no-underline'
-              href='https://github.com/kilimanjjjaro'
-              target='_blank'
-              rel='noopener noreferrer'
-            >
-              contact me
-            </a>
-            .
-          </AlertDescription>
-        </Alert>
-      )}
       <div className='grid gap-y-2'>
         <Label htmlFor='email'>Email</Label>
         <Input
@@ -62,12 +36,12 @@ export default function LogInForm() {
           id='password'
           type='password'
           name='password'
-          placeholder='example@mail.com'
+          placeholder='••••••••••••'
           autoComplete='current-password'
           required
         />
       </div>
-      <EmailButton />
+      <EmailButton text='Log In' />
     </form>
   )
 }
