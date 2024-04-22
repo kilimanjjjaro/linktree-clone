@@ -6,11 +6,7 @@ import { logInWithGoogle } from '@/lib/actions/auth/login-with-google'
 
 export default function GoogleButton() {
   return (
-    <Button
-      className='mb-3'
-      variant='secondary'
-      onClick={async () => await logInWithGoogle()}
-    >
+    <Button variant='secondary' onClick={async () => await logInWithGoogle()}>
       <GoogleIcon className='size-5' aria-hidden />
       Google
     </Button>

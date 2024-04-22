@@ -15,7 +15,7 @@ export default function EmailButton() {
           Sending
         </>
       ) : (
-        'Submit'
+        'Log in'
       )}
     </Button>
   )

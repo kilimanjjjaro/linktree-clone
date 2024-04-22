@@ -6,11 +6,7 @@ import { logInWithGitHub } from '@/lib/actions/auth/login-with-github'
 
 export default function GitHubButton() {
   return (
-    <Button
-      className='mb-3'
-      variant='secondary'
-      onClick={async () => await logInWithGitHub()}
-    >
+    <Button variant='secondary' onClick={async () => await logInWithGitHub()}>
       <GitHubIcon className='size-5' aria-hidden />
       GitHub
     </Button>

@@ -6,6 +6,7 @@ import EmailButton from './email-button'
 import { Input } from '@/components/ui/input'
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'
 import { logInWithEmail } from '@/lib/actions/auth/login-with-email'
+import { Label } from '@/components/ui/label'
 
 const INITIAL_STATE = {
   success: false,
@@ -17,7 +18,7 @@ export default function LogInForm() {
   const [parent] = useAutoAnimate({ duration: 200 })
 
   return (
-    <form action={formAction} className='grid gap-3' ref={parent}>
+    <form action={formAction} className='grid gap-y-3' ref={parent}>
       {state.success && (
         <Alert variant='success' className='text-center'>
           <AlertTitle>Magic link sent!</AlertTitle>
@@ -43,15 +44,29 @@ export default function LogInForm() {
           </AlertDescription>
         </Alert>
       )}
-      <Input
-        id='email'
-        type='email'
-        name='email'
-        placeholder='example@mail.com'
-        autoComplete='email'
-        required
-        autoFocus
-      />
+      <div className='grid gap-y-2'>
+        <Label htmlFor='email'>Email</Label>
+        <Input
+          id='email'
+          type='email'
+          name='email'
+          placeholder='example@mail.com'
+          autoComplete='email'
+          required
+          autoFocus
+        />
+      </div>
+      <div className='grid gap-y-2'>
+        <Label htmlFor='password'>Password</Label>
+        <Input
+          id='password'
+          type='password'
+          name='password'
+          placeholder='example@mail.com'
+          autoComplete='current-password'
+          required
+        />
+      </div>
       <EmailButton />
     </form>
   )
