@@ -1,36 +1,20 @@
 'use server'
 
-import { z } from 'zod'
-import { signIn } from '@/lib/auth'
-
-const LogInWithEmailScheme = z.object({
-  email: z.string().email()
-})
+import { LogInSchema } from '@/lib/schemas/auth'
 
 export async function logInWithEmail(prevState: any, formData: FormData) {
-  try {
-    const { email } = LogInWithEmailScheme.parse({
-      email: formData.get('email')
-    })
+  const validatedFields = LogInSchema.safeParse({
+    email: formData.get('email'),
+    password: formData.get('password')
+  })
 
-    const response = await signIn('resend', {
-      email,
-      redirect: false,
-      redirectTo: '/'
-    })
-
-    if (response === undefined) {
-      throw new Error('Something has happened')
-    }
-
+  if (!validatedFields.success) {
     return {
-      success: true,
-      error: false
-    }
-  } catch (error) {
-    return {
-      success: false,
-      error: true
+      error: 'Invalid fields!'
     }
   }
+
+  const { email, password } = validatedFields.data
+
+  return { success: 'Logged' }
 }

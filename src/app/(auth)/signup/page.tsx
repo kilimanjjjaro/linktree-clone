@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import { ArrowLeft } from 'lucide-react'
-import LogInForm from '@/components/auth/signup/form'
+import SignUpForm from '@/components/auth/signup/form'
 import GoogleButton from '@/components/auth/google-button'
 import GitHubButton from '@/components/auth/github-button'
 import {
@@ -34,7 +34,7 @@ export default async function SignUpPage() {
               </CardDescription>
             </CardHeader>
             <CardContent className='grid gap-y-3'>
-              <LogInForm />
+              <SignUpForm />
               <div className='flex items-center gap-x-2'>
                 <div className='h-px flex-1 bg-lt-light-gray/60' />
                 <h3 className='shrink-0 text-xs uppercase'>Or continue with</h3>

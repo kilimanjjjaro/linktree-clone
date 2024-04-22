@@ -5,15 +5,14 @@ import { useAutoAnimate } from '@formkit/auto-animate/react'
 import EmailButton from '@/components/auth/submit-button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
-import { logInWithEmail } from '@/lib/actions/auth/login-with-email'
+import { signUpWithEmail } from '@/lib/actions/auth/signup-with-email'
 
 const INITIAL_STATE = {
-  success: false,
-  error: false
+  error: ''
 }
 
-export default function LogInForm() {
-  const [state, formAction] = useFormState(logInWithEmail, INITIAL_STATE)
+export default function SignUpForm() {
+  const [state, formAction] = useFormState(signUpWithEmail, INITIAL_STATE)
   const [parent] = useAutoAnimate({ duration: 200 })
 
   console.log(state)
