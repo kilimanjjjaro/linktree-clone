@@ -26,6 +26,6 @@ export async function POST(request: Request) {
     return Response.json({ image })
   } catch (error) {
     console.error(error)
-    return null
+    return Response.json(null)
   }
 }
