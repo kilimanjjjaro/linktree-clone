@@ -35,7 +35,7 @@ export async function saveNewLink(prevState: any, payload: FormData) {
     image: linkImage
   }
 
-  console.log('Link added: ', newLink)
+  console.log('NewLinkAction', newLink)
 
   return { success: true, error: false }
 }

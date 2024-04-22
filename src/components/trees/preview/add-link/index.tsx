@@ -26,7 +26,7 @@ export default function AddLink() {
   const [showDialog, setShowDialog] = useState(false)
   const [featuredLink, setFeaturedLink] = useState(false)
 
-  useEffect(() => console.log(state), [state])
+  useEffect(() => console.log('AddLinkState', state), [state])
 
   return (
     <footer className='absolute bottom-12 w-full px-11'>

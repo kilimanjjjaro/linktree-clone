@@ -22,7 +22,8 @@ export async function signUpWithEmail(prevState: any, formData: FormData) {
 
   if (password !== confirmPassword) {
     return {
-      error: 'Passwords must be equal.'
+      error: 'Passwords must be equal.',
+      success: ''
     }
   }
 
@@ -34,7 +35,8 @@ export async function signUpWithEmail(prevState: any, formData: FormData) {
 
   if (existingUser != null) {
     return {
-      error: 'Email already in use'
+      error: 'Email already in use',
+      success: ''
     }
   }
 
@@ -51,6 +53,7 @@ export async function signUpWithEmail(prevState: any, formData: FormData) {
   // TODO: send email verification
 
   return {
-    success: 'Email sent!'
+    success: 'Email sent!',
+    error: ''
   }
 }

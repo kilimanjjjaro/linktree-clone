@@ -16,5 +16,7 @@ export async function logInWithEmail(prevState: any, formData: FormData) {
 
   const { email, password } = validatedFields.data
 
-  return { success: 'Logged' }
+  console.log('LogInAction', { email, password })
+
+  return { success: 'Logged', error: '' }
 }

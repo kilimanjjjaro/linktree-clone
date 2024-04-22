@@ -8,15 +8,15 @@ import { logInWithEmail } from '@/lib/actions/auth/login-with-email'
 import { Label } from '@/components/ui/label'
 
 const INITIAL_STATE = {
-  success: false,
-  error: false
+  success: '',
+  error: ''
 }
 
 export default function LogInForm() {
   const [state, formAction] = useFormState(logInWithEmail, INITIAL_STATE)
   const [parent] = useAutoAnimate({ duration: 200 })
 
-  console.log(state)
+  console.log('LogInState', state)
 
   return (
     <form action={formAction} className='grid gap-y-3' ref={parent}>

@@ -15,7 +15,7 @@ export default function SignUpForm() {
   const [state, formAction] = useFormState(signUpWithEmail, INITIAL_STATE)
   const [parent] = useAutoAnimate({ duration: 200 })
 
-  console.log(state)
+  console.log('SignUpState', state)
 
   return (
     <form action={formAction} className='grid gap-y-3' ref={parent}>
