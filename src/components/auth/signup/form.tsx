@@ -8,7 +8,8 @@ import { Label } from '@/components/ui/label'
 import { signUpWithEmail } from '@/lib/actions/auth/signup-with-email'
 
 const INITIAL_STATE = {
-  error: ''
+  error: '',
+  success: ''
 }
 
 export default function SignUpForm() {
