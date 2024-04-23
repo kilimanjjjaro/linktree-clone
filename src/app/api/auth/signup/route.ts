@@ -29,6 +29,7 @@ export async function POST(request: Request) {
 
     return NextResponse.json('User created', { status: 200 })
   } catch (error) {
+    console.log('API ERROR: ', error)
     return NextResponse.json(error, {
       status: 400
     })
