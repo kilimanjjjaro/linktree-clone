@@ -1,20 +1,12 @@
-import bcrypt from 'bcrypt'
-import NextAuth from 'next-auth'
-import { PrismaAdapter } from '@auth/prisma-adapter'
+import bcrypt from 'bcryptjs'
 import Credentials from 'next-auth/providers/credentials'
 import Google from 'next-auth/providers/google'
 import GitHub from 'next-auth/providers/github'
+import type { NextAuthConfig } from 'next-auth'
 import db from '@/lib/database'
 import { LogInSchema } from '@/lib/schemas/auth'
 
-export const {
-  handlers: { POST, GET },
-  signIn,
-  signOut,
-  auth
-} = NextAuth({
-  secret: 'JymP6S0VNHLf1TyyyGOtxZC8yJU6PQlqLKxH7',
-  adapter: PrismaAdapter(db),
+export default {
   providers: [
     Credentials({
       async authorize(credentials) {
@@ -42,4 +34,4 @@ export const {
     Google,
     GitHub
   ]
-})
+} satisfies NextAuthConfig

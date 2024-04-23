@@ -1,9 +1,9 @@
 'use server'
 
+import { AuthError } from 'next-auth'
 import { signIn } from '@/lib/auth'
 import { LogInSchema } from '@/lib/schemas/auth'
 import { PUBLIC_ROUTE } from '@/lib/constants/routes'
-import { AuthError } from 'next-auth'
 
 export async function logInWithEmail(prevState: any, formData: FormData) {
   const validatedFields = LogInSchema.safeParse({
@@ -25,6 +25,8 @@ export async function logInWithEmail(prevState: any, formData: FormData) {
       password,
       redirectTo: PUBLIC_ROUTE
     })
+
+    return { success: 'Logged in', error: '' }
   } catch (error) {
     if (error instanceof AuthError) {
       switch (error.type) {
@@ -41,6 +43,4 @@ export async function logInWithEmail(prevState: any, formData: FormData) {
 
     throw error
   }
-
-  return { success: 'Logged', error: '' }
 }

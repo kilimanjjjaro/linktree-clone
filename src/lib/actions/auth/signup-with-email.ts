@@ -1,8 +1,8 @@
 'use server'
 
-import bcrypt from 'bcrypt'
+import bcrypt from 'bcryptjs'
 import { SignUpSchema } from '@/lib/schemas/auth'
-import { API_BASE_URL } from '@/lib/constants/globals'
+import db from '@/lib/database'
 
 export async function signUpWithEmail(prevState: any, formData: FormData) {
   const validatedFields = SignUpSchema.safeParse({
@@ -31,23 +31,21 @@ export async function signUpWithEmail(prevState: any, formData: FormData) {
   try {
     const hashedPassword = await bcrypt.hash(password, 10)
 
-    const body = {
-      name,
-      email,
-      password: hashedPassword
-    }
-
-    const response = await fetch(`${API_BASE_URL}/auth/signup`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(body)
+    const existingUser = await db.user.findUnique({
+      where: {
+        email
+      }
     })
 
-    if (!response.ok) {
-      throw new Error('Something went wrong. Please try again.')
-    }
+    if (existingUser != null) throw new Error('Email already used')
+
+    await db.user.create({
+      data: {
+        name,
+        email,
+        password: hashedPassword
+      }
+    })
 
     return {
       success: 'An email was sent for confirm account',
