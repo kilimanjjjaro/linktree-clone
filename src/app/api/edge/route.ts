@@ -3,6 +3,8 @@ import { NextResponse } from 'next/server'
 import { SignUpSchema } from '@/lib/schemas/auth'
 import db from '@/lib/database'
 
+export const runtime = 'edge'
+
 export async function POST(request: Request) {
   const rawData = await request.json()
 
