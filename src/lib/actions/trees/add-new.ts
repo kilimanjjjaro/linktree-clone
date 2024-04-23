@@ -2,8 +2,8 @@
 
 import { redirect } from 'next/navigation'
 import db from '@/lib/database'
-import { DEFAULT_THREE_VALUE } from '@/lib/constants/trees'
 import { auth } from '@/lib/auth'
+import { DEFAULT_THREE_VALUE } from '@/lib/constants/trees'
 
 export async function addNewTree() {
   const session = await auth()

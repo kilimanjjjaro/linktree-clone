@@ -17,6 +17,7 @@ model User {
   password      String?
   image         String?
   accounts      Account[]
+  sessions      Session[]
   trees         Tree[]
   created_at    DateTime  @default(now())
   updated_at    DateTime  @updatedAt
@@ -39,6 +40,23 @@ model Account {
   updated_at        DateTime @updatedAt
 
   @@id([provider, providerAccountId])
+}
+
+model Session {
+  sessionToken String   @unique @map("session_token")
+  userId       String   @map("user_id")
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  created_at   DateTime @default(now())
+  updated_at   DateTime @updatedAt
+}
+
+model VerificationToken {
+  identifier String
+  token      String
+  expires    DateTime
+
+  @@id([identifier, token])
 }
 
 model Tree {

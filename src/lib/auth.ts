@@ -1,33 +1,11 @@
 import NextAuth from 'next-auth'
-import Resend from 'next-auth/providers/resend'
+import { PrismaAdapter } from '@auth/prisma-adapter'
 import Google from 'next-auth/providers/google'
 import GitHub from 'next-auth/providers/github'
-import { PrismaClient } from '@prisma/client'
-import { PrismaAdapter } from '@auth/prisma-adapter'
-import { sendResendRequest } from '@/lib/services/sendResendRequest'
-
-const prisma = new PrismaClient()
+import db from './database'
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
   secret: 'JymP6S0VNHLf1TyyyGOtxZC8yJU6PQlqLKxH7',
-  adapter: PrismaAdapter(prisma),
-  pages: {
-    signIn: '/login'
-  },
-  providers: [
-    Resend({
-      apiKey: process.env.AUTH_RESEND_KEY,
-      from: 'hola@kilimanjjjaro.com',
-      async sendVerificationRequest(params) {
-        await sendResendRequest({
-          apiKey: params.provider.apiKey,
-          from: params.provider.from,
-          to: params.identifier,
-          url: params.url
-        })
-      }
-    }),
-    Google,
-    GitHub
-  ]
+  adapter: PrismaAdapter(db),
+  providers: [Google, GitHub]
 })
