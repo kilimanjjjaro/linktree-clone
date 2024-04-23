@@ -9,7 +9,9 @@ export default function NewTree() {
     <Button
       variant='outline'
       className='h-full'
-      onClick={async () => await addNewTree()}
+      onClick={async () => {
+        await addNewTree()
+      }}
     >
       New tree
       <Plus className='size-4' aria-hidden />

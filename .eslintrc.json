@@ -1,7 +1,7 @@
 {
   "extends": [
     "next/core-web-vitals",
-    "./node_modules/ts-standard/eslintrc.json",
+    "love",
     "prettier",
     "plugin:tailwindcss/recommended"
   ],
@@ -11,30 +11,10 @@
   "rules": {
     "@typescript-eslint/explicit-function-return-type": "off",
     "@typescript-eslint/no-misused-promises": "off",
-    "@typescript-eslint/consistent-type-exports": [
-      "error",
-      {
-        "fixMixedExportsWithInlineTypeSpecifier": true
-      }
-    ],
-    "@typescript-eslint/consistent-type-imports": [
-      "error",
-      {
-        "prefer": "type-imports",
-        "disallowTypeAnnotations": true,
-        "fixStyle": "inline-type-imports"
-      }
-    ],
     "tailwindcss/no-custom-classname": [
       1,
       {
         "whitelist": ["toaster"]
-      }
-    ],
-    "import/no-relative-parent-imports": [
-      "error",
-      {
-        "ignore": ["@/app", "@/components", "@/lib"]
       }
     ]
   }

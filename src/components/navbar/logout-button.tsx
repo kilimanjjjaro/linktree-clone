@@ -6,7 +6,11 @@ import { DropdownMenuItem } from '@/components/ui/dropdown-menu'
 
 export default function LogOutButton() {
   return (
-    <DropdownMenuItem onClick={async () => await logOut()}>
+    <DropdownMenuItem
+      onClick={async () => {
+        await logOut()
+      }}
+    >
       <LogOut className='mr-2 size-4' />
       <span>Log out</span>
     </DropdownMenuItem>

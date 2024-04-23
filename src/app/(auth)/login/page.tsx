@@ -47,7 +47,7 @@ export default async function LogInPage() {
             </CardContent>
           </Card>
           <Link href='/signup' className='text-sm xl:hover:underline'>
-            Don't have an account yet?
+            Don&apos;t have an account yet?
           </Link>
         </div>
       </section>

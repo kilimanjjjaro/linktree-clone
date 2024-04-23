@@ -37,7 +37,9 @@ export default function SocialProfilesList() {
             aria-label='Remove'
             className='h-auto rounded-full p-1'
             variant='ghost'
-            onClick={() => removeSocialProfile(socialProfile.id)}
+            onClick={() => {
+              removeSocialProfile(socialProfile.id)
+            }}
           >
             <X className='size-3' />
           </Button>
