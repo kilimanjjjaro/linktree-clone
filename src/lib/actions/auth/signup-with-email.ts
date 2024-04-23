@@ -8,13 +8,16 @@ export async function signUpWithEmail(prevState: any, formData: FormData) {
     confirmPassword: formData.get('confirm-password')
   }
 
-  const response = await fetch('http://localhost:3000/api/edge', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(rawData)
-  })
+  const response = await fetch(
+    'https://linktree-clone-woad.vercel.app/api/edge',
+    {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(rawData)
+    }
+  )
 
   const data = await response.json()
 
