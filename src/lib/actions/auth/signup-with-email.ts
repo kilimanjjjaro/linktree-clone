@@ -28,30 +28,36 @@ export async function signUpWithEmail(prevState: any, formData: FormData) {
     }
   }
 
-  const hashedPassword = await bcrypt.hash(password, 10)
+  try {
+    const hashedPassword = await bcrypt.hash(password, 10)
 
-  const body = {
-    name,
-    email,
-    password: hashedPassword
-  }
+    const body = {
+      name,
+      email,
+      password: hashedPassword
+    }
 
-  const response = await fetch(`${API_BASE_URL}/auth/signup`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(body)
-  })
+    const response = await fetch(`${API_BASE_URL}/auth/signup`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(body)
+    })
 
-  if (response.ok) {
+    if (!response.ok) {
+      throw new Error('Something went wrong. Please try again.')
+    }
+
     return {
       success: 'An email was sent for confirm account',
       error: ''
     }
-  } else {
+  } catch (error: any) {
+    console.log('ACTION_ERROR: ', error)
+
     return {
-      error: 'Something went wrong',
+      error: error.message,
       success: ''
     }
   }

@@ -13,9 +13,7 @@ export async function POST(request: Request) {
       }
     })
 
-    if (existingUser != null) {
-      return NextResponse.json('Email already used', { status: 409 })
-    }
+    if (existingUser != null) throw new Error('Email already used')
 
     const response = await db.user.create({
       data: {
@@ -25,11 +23,12 @@ export async function POST(request: Request) {
       }
     })
 
-    console.log('API RESPONSE: ', response)
+    console.log('CREATE RESPONSE: ', response)
 
     return NextResponse.json('User created', { status: 200 })
   } catch (error) {
     console.log('API ERROR: ', error)
+
     return NextResponse.json(error, {
       status: 400
     })
