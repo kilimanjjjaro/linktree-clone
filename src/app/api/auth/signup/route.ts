@@ -17,13 +17,15 @@ export async function POST(request: Request) {
       return NextResponse.json('Email already used', { status: 409 })
     }
 
-    await db.user.create({
+    const response = await db.user.create({
       data: {
         name,
         email,
         password
       }
     })
+
+    console.log('API RESPONSE: ', response)
 
     return NextResponse.json('User created', { status: 200 })
   } catch (error) {
