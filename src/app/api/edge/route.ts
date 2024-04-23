@@ -13,10 +13,7 @@ export async function POST(request: Request) {
   })
 
   if (existingUser != null) {
-    return {
-      error: 'Email already in use',
-      success: ''
-    }
+    return NextResponse.json(null, { status: 400 })
   }
 
   const newUser = await db.user.create({
