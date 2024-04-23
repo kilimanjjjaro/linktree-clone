@@ -26,10 +26,10 @@ export async function POST(request: Request) {
     console.log('CREATE RESPONSE: ', response)
 
     return NextResponse.json('User created', { status: 200 })
-  } catch (error) {
+  } catch (error: any) {
     console.log('API ERROR: ', error)
 
-    return NextResponse.json(error, {
+    return NextResponse.json(error.message, {
       status: 400
     })
   }
