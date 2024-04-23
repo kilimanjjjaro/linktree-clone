@@ -2,6 +2,7 @@
 
 import bcrypt from 'bcrypt'
 import { SignUpSchema } from '@/lib/schemas/auth'
+import { API_BASE_URL } from '@/lib/constants/globals'
 
 export async function signUpWithEmail(prevState: any, formData: FormData) {
   const validatedFields = SignUpSchema.safeParse({
@@ -13,7 +14,7 @@ export async function signUpWithEmail(prevState: any, formData: FormData) {
 
   if (!validatedFields.success) {
     return {
-      error: 'Invalid fields!'
+      error: 'Invalid fields'
     }
   }
 
@@ -21,8 +22,7 @@ export async function signUpWithEmail(prevState: any, formData: FormData) {
 
   if (password !== confirmPassword) {
     return {
-      error: 'Passwords must be equal.',
-      success: ''
+      error: 'Passwords must be equal'
     }
   }
 
@@ -34,20 +34,21 @@ export async function signUpWithEmail(prevState: any, formData: FormData) {
     password: hashedPassword
   }
 
-  const response = await fetch(
-    'https://linktree-clone-woad.vercel.app/api/edge',
-    {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(body)
+  const response = await fetch(`${API_BASE_URL}/auth/signup`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(body)
+  })
+
+  if (response.ok) {
+    return {
+      success: 'An email was sent for confirm account'
     }
-  )
-
-  const data = await response.json()
-
-  console.log('signUpAction: ', data)
-
-  return data
+  } else {
+    return {
+      error: 'Something went wrong'
+    }
+  }
 }
