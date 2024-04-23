@@ -7,6 +7,7 @@ import db from '@/lib/database'
 import { LogInSchema } from '@/lib/schemas/auth'
 
 export default {
+  secret: process.env.AUTH_SECRET,
   providers: [
     Credentials({
       async authorize(credentials) {
