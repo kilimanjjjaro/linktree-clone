@@ -1,16 +1,55 @@
+import bcrypt from 'bcrypt'
 import { NextResponse } from 'next/server'
-import { PrismaClient } from '@prisma/client'
-import { PrismaNeon } from '@prisma/adapter-neon'
-import { Pool } from '@neondatabase/serverless'
+import { SignUpSchema } from '@/lib/schemas/auth'
+import db from '@/lib/database'
 
-export const runtime = 'edge'
+export async function POST(request: Request) {
+  const rawData = await request.json()
 
-export async function GET(request: Request) {
-  const neon = new Pool({ connectionString: process.env.DATABASE_URL })
-  const adapter = new PrismaNeon(neon)
-  const prisma = new PrismaClient({ adapter })
+  const validatedFields = SignUpSchema.safeParse({
+    name: rawData.name,
+    email: rawData.email,
+    password: rawData.password,
+    confirmPassword: rawData.confirmPassword
+  })
 
-  const users = await prisma.user.findMany()
+  if (!validatedFields.success) {
+    return {
+      error: 'Invalid fields!'
+    }
+  }
 
-  return NextResponse.json(users, { status: 200 })
+  const { name, email, password, confirmPassword } = validatedFields.data
+
+  if (password !== confirmPassword) {
+    return {
+      error: 'Passwords must be equal.',
+      success: ''
+    }
+  }
+
+  const existingUser = await db.user.findUnique({
+    where: {
+      email
+    }
+  })
+
+  if (existingUser != null) {
+    return {
+      error: 'Email already in use',
+      success: ''
+    }
+  }
+
+  const hashedPassword = await bcrypt.hash(password, 10)
+
+  const newUser = await db.user.create({
+    data: {
+      name,
+      email,
+      password: hashedPassword
+    }
+  })
+
+  return NextResponse.json(newUser, { status: 200 })
 }
