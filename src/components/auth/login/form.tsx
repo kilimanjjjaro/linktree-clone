@@ -3,6 +3,7 @@
 import { useFormState } from 'react-dom'
 import { useAutoAnimate } from '@formkit/auto-animate/react'
 import EmailButton from '@/components/auth/submit-button'
+import Feedback from '@/components/auth/feedback'
 import { Input } from '@/components/ui/input'
 import { logInWithEmail } from '@/lib/actions/auth/login-with-email'
 import { Label } from '@/components/ui/label'
@@ -16,10 +17,9 @@ export default function LogInForm() {
   const [state, formAction] = useFormState(logInWithEmail, INITIAL_STATE)
   const [parent] = useAutoAnimate({ duration: 200 })
 
-  console.log('LogInState', state)
-
   return (
     <form action={formAction} className='grid gap-y-3' ref={parent}>
+      <Feedback data={state} />
       <div className='grid gap-y-2'>
         <Label htmlFor='email'>Email</Label>
         <Input

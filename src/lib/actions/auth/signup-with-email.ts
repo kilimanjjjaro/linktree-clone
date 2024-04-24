@@ -48,7 +48,7 @@ export async function signUpWithEmail(prevState: any, formData: FormData) {
     })
 
     return {
-      success: 'An email was sent for confirm account',
+      success: 'An email was sent for confirmation',
       error: ''
     }
   } catch (error: any) {

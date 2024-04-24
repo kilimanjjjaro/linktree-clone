@@ -3,7 +3,6 @@
 import { AuthError } from 'next-auth'
 import { signIn } from '@/lib/auth'
 import { LogInSchema } from '@/lib/schemas/auth'
-import { PUBLIC_ROUTE } from '@/lib/constants/routes'
 
 export async function logInWithEmail(prevState: any, formData: FormData) {
   const validatedFields = LogInSchema.safeParse({
@@ -13,7 +12,8 @@ export async function logInWithEmail(prevState: any, formData: FormData) {
 
   if (!validatedFields.success) {
     return {
-      error: 'Invalid fields!'
+      error: 'Invalid fields!',
+      success: ''
     }
   }
 
@@ -23,7 +23,7 @@ export async function logInWithEmail(prevState: any, formData: FormData) {
     await signIn('credentials', {
       email,
       password,
-      redirectTo: PUBLIC_ROUTE
+      redirectTo: '/'
     })
 
     return { success: 'Logged in', error: '' }
@@ -31,11 +31,12 @@ export async function logInWithEmail(prevState: any, formData: FormData) {
     if (error instanceof AuthError) {
       switch (error.type) {
         case 'CredentialsSignin': {
-          return { error: 'Invalid credentials' }
+          return { error: 'Invalid credentials', success: '' }
         }
         default: {
           return {
-            error: 'Something went wrong'
+            error: 'Something went wrong',
+            success: ''
           }
         }
       }

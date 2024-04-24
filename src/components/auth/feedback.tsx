@@ -1,26 +1,31 @@
-import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'
+import { Alert, AlertDescription } from '@/components/ui/alert'
+import { ShieldAlert, ShieldCheck } from 'lucide-react'
 
 interface Props {
-  variant: 'error' | 'success'
-  headline: string
-  text: string
+  data: {
+    error: string
+    success: string
+  }
 }
 
-export default function Feedback({ variant, headline, text }: Props) {
-  if (variant === 'error') {
+export default function Feedback({ data }: Props) {
+  const isError = data.error.length > 0
+  const isSuccess = data.success.length > 0
+
+  if (isError) {
     return (
-      <Alert variant='error' className='text-center'>
-        <AlertTitle>{headline}</AlertTitle>
-        <AlertDescription>{text}</AlertDescription>
+      <Alert variant='error'>
+        <ShieldAlert />
+        <AlertDescription>{data.error}</AlertDescription>
       </Alert>
     )
   }
 
-  if (variant === 'success') {
+  if (isSuccess) {
     return (
-      <Alert variant='success' className='text-center'>
-        <AlertTitle>{headline}</AlertTitle>
-        <AlertDescription>{text}</AlertDescription>
+      <Alert variant='success'>
+        <ShieldCheck />
+        <AlertDescription>{data.success}</AlertDescription>
       </Alert>
     )
   }
