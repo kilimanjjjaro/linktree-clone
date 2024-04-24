@@ -1,10 +1,10 @@
 import { CommandItem } from '@/components/ui/command'
 import { DEFAULT_THREE_VALUE } from '@/lib/constants/trees'
-import { fetchTrees } from '@/lib/services/fetchTrees'
+import { getTrees } from '@/lib/services/getTrees'
 import { type Tree } from '@prisma/client'
 
 export default async function TreeList() {
-  const data = await fetchTrees()
+  const data = await getTrees()
   let trees: Tree[] = [DEFAULT_THREE_VALUE]
 
   if (data.length > 0) trees = data

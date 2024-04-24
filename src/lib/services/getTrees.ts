@@ -1,7 +1,7 @@
 import { auth } from '@/lib/auth'
 import db from '@/lib/database'
 
-export async function fetchTrees() {
+export async function getTrees() {
   const session = await auth()
 
   if (session === null) return []
