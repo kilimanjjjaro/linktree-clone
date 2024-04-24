@@ -32,7 +32,11 @@ export default {
         return null
       }
     }),
-    Google,
-    GitHub
+    Google({
+      allowDangerousEmailAccountLinking: true
+    }),
+    GitHub({
+      allowDangerousEmailAccountLinking: true
+    })
   ]
 } satisfies NextAuthConfig
