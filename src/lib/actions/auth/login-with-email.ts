@@ -3,6 +3,9 @@
 import { AuthError } from 'next-auth'
 import { signIn } from '@/lib/auth'
 import { LogInSchema } from '@/lib/schemas/auth'
+import { generateConfirmationToken } from '@/lib/services/generateConfirmationToken'
+import { getUserByEmail } from '@/lib/services/getUserByEmail'
+import { sendConfirmationEmail } from '@/lib/services/sendConfirmationEmail'
 
 export async function logInWithEmail(prevState: any, formData: FormData) {
   const validatedFields = LogInSchema.safeParse({
@@ -20,6 +23,31 @@ export async function logInWithEmail(prevState: any, formData: FormData) {
   const { email, password } = validatedFields.data
 
   try {
+    const existingUser = await getUserByEmail(email)
+
+    if (existingUser?.email === undefined || existingUser?.password === null) {
+      return {
+        error: 'Something went wrong!',
+        success: ''
+      }
+    }
+
+    if (existingUser.emailVerified === null) {
+      const confirmationToken = await generateConfirmationToken(
+        existingUser.email
+      )
+
+      await sendConfirmationEmail({
+        email: confirmationToken.email,
+        token: confirmationToken.token
+      })
+
+      return {
+        success: 'Link confirmation was sent again',
+        error: ''
+      }
+    }
+
     await signIn('credentials', {
       email,
       password,
@@ -35,7 +63,7 @@ export async function logInWithEmail(prevState: any, formData: FormData) {
         }
         default: {
           return {
-            error: 'Something went wrong',
+            error: 'Something went wrong!',
             success: ''
           }
         }

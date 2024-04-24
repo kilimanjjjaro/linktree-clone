@@ -8,12 +8,18 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
   adapter: PrismaAdapter(db),
   session: { strategy: 'jwt' },
   callbacks: {
-    async signIn({ user }) {
+    async signIn({ user, account }) {
       if (user.id === undefined) return false
 
-      const existingUser = await getUserById(user.id)
+      if (account?.provider === 'credentials') {
+        const existingUser = await getUserById(user.id)
 
-      if (existingUser?.emailVerified == null) return true
+        if (existingUser?.emailVerified == null) return false
+
+        // TODO: Add 2FA check
+
+        return true
+      }
 
       return true
     },

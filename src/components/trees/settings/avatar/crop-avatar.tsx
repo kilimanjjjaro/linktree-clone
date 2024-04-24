@@ -15,7 +15,7 @@ interface Props {
   setShowDialog: (open: boolean) => void
 }
 
-export default function CropImage({ setShowDialog }: Props) {
+export default function CropAvatar({ setShowDialog }: Props) {
   const avatarToCrop = useStore((state) => state.avatarToCrop)
   const setAvatarToCrop = useStore((state) => state.setAvatarToCrop)
   const setAvatar = useStore((state) => state.setAvatar)

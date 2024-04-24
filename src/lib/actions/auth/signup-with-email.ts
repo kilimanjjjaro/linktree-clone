@@ -3,6 +3,8 @@
 import bcrypt from 'bcryptjs'
 import { SignUpSchema } from '@/lib/schemas/auth'
 import db from '@/lib/database'
+import { generateConfirmationToken } from '@/lib/services/generateConfirmationToken'
+import { sendConfirmationEmail } from '@/lib/services/sendConfirmationEmail'
 
 export async function signUpWithEmail(prevState: any, formData: FormData) {
   const validatedFields = SignUpSchema.safeParse({
@@ -47,15 +49,22 @@ export async function signUpWithEmail(prevState: any, formData: FormData) {
       }
     })
 
+    const confirmationToken = await generateConfirmationToken(email)
+
+    await sendConfirmationEmail({
+      email: confirmationToken.email,
+      token: confirmationToken.token
+    })
+
     return {
-      success: 'An email was sent for confirmation',
+      success: 'Link confirmation was sent!',
       error: ''
     }
   } catch (error: any) {
-    console.log('ACTION_ERROR: ', error)
+    console.log('ACTION_ERROR: ', error.message)
 
     return {
-      error: error.message,
+      error: 'Something went wrong!',
       success: ''
     }
   }

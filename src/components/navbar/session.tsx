@@ -14,8 +14,6 @@ import { auth } from '@/lib/auth'
 export default async function SessionBar() {
   const session = await auth()
 
-  console.log('SESSION: ', session)
-
   if (session === null) return <LogInButton />
 
   return (

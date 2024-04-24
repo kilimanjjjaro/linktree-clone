@@ -26,10 +26,10 @@ export default function SocialProfileSettings({ setShowDialog }: Props) {
 
     try {
       const form = event.target as HTMLFormElement
-      const data = new FormData(form)
-      const socialProfileValue = data.get('socialProfileValue') as string
+      const formData = new FormData(form)
+      const socialProfileValue = formData.get('socialProfileValue') as string
 
-      if (socialProfileValue === null) return
+      if (socialProfileValue === '') return
 
       const newSocialProfile = {
         id: selectedSocialProfile.id,

@@ -51,3 +51,12 @@ model Tree {
   description String
   avatar      String
 }
+
+model ConfirmationToken {
+  id         String   @id @default(cuid())
+  email      String
+  token      String   @unique
+  expires_at DateTime
+
+  @@unique([email, token])
+}

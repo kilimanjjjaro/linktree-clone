@@ -13,7 +13,8 @@ const config = {
     },
     extend: {
       fontFamily: {
-        'geist-sans': ['var(--font-geist-sans)']
+        'geist-sans': ['var(--font-geist-sans)'],
+        'geist-mono': ['var(--font-geist-mono)']
       },
       colors: {
         'lt-black': 'hsl(var(--color-black) / <alpha-value>)',
