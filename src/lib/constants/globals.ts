@@ -5,3 +5,5 @@ export const INPUT_TYPES = {
   TEL: 2,
   EMAIL: 3
 }
+
+export const AUTH_ROUTES = ['/login', '/signup']
