@@ -6,6 +6,7 @@ import {
   CardTitle
 } from '@/components/ui/card'
 import ConfirmAccount from '@/components/auth/confirm-account'
+import { Suspense } from 'react'
 
 export default async function ConfirmAccountPage() {
   return (
@@ -19,7 +20,9 @@ export default async function ConfirmAccountPage() {
         </CardDescription>
       </CardHeader>
       <CardContent className='flex justify-center'>
-        <ConfirmAccount />
+        <Suspense fallback={null}>
+          <ConfirmAccount />
+        </Suspense>
       </CardContent>
     </Card>
   )
