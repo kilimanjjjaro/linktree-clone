@@ -25,9 +25,16 @@ export async function logInWithEmail(prevState: any, formData: FormData) {
   try {
     const existingUser = await getUserByEmail(email)
 
-    if (existingUser?.email === undefined || existingUser?.password === null) {
+    if (existingUser?.email === undefined) {
       return {
-        error: 'Something went wrong!',
+        error: 'User not found!',
+        success: ''
+      }
+    }
+
+    if (existingUser?.password === null) {
+      return {
+        error: 'Please, try with Google or GitHub',
         success: ''
       }
     }
