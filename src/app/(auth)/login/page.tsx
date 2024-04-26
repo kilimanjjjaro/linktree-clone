@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import LogInForm from '@/components/auth/login/form'
+import LogInForm from '@/components/auth/login-form'
 import GoogleButton from '@/components/auth/google-button'
 import GitHubButton from '@/components/auth/github-button'
 import {

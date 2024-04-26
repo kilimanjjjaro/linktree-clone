@@ -3,9 +3,7 @@ import db from '@/lib/database'
 export async function getConfirmationTokenByToken(token: string) {
   try {
     const confirmationToken = await db.confirmationToken.findUnique({
-      where: {
-        token
-      }
+      where: { token }
     })
 
     return confirmationToken

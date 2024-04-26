@@ -5,16 +5,16 @@ import { useAutoAnimate } from '@formkit/auto-animate/react'
 import EmailButton from '@/components/auth/submit-button'
 import Feedback from '@/components/auth/feedback'
 import { Input } from '@/components/ui/input'
-import { logInWithEmail } from '@/lib/actions/auth/login-with-email'
 import { Label } from '@/components/ui/label'
+import { resetPassword } from '@/lib/actions/auth/reset-password'
 
 const INITIAL_STATE = {
   success: '',
   error: ''
 }
 
-export default function LogInForm() {
-  const [state, formAction] = useFormState(logInWithEmail, INITIAL_STATE)
+export default function ResetPasswordForm() {
+  const [state, formAction] = useFormState(resetPassword, INITIAL_STATE)
   const [parent] = useAutoAnimate({ duration: 200 })
 
   return (
@@ -32,18 +32,7 @@ export default function LogInForm() {
           autoFocus
         />
       </div>
-      <div className='grid gap-y-2'>
-        <Label htmlFor='password'>Password</Label>
-        <Input
-          id='password'
-          type='password'
-          name='password'
-          placeholder='••••••••••••'
-          autoComplete='current-password'
-          required
-        />
-      </div>
-      <EmailButton text='Log In' />
+      <EmailButton text='Submit' />
     </form>
   )
 }

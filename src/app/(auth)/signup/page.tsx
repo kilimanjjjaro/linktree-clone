@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import SignUpForm from '@/components/auth/signup/form'
+import SignUpForm from '@/components/auth/signup-form'
 import GoogleButton from '@/components/auth/google-button'
 import GitHubButton from '@/components/auth/github-button'
 import {

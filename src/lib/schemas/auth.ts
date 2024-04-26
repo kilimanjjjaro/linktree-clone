@@ -23,3 +23,9 @@ export const SignUpSchema = z.object({
     message: 'Minimum 6 characters required'
   })
 })
+
+export const ResetPasswordSchema = z.object({
+  email: z.string().email({
+    message: 'Email is required'
+  })
+})
