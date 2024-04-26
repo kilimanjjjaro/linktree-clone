@@ -19,7 +19,7 @@ export default async function ConfirmAccountPage() {
           Validating your data, this will be fast as fuck.
         </CardDescription>
       </CardHeader>
-      <CardContent className='flex justify-center'>
+      <CardContent>
         <Suspense fallback={null}>
           <ConfirmAccount />
         </Suspense>
