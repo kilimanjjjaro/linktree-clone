@@ -39,7 +39,12 @@ export async function signUpWithEmail(prevState: any, formData: FormData) {
       }
     })
 
-    if (existingUser != null) throw new Error('Email already used')
+    if (existingUser != null) {
+      return {
+        error: 'Email already used',
+        success: ''
+      }
+    }
 
     await db.user.create({
       data: {
@@ -57,14 +62,14 @@ export async function signUpWithEmail(prevState: any, formData: FormData) {
     })
 
     return {
-      success: 'Link confirmation was sent!',
+      success: 'Link confirmation was sent',
       error: ''
     }
   } catch (error: any) {
     console.log('ACTION_ERROR: ', error.message)
 
     return {
-      error: 'Something went wrong!',
+      error: 'Something went wrong',
       success: ''
     }
   }

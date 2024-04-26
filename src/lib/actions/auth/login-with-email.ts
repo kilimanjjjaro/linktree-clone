@@ -15,7 +15,7 @@ export async function logInWithEmail(prevState: any, formData: FormData) {
 
   if (!validatedFields.success) {
     return {
-      error: 'Invalid fields!',
+      error: 'Invalid fields',
       success: ''
     }
   }
@@ -26,14 +26,14 @@ export async function logInWithEmail(prevState: any, formData: FormData) {
 
   if (existingUser?.email === undefined) {
     return {
-      error: 'User not found!',
+      error: 'User not found',
       success: ''
     }
   }
 
   if (existingUser?.password === null) {
     return {
-      error: 'Please, try with Google or GitHub options',
+      error: 'Please, use your provider account',
       success: ''
     }
   }
@@ -70,7 +70,7 @@ export async function logInWithEmail(prevState: any, formData: FormData) {
         }
         default: {
           return {
-            error: 'Something went wrong!',
+            error: 'Something went wrong',
             success: ''
           }
         }

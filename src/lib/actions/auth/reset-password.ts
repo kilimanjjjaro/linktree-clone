@@ -12,7 +12,7 @@ export async function resetPassword(prevState: any, formData: FormData) {
 
   if (!validatedFields.success) {
     return {
-      error: 'Invalid email!',
+      error: 'Invalid email',
       success: ''
     }
   }
@@ -23,7 +23,7 @@ export async function resetPassword(prevState: any, formData: FormData) {
 
   if (existingUser?.email === undefined) {
     return {
-      error: 'User not found!',
+      error: 'User not found',
       success: ''
     }
   }
@@ -36,12 +36,12 @@ export async function resetPassword(prevState: any, formData: FormData) {
       token: passwordResetToken.token
     })
 
-    return { success: 'Reset password email sent!', error: '' }
+    return { success: 'Reset password email sent', error: '' }
   } catch (error: any) {
     console.log('ACTION_ERROR: ', error.message)
 
     return {
-      error: 'Something went wrong!',
+      error: 'Something went wrong',
       success: ''
     }
   }

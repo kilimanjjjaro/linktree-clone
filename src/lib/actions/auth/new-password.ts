@@ -63,7 +63,7 @@ export async function newPassword(
 
   if (existingUser === null) {
     return {
-      error: 'User not found!',
+      error: 'User not found',
       success: '',
       token: ''
     }
@@ -86,7 +86,7 @@ export async function newPassword(
     })
 
     return {
-      success: 'Password updated!',
+      success: 'Password updated',
       error: '',
       token: ''
     }
@@ -94,7 +94,7 @@ export async function newPassword(
     console.log('ACTION_ERROR: ', error.message)
 
     return {
-      error: 'Something went wrong!',
+      error: 'Something went wrong',
       success: '',
       token: ''
     }
