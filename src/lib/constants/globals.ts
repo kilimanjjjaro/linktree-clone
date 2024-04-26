@@ -10,4 +10,9 @@ export const INPUT_TYPES = {
 }
 
 export const PUBLIC_ROUTES = ['/', '/confirm-account']
-export const AUTH_ROUTES = ['/login', '/signup', '/reset-password']
+export const AUTH_ROUTES = [
+  '/login',
+  '/signup',
+  '/reset-password',
+  '/new-password'
+]

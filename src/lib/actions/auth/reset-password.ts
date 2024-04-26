@@ -1,9 +1,9 @@
 'use server'
 
-import { AuthError } from 'next-auth'
-import { signIn } from '@/lib/auth'
 import { ResetPasswordSchema } from '@/lib/schemas/auth'
 import { getUserByEmail } from '@/lib/services/getUserByEmail'
+import { generatePasswordResetToken } from '@/lib/services/generatePasswordResetToken'
+import { sendPasswordResetEmail } from '@/lib/services/sendPasswordResetEmail'
 
 export async function resetPassword(prevState: any, formData: FormData) {
   const validatedFields = ResetPasswordSchema.safeParse({
@@ -29,27 +29,20 @@ export async function resetPassword(prevState: any, formData: FormData) {
   }
 
   try {
-    await signIn('credentials', {
-      email,
-      redirectTo: '/'
+    const passwordResetToken = await generatePasswordResetToken(email)
+
+    await sendPasswordResetEmail({
+      email: passwordResetToken.email,
+      token: passwordResetToken.token
     })
 
     return { success: 'Reset password email sent!', error: '' }
-  } catch (error) {
-    if (error instanceof AuthError) {
-      switch (error.type) {
-        case 'CredentialsSignin': {
-          return { error: 'Invalid credentials', success: '' }
-        }
-        default: {
-          return {
-            error: 'Something went wrong!',
-            success: ''
-          }
-        }
-      }
-    }
+  } catch (error: any) {
+    console.log('ACTION_ERROR: ', error.message)
 
-    throw error
+    return {
+      error: 'Something went wrong!',
+      success: ''
+    }
   }
 }

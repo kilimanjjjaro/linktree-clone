@@ -33,7 +33,7 @@ export async function logInWithEmail(prevState: any, formData: FormData) {
 
   if (existingUser?.password === null) {
     return {
-      error: 'Please, try with Google or GitHub',
+      error: 'Please, try with Google or GitHub options',
       success: ''
     }
   }

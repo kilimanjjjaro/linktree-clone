@@ -12,7 +12,7 @@ export async function sendConfirmationEmail({ email, token }: Props) {
   const confirmationLink = `${BASE_URL}/confirm-account?token=${token}`
 
   await resend.emails.send({
-    from: 'hola@kilimanjjjaro.com',
+    from: 'Linktree Clone <onboarding@resend.dev>',
     to: email,
     subject: 'Confirm your account of Linktree Clone',
     html: html({ url: confirmationLink }),
