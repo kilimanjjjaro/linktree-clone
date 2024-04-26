@@ -6,10 +6,10 @@
   :root {
     --color-black: 0deg 0% 5%;
     --color-white: 0deg 0% 98%;
-    --color-gray: 0deg 0% 7%;
-    --color-light-gray: 0deg 0% 14%;
+    --color-gray: 0deg 0% 8%;
+    --color-light-gray: 0deg 0% 15%;
     --color-lightest-gray: 0deg 0% 50%;
     --color-dark-gray: 0deg 0% 6%;
-    --color-darkest-gray: 0deg 0% 5.5%;
+    --color-darkest-gray: 0deg 0% 6%;
   }
 }

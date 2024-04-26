@@ -7,7 +7,7 @@ import { delay } from '@/lib/utils/delay'
 
 export async function verifyConfirmationToken(token: string) {
   // Delay for aesthetic purposes, the server response is too fast and the animation is not appreciated
-  void delay(1500)
+  void delay(2000)
 
   const existingToken = await getConfirmationTokenByToken(token)
 

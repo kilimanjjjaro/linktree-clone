@@ -20,10 +20,32 @@ export default function ConfirmAccount() {
   const token = searchParams.get('token')
 
   useEffect(() => {
+    if (token === null) {
+      setError('Invalid link')
+      return
+    }
+
+    verifyConfirmationToken(token)
+      .then((data) => {
+        console.log(data.error)
+        setSuccess(data.success)
+        setError(data.error)
+      })
+      .catch(() => {
+        setError('Error')
+      })
+  }, [token])
+
+  useEffect(() => {
     void setText('Validating')
 
-    if (error.length > 0 || success.length > 0) {
+    if (error.length > 0) {
       void setText(error)
+
+      return
+    }
+
+    if (success.length > 0) {
       void setText(success)
 
       return
@@ -38,27 +60,11 @@ export default function ConfirmAccount() {
     }
   }, [setText, error, success])
 
-  useEffect(() => {
-    if (token === null) {
-      setError('Invalid link')
-      return
-    }
-
-    verifyConfirmationToken(token)
-      .then((data) => {
-        setSuccess(data.success)
-        setError(data.error)
-      })
-      .catch(() => {
-        setError('Error')
-      })
-  }, [token])
-
   return (
     <div className='grid justify-items-center gap-y-3.5' ref={parent}>
       <span
         className={cn(
-          'rounded-full border border-lt-light-gray/60 bg-lt-gray transition-colors font-geist-mono leading-none font-light text-base flex w-36 h-12 justify-center items-center',
+          'rounded-full border border-lt-light-gray/60 bg-lt-gray transition-colors pt-px font-geist-mono leading-none font-light text-base flex w-36 h-12 justify-center items-center',
           success.length > 0 &&
             'border-green-800/30 bg-green-950/50 w-auto px-4',
           error.length > 0 && 'border-red-800/30 bg-red-950/50 w-auto px-4',
@@ -69,7 +75,7 @@ export default function ConfirmAccount() {
       </span>
       {success.length > 0 && (
         <Link
-          className='text-sm text-lt-lightest-gray underline xl:hover:no-underline'
+          className='text-sm text-lt-lightest-gray xl:hover:underline'
           href='/login'
         >
           Log In
