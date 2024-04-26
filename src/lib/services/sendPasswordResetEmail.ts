@@ -27,7 +27,7 @@ function html({ url }: { url: string }) {
     <tbody>
       <tr style="width:100%">
         <td>
-          <img src="https://res.cloudinary.com/dsvcixsbp/image/upload/v1713570951/linktree/0652676732656afae1fe202496139c74.png" style="display:block;outline:none;border:none;text-decoration:none;width:158px;height:32px" width="158" height="32" alt="Linktree Clone" />
+          <img src="https://res.cloudinary.com/dsvcixsbp/image/upload/v1713570951/linktree/0652676732656afae1fe202496139c74.png" style="display:block;outline:none;border:none;text-decoration:none;width:158px;height:32px;margin-top:34px;" width="158" height="32" alt="Linktree Clone" />
           <h2 style="font-size:20px;line-height:1.2;font-weight:600;color:#0d0d0d;margin:34px 0 0 0;">We're almost done!</h2>
           <p style="font-size:16px;line-height:1.2;font-weight:400;color:#0d0d0d;margin:6px 0 28px 0;">Please click at the button below to reset your password.</p>
           <table align="center" width="100%" border="0" cellPadding="0" cellSpacing="0" role="presentation" style="padding-bottom:24px">
