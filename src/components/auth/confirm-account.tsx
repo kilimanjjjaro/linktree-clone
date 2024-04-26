@@ -55,7 +55,7 @@ export default function ConfirmAccount() {
   }, [token])
 
   return (
-    <div className='grid justify-center gap-y-3.5' ref={parent}>
+    <div className='grid justify-items-center gap-y-3.5' ref={parent}>
       <span
         className={cn(
           'rounded-full border border-lt-light-gray/60 bg-lt-gray transition-colors font-geist-mono leading-none font-light text-base flex w-36 h-12 justify-center items-center',
