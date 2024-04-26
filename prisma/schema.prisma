@@ -70,7 +70,7 @@ model Tree {
   avatar         String
   socialProfiles TreeSocialProfile[]
   links          TreeLink[]
-  appearance     TreeAppearance[]
+  appearance     Json
 }
 
 model TreeSocialProfile {
@@ -89,13 +89,4 @@ model TreeLink {
   backgroundImage String?
   Tree            Tree    @relation(fields: [treeId], references: [id], onDelete: Cascade)
   treeId          String
-}
-
-model TreeAppearance {
-  id         String @id @default(cuid())
-  background Json
-  font       Int
-  general    Json
-  Tree       Tree   @relation(fields: [treeId], references: [id], onDelete: Cascade)
-  treeId     String
 }

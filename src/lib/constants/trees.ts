@@ -1,4 +1,6 @@
-export const DEFAULT_THREE_VALUE = {
+import { type TreeType } from '@/lib/types/trees'
+
+export const DEFAULT_THREE_VALUE: TreeType = {
   id: 'default',
   authorId: 'default',
   status: 0,
@@ -11,23 +13,21 @@ export const DEFAULT_THREE_VALUE = {
   socialProfiles: [
     {
       id: 'default',
+      treeId: 'default',
       type: 0,
       url: '/#'
     },
     {
       id: 'default',
+      treeId: 'default',
       type: 1,
-      url: '/#'
-    },
-    {
-      id: 'default',
-      type: 2,
       url: '/#'
     }
   ],
   links: [
     {
       id: 'default',
+      treeId: 'example',
       name: 'Example link',
       url: '/#',
       featured: true,
@@ -35,6 +35,7 @@ export const DEFAULT_THREE_VALUE = {
     },
     {
       id: 'default',
+      treeId: 'example',
       name: 'Example link',
       url: '/#',
       featured: true,
@@ -42,17 +43,17 @@ export const DEFAULT_THREE_VALUE = {
     }
   ],
   appearance: {
-    // background: {
-    //   type: 0,
-    //   settings: {
-    //     steps: [
-    //       [251, 231, 225],
-    //       [42, 70, 122],
-    //       [0, 2, 11]
-    //     ],
-    //     angle: 0
-    //   }
-    // },
+    background: {
+      type: 0,
+      settings: {
+        steps: [
+          [251, 231, 225],
+          [42, 70, 122],
+          [0, 2, 11]
+        ],
+        angle: 0
+      }
+    },
     font: 0,
     general: {
       cornerStyle: 1,
