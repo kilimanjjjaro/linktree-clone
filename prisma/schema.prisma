@@ -40,18 +40,6 @@ model Account {
   @@unique([provider, providerAccountId])
 }
 
-model Tree {
-  id          String @id @default(cuid())
-  author      User   @relation(fields: [authorId], references: [id], onDelete: Cascade)
-  authorId    String @map("author_id")
-  status      Int
-  name        String
-  slug        String
-  url         String
-  description String
-  avatar      String
-}
-
 model ConfirmationToken {
   id         String   @id @default(cuid())
   email      String
@@ -68,4 +56,46 @@ model PasswordResetToken {
   expires_at DateTime
 
   @@unique([email, token])
+}
+
+model Tree {
+  id             String              @id @default(cuid())
+  author         User                @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  authorId       String              @map("author_id")
+  status         Int
+  name           String
+  slug           String
+  url            String
+  description    String
+  avatar         String
+  socialProfiles TreeSocialProfile[]
+  links          TreeLink[]
+  appearance     TreeAppearance[]
+}
+
+model TreeSocialProfile {
+  id     String @id @default(cuid())
+  type   Int
+  url    String
+  tree   Tree   @relation(fields: [treeId], references: [id], onDelete: Cascade)
+  treeId String
+}
+
+model TreeLink {
+  id              String  @id @default(cuid())
+  name            String
+  url             String
+  featured        Boolean
+  backgroundImage String?
+  Tree            Tree    @relation(fields: [treeId], references: [id], onDelete: Cascade)
+  treeId          String
+}
+
+model TreeAppearance {
+  id         String @id @default(cuid())
+  background Json
+  font       Int
+  general    Json
+  Tree       Tree   @relation(fields: [treeId], references: [id], onDelete: Cascade)
+  treeId     String
 }
