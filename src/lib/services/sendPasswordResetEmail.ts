@@ -11,13 +11,15 @@ interface Props {
 export async function sendPasswordResetEmail({ email, token }: Props) {
   const resetPasswordLink = `${BASE_URL}/new-password?token=${token}`
 
-  await resend.emails.send({
+  const response = await resend.emails.send({
     from: 'Linktree Clone <onboarding@resend.dev>',
     to: email,
     subject: 'Reset your password of Linktree Clone',
     html: html({ url: resetPasswordLink }),
     text: text({ url: resetPasswordLink })
   })
+
+  console.log('PASSWORD_RESET_EMAIL: ', response)
 }
 
 function html({ url }: { url: string }) {

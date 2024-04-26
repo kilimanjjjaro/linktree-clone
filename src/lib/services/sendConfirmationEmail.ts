@@ -11,13 +11,15 @@ interface Props {
 export async function sendConfirmationEmail({ email, token }: Props) {
   const confirmationLink = `${BASE_URL}/confirm-account?token=${token}`
 
-  await resend.emails.send({
+  const response = await resend.emails.send({
     from: 'Linktree Clone <onboarding@resend.dev>',
     to: email,
     subject: 'Confirm your account of Linktree Clone',
     html: html({ url: confirmationLink }),
     text: text({ url: confirmationLink })
   })
+
+  console.log('CONFIRMATION_EMAIL: ', response)
 }
 
 function html({ url }: { url: string }) {
