@@ -3,8 +3,12 @@
 import { getConfirmationTokenByToken } from '@/lib/services/getConfirmationTokenByToken'
 import { getUserByEmail } from '@/lib/services/getUserByEmail'
 import db from '@/lib/database'
+import { delay } from '@/lib/utils/delay'
 
 export async function verifyConfirmationToken(token: string) {
+  // Delay for aesthetic purposes, the server response is too fast and the animation is not appreciated
+  void delay(1500)
+
   const existingToken = await getConfirmationTokenByToken(token)
 
   if (existingToken === null) {
