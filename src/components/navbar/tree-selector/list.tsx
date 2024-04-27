@@ -1,7 +1,7 @@
-import { CommandItem } from '@/components/ui/command'
 import { DEFAULT_THREE_VALUE } from '@/lib/constants/trees'
 import { getTrees } from '@/lib/services/get-trees'
 import { type ExtendedTreeType } from '@/lib/types/trees'
+import Tree from './item'
 
 export default async function TreeList() {
   const data = await getTrees()
@@ -12,9 +12,7 @@ export default async function TreeList() {
   return (
     <>
       {trees.map((tree) => (
-        <CommandItem key={tree.id} value={tree.id}>
-          {tree.name}
-        </CommandItem>
+        <Tree key={tree.id} tree={tree} />
       ))}
     </>
   )

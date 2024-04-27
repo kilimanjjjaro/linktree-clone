@@ -5,7 +5,7 @@ import { DEFAULT_THREE_VALUE } from '@/lib/constants/trees'
 import db from '@/lib/database'
 import { auth } from '@/lib/auth'
 
-export async function addNewTree() {
+export async function createTree() {
   const session = await auth()
 
   if (session?.user?.id === undefined) {
@@ -15,7 +15,7 @@ export async function addNewTree() {
     }
   }
 
-  const newTree = {
+  const rawData = {
     authorId: session.user.id,
     status: 0,
     name: DEFAULT_THREE_VALUE.name,
@@ -37,15 +37,15 @@ export async function addNewTree() {
   try {
     await db.tree.create({
       data: {
-        ...newTree,
+        ...rawData,
         socialProfiles: {
           createMany: {
-            data: newTree.socialProfiles
+            data: rawData.socialProfiles
           }
         },
         links: {
           createMany: {
-            data: newTree.links
+            data: rawData.links
           }
         }
       }
@@ -55,7 +55,7 @@ export async function addNewTree() {
 
     return {
       error: '',
-      success: 'Tree created.'
+      success: 'My Lord, a new tree was created for you.'
     }
   } catch (error) {
     console.log(error)
