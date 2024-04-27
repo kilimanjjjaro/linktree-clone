@@ -44,6 +44,7 @@ export async function createTreeByUserId(authorId: string) {
 
     return tree
   } catch (error) {
+    console.log(error)
     return null
   }
 }
