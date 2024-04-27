@@ -1,8 +1,5 @@
-import { type TreeType } from '@/lib/types/trees'
-
-export const DEFAULT_THREE_VALUE: TreeType = {
-  id: 'default',
-  authorId: 'default',
+export const DEFAULT_THREE_VALUE = {
+  authorId: '',
   status: 0,
   name: 'Demostration example',
   slug: 'demostration-example',
@@ -12,30 +9,22 @@ export const DEFAULT_THREE_VALUE: TreeType = {
   avatar: '/images/default-tree-avatar.svg',
   socialProfiles: [
     {
-      id: 'default',
-      treeId: 'default',
       type: 0,
       url: '/#'
     },
     {
-      id: 'default',
-      treeId: 'default',
       type: 1,
       url: '/#'
     }
   ],
   links: [
     {
-      id: 'default',
-      treeId: 'example',
       name: 'Example link',
       url: '/#',
       featured: true,
       backgroundImage: ''
     },
     {
-      id: 'default',
-      treeId: 'example',
       name: 'Example link',
       url: '/#',
       featured: true,

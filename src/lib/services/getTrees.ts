@@ -6,7 +6,17 @@ export async function getTrees() {
 
   if (session === null) return []
 
-  const data = await db.tree.findMany({ where: { authorId: session.user?.id } })
+  try {
+    const data = await db.tree.findMany({
+      where: { authorId: session.user?.id },
+      include: {
+        links: true,
+        socialProfiles: true
+      }
+    })
 
-  return data
+    return data
+  } catch (error) {
+    return []
+  }
 }
