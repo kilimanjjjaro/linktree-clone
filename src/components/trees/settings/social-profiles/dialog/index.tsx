@@ -33,7 +33,7 @@ export default function SocialProfilesDialog() {
       <DialogTrigger asChild>
         <Button id='tree-social-profiles' variant='secondary'>
           Add
-          <Plus className='size-3.5' />
+          <Plus className='size-3.5' aria-hidden />
         </Button>
       </DialogTrigger>
       <DialogContent className='p-0'>

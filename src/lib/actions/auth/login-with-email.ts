@@ -15,7 +15,7 @@ export async function logInWithEmail(prevState: any, formData: FormData) {
 
   if (!validatedFields.success) {
     return {
-      error: 'Invalid fields',
+      error: 'Invalid fields.',
       success: ''
     }
   }
@@ -26,14 +26,14 @@ export async function logInWithEmail(prevState: any, formData: FormData) {
 
   if (existingUser?.email === undefined) {
     return {
-      error: 'User not found',
+      error: 'User not found.',
       success: ''
     }
   }
 
   if (existingUser?.password === null) {
     return {
-      error: 'Please, use your provider account',
+      error: 'Please, use your provider account.',
       success: ''
     }
   }
@@ -49,7 +49,7 @@ export async function logInWithEmail(prevState: any, formData: FormData) {
     })
 
     return {
-      success: 'Link confirmation was sent again',
+      success: 'Link confirmation was sent again.',
       error: ''
     }
   }
@@ -61,16 +61,16 @@ export async function logInWithEmail(prevState: any, formData: FormData) {
       redirectTo: '/'
     })
 
-    return { success: 'Logged in', error: '' }
+    return { success: 'Logged in.', error: '' }
   } catch (error) {
     if (error instanceof AuthError) {
       switch (error.type) {
         case 'CredentialsSignin': {
-          return { error: 'Invalid credentials', success: '' }
+          return { error: 'Invalid credentials.', success: '' }
         }
         default: {
           return {
-            error: 'Something went wrong',
+            error: 'Something went wrong.',
             success: ''
           }
         }

@@ -15,7 +15,7 @@ export default function TreeUrl() {
         <Label htmlFor='tree-url'>URL</Label>
         <Popover>
           <PopoverTrigger>
-            <CircleHelp className='size-3.5' />
+            <CircleHelp className='size-3.5' aria-hidden />
             <span className='sr-only'>Show help</span>
           </PopoverTrigger>
           <PopoverContent>
@@ -39,7 +39,7 @@ export default function TreeUrl() {
           variant='outline'
           className='absolute right-1.5 size-6 opacity-0 transition-opacity focus-visible:opacity-100 group-hover:opacity-100'
         >
-          <Copy className='size-3' strokeWidth={1.5} />
+          <Copy className='size-3' strokeWidth={1.5} aria-hidden />
           <span className='sr-only'>Copy Order ID</span>
         </Button>
       </div>

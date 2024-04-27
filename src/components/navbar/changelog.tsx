@@ -18,8 +18,8 @@ export default function Changelog() {
       <TooltipProvider delayDuration={0}>
         <Tooltip>
           <TooltipTrigger asChild>
-            <PopoverTrigger className='mr-1'>
-              <Zap className='size-5' />
+            <PopoverTrigger className='mr-1' aria-label='New Features'>
+              <Zap className='size-5' aria-hidden />
             </PopoverTrigger>
           </TooltipTrigger>
           <TooltipContent side='bottom'>New Features</TooltipContent>

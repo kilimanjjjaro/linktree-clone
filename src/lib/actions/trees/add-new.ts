@@ -10,30 +10,42 @@ export async function addNewTree() {
 
   if (session?.user?.id === undefined) {
     return {
-      error: 'You must log in',
+      error: 'You must log in to create new trees.',
       success: ''
     }
+  }
+
+  const newTree = {
+    authorId: session.user.id,
+    status: 0,
+    name: DEFAULT_THREE_VALUE.name,
+    slug: DEFAULT_THREE_VALUE.slug,
+    url: DEFAULT_THREE_VALUE.url,
+    description: DEFAULT_THREE_VALUE.description,
+    avatar: DEFAULT_THREE_VALUE.avatar,
+    appearance: DEFAULT_THREE_VALUE.appearance,
+    links: DEFAULT_THREE_VALUE.links.map((link) => {
+      const { id, treeId, ...rest } = link
+      return rest
+    }),
+    socialProfiles: DEFAULT_THREE_VALUE.socialProfiles.map((socialProfile) => {
+      const { id, treeId, ...rest } = socialProfile
+      return rest
+    })
   }
 
   try {
     await db.tree.create({
       data: {
-        status: 0,
-        name: DEFAULT_THREE_VALUE.name,
-        slug: DEFAULT_THREE_VALUE.slug,
-        url: DEFAULT_THREE_VALUE.url,
-        description: DEFAULT_THREE_VALUE.description,
-        avatar: DEFAULT_THREE_VALUE.avatar,
-        appearance: DEFAULT_THREE_VALUE.appearance,
-        authorId: session.user.id,
+        ...newTree,
         socialProfiles: {
           createMany: {
-            data: DEFAULT_THREE_VALUE.socialProfiles
+            data: newTree.socialProfiles
           }
         },
         links: {
           createMany: {
-            data: DEFAULT_THREE_VALUE.links
+            data: newTree.links
           }
         }
       }
@@ -43,11 +55,12 @@ export async function addNewTree() {
 
     return {
       error: '',
-      success: 'Tree created'
+      success: 'Tree created.'
     }
   } catch (error) {
+    console.log(error)
     return {
-      error: 'Something went wrong',
+      error: 'Something went wrong.',
       success: ''
     }
   }

@@ -11,7 +11,7 @@ export default function EmailButton({ text }: { text: string }) {
     <Button type='submit' className='w-full' disabled={pending}>
       {pending ? (
         <>
-          <LoaderCircle className='size-4 animate-spin' />
+          <LoaderCircle className='size-4 animate-spin' aria-hidden />
           Sending
         </>
       ) : (

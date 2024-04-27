@@ -16,7 +16,7 @@ export async function signUpWithEmail(prevState: any, formData: FormData) {
 
   if (!validatedFields.success) {
     return {
-      error: 'Invalid fields',
+      error: 'Invalid fields.',
       success: ''
     }
   }
@@ -25,7 +25,7 @@ export async function signUpWithEmail(prevState: any, formData: FormData) {
 
   if (password !== confirmPassword) {
     return {
-      error: 'Passwords must be equal',
+      error: 'Passwords must be equal.',
       success: ''
     }
   }
@@ -41,7 +41,7 @@ export async function signUpWithEmail(prevState: any, formData: FormData) {
 
     if (existingUser != null) {
       return {
-        error: 'Email already used',
+        error: 'Email already used.',
         success: ''
       }
     }
@@ -62,14 +62,14 @@ export async function signUpWithEmail(prevState: any, formData: FormData) {
     })
 
     return {
-      success: 'Link confirmation was sent',
+      success: 'Link confirmation was sent.',
       error: ''
     }
   } catch (error: any) {
     console.log('ACTION_ERROR: ', error.message)
 
     return {
-      error: 'Something went wrong',
+      error: 'Something went wrong.',
       success: ''
     }
   }

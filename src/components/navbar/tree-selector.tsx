@@ -29,7 +29,7 @@ export default function TreeSelector() {
           <Suspense fallback={<Skeleton className='h-6 w-52 rounded-2xl' />}>
             <SelectedTree />
           </Suspense>
-          <ChevronsUpDown className='size-4' />
+          <ChevronsUpDown className='size-4' aria-hidden />
         </Button>
       </PopoverTrigger>
       <PopoverContent className='w-60 p-0'>

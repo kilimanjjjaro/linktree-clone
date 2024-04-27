@@ -23,7 +23,7 @@ export async function newPassword(
 
   if (!validatedFields.success) {
     return {
-      error: 'Invalid fields',
+      error: 'Invalid fields.',
       success: '',
       token: ''
     }
@@ -33,7 +33,7 @@ export async function newPassword(
 
   if (password !== confirmPassword) {
     return {
-      error: 'Passwords must be equal',
+      error: 'Passwords must be equal.',
       success: '',
       token: ''
     }
@@ -43,7 +43,7 @@ export async function newPassword(
 
   if (existingToken === null) {
     return {
-      error: 'Invalid link',
+      error: 'Invalid link.',
       success: '',
       token: ''
     }
@@ -53,7 +53,7 @@ export async function newPassword(
 
   if (hasExpired) {
     return {
-      error: 'Expired link',
+      error: 'Expired link.',
       success: '',
       token: ''
     }
@@ -63,7 +63,7 @@ export async function newPassword(
 
   if (existingUser === null) {
     return {
-      error: 'User not found',
+      error: 'User not found.',
       success: '',
       token: ''
     }
@@ -86,7 +86,7 @@ export async function newPassword(
     })
 
     return {
-      success: 'Password updated',
+      success: 'Password updated.',
       error: '',
       token: ''
     }
@@ -94,7 +94,7 @@ export async function newPassword(
     console.log('ACTION_ERROR: ', error.message)
 
     return {
-      error: 'Something went wrong',
+      error: 'Something went wrong.',
       success: '',
       token: ''
     }

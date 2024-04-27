@@ -46,7 +46,7 @@ export default function SocialProfile({ socialProfile }: Props) {
         >
           Added
         </span>
-        <ChevronRight className='ml-auto size-4' />
+        <ChevronRight className='ml-auto size-4' aria-hidden />
       </div>
     </CommandItem>
   )

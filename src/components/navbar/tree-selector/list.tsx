@@ -12,7 +12,7 @@ export default async function TreeList() {
   return (
     <>
       {trees.map((tree) => (
-        <CommandItem key={tree.id} value={tree.name}>
+        <CommandItem key={tree.id} value={tree.id}>
           {tree.name}
         </CommandItem>
       ))}

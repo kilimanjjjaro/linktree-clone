@@ -35,7 +35,7 @@ export default function AddLink() {
       <Dialog open={showDialog} onOpenChange={setShowDialog}>
         <DialogTrigger asChild>
           <Button className='w-full'>
-            Add link <Plus className='size-3.5' />
+            Add link <Plus className='size-3.5' aria-hidden />
           </Button>
         </DialogTrigger>
         <DialogContent className='p-0'>

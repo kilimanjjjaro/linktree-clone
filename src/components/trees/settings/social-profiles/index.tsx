@@ -15,7 +15,7 @@ export default function TreeSocialProfiles() {
         <Label htmlFor='tree-social-profiles'>Social profiles & more</Label>
         <Popover>
           <PopoverTrigger>
-            <CircleHelp className='size-3.5' />
+            <CircleHelp className='size-3.5' aria-hidden />
             <span className='sr-only'>Show help</span>
           </PopoverTrigger>
           <PopoverContent>

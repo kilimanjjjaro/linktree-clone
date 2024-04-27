@@ -41,7 +41,7 @@ export default function SocialProfilesList() {
               removeSocialProfile(socialProfile.id)
             }}
           >
-            <X className='size-3' />
+            <X className='size-3' aria-hidden />
           </Button>
         </li>
       ))}

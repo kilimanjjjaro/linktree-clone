@@ -11,7 +11,7 @@ export default function LogOutButton() {
         await logOut()
       }}
     >
-      <LogOut className='mr-2 size-4' />
+      <LogOut className='mr-2 size-4' aria-hidden />
       <span>Log out</span>
     </DropdownMenuItem>
   )

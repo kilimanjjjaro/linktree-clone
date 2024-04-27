@@ -34,6 +34,7 @@ export default function Font({ name, slug }: Props) {
           <Check
             className='w-2.5 translate-y-px text-lt-black'
             strokeWidth={3.5}
+            aria-hidden
           />
           <span className='sr-only'>Selected</span>
         </div>

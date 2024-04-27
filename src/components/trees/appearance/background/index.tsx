@@ -42,6 +42,7 @@ export default function TreeBackground() {
               <Check
                 className='w-2.5 translate-y-px text-lt-black'
                 strokeWidth={3.5}
+                aria-hidden
               />
             </div>
             <span className='text-center text-xs text-lt-lightest-gray'>
@@ -81,6 +82,7 @@ export default function TreeBackground() {
               <Check
                 className='w-2.5 translate-y-px text-lt-black'
                 strokeWidth={3.5}
+                aria-hidden
               />
             </div>
             <span className='text-center text-xs text-lt-lightest-gray'>
@@ -101,6 +103,7 @@ export default function TreeBackground() {
               <Check
                 className='w-2.5 translate-y-px text-lt-black'
                 strokeWidth={3.5}
+                aria-hidden
               />
             </div>
             <span className='text-center text-xs text-lt-lightest-gray'>
@@ -121,6 +124,7 @@ export default function TreeBackground() {
               <Check
                 className='w-2.5 translate-y-px text-lt-black'
                 strokeWidth={3.5}
+                aria-hidden
               />
             </div>
             <span className='text-center text-xs text-lt-lightest-gray'>
@@ -144,6 +148,7 @@ export default function TreeBackground() {
               <Check
                 className='w-2.5 translate-y-px text-lt-black'
                 strokeWidth={3.5}
+                aria-hidden
               />
             </div>
             <span className='text-center text-xs text-lt-lightest-gray'>
@@ -167,6 +172,7 @@ export default function TreeBackground() {
               <Check
                 className='w-2.5 translate-y-px text-lt-black'
                 strokeWidth={3.5}
+                aria-hidden
               />
             </div>
             <span className='text-center text-xs text-lt-lightest-gray'>

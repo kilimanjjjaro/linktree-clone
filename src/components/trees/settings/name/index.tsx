@@ -14,7 +14,7 @@ export default function TreeName() {
         <Label htmlFor='tree-name'>Name</Label>
         <Popover>
           <PopoverTrigger>
-            <CircleHelp className='size-3.5' />
+            <CircleHelp className='size-3.5' aria-hidden />
             <span className='sr-only'>Show help</span>
           </PopoverTrigger>
           <PopoverContent>

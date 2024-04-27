@@ -11,7 +11,7 @@ export default function AuthLayout({ children }: { children: ChildrenType }) {
           className='absolute right-6 top-6 flex items-center gap-x-2 text-sm xl:hover:underline'
           href='/'
         >
-          <ArrowLeft className='size-3' />
+          <ArrowLeft className='size-3' aria-hidden />
           Back
         </Link>
         {children}

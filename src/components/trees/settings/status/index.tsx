@@ -21,7 +21,7 @@ export default function TreeStatus() {
         <Label htmlFor='tree-status'>Status</Label>
         <Popover>
           <PopoverTrigger>
-            <CircleHelp className='size-3.5' />
+            <CircleHelp className='size-3.5' aria-hidden />
             <span className='sr-only'>Show help</span>
           </PopoverTrigger>
           <PopoverContent>

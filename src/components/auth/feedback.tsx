@@ -15,7 +15,7 @@ export default function Feedback({ data }: Props) {
   if (isError) {
     return (
       <Alert variant='error'>
-        <ShieldAlert />
+        <ShieldAlert aria-hidden />
         <AlertDescription>{data.error}</AlertDescription>
       </Alert>
     )
@@ -24,7 +24,7 @@ export default function Feedback({ data }: Props) {
   if (isSuccess) {
     return (
       <Alert variant='success'>
-        <ShieldCheck />
+        <ShieldCheck aria-hidden />
         <AlertDescription>{data.success}</AlertDescription>
       </Alert>
     )

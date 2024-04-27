@@ -14,7 +14,7 @@ export default function TreeDescription() {
         <Label htmlFor='tree-description'>Description</Label>
         <Popover>
           <PopoverTrigger>
-            <CircleHelp className='size-3.5' />
+            <CircleHelp className='size-3.5' aria-hidden />
             <span className='sr-only'>Show help</span>
           </PopoverTrigger>
           <PopoverContent>
