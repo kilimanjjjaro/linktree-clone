@@ -1,6 +1,6 @@
 import { type Prisma } from '@prisma/client'
 
-export type TreeType = Prisma.TreeGetPayload<{
+export type ExtendedTreeType = Prisma.TreeGetPayload<{
   include: {
     socialProfiles: true
     links: true

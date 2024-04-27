@@ -1,4 +1,5 @@
 export const DEFAULT_THREE_VALUE = {
+  id: '',
   authorId: '',
   status: 0,
   name: 'Demostration example',
@@ -9,22 +10,30 @@ export const DEFAULT_THREE_VALUE = {
   avatar: '/images/default-tree-avatar.svg',
   socialProfiles: [
     {
+      id: '',
+      treeId: '',
       type: 0,
       url: '/#'
     },
     {
+      id: '',
+      treeId: '',
       type: 1,
       url: '/#'
     }
   ],
   links: [
     {
+      id: '',
+      treeId: '',
       name: 'Example link',
       url: '/#',
       featured: true,
       backgroundImage: ''
     },
     {
+      id: '',
+      treeId: '',
       name: 'Example link',
       url: '/#',
       featured: true,

@@ -18,7 +18,13 @@ export async function addNewTree() {
   try {
     await db.tree.create({
       data: {
-        ...DEFAULT_THREE_VALUE,
+        status: 0,
+        name: DEFAULT_THREE_VALUE.name,
+        slug: DEFAULT_THREE_VALUE.slug,
+        url: DEFAULT_THREE_VALUE.url,
+        description: DEFAULT_THREE_VALUE.description,
+        avatar: DEFAULT_THREE_VALUE.avatar,
+        appearance: DEFAULT_THREE_VALUE.appearance,
         authorId: session.user.id,
         socialProfiles: {
           createMany: {
