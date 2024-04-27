@@ -17,7 +17,7 @@ export async function deleteTree(treeId: string) {
 
   const existingTrees = await getTrees()
 
-  if (existingTrees.length === 1) {
+  if (existingTrees.length <= 1) {
     return {
       error: 'You must have at least one tree in your account.',
       success: ''

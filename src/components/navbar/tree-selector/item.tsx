@@ -23,7 +23,7 @@ export default function Tree({ tree }: { tree: ExtendedTreeType }) {
   }
   return (
     <CommandItem
-      className={cn('group', isPending && 'animate-pulse')}
+      className={cn('group', isPending && 'animate-pulse cursor-not-allowed')}
       key={tree.id}
       value={tree.id}
       disabled={isPending}
