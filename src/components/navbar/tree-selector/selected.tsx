@@ -8,5 +8,5 @@ export default async function SelectedTree() {
 
   if (data.length > 0) trees = data
 
-  return <>{trees[0].name}</>
+  return <span className='max-w-60 truncate'>{trees[0].name}</span>
 }

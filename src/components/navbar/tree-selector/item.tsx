@@ -21,11 +21,17 @@ export default function Tree({ tree }: { tree: ExtendedTreeType }) {
       if (response.success.length > 0) toast.success(response.success)
     })
   }
+
+  const handleSelect = (treeId: string) => {
+    console.log('selectedTree', treeId)
+  }
+
   return (
     <CommandItem
       className={cn('group', isPending && 'animate-pulse cursor-not-allowed')}
       key={tree.id}
       value={tree.id}
+      onSelect={handleSelect}
       disabled={isPending}
     >
       {tree.name}

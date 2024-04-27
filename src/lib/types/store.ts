@@ -2,6 +2,7 @@ import {
   type TreeSocialProfilesInterface,
   type SocialProfileInterface
 } from '@/lib/types/globals'
+import { type TreesStoreInterface } from './trees'
 
 export interface GlobalsSliceInterface {
   dummyState: boolean
@@ -29,4 +30,5 @@ export interface SocialProfilesSliceInterface {
 export interface StoreInterface
   extends GlobalsSliceInterface,
     AvatarSliceInterface,
-    SocialProfilesSliceInterface {}
+    SocialProfilesSliceInterface,
+    TreesStoreInterface {}

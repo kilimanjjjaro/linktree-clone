@@ -1,4 +1,7 @@
-import { CircleHelp } from 'lucide-react'
+'use client'
+
+import { useDebouncedCallback } from 'use-debounce'
+import { CircleHelp, LoaderCircle } from 'lucide-react'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import {
@@ -6,8 +9,20 @@ import {
   PopoverContent,
   PopoverTrigger
 } from '@/components/ui/popover'
+import { useTransition } from 'react'
+import { cn } from '@/lib/utils'
+import { delay } from '@/lib/utils/delay'
 
 export default function TreeName() {
+  const [isPending, startTransition] = useTransition()
+
+  const changeTreeName = useDebouncedCallback((name) => {
+    startTransition(async () => {
+      await delay(3)
+      console.log('name', name)
+    })
+  }, 300)
+
   return (
     <section className='flex flex-col gap-y-3 p-5'>
       <div className='flex items-center gap-x-2'>
@@ -23,7 +38,22 @@ export default function TreeName() {
           </PopoverContent>
         </Popover>
       </div>
-      <Input id='tree-name' type='text' placeholder='Tree Demonstration' />
+      <form className='relative flex items-center'>
+        <Input
+          id='tree-name'
+          type='text'
+          placeholder='Tree Demonstration'
+          onChange={(event) => changeTreeName(event.target.value)}
+        />
+
+        <LoaderCircle
+          className={cn(
+            'absolute right-3.5 size-4 transition-opacity animate-spin opacity-0',
+            isPending && 'opacity-100'
+          )}
+          aria-hidden
+        />
+      </form>
     </section>
   )
 }

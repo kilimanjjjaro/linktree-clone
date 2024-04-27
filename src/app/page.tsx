@@ -4,7 +4,7 @@ import TreeAppearance from '@/components/trees/appearance'
 import TreePreview from '@/components/trees/preview'
 import TreeSettings from '@/components/trees/settings'
 
-export default async function Home() {
+export default function Home() {
   return (
     <>
       <Navbar />

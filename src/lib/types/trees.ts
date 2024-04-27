@@ -9,6 +9,6 @@ export type ExtendedTreeType = Prisma.TreeGetPayload<{
 }>
 
 export interface TreesStoreInterface {
-  trees: ExtendedTreeType[]
-  setTrees: (trees: ExtendedTreeType[]) => void
+  selectedTree: ExtendedTreeType | null
+  setSelectedTree: (selectedTree: ExtendedTreeType) => void
 }
