@@ -1,5 +1,5 @@
 import { v4 as uuidv4 } from 'uuid'
-import { getPasswordResetTokenByEmail } from './getPasswordResetTokenByEmail'
+import { getPasswordResetTokenByEmail } from './get-password-reset-token-by-email'
 import db from '@/lib/database'
 
 export async function generatePasswordResetToken(email: string) {

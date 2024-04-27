@@ -1,5 +1,5 @@
 import { v4 as uuidv4 } from 'uuid'
-import { getConfirmationTokenByEmail } from '@/lib/services/getConfirmationTokenByEmail'
+import { getConfirmationTokenByEmail } from '@/lib/services/get-confirmation-token-by-email'
 import db from '@/lib/database'
 
 export async function generateConfirmationToken(email: string) {

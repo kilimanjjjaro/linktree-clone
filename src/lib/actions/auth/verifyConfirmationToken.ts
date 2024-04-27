@@ -1,7 +1,7 @@
 'use server'
 
-import { getConfirmationTokenByToken } from '@/lib/services/getConfirmationTokenByToken'
-import { getUserByEmail } from '@/lib/services/getUserByEmail'
+import { getConfirmationTokenByToken } from '@/lib/services/get-confirmation-token-by-token'
+import { getUserByEmail } from '@/lib/services/get-user-by-email'
 import db from '@/lib/database'
 import { delay } from '@/lib/utils/delay'
 

@@ -1,9 +1,9 @@
 'use server'
 
 import { ResetPasswordSchema } from '@/lib/schemas/auth'
-import { getUserByEmail } from '@/lib/services/getUserByEmail'
-import { generatePasswordResetToken } from '@/lib/services/generatePasswordResetToken'
-import { sendPasswordResetEmail } from '@/lib/services/sendPasswordResetEmail'
+import { getUserByEmail } from '@/lib/services/get-user-by-email'
+import { generatePasswordResetToken } from '@/lib/services/generate-password-reset-token'
+import { sendPasswordResetEmail } from '@/lib/services/send-password-reset-email'
 
 export async function resetPassword(prevState: any, formData: FormData) {
   const validatedFields = ResetPasswordSchema.safeParse({

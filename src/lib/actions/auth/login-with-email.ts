@@ -3,9 +3,9 @@
 import { AuthError } from 'next-auth'
 import { signIn } from '@/lib/auth'
 import { LogInSchema } from '@/lib/schemas/auth'
-import { generateConfirmationToken } from '@/lib/services/generateConfirmationToken'
-import { getUserByEmail } from '@/lib/services/getUserByEmail'
-import { sendConfirmationEmail } from '@/lib/services/sendConfirmationEmail'
+import { generateConfirmationToken } from '@/lib/services/generate-confirmation-token'
+import { getUserByEmail } from '@/lib/services/get-user-by-email'
+import { sendConfirmationEmail } from '@/lib/services/send-confirmation-email'
 
 export async function logInWithEmail(prevState: any, formData: FormData) {
   const validatedFields = LogInSchema.safeParse({
