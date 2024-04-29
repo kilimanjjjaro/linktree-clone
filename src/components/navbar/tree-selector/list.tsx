@@ -1,19 +1,40 @@
-import { DEFAULT_THREE_VALUE } from '@/lib/constants/trees'
-import { getTrees } from '@/lib/services/get-trees'
+'use client'
+
 import { type ExtendedTreeType } from '@/lib/types/trees'
 import Tree from './item'
+import {
+  Command,
+  CommandEmpty,
+  CommandGroup,
+  CommandInput,
+  CommandList
+} from '@/components/ui/command'
+import { useStore } from '@/lib/store/store'
 
-export default async function TreeList() {
-  const data = await getTrees()
-  let trees: ExtendedTreeType[] = [DEFAULT_THREE_VALUE]
+export default function TreeList({ trees }: { trees: ExtendedTreeType[] }) {
+  const selectedTree = useStore((state) => state.selectedTree)
+  const setSelectedTree = useStore((state) => state.setSelectedTree)
 
-  if (data.length > 0) trees = data
+  const selectTree = (id: string) => {
+    const tree = trees.find((tree) => tree.id === id)
+
+    if (tree !== undefined) {
+      setSelectedTree(tree)
+      window.localStorage.setItem('selectedTree', tree.id)
+    }
+  }
 
   return (
-    <>
-      {trees.map((tree) => (
-        <Tree key={tree.id} tree={tree} />
-      ))}
-    </>
+    <Command value={selectedTree?.id} onValueChange={selectTree}>
+      <CommandInput placeholder='Search tree...' />
+      <CommandList>
+        <CommandEmpty>No trees found.</CommandEmpty>
+        <CommandGroup>
+          {trees.map((tree) => (
+            <Tree key={tree.id} tree={tree} />
+          ))}
+        </CommandGroup>
+      </CommandList>
+    </Command>
   )
 }

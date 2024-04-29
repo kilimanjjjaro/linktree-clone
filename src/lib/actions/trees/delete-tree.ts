@@ -8,7 +8,7 @@ import { getTrees } from '@/lib/services/get-trees'
 export async function deleteTree(treeId: string) {
   const session = await auth()
 
-  if (session?.user?.id === undefined) {
+  if (session === null) {
     return {
       error: 'You must log in to delete trees.',
       success: ''

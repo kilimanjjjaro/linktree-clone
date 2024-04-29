@@ -1,13 +1,14 @@
 'use client'
 
+import { useTransition } from 'react'
+import { X } from 'lucide-react'
+import { toast } from 'sonner'
+
 import { Button } from '@/components/ui/button'
 import { CommandItem } from '@/components/ui/command'
 import { deleteTree } from '@/lib/actions/trees/delete-tree'
-import { type ExtendedTreeType } from '@/lib/types/trees'
 import { cn } from '@/lib/utils'
-import { X } from 'lucide-react'
-import { useTransition } from 'react'
-import { toast } from 'sonner'
+import { type ExtendedTreeType } from '@/lib/types/trees'
 
 export default function Tree({ tree }: { tree: ExtendedTreeType }) {
   const [isPending, startTransition] = useTransition()
@@ -22,16 +23,11 @@ export default function Tree({ tree }: { tree: ExtendedTreeType }) {
     })
   }
 
-  const handleSelect = (treeId: string) => {
-    console.log('selectedTree', treeId)
-  }
-
   return (
     <CommandItem
       className={cn('group', isPending && 'animate-pulse cursor-not-allowed')}
       key={tree.id}
       value={tree.id}
-      onSelect={handleSelect}
       disabled={isPending}
     >
       {tree.name}

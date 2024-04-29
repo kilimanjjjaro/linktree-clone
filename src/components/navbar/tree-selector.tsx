@@ -1,23 +1,23 @@
-import { Suspense } from 'react'
 import { ChevronsUpDown } from 'lucide-react'
-import SelectedTree from './tree-selector/selected'
-import TreeList from './tree-selector/list'
+import SelectedTree from '@/components/navbar/tree-selector/selected'
+import TreeList from '@/components/navbar/tree-selector/list'
 import {
   Popover,
   PopoverContent,
   PopoverTrigger
 } from '@/components/ui/popover'
-import { Skeleton } from '@/components/ui/skeleton'
 import { Button } from '@/components/ui/button'
-import {
-  Command,
-  CommandEmpty,
-  CommandGroup,
-  CommandInput,
-  CommandList
-} from '@/components/ui/command'
 
-export default function TreeSelector() {
+import { getTrees } from '@/lib/services/get-trees'
+import { DEFAULT_THREE_VALUE } from '@/lib/constants/trees'
+import { type ExtendedTreeType } from '@/lib/types/trees'
+
+export default async function TreeSelector() {
+  const data = await getTrees()
+  let trees: ExtendedTreeType[] = [DEFAULT_THREE_VALUE]
+
+  if (data.length > 0) trees = data
+
   return (
     <Popover>
       <PopoverTrigger asChild>
@@ -26,30 +26,12 @@ export default function TreeSelector() {
           role='combobox'
           className='h-full p-0 text-xl font-normal transition-opacity xl:hover:bg-transparent xl:hover:opacity-70'
         >
-          <Suspense fallback={<Skeleton className='h-6 w-52 rounded-2xl' />}>
-            <SelectedTree />
-          </Suspense>
+          <SelectedTree trees={trees} />
           <ChevronsUpDown className='size-4 shrink-0' aria-hidden />
         </Button>
       </PopoverTrigger>
-      <PopoverContent className='w-60 p-0'>
-        <Command>
-          <CommandInput placeholder='Search tree...' />
-          <CommandList>
-            <Suspense
-              fallback={
-                <div className='h-10 w-full px-3 py-2.5'>
-                  <Skeleton className='size-full rounded-full' />
-                </div>
-              }
-            >
-              <CommandEmpty>No trees found.</CommandEmpty>
-              <CommandGroup>
-                <TreeList />
-              </CommandGroup>
-            </Suspense>
-          </CommandList>
-        </Command>
+      <PopoverContent align='start' className='w-60 p-0'>
+        <TreeList trees={trees} />
       </PopoverContent>
     </Popover>
   )

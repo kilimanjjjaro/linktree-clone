@@ -12,16 +12,20 @@ import {
 import { useTransition } from 'react'
 import { cn } from '@/lib/utils'
 import { delay } from '@/lib/utils/delay'
+import { useStore } from '@/lib/store/store'
+import { updateTree } from '@/lib/actions/trees/update-tree'
 
 export default function TreeName() {
   const [isPending, startTransition] = useTransition()
+  const selectedTree = useStore((state) => state.selectedTree)
 
-  const changeTreeName = useDebouncedCallback((name) => {
+  const changeTreeName = useDebouncedCallback((name: string) => {
     startTransition(async () => {
-      await delay(3)
-      console.log('name', name)
+      await updateTree({ data: { name }, treeId: selectedTree?.id })
     })
   }, 300)
+
+  if (selectedTree === null) return
 
   return (
     <section className='flex flex-col gap-y-3 p-5'>
@@ -44,6 +48,7 @@ export default function TreeName() {
           type='text'
           placeholder='Tree Demonstration'
           onChange={(event) => changeTreeName(event.target.value)}
+          value={selectedTree.name}
         />
 
         <LoaderCircle

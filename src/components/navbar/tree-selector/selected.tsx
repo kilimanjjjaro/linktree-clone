@@ -1,12 +1,32 @@
-import type { Tree } from '@prisma/client'
-import { DEFAULT_THREE_VALUE } from '@/lib/constants/trees'
-import { getTrees } from '@/lib/services/get-trees'
+'use client'
 
-export default async function SelectedTree() {
-  const data = await getTrees()
-  let trees: Tree[] = [DEFAULT_THREE_VALUE]
+import { useEffect } from 'react'
 
-  if (data.length > 0) trees = data
+import { useStore } from '@/lib/store/store'
+import { type ExtendedTreeType } from '@/lib/types/trees'
 
-  return <span className='max-w-60 truncate'>{trees[0].name}</span>
+export default function SelectedTree({ trees }: { trees: ExtendedTreeType[] }) {
+  const selectedTree = useStore((state) => state.selectedTree)
+  const setSelectedTree = useStore((state) => state.setSelectedTree)
+
+  useEffect(() => {
+    const treeFromLocalStorage = window.localStorage.getItem('selectedTree')
+
+    if (treeFromLocalStorage === null) {
+      console.log(trees[0].id)
+      window.localStorage.setItem('selectedTree', trees[0].id)
+
+      setSelectedTree(trees[0])
+    }
+
+    if (treeFromLocalStorage !== null) {
+      const tree = trees.find((tree) => tree.id === treeFromLocalStorage)
+
+      if (tree !== undefined) setSelectedTree(tree)
+    }
+  }, [trees, setSelectedTree])
+
+  return (
+    <span className='max-w-60 truncate text-left'>{selectedTree?.name}</span>
+  )
 }

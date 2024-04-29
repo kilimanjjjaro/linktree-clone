@@ -16,7 +16,9 @@ export default async function Navbar() {
           <LinktreeLogo className='w-7' />
         </Link>
         <Separator orientation='vertical' className='ml-[18px] mr-5 h-5' />
-        <TreeSelector />
+        <Suspense fallback={<Skeleton className='h-6 w-[232px] rounded-2xl' />}>
+          <TreeSelector />
+        </Suspense>
       </nav>
       <nav className='flex gap-x-3'>
         <Changelog />
