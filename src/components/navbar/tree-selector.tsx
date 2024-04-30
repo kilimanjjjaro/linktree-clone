@@ -1,37 +1,57 @@
-import { ChevronsUpDown } from 'lucide-react'
-import SelectedTree from '@/components/navbar/tree-selector/selected'
-import TreeList from '@/components/navbar/tree-selector/list'
+'use client'
+
+import { useEffect, useState } from 'react'
+
 import {
   Popover,
   PopoverContent,
   PopoverTrigger
 } from '@/components/ui/popover'
-import { Button } from '@/components/ui/button'
-
-import { getTrees } from '@/lib/services/get-trees'
+import { useStore } from '@/lib/store/store'
 import { DEFAULT_THREE_VALUE } from '@/lib/constants/trees'
-import { type ExtendedTreeType } from '@/lib/types/trees'
+import { type LocalTreeInterface } from '@/lib/types/trees'
+import TreeSelectorButton from './tree-selector-button'
+import TreeSelectorList from './tree-selector-list'
 
-export default async function TreeSelector() {
-  const data = await getTrees()
-  let trees: ExtendedTreeType[] = [DEFAULT_THREE_VALUE]
+interface Props {
+  trees: LocalTreeInterface[]
+}
 
-  if (data.length > 0) trees = data
+export default function TreeSelector({ trees }: Props) {
+  const [showList, setShowList] = useState(false)
+  const setSelectedTree = useStore((state) => state.setSelectedTree)
+
+  useEffect(() => {
+    const localTree = localStorage.getItem('__SELECTED_TREE__')
+
+    if (localTree != null) {
+      const parsedLocalTree = JSON.parse(localTree) as LocalTreeInterface
+      setSelectedTree(parsedLocalTree)
+    }
+
+    if (localTree == null && trees.length === 0) {
+      setSelectedTree(DEFAULT_THREE_VALUE)
+
+      localStorage.setItem(
+        '__SELECTED_TREE__',
+        JSON.stringify(DEFAULT_THREE_VALUE)
+      )
+    }
+
+    if (localTree == null && trees.length > 0) {
+      setSelectedTree(trees[0])
+
+      localStorage.setItem('__SELECTED_TREE__', JSON.stringify(trees[0]))
+    }
+  }, [trees, setSelectedTree])
 
   return (
-    <Popover>
+    <Popover open={showList} onOpenChange={setShowList}>
       <PopoverTrigger asChild>
-        <Button
-          variant='ghost'
-          role='combobox'
-          className='h-full p-0 text-xl font-normal transition-opacity xl:hover:bg-transparent xl:hover:opacity-70'
-        >
-          <SelectedTree trees={trees} />
-          <ChevronsUpDown className='size-4 shrink-0' aria-hidden />
-        </Button>
+        <TreeSelectorButton />
       </PopoverTrigger>
       <PopoverContent align='start' className='w-60 p-0'>
-        <TreeList trees={trees} />
+        <TreeSelectorList trees={trees} setShowList={setShowList} />
       </PopoverContent>
     </Popover>
   )

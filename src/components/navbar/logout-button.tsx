@@ -9,6 +9,7 @@ export default function LogOutButton() {
     <DropdownMenuItem
       onClick={async () => {
         await logOut()
+        localStorage.removeItem('__SELECTED_TREE__')
       }}
     >
       <LogOut className='mr-2 size-4' aria-hidden />
