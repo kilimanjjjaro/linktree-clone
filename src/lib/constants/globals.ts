@@ -9,7 +9,7 @@ export const INPUT_TYPES = {
   EMAIL: 3
 }
 
-export const PUBLIC_ROUTES = ['/', '/confirm-account']
+export const PUBLIC_ROUTES = ['/', '/dashboard', '/confirm-account']
 export const AUTH_ROUTES = [
   '/login',
   '/signup',

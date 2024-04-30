@@ -3,6 +3,7 @@ import { ChevronsUpDown } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Skeleton } from '@/components/ui/skeleton'
 import { useStore } from '@/lib/store/store'
+import { PopoverTrigger } from '../ui/popover'
 
 export default function TreeSelectorButton() {
   const selectedTree = useStore((state) => state.selectedTree)
@@ -12,13 +13,15 @@ export default function TreeSelectorButton() {
   }
 
   return (
-    <Button
-      variant='ghost'
-      role='combobox'
-      className='h-full p-0 text-xl font-normal transition-opacity xl:hover:bg-transparent xl:hover:opacity-70'
-    >
-      <span className='max-w-60 truncate text-left'>{selectedTree.name}</span>
-      <ChevronsUpDown className='size-4 shrink-0' aria-hidden />
-    </Button>
+    <PopoverTrigger asChild>
+      <Button
+        variant='ghost'
+        role='combobox'
+        className='h-full p-0 text-xl font-normal transition-opacity xl:hover:bg-transparent xl:hover:opacity-70'
+      >
+        <span className='max-w-60 truncate text-left'>{selectedTree.name}</span>
+        <ChevronsUpDown className='size-4 shrink-0' aria-hidden />
+      </Button>
+    </PopoverTrigger>
   )
 }

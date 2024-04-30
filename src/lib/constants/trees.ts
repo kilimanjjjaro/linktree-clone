@@ -1,6 +1,8 @@
-export const DEFAULT_THREE_VALUE = {
-  id: '',
-  authorId: '',
+import { type ExtendedTree } from '@/lib/types/trees'
+
+export const DEFAULT_THREE_VALUE: ExtendedTree = {
+  id: 'demo',
+  authorId: 'demo',
   status: 0,
   name: 'Demostration example',
   slug: 'demostration-example',
@@ -8,32 +10,11 @@ export const DEFAULT_THREE_VALUE = {
   description:
     'Full Stack Developer & UX/UI Designer with +6 years of work experience.',
   avatar: '/images/default-tree-avatar.svg',
-  socialProfiles: [
-    {
-      id: '',
-      treeId: '',
-      type: 0,
-      url: '/#'
-    },
-    {
-      id: '',
-      treeId: '',
-      type: 1,
-      url: '/#'
-    }
-  ],
+  socialProfiles: [{ id: 'demo', treeId: 'demo', type: 0, url: '/#' }],
   links: [
     {
-      id: '',
-      treeId: '',
-      name: 'Example link',
-      url: '/#',
-      featured: true,
-      backgroundImage: ''
-    },
-    {
-      id: '',
-      treeId: '',
+      id: 'demo',
+      treeId: 'demo',
       name: 'Example link',
       url: '/#',
       featured: true,

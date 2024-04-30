@@ -2,19 +2,15 @@
 
 import { useEffect, useState } from 'react'
 
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger
-} from '@/components/ui/popover'
+import TreeSelectorButton from '@/components/navbar/tree-selector-button'
+import TreeSelectorList from '@/components/navbar/tree-selector-list'
+import { Popover } from '@/components/ui/popover'
 import { useStore } from '@/lib/store/store'
 import { DEFAULT_THREE_VALUE } from '@/lib/constants/trees'
-import { type LocalTreeInterface } from '@/lib/types/trees'
-import TreeSelectorButton from './tree-selector-button'
-import TreeSelectorList from './tree-selector-list'
+import { type ExtendedTree } from '@/lib/types/trees'
 
 interface Props {
-  trees: LocalTreeInterface[]
+  trees: ExtendedTree[]
 }
 
 export default function TreeSelector({ trees }: Props) {
@@ -25,7 +21,7 @@ export default function TreeSelector({ trees }: Props) {
     const localTree = localStorage.getItem('__SELECTED_TREE__')
 
     if (localTree != null) {
-      const parsedLocalTree = JSON.parse(localTree) as LocalTreeInterface
+      const parsedLocalTree = JSON.parse(localTree) as ExtendedTree
       setSelectedTree(parsedLocalTree)
     }
 
@@ -47,12 +43,8 @@ export default function TreeSelector({ trees }: Props) {
 
   return (
     <Popover open={showList} onOpenChange={setShowList}>
-      <PopoverTrigger asChild>
-        <TreeSelectorButton />
-      </PopoverTrigger>
-      <PopoverContent align='start' className='w-60 p-0'>
-        <TreeSelectorList trees={trees} setShowList={setShowList} />
-      </PopoverContent>
+      <TreeSelectorButton />
+      <TreeSelectorList trees={trees} setShowList={setShowList} />
     </Popover>
   )
 }

@@ -1,14 +1,12 @@
-import { auth } from '@/lib/auth'
 import db from '@/lib/database'
 
-export async function getTrees() {
-  const session = await auth()
-
-  if (session === null) return []
+export async function getTrees(userId: string) {
+  console.log('asdasd')
+  if (userId.length === 0) return []
 
   try {
     const data = await db.tree.findMany({
-      where: { authorId: session.user?.id },
+      where: { authorId: userId },
       include: {
         links: true,
         socialProfiles: true

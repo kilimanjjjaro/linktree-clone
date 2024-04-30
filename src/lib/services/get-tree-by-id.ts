@@ -4,7 +4,7 @@ import db from '@/lib/database'
 export async function getTreeById(treeId: string) {
   const session = await auth()
 
-  if (session === null) return []
+  if (session === null) return null
 
   try {
     const data = await db.tree.findUnique({
@@ -19,6 +19,6 @@ export async function getTreeById(treeId: string) {
 
     return data
   } catch (error) {
-    return []
+    return null
   }
 }
