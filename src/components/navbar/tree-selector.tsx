@@ -21,12 +21,6 @@ export default function TreeSelector({ trees }: { trees: ExtendedTree[] }) {
       setSelectedTree(parsedLocalTree)
     }
 
-    if (localTree != null && trees.length > 0) {
-      setSelectedTree(trees[0])
-
-      localStorage.setItem('__SELECTED_TREE__', JSON.stringify(trees[0]))
-    }
-
     if (localTree == null && trees.length === 0) {
       setSelectedTree(DEMO_TREE_VALUES)
 
