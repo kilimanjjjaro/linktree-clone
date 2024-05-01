@@ -1,10 +1,9 @@
 'use client'
 
-import { useEffect, useTransition } from 'react'
-import { useDebounce } from 'use-debounce'
+import { useTransition } from 'react'
+import { useDebouncedCallback } from 'use-debounce'
 import { CircleHelp, LoaderCircle } from 'lucide-react'
 
-import { Skeleton } from '@/components/ui/skeleton'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import {
@@ -12,25 +11,30 @@ import {
   PopoverContent,
   PopoverTrigger
 } from '@/components/ui/popover'
+import { updateTree } from '@/lib/actions/trees/update-tree'
 import { useStore } from '@/lib/store/store'
 import { cn } from '@/lib/utils'
-import { updateTree } from '@/lib/actions/trees/update-tree'
 
 export default function TreeName() {
-  const selectedTree = useStore((state) => state.selectedTree)
   const setSelectedTree = useStore((state) => state.setSelectedTree)
+  const selectedTree = useStore((state) => state.selectedTree)
   const [isPending, startTransition] = useTransition()
-  const [debounced] = useDebounce(selectedTree, 300)
 
-  useEffect(() => {
-    if (debounced === null) return
+  const handleUpdate = useDebouncedCallback((treeName: string) => {
+    if (selectedTree === null) return
 
     startTransition(async () => {
-      await updateTree(debounced)
-    })
-  }, [debounced])
+      const response = await updateTree({
+        id: selectedTree.id,
+        name: treeName
+      })
 
-  const renderLoader = isPending || selectedTree === null
+      if (response !== null) {
+        setSelectedTree(response)
+        localStorage.setItem('__SELECTED_TREE__', JSON.stringify(response))
+      }
+    })
+  }, 300)
 
   return (
     <section className='flex flex-col gap-y-3 p-5'>
@@ -48,24 +52,20 @@ export default function TreeName() {
         </Popover>
       </div>
       <div className='relative flex items-center'>
-        {selectedTree !== null ? (
-          <Input
-            id='tree-name'
-            type='text'
-            value={selectedTree.name}
-            placeholder='Tree Demonstration'
-            disabled={isPending}
-            onChange={(event) => {
-              setSelectedTree({ ...selectedTree, name: event.target.value })
-            }}
-          />
-        ) : (
-          <Skeleton className='h-10 w-full rounded-full' />
-        )}
+        <Input
+          id='tree-name'
+          type='text'
+          defaultValue={selectedTree?.name ?? ''}
+          placeholder='Tree Demonstration'
+          disabled={isPending}
+          onChange={(event) => {
+            handleUpdate(event.target.value)
+          }}
+        />
         <LoaderCircle
           className={cn(
             'absolute right-3.5 size-4 transition-opacity animate-spin opacity-0',
-            renderLoader && 'opacity-100'
+            isPending && 'opacity-100'
           )}
           aria-hidden
         />
