@@ -1,45 +1,39 @@
 'use server'
 
 import { revalidatePath } from 'next/cache'
+import { type Prisma } from '@prisma/client'
+
 import db from '@/lib/database'
-import { auth } from '@/lib/auth'
-import { type ExtendedTreeType } from '@/lib/types/trees'
+import { getCurrentUser } from '@/lib/services/get-current-user'
 
 interface Props {
-  data: ExtendedTreeType
+  data: Prisma.TreeUncheckedUpdateInput
   treeId: string
 }
 
 export async function updateTree({ data, treeId }: Props) {
-  const session = await auth()
+  const user = await getCurrentUser()
 
-  if (session === undefined) {
-    console.log('Save in localstorage')
-    return {
-      error: false,
-      success: true
-    }
-  }
+  if (user === null) return null
 
   try {
-    await db.tree.update({
+    const tree = await db.tree.update({
       where: {
+        authorId: user.id,
         id: treeId
       },
-      data: { name: data.name }
+      data: { ...data },
+      include: {
+        links: true,
+        socialProfiles: true
+      }
     })
 
     revalidatePath('/')
 
-    return {
-      error: false,
-      success: true
-    }
+    return tree
   } catch (error) {
     console.log(error)
-    return {
-      error: true,
-      success: false
-    }
+    return null
   }
 }

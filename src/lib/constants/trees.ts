@@ -9,7 +9,7 @@ export const DEFAULT_THREE_VALUE: ExtendedTree = {
   url: '/#',
   description:
     'Full Stack Developer & UX/UI Designer with +6 years of work experience.',
-  avatar: '/images/default-tree-avatar.svg',
+  avatar: '',
   socialProfiles: [{ id: 'demo', treeId: 'demo', type: 0, url: '/#' }],
   links: [
     {

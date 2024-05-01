@@ -9,13 +9,9 @@ import { useStore } from '@/lib/store/store'
 import { DEFAULT_THREE_VALUE } from '@/lib/constants/trees'
 import { type ExtendedTree } from '@/lib/types/trees'
 
-interface Props {
-  trees: ExtendedTree[]
-}
-
-export default function TreeSelector({ trees }: Props) {
-  const [showList, setShowList] = useState(false)
+export default function TreeSelector({ trees }: { trees: ExtendedTree[] }) {
   const setSelectedTree = useStore((state) => state.setSelectedTree)
+  const [open, setOpen] = useState(false)
 
   useEffect(() => {
     const localTree = localStorage.getItem('__SELECTED_TREE__')
@@ -42,9 +38,14 @@ export default function TreeSelector({ trees }: Props) {
   }, [trees, setSelectedTree])
 
   return (
-    <Popover open={showList} onOpenChange={setShowList}>
+    <Popover open={open} onOpenChange={setOpen}>
       <TreeSelectorButton />
-      <TreeSelectorList trees={trees} setShowList={setShowList} />
+      <TreeSelectorList
+        trees={trees}
+        closePopover={() => {
+          setOpen(false)
+        }}
+      />
     </Popover>
   )
 }

@@ -3,15 +3,16 @@
 import { useTransition } from 'react'
 import { toast } from 'sonner'
 import { LoaderCircle, Plus } from 'lucide-react'
+
 import { Button } from '@/components/ui/button'
-import { createTree } from '@/lib/actions/trees/create-tree'
+import { createDefaultTree } from '@/lib/actions/trees/create-default-tree'
 
 export default function NewTree() {
   const [isPending, startTransition] = useTransition()
 
   const handleCreate = async () => {
     startTransition(async () => {
-      const response = await createTree()
+      const response = await createDefaultTree()
 
       if (response.error.length > 0) toast.error(response.error)
       if (response.success.length > 0) toast.success(response.success)

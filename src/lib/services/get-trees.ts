@@ -1,8 +1,7 @@
 import db from '@/lib/database'
 
-export async function getTrees(userId: string) {
-  console.log('asdasd')
-  if (userId.length === 0) return []
+export async function getTrees(userId: string | undefined) {
+  if (userId === undefined) return []
 
   try {
     const data = await db.tree.findMany({

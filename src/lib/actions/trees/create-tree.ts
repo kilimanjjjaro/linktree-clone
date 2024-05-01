@@ -1,50 +1,58 @@
 'use server'
 
 import { revalidatePath } from 'next/cache'
-import { auth } from '@/lib/auth'
-import { createTreeByUserId } from '@/lib/services/create-tree-by-authorid'
-import { type Prisma } from '@prisma/client'
-import { type LocalTreeInterface } from '@/lib/types/trees'
+import { Prisma } from '@prisma/client'
+import slugify from '@sindresorhus/slugify'
 
-export async function createTree(data: LocalTreeInterface) {
-  const session = await auth()
+import db from '@/lib/database'
+import { getCurrentUser } from '@/lib/services/get-current-user'
+import { type ExtendedTree } from '@/lib/types/trees'
 
-  if (session?.user?.id === undefined) {
+export async function createTree(tree: ExtendedTree) {
+  const user = await getCurrentUser()
+
+  if (user?.id === undefined) {
     return {
       error: 'You must log in to create new trees.',
       success: ''
     }
   }
 
-  const rawData: Prisma.TreeUncheckedCreateInput = {
-    authorId: session.user.id,
+  const data: Prisma.TreeUncheckedCreateInput = {
+    authorId: user.id,
     status: 0,
-    name: data.name,
-    slug: data.slug,
-    url: data.url,
-    description: data.description,
-    avatar: data.avatar,
-    appearance: data.appearance,
+    name: tree.name,
+    slug: slugify(tree.name),
+    url: tree.url,
+    description: tree.description,
+    avatar: tree.avatar,
+    appearance: tree.appearance ?? Prisma.JsonNull,
     links: {
       createMany: {
-        data: data.links
+        data: tree.links
       }
     },
     socialProfiles: {
       createMany: {
-        data: data.socialProfiles
+        data: tree.socialProfiles
       }
     }
   }
 
   try {
-    await createTreeByUserId(rawData)
+    await db.tree.create({
+      data,
+      include: {
+        links: true,
+        socialProfiles: true
+      }
+    })
 
     revalidatePath('/')
 
     return {
       error: '',
-      success: 'My Lord, a new tree was created for you.'
+      success: 'Task created.'
     }
   } catch (error) {
     return {

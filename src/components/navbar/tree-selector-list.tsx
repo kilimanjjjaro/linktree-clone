@@ -1,6 +1,6 @@
 import { useTransition } from 'react'
-import { X } from 'lucide-react'
 import { toast } from 'sonner'
+import { X } from 'lucide-react'
 
 import {
   Command,
@@ -11,18 +11,18 @@ import {
   CommandList
 } from '@/components/ui/command'
 import { Button } from '@/components/ui/button'
+import { PopoverContent } from '@/components/ui/popover'
 import { useStore } from '@/lib/store/store'
-import { cn } from '@/lib/utils'
 import { deleteTree } from '@/lib/actions/trees/delete-tree'
+import { cn } from '@/lib/utils'
 import { type ExtendedTree } from '@/lib/types/trees'
-import { PopoverContent } from '../ui/popover'
 
 interface Props {
   trees: ExtendedTree[]
-  setShowList: (value: boolean) => void
+  closePopover: () => void
 }
 
-export default function TreeSelectorList({ trees, setShowList }: Props) {
+export default function TreeSelectorList({ trees, closePopover }: Props) {
   const setSelectedTree = useStore((state) => state.setSelectedTree)
   const [isPending, startTransition] = useTransition()
 
@@ -36,9 +36,9 @@ export default function TreeSelectorList({ trees, setShowList }: Props) {
   }
 
   const handleSelect = (tree: ExtendedTree) => {
+    closePopover()
     setSelectedTree(tree)
     localStorage.setItem('__SELECTED_TREE__', JSON.stringify(tree))
-    setShowList(false)
   }
 
   return (

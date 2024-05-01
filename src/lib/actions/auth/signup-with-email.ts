@@ -5,7 +5,6 @@ import { SignUpSchema } from '@/lib/schemas/auth'
 import db from '@/lib/database'
 import { generateConfirmationToken } from '@/lib/services/generate-confirmation-token'
 import { sendConfirmationEmail } from '@/lib/services/send-confirmation-email'
-import { createTreeByUserId } from '@/lib/services/create-tree-by-authorid'
 
 export async function signUpWithEmail(prevState: any, formData: FormData) {
   const validatedFields = SignUpSchema.safeParse({
@@ -47,15 +46,13 @@ export async function signUpWithEmail(prevState: any, formData: FormData) {
       }
     }
 
-    const user = await db.user.create({
+    await db.user.create({
       data: {
         name,
         email,
         password: hashedPassword
       }
     })
-
-    await createTreeByUserId(user.id)
 
     const confirmationToken = await generateConfirmationToken(email)
 

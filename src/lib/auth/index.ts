@@ -3,7 +3,6 @@ import { PrismaAdapter } from '@auth/prisma-adapter'
 import db from '@/lib/database'
 import authConfig from '@/lib/auth/auth.config'
 import { getUserById } from '@/lib/services/get-user-by-id'
-import { createTreeByUserId } from '../services/create-tree-by-authorid'
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
   adapter: PrismaAdapter(db),
@@ -40,11 +39,6 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
           emailVerified: new Date()
         }
       })
-    },
-    async createUser({ user }) {
-      if (user.id === undefined) return
-
-      await createTreeByUserId(user.id)
     }
   },
   ...authConfig

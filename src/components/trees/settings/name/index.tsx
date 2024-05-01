@@ -1,7 +1,9 @@
 'use client'
 
+import { useTransition } from 'react'
 import { useDebouncedCallback } from 'use-debounce'
 import { CircleHelp, LoaderCircle } from 'lucide-react'
+
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import {
@@ -9,23 +11,29 @@ import {
   PopoverContent,
   PopoverTrigger
 } from '@/components/ui/popover'
-import { useTransition } from 'react'
-import { cn } from '@/lib/utils'
-import { delay } from '@/lib/utils/delay'
 import { useStore } from '@/lib/store/store'
 import { updateTree } from '@/lib/actions/trees/update-tree'
+import { cn } from '@/lib/utils'
 
 export default function TreeName() {
   const [isPending, startTransition] = useTransition()
   const selectedTree = useStore((state) => state.selectedTree)
+  const setSelectedTree = useStore((state) => state.setSelectedTree)
 
   const changeTreeName = useDebouncedCallback((name: string) => {
     startTransition(async () => {
-      await updateTree({ data: { name }, treeId: selectedTree?.id })
+      if (selectedTree !== null) {
+        const payload = { data: { name }, treeId: selectedTree.id }
+
+        const updatedTree = await updateTree(payload)
+
+        if (updatedTree !== null) setSelectedTree(updatedTree)
+        // elseSAVE IN LOCAL
+      }
     })
   }, 300)
 
-  if (selectedTree === null) return
+  const renderLoading = selectedTree === null || isPending
 
   return (
     <section className='flex flex-col gap-y-3 p-5'>
@@ -42,23 +50,25 @@ export default function TreeName() {
           </PopoverContent>
         </Popover>
       </div>
-      <form className='relative flex items-center'>
+      <div className='relative flex items-center'>
         <Input
           id='tree-name'
+          className={cn()}
           type='text'
+          value={selectedTree?.name}
           placeholder='Tree Demonstration'
+          disabled={isPending}
           onChange={(event) => changeTreeName(event.target.value)}
-          value={selectedTree.name}
         />
 
         <LoaderCircle
           className={cn(
             'absolute right-3.5 size-4 transition-opacity animate-spin opacity-0',
-            isPending && 'opacity-100'
+            renderLoading && 'opacity-100'
           )}
           aria-hidden
         />
-      </form>
+      </div>
     </section>
   )
 }

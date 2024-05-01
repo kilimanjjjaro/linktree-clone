@@ -7,15 +7,15 @@ import NewTree from '@/components/navbar/add-tree'
 import LogInButton from '@/components/navbar/login-button'
 import LinktreeLogo from '@/components/icons/linktree-logo'
 import { Separator } from '@/components/ui/separator'
+import { getCurrentUser } from '@/lib/services/get-current-user'
 import { getTrees } from '@/lib/services/get-trees'
-import { auth } from '@/lib/auth'
 import { type ExtendedTree } from '@/lib/types/trees'
 
 export default async function Navbar() {
-  const session = await auth()
+  const user = await getCurrentUser()
   let trees: ExtendedTree[] = []
 
-  if (session?.user?.id != null) trees = await getTrees(session.user.id)
+  if (user !== null) trees = await getTrees(user.id)
 
   return (
     <header className='fixed inset-x-3 top-3 z-50 flex h-16 justify-between rounded-full border border-lt-light-gray/60 bg-lt-gray py-3 pl-6 pr-3'>
@@ -29,11 +29,7 @@ export default async function Navbar() {
       <nav className='flex gap-x-3'>
         <Changelog />
         <NewTree />
-        {session?.user == null ? (
-          <LogInButton />
-        ) : (
-          <SessionBar user={session.user} />
-        )}
+        {user === null ? <LogInButton /> : <SessionBar user={user} />}
       </nav>
     </header>
   )
