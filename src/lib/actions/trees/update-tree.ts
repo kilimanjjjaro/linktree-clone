@@ -29,19 +29,23 @@ export async function updateTree({ id: treeId, ...rest }: ExtendedTree) {
         appearance: rest.appearance ?? Prisma.JsonNull,
         links: {
           deleteMany: {},
-          create: rest.links.map((link) => {
-            const { treeId, ...rest } = link
+          createMany: {
+            data: rest.links.map((link) => {
+              const { treeId, ...rest } = link
 
-            return rest
-          })
+              return rest
+            })
+          }
         },
         socialProfiles: {
           deleteMany: {},
-          create: rest.socialProfiles.map((socialProfile) => {
-            const { treeId, ...rest } = socialProfile
+          createMany: {
+            data: rest.socialProfiles.map((socialProfile) => {
+              const { treeId, ...rest } = socialProfile
 
-            return rest
-          })
+              return rest
+            })
+          }
         }
       },
       create: {
