@@ -10,7 +10,16 @@ export const DEMO_TREE_VALUES: ExtendedTree = {
   description:
     'Full Stack Developer & UX/UI Designer with +6 years of work experience.',
   avatar: '',
-  socialProfiles: [{ id: 'demo', treeId: 'demo', type: 0, url: '/#' }],
+  socialProfiles: [
+    {
+      id: 'demo',
+      treeId: 'demo',
+      type: 0,
+      url: '/#',
+      created_at: new Date(),
+      updated_at: new Date()
+    }
+  ],
   links: [
     {
       id: 'demo',
@@ -18,7 +27,9 @@ export const DEMO_TREE_VALUES: ExtendedTree = {
       name: 'Example link',
       url: '/#',
       featured: true,
-      backgroundImage: ''
+      backgroundImage: '',
+      created_at: new Date(),
+      updated_at: new Date()
     }
   ],
   appearance: {
@@ -38,7 +49,9 @@ export const DEMO_TREE_VALUES: ExtendedTree = {
       cornerStyle: 1,
       contentContainer: false
     }
-  }
+  },
+  created_at: new Date(),
+  updated_at: new Date()
 }
 
 export const DEFAULT_TREE_AVATAR = '/images/default-tree-avatar.svg'

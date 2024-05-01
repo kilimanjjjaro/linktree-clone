@@ -21,12 +21,12 @@ model User {
 }
 
 model Account {
-  id                String   @id @default(cuid())
-  user              User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  id                String  @id @default(cuid())
+  user              User    @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId            String
   type              String
   provider          String
-  providerAccountId String   @map("provider_account_id")
+  providerAccountId String  @map("provider_account_id")
   refresh_token     String?
   access_token      String?
   expires_at        Int?
@@ -34,8 +34,9 @@ model Account {
   scope             String?
   id_token          String?
   session_state     String?
-  created_at        DateTime @default(now())
-  updated_at        DateTime @updatedAt
+
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
 
   @@unique([provider, providerAccountId])
 }
@@ -71,28 +72,31 @@ model Tree {
   socialProfiles TreeSocialProfile[]
   links          TreeLink[]
   appearance     Json
-  created_at     DateTime            @default(now())
-  updated_at     DateTime            @updatedAt
+
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
 }
 
 model TreeSocialProfile {
-  id         String   @id @default(cuid())
-  type       Int
-  url        String
-  tree       Tree     @relation(fields: [treeId], references: [id], onDelete: Cascade)
-  treeId     String
+  id     String @id @default(cuid())
+  type   Int
+  url    String
+  tree   Tree   @relation(fields: [treeId], references: [id], onDelete: Cascade)
+  treeId String
+
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt
 }
 
 model TreeLink {
-  id              String   @id @default(cuid())
+  id              String  @id @default(cuid())
   name            String
   url             String
   featured        Boolean
   backgroundImage String?
-  Tree            Tree     @relation(fields: [treeId], references: [id], onDelete: Cascade)
+  Tree            Tree    @relation(fields: [treeId], references: [id], onDelete: Cascade)
   treeId          String
-  created_at      DateTime @default(now())
-  updated_at      DateTime @updatedAt
+
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
 }

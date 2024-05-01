@@ -76,9 +76,8 @@ export async function updateTree({ id: treeId, ...rest }: ExtendedTree) {
       }
     })
 
-    console.log('response: ', response)
-
     revalidatePath('/')
+
     return response
   } catch (error) {
     console.log(error)

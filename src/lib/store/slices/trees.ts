@@ -1,5 +1,5 @@
 import type { StateCreator } from 'zustand'
-import { type TreesStoreInterface } from '@/lib/types/trees'
+import { type TreesStoreInterface } from '@/lib/types/store'
 
 export const createTreesSlice: StateCreator<TreesStoreInterface> = (set) => ({
   selectedTree: null,

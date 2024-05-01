@@ -2,7 +2,7 @@ import {
   type TreeSocialProfilesInterface,
   type SocialProfileInterface
 } from '@/lib/types/globals'
-import { type TreesStoreInterface } from './trees'
+import { type ExtendedTree } from '@/lib/types/trees'
 
 export interface GlobalsSliceInterface {
   dummyState: boolean
@@ -25,6 +25,11 @@ export interface SocialProfilesSliceInterface {
   ) => void
   step: number
   setStep: (step: number) => void
+}
+
+export interface TreesStoreInterface {
+  selectedTree: ExtendedTree | null
+  setSelectedTree: (selectedTree: ExtendedTree) => void
 }
 
 export interface StoreInterface
