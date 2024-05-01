@@ -9,7 +9,6 @@ import LinktreeLogo from '@/components/icons/linktree-logo'
 import { Separator } from '@/components/ui/separator'
 import { getCurrentUser } from '@/lib/services/get-current-user'
 import { getTrees } from '@/lib/services/get-trees'
-import { type ExtendedTree } from '@/lib/types/trees'
 
 export default async function Navbar() {
   const user = await getCurrentUser()
