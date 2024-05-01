@@ -2,20 +2,20 @@
 
 import { revalidatePath } from 'next/cache'
 import db from '@/lib/database'
-import { auth } from '@/lib/auth'
 import { getTrees } from '@/lib/services/get-trees'
+import { getCurrentUser } from '@/lib/services/get-current-user'
 
 export async function deleteTree(treeId: string) {
-  const session = await auth()
+  const user = await getCurrentUser()
 
-  if (session === null) {
+  if (user === null) {
     return {
       error: 'You must log in to delete trees.',
       success: ''
     }
   }
 
-  const existingTrees = await getTrees()
+  const existingTrees = await getTrees(user.id)
 
   if (existingTrees.length <= 1) {
     return {
