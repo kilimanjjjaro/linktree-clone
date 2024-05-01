@@ -1,9 +1,10 @@
 'use server'
 
 import bcrypt from 'bcryptjs'
-import { NewPasswordSchema } from '@/lib/schemas/auth'
+
 import db from '@/lib/database'
-import { getPasswordResetTokenByToken } from '@/lib/services/get-password-reset-token-by-token'
+import { NewPasswordSchema } from '@/lib/schemas/auth'
+import { getPasswordResetTokenByToken } from '@/lib/services/password-reset-tokens'
 import { getUserByEmail } from '@/lib/services/get-user-by-email'
 
 interface PrevStateInterface {

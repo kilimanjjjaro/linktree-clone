@@ -1,11 +1,14 @@
 import db from '@/lib/database'
+import { getCurrentUser } from '@/lib/services/get-current-user'
 
-export async function getTrees(userId: string | undefined) {
-  if (userId === undefined) return []
+export async function getTrees() {
+  const user = await getCurrentUser()
+
+  if (user === null) return []
 
   try {
     const data = await db.tree.findMany({
-      where: { authorId: userId },
+      where: { authorId: user.id },
       include: {
         links: true,
         socialProfiles: true

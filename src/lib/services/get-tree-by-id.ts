@@ -1,21 +1,19 @@
-import { auth } from '@/lib/auth'
 import db from '@/lib/database'
+import { getCurrentUser } from '@/lib/services/get-current-user'
 
 export async function getTreeById(treeId: string) {
-  const session = await auth()
+  const user = await getCurrentUser()
 
-  if (session === null) return null
+  if (user === null) return null
 
   try {
     const data = await db.tree.findUnique({
-      where: { id: treeId },
+      where: { id: treeId, authorId: user.id },
       include: {
         links: true,
         socialProfiles: true
       }
     })
-
-    console.log(data)
 
     return data
   } catch (error) {

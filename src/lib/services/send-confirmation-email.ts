@@ -1,5 +1,6 @@
 import { Resend } from 'resend'
-import { BASE_URL } from '../constants/globals'
+
+import { BASE_URL } from '@/lib/constants/globals'
 
 const resend = new Resend(process.env.RESEND_API_KEY)
 

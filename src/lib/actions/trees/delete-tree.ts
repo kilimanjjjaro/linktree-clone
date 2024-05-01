@@ -15,7 +15,7 @@ export async function deleteTree(treeId: string) {
     }
   }
 
-  const existingTrees = await getTrees(user.id)
+  const existingTrees = await getTrees()
 
   if (existingTrees.length <= 1) {
     return {

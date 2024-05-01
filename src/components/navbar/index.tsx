@@ -13,9 +13,7 @@ import { type ExtendedTree } from '@/lib/types/trees'
 
 export default async function Navbar() {
   const user = await getCurrentUser()
-  let trees: ExtendedTree[] = []
-
-  if (user !== null) trees = await getTrees(user.id)
+  const trees = await getTrees()
 
   return (
     <header className='fixed inset-x-3 top-3 z-50 flex h-16 justify-between rounded-full border border-lt-light-gray/60 bg-lt-gray py-3 pl-6 pr-3'>
