@@ -1,10 +1,12 @@
 'use server'
 
-import { getCurrentUser } from '@/lib/services/get-current-user'
-import db from '@/lib/database'
-import { Prisma } from '@prisma/client'
-import { type ExtendedTree } from '@/lib/types/trees'
 import { revalidatePath } from 'next/cache'
+import slugify from '@sindresorhus/slugify'
+import { Prisma } from '@prisma/client'
+
+import db from '@/lib/database'
+import { getCurrentUser } from '@/lib/services/get-current-user'
+import { type ExtendedTree } from '@/lib/types/trees'
 
 export async function updateTree({ id: treeId, ...rest }: ExtendedTree) {
   const user = await getCurrentUser()
@@ -20,7 +22,7 @@ export async function updateTree({ id: treeId, ...rest }: ExtendedTree) {
       update: {
         status: rest.status,
         name: rest.name,
-        slug: rest.slug,
+        slug: slugify(rest.name),
         url: rest.url,
         description: rest.description,
         avatar: rest.avatar,
@@ -46,7 +48,7 @@ export async function updateTree({ id: treeId, ...rest }: ExtendedTree) {
         authorId: user.id,
         status: rest.status,
         name: rest.name,
-        slug: rest.slug,
+        slug: slugify(rest.name),
         url: rest.url,
         description: rest.description,
         avatar: rest.avatar,
