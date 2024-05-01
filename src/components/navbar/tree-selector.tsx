@@ -16,7 +16,7 @@ export default function TreeSelector({ trees }: { trees: ExtendedTree[] }) {
   useEffect(() => {
     const localTree = localStorage.getItem('__SELECTED_TREE__')
 
-    if (localTree != null && trees.length === 0) {
+    if (localTree != null) {
       const parsedLocalTree = JSON.parse(localTree) as ExtendedTree
       setSelectedTree(parsedLocalTree)
     }
