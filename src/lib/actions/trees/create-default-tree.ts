@@ -5,7 +5,7 @@ import { Prisma } from '@prisma/client'
 
 import db from '@/lib/database'
 import { getCurrentUser } from '@/lib/services/get-current-user'
-import { DEFAULT_THREE_VALUE } from '@/lib/constants/trees'
+import { DEMO_TREE_VALUES } from '@/lib/constants/trees'
 
 export async function createDefaultTree() {
   const user = await getCurrentUser()
@@ -20,15 +20,15 @@ export async function createDefaultTree() {
   const data: Prisma.TreeUncheckedCreateInput = {
     authorId: user.id,
     status: 0,
-    name: DEFAULT_THREE_VALUE.name,
-    slug: DEFAULT_THREE_VALUE.slug,
-    url: DEFAULT_THREE_VALUE.url,
-    description: DEFAULT_THREE_VALUE.description,
-    avatar: DEFAULT_THREE_VALUE.avatar,
-    appearance: DEFAULT_THREE_VALUE.appearance ?? Prisma.JsonNull,
+    name: DEMO_TREE_VALUES.name,
+    slug: DEMO_TREE_VALUES.slug,
+    url: DEMO_TREE_VALUES.url,
+    description: DEMO_TREE_VALUES.description,
+    avatar: DEMO_TREE_VALUES.avatar,
+    appearance: DEMO_TREE_VALUES.appearance ?? Prisma.JsonNull,
     links: {
       createMany: {
-        data: DEFAULT_THREE_VALUE.links.map((link) => {
+        data: DEMO_TREE_VALUES.links.map((link) => {
           const { id, treeId, ...rest } = link
 
           return rest
@@ -37,7 +37,7 @@ export async function createDefaultTree() {
     },
     socialProfiles: {
       createMany: {
-        data: DEFAULT_THREE_VALUE.socialProfiles.map((profile) => {
+        data: DEMO_TREE_VALUES.socialProfiles.map((profile) => {
           const { id, treeId, ...rest } = profile
 
           return rest

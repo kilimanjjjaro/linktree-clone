@@ -6,7 +6,7 @@ import TreeSelectorButton from '@/components/navbar/tree-selector-button'
 import TreeSelectorList from '@/components/navbar/tree-selector-list'
 import { Popover } from '@/components/ui/popover'
 import { useStore } from '@/lib/store/store'
-import { DEFAULT_THREE_VALUE } from '@/lib/constants/trees'
+import { DEMO_TREE_VALUES } from '@/lib/constants/trees'
 import { type ExtendedTree } from '@/lib/types/trees'
 
 export default function TreeSelector({ trees }: { trees: ExtendedTree[] }) {
@@ -16,17 +16,23 @@ export default function TreeSelector({ trees }: { trees: ExtendedTree[] }) {
   useEffect(() => {
     const localTree = localStorage.getItem('__SELECTED_TREE__')
 
-    if (localTree != null) {
+    if (localTree != null && trees.length === 0) {
       const parsedLocalTree = JSON.parse(localTree) as ExtendedTree
       setSelectedTree(parsedLocalTree)
     }
 
+    if (localTree != null && trees.length > 0) {
+      setSelectedTree(trees[0])
+
+      localStorage.setItem('__SELECTED_TREE__', JSON.stringify(trees[0]))
+    }
+
     if (localTree == null && trees.length === 0) {
-      setSelectedTree(DEFAULT_THREE_VALUE)
+      setSelectedTree(DEMO_TREE_VALUES)
 
       localStorage.setItem(
         '__SELECTED_TREE__',
-        JSON.stringify(DEFAULT_THREE_VALUE)
+        JSON.stringify(DEMO_TREE_VALUES)
       )
     }
 

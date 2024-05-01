@@ -1,6 +1,6 @@
 import { type ExtendedTree } from '@/lib/types/trees'
 
-export const DEFAULT_THREE_VALUE: ExtendedTree = {
+export const DEMO_TREE_VALUES: ExtendedTree = {
   id: 'demo',
   authorId: 'demo',
   status: 0,

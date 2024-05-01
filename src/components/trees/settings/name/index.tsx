@@ -25,7 +25,7 @@ export default function TreeName() {
 
     startTransition(async () => {
       const response = await updateTree({
-        id: selectedTree.id,
+        ...selectedTree,
         name: treeName
       })
 

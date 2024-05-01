@@ -29,12 +29,20 @@ export async function createTree(tree: ExtendedTree) {
     appearance: tree.appearance ?? Prisma.JsonNull,
     links: {
       createMany: {
-        data: tree.links
+        data: tree.links.map((link) => {
+          const { id, treeId, ...rest } = link
+
+          return rest
+        })
       }
     },
     socialProfiles: {
       createMany: {
-        data: tree.socialProfiles
+        data: tree.socialProfiles.map((socialMedia) => {
+          const { id, treeId, ...rest } = socialMedia
+
+          return rest
+        })
       }
     }
   }
@@ -55,6 +63,7 @@ export async function createTree(tree: ExtendedTree) {
       success: 'Task created.'
     }
   } catch (error) {
+    console.log(error)
     return {
       error: 'Something went wrong.',
       success: ''
