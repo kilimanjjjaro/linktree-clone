@@ -1,37 +1,17 @@
 'use server'
 
-import { revalidatePath } from 'next/cache'
-import { type Prisma } from '@prisma/client'
-
-import db from '@/lib/database'
 import { getCurrentUser } from '@/lib/services/get-current-user'
+import { type ExtendedTree } from '@/lib/types/trees'
 
-interface Props {
-  data: Prisma.TreeUncheckedUpdateInput
-  treeId: string
-}
-
-export async function updateTree({ data, treeId }: Props) {
+export async function updateTree(data: ExtendedTree) {
   const user = await getCurrentUser()
 
   if (user === null) return null
 
   try {
-    const tree = await db.tree.update({
-      where: {
-        authorId: user.id,
-        id: treeId
-      },
-      data: { ...data },
-      include: {
-        links: true,
-        socialProfiles: true
-      }
-    })
+    console.log(data)
 
-    revalidatePath('/')
-
-    return tree
+    return data
   } catch (error) {
     console.log(error)
     return null

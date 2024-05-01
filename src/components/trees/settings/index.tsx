@@ -1,9 +1,9 @@
-import TreeAvatar from './avatar'
-import TreeName from './name'
-import TreeUrl from './url'
-import TreeDescription from './description'
-import TreeSocialProfiles from './social-profiles'
-import TreeStatus from './status'
+import TreeAvatar from '@/components/trees/settings/avatar'
+import TreeName from '@/components/trees/settings/name'
+import TreeUrl from '@/components/trees/settings/url'
+import TreeDescription from '@/components/trees/settings/description'
+import TreeSocialProfiles from '@/components/trees/settings/social-profiles'
+import TreeStatus from '@/components/trees/settings/status'
 import { Separator } from '@/components/ui/separator'
 
 export default function TreeSettings() {
