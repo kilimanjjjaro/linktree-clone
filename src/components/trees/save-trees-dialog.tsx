@@ -25,17 +25,23 @@ export default function SaveTreesDialog() {
     if (selectedTree === null) return
 
     startTransition(async () => {
-      const response = await createTree(selectedTree)
+      const { data, success, error } = await createTree(selectedTree)
 
-      if (response.data !== null) {
-        toast.success(response.success)
-        setSelectedTree(response.data)
-        localStorage.setItem('__SELECTED_TREE__', JSON.stringify(response.data))
+      if (data !== null) {
+        toast.success(success)
+        setSelectedTree(data)
+        localStorage.setItem('__SELECTED_TREE__', JSON.stringify(data))
         setSaveTreeDialog(false)
       } else {
-        toast.error(response.error)
+        toast.error(error)
       }
     })
+  }
+
+  const discardTree = () => {
+    localStorage.removeItem('__SELECTED_TREE__')
+    setSaveTreeDialog(false)
+    toast('Your tree was discarded.')
   }
 
   const saveButtonText = isPending ? 'Saving' : 'Save'
@@ -51,13 +57,8 @@ export default function SaveTreesDialog() {
             You want to save your tree before continue?
           </p>
           <div className='grid grid-cols-2 gap-x-3'>
-            <Button
-              variant='outline'
-              onClick={() => {
-                setSaveTreeDialog(false)
-              }}
-            >
-              Dissmis
+            <Button variant='outline' onClick={discardTree}>
+              Discard
             </Button>
             <Button variant='secondary' onClick={saveTree} disabled={isPending}>
               {isPending && (

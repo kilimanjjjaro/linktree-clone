@@ -51,6 +51,7 @@ export default function TreeSelectorList({ trees, closePopover }: Props) {
       }
     }
 
+    localStorage.setItem('__SELECTED_TREE__', JSON.stringify(tree))
     setSelectedTree(tree)
     closePopover()
   }
