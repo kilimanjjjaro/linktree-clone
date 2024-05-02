@@ -16,6 +16,7 @@ import { useStore } from '@/lib/store/store'
 import { deleteTree } from '@/lib/actions/trees/delete-tree'
 import { cn } from '@/lib/utils'
 import { type ExtendedTree } from '@/lib/types/trees'
+import { DEMO_TREE_VALUES } from '@/lib/constants/trees'
 
 interface Props {
   trees: ExtendedTree[]
@@ -36,9 +37,34 @@ export default function TreeSelectorList({ trees, closePopover }: Props) {
   }
 
   const handleSelect = (tree: ExtendedTree) => {
+    const localTree = localStorage.getItem('__SELECTED_TREE__')
+
     closePopover()
+
+    if (localTree != null && trees.length > 0) {
+      const parsedLocalTree = JSON.parse(localTree) as ExtendedTree
+
+      if (parsedLocalTree.id === DEMO_TREE_VALUES.id)
+        toast('Unsaved tree', {
+          description: 'You want to save your local tree before continue?',
+          action: {
+            label: 'Save',
+            onClick: () => {
+              console.log('Save!')
+            }
+          },
+          cancel: {
+            label: 'Remove',
+            onClick: () => {
+              console.log('Remove!')
+            }
+          }
+        })
+
+      return
+    }
+
     setSelectedTree(tree)
-    localStorage.setItem('__SELECTED_TREE__', JSON.stringify(tree))
   }
 
   return (

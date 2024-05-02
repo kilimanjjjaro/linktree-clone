@@ -19,7 +19,7 @@ export async function createDefaultTree() {
 
   const data: Prisma.TreeUncheckedCreateInput = {
     authorId: user.id,
-    status: 0,
+    status: DEMO_TREE_VALUES.status,
     name: DEMO_TREE_VALUES.name,
     slug: DEMO_TREE_VALUES.slug,
     url: DEMO_TREE_VALUES.url,
@@ -37,8 +37,8 @@ export async function createDefaultTree() {
     },
     socialProfiles: {
       createMany: {
-        data: DEMO_TREE_VALUES.socialProfiles.map((profile) => {
-          const { id, treeId, ...rest } = profile
+        data: DEMO_TREE_VALUES.socialProfiles.map((socialMedia) => {
+          const { id, treeId, ...rest } = socialMedia
 
           return rest
         })
