@@ -1,33 +1,40 @@
-import { Check, Clock, Zap } from 'lucide-react'
+import { Bell, Check, Clock, Dot } from 'lucide-react'
+
+import { Button } from '@/components/ui/button'
 import {
   Popover,
   PopoverContent,
   PopoverTrigger
 } from '@/components/ui/popover'
-import { Button } from '@/components/ui/button'
 import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
   TooltipTrigger
 } from '@/components/ui/tooltip'
+import { Separator } from '../ui/separator'
 
-export default function Changelog() {
+export default function Notifications() {
   return (
     <Popover>
       <TooltipProvider delayDuration={0}>
         <Tooltip>
           <TooltipTrigger asChild>
-            <PopoverTrigger className='mr-1' aria-label='New Features'>
-              <Zap className='size-5' aria-hidden />
+            <PopoverTrigger className='relative'>
+              <Dot
+                className='absolute right-0.5 top-2 size-1.5 rounded-full bg-green-400'
+                aria-hidden
+              />
+              <Bell className='size-5' aria-hidden />
+              <div className='sr-only'>Notifications</div>
             </PopoverTrigger>
           </TooltipTrigger>
-          <TooltipContent side='bottom'>New Features</TooltipContent>
+          <TooltipContent side='bottom'>Notifications</TooltipContent>
         </Tooltip>
       </TooltipProvider>
       <PopoverContent className='p-0'>
         <ul>
-          <li className='relative flex items-center gap-x-4 p-4 text-lt-lightest-gray'>
+          <li className='relative flex items-center gap-x-4 p-4 text-lt-white opacity-40'>
             <div className='flex flex-col gap-y-2'>
               <p className='w-full text-sm font-light'>
                 Lorem ipsum dolor sit amet, consectetur adipiscing.
@@ -37,12 +44,13 @@ export default function Changelog() {
                   <Clock className='size-3.5' />4 hours ago
                 </span>
                 <span className='rounded-full border border-lt-light-gray px-2 py-1 leading-none'>
-                  Appearence
+                  New feature
                 </span>
               </div>
             </div>
           </li>
-          <li className='group relative flex items-center gap-x-4 bg-lt-light-gray p-4 text-lt-white'>
+          <Separator />
+          <li className='group relative flex items-center gap-x-4 p-4 text-lt-white'>
             <div className='flex flex-col gap-y-2'>
               <p className='w-full text-sm font-light'>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris
@@ -53,18 +61,23 @@ export default function Changelog() {
                   <Clock className='size-3.5' />4 hours ago
                 </span>
                 <span className='rounded-full border border-lt-white px-2 py-1 leading-none'>
-                  Appearence
+                  New feature
                 </span>
               </div>
             </div>
+            <Dot
+              className='absolute right-3.5 top-3.5 size-1.5 rounded-full bg-green-400 opacity-100 transition-opacity xl:group-hover:opacity-0'
+              aria-hidden
+            />
             <Button
               aria-label='Mark as read'
-              className='absolute right-2 top-2 h-auto rounded-full p-1 opacity-0 xl:group-hover:opacity-100'
+              className='absolute right-2 top-2 h-auto rounded-full bg-lt-lightest-gray p-0.5 opacity-0 xl:hover:bg-lt-white xl:group-hover:opacity-100'
             >
               <Check className='size-3 translate-y-px' strokeWidth={3} />
             </Button>
           </li>
-          <li className='relative flex items-center gap-x-4 p-4 text-lt-lightest-gray'>
+          <Separator />
+          <li className='relative flex items-center gap-x-4 p-4 text-lt-white opacity-40'>
             <div className='flex flex-col gap-y-2'>
               <p className='w-full text-sm font-light'>
                 Lorem ipsum dolor sit amet, consectetur. Mauris justo risus.
@@ -74,7 +87,7 @@ export default function Changelog() {
                   <Clock className='size-3.5' />4 hours ago
                 </span>
                 <span className='rounded-full border border-lt-light-gray px-2 py-1 leading-none'>
-                  Appearence
+                  New feature
                 </span>
               </div>
             </div>

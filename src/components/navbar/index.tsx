@@ -1,7 +1,7 @@
 import Link from 'next/link'
 
 import TreeSelector from '@/components/navbar/tree-selector'
-import Changelog from '@/components/navbar/changelog'
+import Changelog from '@/components/navbar/notifications'
 import SessionBar from '@/components/navbar/session'
 import NewTree from '@/components/navbar/add-tree'
 import LogInButton from '@/components/navbar/login-button'
@@ -23,10 +23,12 @@ export default async function Navbar() {
         <Separator orientation='vertical' className='ml-[18px] mr-5 h-5' />
         <TreeSelector trees={trees} />
       </nav>
-      <nav className='flex gap-x-3'>
+      <nav className='flex gap-x-5'>
         <Changelog />
-        <NewTree isLogged={user !== null} />
-        {user === null ? <LogInButton /> : <SessionBar user={user} />}
+        <div className='flex items-center gap-x-3'>
+          <NewTree isLogged={user !== null} />
+          {user === null ? <LogInButton /> : <SessionBar user={user} />}
+        </div>
       </nav>
     </header>
   )
