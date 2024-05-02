@@ -3,8 +3,9 @@
 import { useState } from 'react'
 import Image from 'next/image'
 import { toast } from 'sonner'
-import DropAvatar from './drop-avatar'
-import CropAvatar from './crop-avatar'
+
+import DropAvatar from '@/components/trees/settings/avatar/drop-avatar'
+import CropAvatar from '@/components/trees/settings/avatar/crop-avatar'
 import { Button } from '@/components/ui/button'
 import {
   Dialog,
