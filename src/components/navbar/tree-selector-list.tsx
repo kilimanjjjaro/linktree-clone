@@ -10,6 +10,7 @@ import {
   CommandItem,
   CommandList
 } from '@/components/ui/command'
+
 import { Button } from '@/components/ui/button'
 import { PopoverContent } from '@/components/ui/popover'
 import { useStore } from '@/lib/store/store'
@@ -24,7 +25,9 @@ interface Props {
 }
 
 export default function TreeSelectorList({ trees, closePopover }: Props) {
+  const setSaveTreeDialog = useStore((state) => state.setSaveTreeDialog)
   const setSelectedTree = useStore((state) => state.setSelectedTree)
+  const selectedTree = useStore((state) => state.selectedTree)
   const [isPending, startTransition] = useTransition()
 
   const handleDelete = async (treeId: string) => {
@@ -39,37 +42,22 @@ export default function TreeSelectorList({ trees, closePopover }: Props) {
   const handleSelect = (tree: ExtendedTree) => {
     const localTree = localStorage.getItem('__SELECTED_TREE__')
 
-    closePopover()
-
     if (localTree != null && trees.length > 0) {
       const parsedLocalTree = JSON.parse(localTree) as ExtendedTree
 
-      if (parsedLocalTree.id === DEMO_TREE_VALUES.id)
-        toast('Unsaved tree', {
-          description: 'You want to save your local tree before continue?',
-          action: {
-            label: 'Save',
-            onClick: () => {
-              console.log('Save!')
-            }
-          },
-          cancel: {
-            label: 'Remove',
-            onClick: () => {
-              console.log('Remove!')
-            }
-          }
-        })
-
-      return
+      if (parsedLocalTree.id === DEMO_TREE_VALUES.id) {
+        setSaveTreeDialog(true)
+        return
+      }
     }
 
     setSelectedTree(tree)
+    closePopover()
   }
 
   return (
     <PopoverContent align='start' className='w-60 p-0'>
-      <Command>
+      <Command value={selectedTree?.id}>
         <CommandInput placeholder='Search tree...' />
         <CommandList>
           <CommandEmpty>No trees found.</CommandEmpty>

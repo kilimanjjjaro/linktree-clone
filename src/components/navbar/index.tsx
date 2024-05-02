@@ -25,7 +25,7 @@ export default async function Navbar() {
       </nav>
       <nav className='flex gap-x-3'>
         <Changelog />
-        <NewTree />
+        <NewTree isLogged={user !== null} />
         {user === null ? <LogInButton /> : <SessionBar user={user} />}
       </nav>
     </header>

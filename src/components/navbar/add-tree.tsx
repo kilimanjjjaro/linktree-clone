@@ -5,12 +5,27 @@ import { toast } from 'sonner'
 import { LoaderCircle, Plus } from 'lucide-react'
 
 import { Button } from '@/components/ui/button'
+import { useStore } from '@/lib/store/store'
 import { createDefaultTree } from '@/lib/actions/trees/create-default-tree'
+import { DEMO_TREE_VALUES } from '@/lib/constants/trees'
+import { type ExtendedTree } from '@/lib/types/trees'
 
-export default function NewTree() {
+export default function NewTree({ isLogged }: { isLogged: boolean }) {
+  const setSaveTreeDialog = useStore((state) => state.setSaveTreeDialog)
   const [isPending, startTransition] = useTransition()
 
   const handleCreate = async () => {
+    const localTree = localStorage.getItem('__SELECTED_TREE__')
+
+    if (localTree != null && isLogged) {
+      const parsedLocalTree = JSON.parse(localTree) as ExtendedTree
+
+      if (parsedLocalTree.id === DEMO_TREE_VALUES.id) {
+        setSaveTreeDialog(true)
+        return
+      }
+    }
+
     startTransition(async () => {
       const response = await createDefaultTree()
 

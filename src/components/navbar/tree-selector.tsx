@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react'
 import TreeSelectorButton from '@/components/navbar/tree-selector-button'
 import TreeSelectorList from '@/components/navbar/tree-selector-list'
 import { Popover } from '@/components/ui/popover'
+
 import { useStore } from '@/lib/store/store'
 import { DEMO_TREE_VALUES } from '@/lib/constants/trees'
 import { type ExtendedTree } from '@/lib/types/trees'

@@ -11,12 +11,12 @@ import { type ExtendedTree } from '@/lib/types/trees'
 export async function createTree(tree: ExtendedTree) {
   const user = await getCurrentUser()
 
-  if (user?.id === undefined) {
+  if (user?.id === undefined)
     return {
       error: 'You must log in to create new trees.',
-      success: ''
+      success: '',
+      data: null
     }
-  }
 
   const data: Prisma.TreeUncheckedCreateInput = {
     authorId: user.id,
@@ -48,7 +48,7 @@ export async function createTree(tree: ExtendedTree) {
   }
 
   try {
-    await db.tree.create({
+    const response = await db.tree.create({
       data,
       include: {
         links: true,
@@ -60,13 +60,15 @@ export async function createTree(tree: ExtendedTree) {
 
     return {
       error: '',
-      success: 'Task created.'
+      success: 'Your tree was saved.',
+      data: response
     }
   } catch (error) {
     console.log(error)
     return {
       error: 'Something went wrong.',
-      success: ''
+      success: '',
+      data: null
     }
   }
 }
