@@ -17,7 +17,7 @@ export default function TreeSelectorButton() {
       <Button
         variant='ghost'
         role='combobox'
-        className='h-full p-0 text-xl font-normal transition-opacity xl:hover:bg-transparent xl:hover:opacity-70'
+        className='h-full p-0 text-xl font-normal xl:hover:bg-transparent xl:hover:text-lt-lightest-gray'
       >
         <span className='max-w-60 truncate text-left'>{selectedTree.name}</span>
         <ChevronsUpDown className='size-4 shrink-0' aria-hidden />

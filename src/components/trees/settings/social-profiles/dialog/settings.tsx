@@ -3,16 +3,14 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { useStore } from '@/lib/store/store'
+import { DIALOG } from '@/lib/constants/globals'
 import { createInputAttributes } from '@/lib/utils/create-input-attributes'
 import { delay } from '@/lib/utils/delay'
 
-interface Props {
-  setShowDialog: (showDialog: boolean) => void
-}
-
-export default function SocialProfileSettings({ setShowDialog }: Props) {
+export default function SocialProfileSettings() {
   const socialProfiles = useStore((state) => state.socialProfiles)
   const setSocialProfiles = useStore((state) => state.setSocialProfiles)
+  const setShowDialog = useStore((state) => state.setShowDialog)
   const selectedSocialProfile = useStore((state) => state.selectedSocialProfile)
   const setSelectedSocialProfile = useStore(
     (state) => state.setSelectedSocialProfile
@@ -40,7 +38,7 @@ export default function SocialProfileSettings({ setShowDialog }: Props) {
       }
 
       setSocialProfiles([...socialProfiles, newSocialProfile])
-      setShowDialog(false)
+      setShowDialog(DIALOG.HIDDEN)
       toast.success(`${newSocialProfile.name} icon added!`)
       void delay(200).then(() => {
         setStep(1)
@@ -60,9 +58,9 @@ export default function SocialProfileSettings({ setShowDialog }: Props) {
       <Label htmlFor='social-profile-input'>
         {selectedSocialProfile?.form.label}
       </Label>
-      <div className='flex h-10 items-center overflow-hidden rounded-full border border-lt-light-gray/60'>
+      <div className='flex h-10 items-center overflow-hidden rounded-full border border-lt-light-gray/50'>
         {selectedSocialProfile.form.disabledText.length > 0 && (
-          <span className='flex h-full cursor-not-allowed select-none items-center border-r border-lt-light-gray/60 px-3 text-sm text-lt-lightest-gray'>
+          <span className='flex h-full cursor-not-allowed select-none items-center border-r border-lt-light-gray/50 px-3 text-sm text-lt-lightest-gray'>
             {selectedSocialProfile?.form.disabledText}
           </span>
         )}

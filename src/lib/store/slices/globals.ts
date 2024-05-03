@@ -1,11 +1,12 @@
 import { type StateCreator } from 'zustand'
+import { DIALOG } from '@/lib/constants/globals'
 import type { GlobalsSliceInterface } from '@/lib/types/store'
 
 export const createGlobalsSlice: StateCreator<GlobalsSliceInterface> = (
   set
 ) => ({
-  saveTreeDialog: false,
-  setSaveTreeDialog: (saveTreeDialog) => {
-    set(() => ({ saveTreeDialog }))
+  showDialog: DIALOG.HIDDEN,
+  setShowDialog: (showDialog) => {
+    set(() => ({ showDialog }))
   }
 })

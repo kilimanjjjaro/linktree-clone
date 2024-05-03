@@ -15,9 +15,12 @@ export default async function Navbar() {
   const trees = await getTrees()
 
   return (
-    <header className='fixed inset-x-3 top-3 z-50 flex h-16 justify-between rounded-full border border-lt-light-gray/60 bg-lt-gray py-3 pl-6 pr-3'>
+    <header className='fixed inset-x-3 top-3 z-50 flex h-16 justify-between rounded-full border border-lt-light-gray/50 bg-lt-gray py-3 pl-6 pr-3'>
       <nav className='flex items-center'>
-        <Link className='transition-opacity xl:hover:opacity-70' href='/'>
+        <Link
+          className='text-lt-green transition-colors xl:hover:text-lt-lightest-gray'
+          href='/'
+        >
           <LinktreeLogo className='w-7' />
         </Link>
         <Separator orientation='vertical' className='ml-[18px] mr-5 h-5' />

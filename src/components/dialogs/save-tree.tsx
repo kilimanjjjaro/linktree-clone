@@ -13,10 +13,11 @@ import {
 import { Button } from '@/components/ui/button'
 import { useStore } from '@/lib/store/store'
 import { createTree } from '@/lib/actions/trees/create-tree'
+import { DIALOG } from '@/lib/constants/globals'
 
-export default function SaveTreesDialog() {
-  const setSaveTreeDialog = useStore((state) => state.setSaveTreeDialog)
-  const saveTreeDialog = useStore((state) => state.saveTreeDialog)
+export default function SaveTreeDialog() {
+  const setShowDialog = useStore((state) => state.setShowDialog)
+  const showDialog = useStore((state) => state.showDialog)
   const selectedTree = useStore((state) => state.selectedTree)
   const setSelectedTree = useStore((state) => state.setSelectedTree)
   const [isPending, startTransition] = useTransition()
@@ -31,7 +32,7 @@ export default function SaveTreesDialog() {
         toast.success(success)
         setSelectedTree(data)
         localStorage.setItem('__SELECTED_TREE__', JSON.stringify(data))
-        setSaveTreeDialog(false)
+        setShowDialog(DIALOG.SAVE_TREE)
       } else {
         toast.error(error)
       }
@@ -40,14 +41,19 @@ export default function SaveTreesDialog() {
 
   const discardTree = () => {
     localStorage.removeItem('__SELECTED_TREE__')
-    setSaveTreeDialog(false)
+    setShowDialog(DIALOG.HIDDEN)
     toast('Your tree was discarded.')
   }
 
   const saveButtonText = isPending ? 'Saving' : 'Save'
 
   return (
-    <Dialog open={saveTreeDialog} onOpenChange={setSaveTreeDialog}>
+    <Dialog
+      open={showDialog === DIALOG.SAVE_TREE}
+      onOpenChange={() => {
+        setShowDialog(DIALOG.HIDDEN)
+      }}
+    >
       <DialogContent className='max-w-sm p-0'>
         <DialogHeader>
           <DialogTitle>Save work</DialogTitle>

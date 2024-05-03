@@ -23,7 +23,8 @@ const config = {
         'lt-light-gray': 'hsl(var(--color-light-gray) / <alpha-value>)',
         'lt-lightest-gray': 'hsl(var(--color-lightest-gray) / <alpha-value>)',
         'lt-dark-gray': 'hsl(var(--color-dark-gray) / <alpha-value>)',
-        'lt-darkest-gray': 'hsl(var(--color-darkest-gray) / <alpha-value>)'
+        'lt-darkest-gray': 'hsl(var(--color-darkest-gray) / <alpha-value>)',
+        'lt-green': 'hsl(var(--color-green) / <alpha-value>)'
       }
     }
   },

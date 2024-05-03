@@ -7,7 +7,7 @@ export default function Avatar() {
   const avatar = useStore((state) => state.avatar)
 
   return (
-    <div className='relative size-28 overflow-hidden rounded-full border border-lt-light-gray/60'>
+    <div className='relative size-28 overflow-hidden rounded-full border border-lt-light-gray/50'>
       <Image
         className='absolute h-auto w-full object-cover object-center'
         src={avatar}

@@ -29,7 +29,7 @@ export default function SocialProfilesList() {
     >
       {socialProfiles.map((socialProfile) => (
         <li
-          className='flex items-center gap-x-2 rounded-full border border-lt-light-gray/60 py-1 pl-3 pr-1 text-sm leading-none'
+          className='flex items-center gap-x-2 rounded-full border border-lt-light-gray/50 py-1 pl-3 pr-1 text-sm leading-none'
           key={socialProfile.id}
         >
           {socialProfile.name}

@@ -13,21 +13,46 @@ export default function SocialProfiles() {
   return (
     <ul
       ref={parent}
-      className='mt-4 flex flex-wrap items-center justify-center gap-3 px-6 [&>a]:size-7 [&>a]:rounded-full [&>a]:bg-zinc-400 [&>a]:p-1 [&>a]:text-black [&>a]:transition-colors [&>a]:xl:hover:bg-zinc-200'
+      className='mt-4 flex flex-wrap items-center justify-center gap-3 px-6'
     >
-      <a href='/' target='_blank' rel='noopener noreferrer'>
+      <a
+        className='size-7 rounded-full bg-zinc-400 p-1 text-black transition-colors xl:hover:bg-zinc-200'
+        href='/'
+        target='_blank'
+        rel='noopener noreferrer'
+      >
         <InstagramIcon />
       </a>
-      <a href='/' target='_blank' rel='noopener noreferrer'>
+      <a
+        className='size-7 rounded-full bg-zinc-400 p-1 text-black transition-colors xl:hover:bg-zinc-200'
+        href='/'
+        target='_blank'
+        rel='noopener noreferrer'
+      >
         <TikTokIcon />
       </a>
-      <a href='/' target='_blank' rel='noopener noreferrer'>
+      <a
+        className='size-7 rounded-full bg-zinc-400 p-1 text-black transition-colors xl:hover:bg-zinc-200'
+        href='/'
+        target='_blank'
+        rel='noopener noreferrer'
+      >
         <TwitchIcon />
       </a>
-      <a href='/' target='_blank' rel='noopener noreferrer'>
+      <a
+        className='size-7 rounded-full bg-zinc-400 p-1 text-black transition-colors xl:hover:bg-zinc-200'
+        href='/'
+        target='_blank'
+        rel='noopener noreferrer'
+      >
         <WhatsAppIcon />
       </a>
-      <a href='/' target='_blank' rel='noopener noreferrer'>
+      <a
+        className='size-7 rounded-full bg-zinc-400 p-1 text-black transition-colors xl:hover:bg-zinc-200'
+        href='/'
+        target='_blank'
+        rel='noopener noreferrer'
+      >
         <TelegramIcon />
       </a>
     </ul>

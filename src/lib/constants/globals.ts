@@ -16,3 +16,11 @@ export const AUTH_ROUTES = [
   '/reset-password',
   '/new-password'
 ]
+
+export const DIALOG = {
+  HIDDEN: 0,
+  SOCIAL_PROFILES: 1,
+  SAVE_TREE: 2,
+  UPLOAD_AVATAR: 3,
+  ADD_LINK: 4
+}

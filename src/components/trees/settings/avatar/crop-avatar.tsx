@@ -10,16 +10,14 @@ import { DialogFooter } from '@/components/ui/dialog'
 import { useStore } from '@/lib/store/store'
 import { updateAvatar } from '@/lib/actions/trees/update-avatar'
 import { updateTree } from '@/lib/actions/trees/update-tree'
-import { CROPPED_AREA_VALUES } from '@/lib/constants/trees'
 import { cropImage } from '@/lib/utils/crop-image'
 import { fetchBlobData } from '@/lib/utils/fetch-blob-data'
+import { CROPPED_AREA_VALUES } from '@/lib/constants/trees'
+import { DIALOG } from '@/lib/constants/globals'
 import { type ExtendedTree } from '@/lib/types/trees'
 
-interface Props {
-  setShowDialog: (open: boolean) => void
-}
-
-export default function CropAvatar({ setShowDialog }: Props) {
+export default function CropAvatar() {
+  const setShowDialog = useStore((state) => state.setShowDialog)
   const setSelectedTree = useStore((state) => state.setSelectedTree)
   const selectedTree = useStore((state) => state.selectedTree)
   const avatarToCrop = useStore((state) => state.avatarToCrop)
@@ -89,7 +87,7 @@ export default function CropAvatar({ setShowDialog }: Props) {
 
         toast.success('Your avatar was updated!')
         setAvatar(avatar)
-        setShowDialog(false)
+        setShowDialog(DIALOG.HIDDEN)
         setCroppedAvatar('')
         setAvatarToCrop('')
       } else {
@@ -140,7 +138,7 @@ export default function CropAvatar({ setShowDialog }: Props) {
           </>
         )}
         {croppedAvatar.length > 0 && (
-          <div className='relative size-full overflow-hidden rounded-full border border-lt-light-gray/60'>
+          <div className='relative size-full overflow-hidden rounded-full border border-lt-light-gray/50'>
             <Image
               className='absolute h-auto w-full object-cover object-center'
               src={croppedAvatar}

@@ -15,9 +15,10 @@ import { Button } from '@/components/ui/button'
 import { PopoverContent } from '@/components/ui/popover'
 import { useStore } from '@/lib/store/store'
 import { deleteTree } from '@/lib/actions/trees/delete-tree'
+import { DEMO_TREE_VALUES } from '@/lib/constants/trees'
+import { DIALOG } from '@/lib/constants/globals'
 import { cn } from '@/lib/utils'
 import { type ExtendedTree } from '@/lib/types/trees'
-import { DEMO_TREE_VALUES } from '@/lib/constants/trees'
 
 interface Props {
   trees: ExtendedTree[]
@@ -25,7 +26,7 @@ interface Props {
 }
 
 export default function TreeSelectorList({ trees, closePopover }: Props) {
-  const setSaveTreeDialog = useStore((state) => state.setSaveTreeDialog)
+  const setShowDialog = useStore((state) => state.setShowDialog)
   const setSelectedTree = useStore((state) => state.setSelectedTree)
   const selectedTree = useStore((state) => state.selectedTree)
   const [isPending, startTransition] = useTransition()
@@ -46,7 +47,7 @@ export default function TreeSelectorList({ trees, closePopover }: Props) {
       const parsedLocalTree = JSON.parse(localTree) as ExtendedTree
 
       if (parsedLocalTree.id === DEMO_TREE_VALUES.id) {
-        setSaveTreeDialog(true)
+        setShowDialog(DIALOG.SAVE_TREE)
         return
       }
     }

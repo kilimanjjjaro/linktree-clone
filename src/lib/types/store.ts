@@ -5,8 +5,8 @@ import {
 import { type ExtendedTree } from '@/lib/types/trees'
 
 export interface GlobalsSliceInterface {
-  saveTreeDialog: boolean
-  setSaveTreeDialog: (saveTreeDialog: boolean) => void
+  showDialog: number
+  setShowDialog: (showDialog: number) => void
 }
 
 export interface AvatarSliceInterface {

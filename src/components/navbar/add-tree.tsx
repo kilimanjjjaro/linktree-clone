@@ -8,10 +8,11 @@ import { Button } from '@/components/ui/button'
 import { useStore } from '@/lib/store/store'
 import { createDefaultTree } from '@/lib/actions/trees/create-default-tree'
 import { DEMO_TREE_VALUES } from '@/lib/constants/trees'
+import { DIALOG } from '@/lib/constants/globals'
 import { type ExtendedTree } from '@/lib/types/trees'
 
 export default function NewTree({ isLogged }: { isLogged: boolean }) {
-  const setSaveTreeDialog = useStore((state) => state.setSaveTreeDialog)
+  const setShowDialog = useStore((state) => state.setShowDialog)
   const [isPending, startTransition] = useTransition()
 
   const handleCreate = async () => {
@@ -21,7 +22,7 @@ export default function NewTree({ isLogged }: { isLogged: boolean }) {
       const parsedLocalTree = JSON.parse(localTree) as ExtendedTree
 
       if (parsedLocalTree.id === DEMO_TREE_VALUES.id) {
-        setSaveTreeDialog(true)
+        setShowDialog(DIALOG.SAVE_TREE)
         return
       }
     }
@@ -36,7 +37,7 @@ export default function NewTree({ isLogged }: { isLogged: boolean }) {
 
   return (
     <Button
-      variant='outline'
+      variant='secondary'
       className='h-full'
       onClick={handleCreate}
       disabled={isPending}
