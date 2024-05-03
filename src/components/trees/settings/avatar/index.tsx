@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useState, useTransition } from 'react'
 import Image from 'next/image'
 import { toast } from 'sonner'
 
@@ -15,21 +15,61 @@ import {
   DialogTrigger
 } from '@/components/ui/dialog'
 import { useStore } from '@/lib/store/store'
-import { DEFAULT_TREE_AVATAR } from '@/lib/constants/trees'
 import { Label } from '@/components/ui/label'
+import { DEMO_TREE_VALUES } from '@/lib/constants/trees'
+import { updateTree } from '@/lib/actions/trees/update-tree'
+import { type ExtendedTree } from '@/lib/types/trees'
 
 export default function TreeAvatar() {
-  const avatar = useStore((state) => state.avatar)
-  const setAvatar = useStore((state) => state.setAvatar)
+  const selectedTree = useStore((state) => state.selectedTree)
+  const setSelectedTree = useStore((state) => state.setSelectedTree)
   const avatarToCrop = useStore((state) => state.avatarToCrop)
+  const setAvatar = useStore((state) => state.setAvatar)
+  const avatar = useStore((state) => state.avatar)
   const [showDialog, setShowDialog] = useState(false)
+  const [isPending, startTransition] = useTransition()
 
   const removeAvatar = () => {
-    setAvatar(DEFAULT_TREE_AVATAR)
-    toast.success('Your avatar was removed!')
+    if (selectedTree === null) return
+
+    startTransition(async () => {
+      const defaultAvatar = DEMO_TREE_VALUES.avatar
+
+      const response = await updateTree({
+        ...selectedTree,
+        avatar: defaultAvatar
+      })
+
+      if (response !== null) {
+        setSelectedTree(response)
+        localStorage.setItem('__SELECTED_TREE__', JSON.stringify(response))
+      } else {
+        const localTree = localStorage.getItem('__SELECTED_TREE__')
+
+        if (localTree === null) return
+
+        const tree = JSON.parse(localTree) as ExtendedTree
+
+        localStorage.setItem(
+          '__SELECTED_TREE__',
+          JSON.stringify({ ...tree, avatar: defaultAvatar })
+        )
+
+        setSelectedTree({ ...tree, avatar: defaultAvatar })
+        setAvatar(defaultAvatar)
+      }
+
+      toast.success('Your avatar was removed!')
+    })
 
     // TODO: Delete avatar from cloudinary
   }
+
+  useEffect(() => {
+    if (selectedTree === null) return
+
+    setAvatar(selectedTree.avatar)
+  }, [selectedTree, setAvatar, avatar])
 
   return (
     <section className='p-5'>
@@ -64,8 +104,8 @@ export default function TreeAvatar() {
               </main>
             </DialogContent>
           </Dialog>
-          <Button variant='outline' onClick={removeAvatar}>
-            Remove
+          <Button variant='outline' onClick={removeAvatar} disabled={isPending}>
+            {isPending ? 'Removing' : 'Remove'}
           </Button>
         </div>
       </div>

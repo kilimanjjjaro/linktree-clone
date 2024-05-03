@@ -5,7 +5,9 @@ interface Props {
 }
 
 export default function Avatar({ image }: Props) {
-  const source = image ?? '/images/default-user-avatar.svg'
+  const source =
+    image ??
+    'https://res.cloudinary.com/dsvcixsbp/image/upload/v1714694224/linktree/default-user-avatar_xlfdzv.svg'
 
   return (
     <Image

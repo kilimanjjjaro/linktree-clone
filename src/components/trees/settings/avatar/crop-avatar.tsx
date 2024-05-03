@@ -1,37 +1,43 @@
-import { useCallback, useState } from 'react'
+import { useCallback, useState, useTransition } from 'react'
 import Image from 'next/image'
 import Cropper, { type Area } from 'react-easy-crop'
 import { toast } from 'sonner'
 import { LoaderCircle } from 'lucide-react'
+
 import { Slider } from '@/components/ui/slider'
 import { Button } from '@/components/ui/button'
 import { DialogFooter } from '@/components/ui/dialog'
 import { useStore } from '@/lib/store/store'
+import { updateAvatar } from '@/lib/actions/trees/update-avatar'
+import { updateTree } from '@/lib/actions/trees/update-tree'
 import { CROPPED_AREA_VALUES } from '@/lib/constants/trees'
 import { cropImage } from '@/lib/utils/crop-image'
 import { fetchBlobData } from '@/lib/utils/fetch-blob-data'
+import { type ExtendedTree } from '@/lib/types/trees'
 
 interface Props {
   setShowDialog: (open: boolean) => void
 }
 
 export default function CropAvatar({ setShowDialog }: Props) {
+  const setSelectedTree = useStore((state) => state.setSelectedTree)
+  const selectedTree = useStore((state) => state.selectedTree)
   const avatarToCrop = useStore((state) => state.avatarToCrop)
   const setAvatarToCrop = useStore((state) => state.setAvatarToCrop)
   const setAvatar = useStore((state) => state.setAvatar)
-  const [loading, setLoading] = useState(false)
+  const [isPending, startTransition] = useTransition()
   const [crop, setCrop] = useState({ x: 0, y: 0 })
   const [zoom, setZoom] = useState(1)
   const [croppedAvatar, setCroppedAvatar] = useState('')
   const [croppedArea, setCroppedArea] = useState<Area>(CROPPED_AREA_VALUES)
 
-  const onZoomChange = useCallback((value: [number]) => {
+  const onZoomChange = (value: [number]) => {
     setZoom(...value)
-  }, [])
+  }
 
-  const onCropComplete = useCallback((_: Area, croppedAreaPixels: Area) => {
+  const onCropComplete = (_: Area, croppedAreaPixels: Area) => {
     setCroppedArea(croppedAreaPixels)
-  }, [])
+  }
 
   const saveCrop = useCallback(async () => {
     if (avatarToCrop.length === 0) return
@@ -46,43 +52,63 @@ export default function CropAvatar({ setShowDialog }: Props) {
   }, [croppedArea, avatarToCrop])
 
   const uploadAvatar = useCallback(async () => {
-    if (croppedAvatar.length === 0) return
-    setLoading(true)
+    if (selectedTree === null) return
 
-    try {
+    startTransition(async () => {
       const formData = new FormData()
+      const blob = await fetchBlobData(croppedAvatar)
+      formData.append('file', blob)
 
-      formData.append('file', await fetchBlobData(croppedAvatar))
+      const updatedAvatar = await updateAvatar(formData)
 
-      const response = await fetch('/api/upload-avatar', {
-        method: 'POST',
-        body: formData
-      })
+      if (updatedAvatar !== undefined) {
+        const avatar: string = updatedAvatar.eager[0].secure_url
 
-      if (!response.ok) {
-        throw new Error('Something happened uploading the image')
+        const response = await updateTree({
+          ...selectedTree,
+          avatar
+        })
+
+        if (response !== null) {
+          setSelectedTree(response)
+          localStorage.setItem('__SELECTED_TREE__', JSON.stringify(response))
+        } else {
+          const localTree = localStorage.getItem('__SELECTED_TREE__')
+
+          if (localTree === null) return
+
+          const tree = JSON.parse(localTree) as ExtendedTree
+
+          localStorage.setItem(
+            '__SELECTED_TREE__',
+            JSON.stringify({ ...tree, avatar })
+          )
+
+          setSelectedTree({ ...tree, avatar })
+        }
+
+        toast.success('Your avatar was updated!')
+        setAvatar(avatar)
+        setShowDialog(false)
+        setCroppedAvatar('')
+        setAvatarToCrop('')
+      } else {
+        toast.error('Something happened. Please try again!')
       }
+    })
+  }, [
+    croppedAvatar,
+    setAvatarToCrop,
+    setShowDialog,
+    setSelectedTree,
+    selectedTree,
+    setAvatar
+  ])
 
-      const data = await response.json()
-      const avatar = data.eager[0].secure_url
-
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
-      setAvatar(avatar)
-      setShowDialog(false)
-      toast.success('Your avatar was updated!')
-    } catch (error) {
-      toast.error('Something happened. Please try again!')
-    } finally {
-      setLoading(false)
-      setCroppedAvatar('')
-      setAvatarToCrop('')
-    }
-  }, [croppedAvatar, setAvatar, setAvatarToCrop, setShowDialog])
-
-  const deleteAvatar = useCallback(() => {
+  const deleteAvatar = () => {
     setCroppedAvatar('')
     setAvatarToCrop('')
-  }, [setCroppedAvatar, setAvatarToCrop])
+  }
 
   return (
     <section className='flex flex-col gap-y-3'>
@@ -134,8 +160,12 @@ export default function CropAvatar({ setShowDialog }: Props) {
             Crop
           </Button>
         ) : (
-          <Button variant='secondary' onClick={uploadAvatar} disabled={loading}>
-            {loading ? (
+          <Button
+            variant='secondary'
+            onClick={uploadAvatar}
+            disabled={isPending}
+          >
+            {isPending ? (
               <>
                 <LoaderCircle
                   className='mr-2 size-4 animate-spin'
