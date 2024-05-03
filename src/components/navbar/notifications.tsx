@@ -22,7 +22,7 @@ export default function Notifications() {
           <TooltipTrigger asChild>
             <PopoverTrigger className='relative'>
               <Dot
-                className='bg-lt-green absolute right-0.5 top-2 size-1.5 rounded-full'
+                className='absolute right-0.5 top-2 size-1.5 rounded-full bg-lt-green'
                 aria-hidden
               />
               <Bell className='size-5' aria-hidden />
@@ -66,7 +66,7 @@ export default function Notifications() {
               </div>
             </div>
             <Dot
-              className='bg-lt-green absolute right-3.5 top-3.5 size-1.5 rounded-full opacity-100 transition-opacity xl:group-hover:opacity-0'
+              className='absolute right-3.5 top-3.5 size-1.5 rounded-full bg-lt-green opacity-100 transition-opacity xl:group-hover:opacity-0'
               aria-hidden
             />
             <Button

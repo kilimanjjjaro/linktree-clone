@@ -15,8 +15,8 @@ export default function TreeUrl() {
           it as many times as you want.
         </HelpPopover>
       </div>
-      <div className='group relative flex h-10 items-center overflow-hidden rounded-full border border-lt-light-gray/50 ring-lt-white ring-offset-2 ring-offset-lt-gray has-[:focus-visible]:ring-2'>
-        <span className='flex h-full cursor-not-allowed select-none items-center border-r border-lt-light-gray px-3 text-sm text-lt-lightest-gray'>
+      <div className='group relative flex h-10 items-center overflow-hidden rounded-full border border-lt-light-gray/60 ring-lt-white ring-offset-2 ring-offset-lt-gray has-[:focus-visible]:ring-2'>
+        <span className='flex h-full cursor-not-allowed select-none items-center border-r border-lt-light-gray/60 px-3 text-sm text-lt-lightest-gray'>
           linktr.ee/
         </span>
         <Input

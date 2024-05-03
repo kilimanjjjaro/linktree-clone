@@ -110,7 +110,7 @@ export default function CropAvatar() {
 
   return (
     <section className='flex flex-col gap-y-3'>
-      <section className='relative aspect-square w-full overflow-hidden rounded-2xl bg-lt-dark-gray'>
+      <section className='relative aspect-square w-full overflow-hidden rounded-2xl border border-lt-light-gray bg-lt-light-gray/90'>
         {avatarToCrop.length > 0 && croppedAvatar.length === 0 && (
           <>
             <Cropper
@@ -138,7 +138,7 @@ export default function CropAvatar() {
           </>
         )}
         {croppedAvatar.length > 0 && (
-          <div className='relative size-full overflow-hidden rounded-full border border-lt-light-gray/50'>
+          <div className='relative size-full overflow-hidden rounded-full border border-lt-light-gray/60'>
             <Image
               className='absolute h-auto w-full object-cover object-center'
               src={croppedAvatar}

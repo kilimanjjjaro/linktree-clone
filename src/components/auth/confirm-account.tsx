@@ -64,7 +64,7 @@ export default function ConfirmAccount() {
     <div className='grid justify-items-center gap-y-3.5' ref={parent}>
       <span
         className={cn(
-          'rounded-full border border-lt-light-gray/50 bg-lt-gray transition-colors pt-px font-geist-mono leading-none font-light text-base flex w-36 h-12 justify-center items-center',
+          'rounded-full border border-lt-light-gray/60 bg-lt-gray transition-colors pt-px font-geist-mono leading-none font-light text-base flex w-36 h-12 justify-center items-center',
           success.length > 0 &&
             'border-green-800/30 bg-green-950/50 w-auto px-4',
           error.length > 0 && 'border-red-800/30 bg-red-950/50 w-auto px-4',

@@ -23,9 +23,9 @@ export default async function SignUpPage() {
         <CardContent className='grid gap-y-3'>
           <SignUpForm />
           <div className='flex items-center gap-x-2'>
-            <div className='h-px flex-1 bg-lt-light-gray/50' />
+            <div className='h-px flex-1 bg-lt-light-gray/60' />
             <h3 className='shrink-0 text-xs uppercase'>Or continue with</h3>
-            <div className='h-px flex-1 bg-lt-light-gray/50' />
+            <div className='h-px flex-1 bg-lt-light-gray/60' />
           </div>
           <div className='grid grid-cols-2 gap-x-2'>
             <GoogleButton />

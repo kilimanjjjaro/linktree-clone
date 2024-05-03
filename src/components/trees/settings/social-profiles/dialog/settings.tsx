@@ -58,9 +58,9 @@ export default function SocialProfileSettings() {
       <Label htmlFor='social-profile-input'>
         {selectedSocialProfile?.form.label}
       </Label>
-      <div className='flex h-10 items-center overflow-hidden rounded-full border border-lt-light-gray/50'>
+      <div className='flex h-10 items-center overflow-hidden rounded-full border border-lt-light-gray/60'>
         {selectedSocialProfile.form.disabledText.length > 0 && (
-          <span className='flex h-full cursor-not-allowed select-none items-center border-r border-lt-light-gray/50 px-3 text-sm text-lt-lightest-gray'>
+          <span className='flex h-full cursor-not-allowed select-none items-center border-r border-lt-light-gray/60 px-3 text-sm text-lt-lightest-gray'>
             {selectedSocialProfile?.form.disabledText}
           </span>
         )}
