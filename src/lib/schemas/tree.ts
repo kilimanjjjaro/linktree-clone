@@ -15,8 +15,8 @@ const LinkSchema = z.object({
   name: z
     .string()
     .trim()
-    .min(5, {
-      message: 'Minimum 5 chars'
+    .min(1, {
+      message: 'Required field'
     })
     .max(40, {
       message: 'Maximum 40 chars'
@@ -50,8 +50,8 @@ export const UpdateTreeSchema = z.object({
   name: z
     .string()
     .trim()
-    .min(5, {
-      message: 'Minimum 5 chars'
+    .min(1, {
+      message: 'Required field'
     })
     .max(40, {
       message: 'Maximum 40 chars'
@@ -61,8 +61,8 @@ export const UpdateTreeSchema = z.object({
   url: z.string().url().optional(),
   description: z
     .string()
-    .min(5, {
-      message: 'Minimum 5 chars'
+    .min(1, {
+      message: 'Required field'
     })
     .max(250, {
       message: 'Maximum 250 chars'
