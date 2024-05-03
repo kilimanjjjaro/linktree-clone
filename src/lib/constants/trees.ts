@@ -1,4 +1,5 @@
 import { type ExtendedTree } from '@/lib/types/trees'
+import { BASE_URL } from './globals'
 
 export const DEMO_TREE_VALUES: ExtendedTree = {
   id: 'demo',
@@ -6,32 +7,12 @@ export const DEMO_TREE_VALUES: ExtendedTree = {
   status: 0,
   name: 'Demostration example',
   slug: 'demostration-example',
-  url: '/#',
+  url: `${BASE_URL}/#`,
   description:
     'Full Stack Developer & UX/UI Designer with +6 years of work experience.',
-  avatar: '/images/default-tree-avatar.svg',
-  socialProfiles: [
-    {
-      id: 'demo',
-      treeId: 'demo',
-      type: 0,
-      url: '/#',
-      created_at: new Date(),
-      updated_at: new Date()
-    }
-  ],
-  links: [
-    {
-      id: 'demo',
-      treeId: 'demo',
-      name: 'Example link',
-      url: '/#',
-      featured: true,
-      backgroundImage: '',
-      created_at: new Date(),
-      updated_at: new Date()
-    }
-  ],
+  avatar: `${BASE_URL}/images/default-tree-avatar.svg`,
+  socialProfiles: [],
+  links: [],
   appearance: {
     background: {
       type: 0,
@@ -53,8 +34,6 @@ export const DEMO_TREE_VALUES: ExtendedTree = {
   created_at: new Date(),
   updated_at: new Date()
 }
-
-export const DEFAULT_TREE_AVATAR = '/images/default-tree-avatar.svg'
 
 export const ACCEPTED_FILE_TYPES = {
   'image/png': ['.png'],

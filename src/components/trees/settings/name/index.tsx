@@ -1,48 +1,65 @@
 'use client'
 
-import { useTransition } from 'react'
+import { useState, useTransition } from 'react'
 import { useDebouncedCallback } from 'use-debounce'
 import { LoaderCircle } from 'lucide-react'
 
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
+import { ErrorTooltip } from '@/components/ui/error-tooltip'
 import { HelpPopover } from '@/components/ui/help-popover'
 import { updateTree } from '@/lib/actions/trees/update-tree'
 import { useStore } from '@/lib/store/store'
+import { UpdateTreeSchema } from '@/lib/schemas/tree'
 import { cn } from '@/lib/utils'
+import { type ExtendedTree } from '@/lib/types/trees'
 
 export default function TreeName() {
   const setSelectedTree = useStore((state) => state.setSelectedTree)
   const selectedTree = useStore((state) => state.selectedTree)
   const [isPending, startTransition] = useTransition()
+  const [errors, setErrors] = useState<string[]>([])
 
-  const handleUpdate = useDebouncedCallback((treeName: string) => {
+  const updateName = useDebouncedCallback((name: string) => {
     if (selectedTree === null) return
 
+    const validatedFields = UpdateTreeSchema.safeParse({ name })
+
+    if (!validatedFields.success) {
+      const errors = validatedFields.error.errors.map((error) => error.message)
+      setErrors(errors)
+
+      return
+    }
+
     startTransition(async () => {
-      const response = await updateTree({
+      const updatedTree = await updateTree({
         ...selectedTree,
-        name: treeName
+        name
       })
 
-      if (response !== null) {
-        setSelectedTree(response)
-        localStorage.setItem('__SELECTED_TREE__', JSON.stringify(response))
+      if (updatedTree !== null) {
+        setSelectedTree(updatedTree)
+        localStorage.setItem('__SELECTED_TREE__', JSON.stringify(updatedTree))
       }
 
-      if (response === null) {
+      if (updatedTree === null) {
         const localTree = localStorage.getItem('__SELECTED_TREE__')
 
         if (localTree === null) return
 
-        const tree = JSON.parse(localTree)
+        const tree = JSON.parse(localTree) as ExtendedTree
 
         localStorage.setItem(
           '__SELECTED_TREE__',
-          JSON.stringify({ ...tree, name: treeName })
+          JSON.stringify({ ...tree, name })
         )
+
+        setSelectedTree({ ...tree, name })
       }
     })
+
+    setErrors([])
   }, 300)
 
   return (
@@ -61,16 +78,18 @@ export default function TreeName() {
           defaultValue={selectedTree?.name ?? ''}
           placeholder='Tree Demonstration'
           onChange={(event) => {
-            handleUpdate(event.target.value)
+            updateName(event.target.value)
           }}
+          aria-invalid={errors.length > 0}
         />
         <LoaderCircle
           className={cn(
-            'absolute right-3.5 size-4 transition-opacity animate-spin opacity-0',
+            'absolute right-3 size-4 transition-opacity animate-spin opacity-0',
             isPending && 'opacity-100'
           )}
           aria-hidden
         />
+        {errors.length > 0 && <ErrorTooltip errors={errors} />}
       </div>
     </section>
   )
