@@ -32,7 +32,7 @@ export default function SaveTreeDialog() {
         toast.success(success)
         setSelectedTree(data)
         localStorage.setItem('__SELECTED_TREE__', JSON.stringify(data))
-        setShowDialog(DIALOG.SAVE_TREE)
+        setShowDialog(DIALOG.HIDDEN)
       } else {
         toast.error(error)
       }

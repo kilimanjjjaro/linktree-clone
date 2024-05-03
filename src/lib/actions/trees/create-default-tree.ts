@@ -12,6 +12,7 @@ export async function createDefaultTree() {
 
   if (user?.id === undefined) {
     return {
+      data: null,
       error: 'You must log in to create new trees.',
       success: ''
     }
@@ -47,7 +48,7 @@ export async function createDefaultTree() {
   }
 
   try {
-    await db.tree.create({
+    const response = await db.tree.create({
       data,
       include: {
         links: true,
@@ -58,12 +59,14 @@ export async function createDefaultTree() {
     revalidatePath('/')
 
     return {
+      data: response,
       error: '',
       success: 'Task created.'
     }
   } catch (error) {
     console.log(error)
     return {
+      data: null,
       error: 'Something went wrong.',
       success: ''
     }

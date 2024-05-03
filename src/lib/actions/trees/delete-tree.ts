@@ -2,7 +2,7 @@
 
 import { revalidatePath } from 'next/cache'
 import db from '@/lib/database'
-import { getTrees } from '@/lib/services/get-trees'
+// import { getTrees } from '@/lib/services/get-trees'
 import { getCurrentUser } from '@/lib/services/get-current-user'
 
 export async function deleteTree(treeId: string) {
@@ -15,14 +15,14 @@ export async function deleteTree(treeId: string) {
     }
   }
 
-  const existingTrees = await getTrees()
+  // const existingTrees = await getTrees()
 
-  if (existingTrees.length <= 1) {
-    return {
-      error: 'You must have at least one tree in your account.',
-      success: ''
-    }
-  }
+  // if (existingTrees.length <= 1) {
+  //   return {
+  //     error: 'You must have at least one tree in your account.',
+  //     success: ''
+  //   }
+  // }
 
   try {
     await db.tree.delete({

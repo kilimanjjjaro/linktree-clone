@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useTransition } from 'react'
+import { useEffect, useState, useTransition } from 'react'
 import { useDebouncedCallback } from 'use-debounce'
 import { LoaderCircle } from 'lucide-react'
 
@@ -19,20 +19,29 @@ export default function TreeName() {
   const selectedTree = useStore((state) => state.selectedTree)
   const [isPending, startTransition] = useTransition()
   const [errors, setErrors] = useState<string[]>([])
+  const [treeName, setTreeName] = useState('')
 
-  const updateName = useDebouncedCallback((name: string) => {
+  const updateName = useDebouncedCallback(() => {
     if (selectedTree === null) return
 
-    const validatedFields = UpdateTreeSchema.safeParse({ name })
-
-    if (!validatedFields.success) {
-      const errors = validatedFields.error.errors.map((error) => error.message)
-      setErrors(errors)
-
-      return
-    }
-
     startTransition(async () => {
+      const validatedFields = UpdateTreeSchema.safeParse({ name: treeName })
+
+      if (!validatedFields.success) {
+        const errors = validatedFields.error.errors.map(
+          (error) => error.message
+        )
+        setErrors(errors)
+
+        return
+      } else {
+        setErrors([])
+      }
+
+      const { name } = validatedFields.data
+
+      if (name === undefined) return
+
       const updatedTree = await updateTree({
         ...selectedTree,
         name
@@ -50,17 +59,22 @@ export default function TreeName() {
 
         const tree = JSON.parse(localTree) as ExtendedTree
 
+        setSelectedTree({ ...tree, name })
         localStorage.setItem(
           '__SELECTED_TREE__',
           JSON.stringify({ ...tree, name })
         )
-
-        setSelectedTree({ ...tree, name })
       }
     })
-
-    setErrors([])
   }, 300)
+
+  useEffect(() => {
+    if (selectedTree === null) return
+
+    setTreeName(selectedTree.name)
+  }, [selectedTree])
+
+  const renderErrors = errors.length > 0 && !isPending
 
   return (
     <section className='flex flex-col gap-y-3 p-5'>
@@ -75,10 +89,11 @@ export default function TreeName() {
         <Input
           id='tree-name'
           type='text'
-          defaultValue={selectedTree?.name ?? ''}
+          value={treeName}
           placeholder='Tree Demonstration'
           onChange={(event) => {
-            updateName(event.target.value)
+            setTreeName(event.target.value)
+            updateName()
           }}
           aria-invalid={errors.length > 0}
         />
@@ -89,7 +104,7 @@ export default function TreeName() {
           )}
           aria-hidden
         />
-        {errors.length > 0 && <ErrorTooltip errors={errors} />}
+        {renderErrors && <ErrorTooltip errors={errors} />}
       </div>
     </section>
   )

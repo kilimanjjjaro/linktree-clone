@@ -13,9 +13,9 @@ export async function createTree(tree: ExtendedTree) {
 
   if (user?.id === undefined)
     return {
+      data: null,
       error: 'You must log in to create new trees.',
-      success: '',
-      data: null
+      success: ''
     }
 
   const data: Prisma.TreeUncheckedCreateInput = {
@@ -59,16 +59,16 @@ export async function createTree(tree: ExtendedTree) {
     revalidatePath('/')
 
     return {
+      data: response,
       error: '',
-      success: 'Your tree was saved.',
-      data: response
+      success: 'Your tree was saved.'
     }
   } catch (error) {
     console.log(error)
     return {
+      data: null,
       error: 'Something went wrong.',
-      success: '',
-      data: null
+      success: ''
     }
   }
 }

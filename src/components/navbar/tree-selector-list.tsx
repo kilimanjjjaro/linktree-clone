@@ -36,7 +36,16 @@ export default function TreeSelectorList({ trees, closePopover }: Props) {
       const response = await deleteTree(treeId)
 
       if (response.error.length > 0) toast.error(response.error)
-      if (response.success.length > 0) toast.success(response.success)
+
+      if (response.success.length > 0) {
+        const filteredTrees = trees.filter((tree) => tree.id !== treeId)
+        const filteredTree =
+          filteredTrees.length > 0 ? filteredTrees[0] : DEMO_TREE_VALUES
+
+        setSelectedTree(filteredTree)
+        localStorage.setItem('__SELECTED_TREE__', JSON.stringify(filteredTree))
+        toast.success(response.success)
+      }
     })
   }
 

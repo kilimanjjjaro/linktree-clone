@@ -13,6 +13,7 @@ import { type ExtendedTree } from '@/lib/types/trees'
 
 export default function NewTree({ isLogged }: { isLogged: boolean }) {
   const setShowDialog = useStore((state) => state.setShowDialog)
+  const setSelectedTree = useStore((state) => state.setSelectedTree)
   const [isPending, startTransition] = useTransition()
 
   const handleCreate = async () => {
@@ -30,8 +31,13 @@ export default function NewTree({ isLogged }: { isLogged: boolean }) {
     startTransition(async () => {
       const response = await createDefaultTree()
 
-      if (response.error.length > 0) toast.error(response.error)
-      if (response.success.length > 0) toast.success(response.success)
+      if (response.data === null) {
+        toast.error(response.error)
+      } else {
+        setSelectedTree(response.data)
+        localStorage.setItem('__SELECTED_TREE__', JSON.stringify(response.data))
+        toast.success(response.success)
+      }
     })
   }
 
