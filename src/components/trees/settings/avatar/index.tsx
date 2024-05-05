@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useTransition } from 'react'
+import { useTransition } from 'react'
 import Image from 'next/image'
 import { toast } from 'sonner'
 
@@ -56,23 +56,17 @@ export default function TreeAvatar() {
     // TODO: Delete avatar from cloudinary
   }
 
-  useEffect(() => {
-    if (selectedTree === null) return
-
-    setAvatar(selectedTree.avatar)
-  }, [selectedTree, setAvatar, avatar])
-
   return (
     <section className='p-5'>
       <Label htmlFor='tree-avatar'>Profile picture</Label>
       <div className='mt-2 flex items-center gap-x-5'>
-        <div className='relative size-20 overflow-hidden rounded-full border border-lt-light-gray/60'>
+        <div className='relative flex size-20 items-center justify-center overflow-hidden rounded-full border border-lt-light-gray/60'>
           <Image
-            className='absolute h-auto w-full object-cover object-center'
+            className='absolute size-full object-cover object-center'
             src={avatar}
-            alt='Gonzalo'
-            fill
-            sizes='(max-width: 768px) 100vw, 33vw'
+            alt={`${selectedTree?.name ?? ''}'s avatar`}
+            width={100}
+            height={100}
           />
         </div>
         <div className='grid flex-1 grid-cols-2 gap-x-3'>

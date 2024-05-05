@@ -14,7 +14,7 @@ import {
 } from '@/components/ui/tooltip'
 import { Separator } from '../ui/separator'
 
-export default function Notifications() {
+export default function NotificationsTab() {
   return (
     <Popover>
       <TooltipProvider delayDuration={0}>

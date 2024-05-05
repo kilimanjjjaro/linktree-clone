@@ -2,8 +2,8 @@ import { ChevronsUpDown } from 'lucide-react'
 
 import { Button } from '@/components/ui/button'
 import { Skeleton } from '@/components/ui/skeleton'
+import { PopoverTrigger } from '@/components/ui/popover'
 import { useStore } from '@/lib/store/store'
-import { PopoverTrigger } from '../ui/popover'
 
 export default function TreeSelectorButton() {
   const selectedTree = useStore((state) => state.selectedTree)

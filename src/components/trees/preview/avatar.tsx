@@ -9,11 +9,12 @@ export default function Avatar() {
   return (
     <div className='relative size-28 overflow-hidden rounded-full border border-lt-light-gray/60'>
       <Image
-        className='absolute h-auto w-full object-cover object-center'
+        className='absolute size-full object-cover object-center'
         src={avatar}
         alt='Gonzalo'
-        fill
-        sizes='(max-width: 768px) 100vw, 33vw'
+        width={150}
+        height={150}
+        priority
       />
     </div>
   )

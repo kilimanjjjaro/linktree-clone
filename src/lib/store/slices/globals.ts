@@ -8,5 +8,9 @@ export const createGlobalsSlice: StateCreator<GlobalsSliceInterface> = (
   showDialog: DIALOG.HIDDEN,
   setShowDialog: (showDialog) => {
     set(() => ({ showDialog }))
+  },
+  savingTree: false,
+  setSavingTree: (savingTree) => {
+    set(() => ({ savingTree }))
   }
 })

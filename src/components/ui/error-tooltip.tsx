@@ -10,7 +10,9 @@ export const ErrorTooltip = ({ errors }: { errors: string[] }) => {
   return (
     <TooltipProvider delayDuration={0}>
       <Tooltip>
-        <TooltipTrigger className='absolute right-3'>
+        <TooltipTrigger
+          className={`absolute right-3.5 opacity-0 transition-opacity ${errors.length > 0 && 'opacity-100'}`}
+        >
           <Ban className='size-3.5 text-red-400' aria-hidden />
           <span className='sr-only'>Show errors</span>
         </TooltipTrigger>

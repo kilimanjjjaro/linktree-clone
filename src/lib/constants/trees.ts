@@ -10,7 +10,8 @@ export const DEMO_TREE_VALUES: ExtendedTree = {
   url: `${BASE_URL}/#`,
   description:
     'Full Stack Developer & UX/UI Designer with +6 years of work experience.',
-  avatar: `${BASE_URL}/images/default-tree-avatar.svg`,
+  avatar:
+    'https://res.cloudinary.com/dsvcixsbp/image/upload/c_scale,h_150/v1714920612/linktree/default-tree-avatar_mo72xw.jpg',
   socialProfiles: [],
   links: [],
   appearance: {
