@@ -32,7 +32,7 @@ export default function NewTree({ isLogged }: { isLogged: boolean }) {
       const response = await createDefaultTree()
 
       if (response.data === null) {
-        toast.error(response.error)
+        toast.warning(response.error)
       } else {
         setSelectedTree(response.data)
         localStorage.setItem('__SELECTED_TREE__', JSON.stringify(response.data))

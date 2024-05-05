@@ -12,11 +12,11 @@ const Toaster = ({ ...props }: ToasterProps) => {
       toastOptions={{
         classNames: {
           toast:
-            'rounded-2xl backdrop-blur-sm text-lt-white justify-center text-center has-[button]:justify-start has-[button]:text-left',
-          default: 'border-lt-light-gray/[.2] bg-lt-light-gray/[.3]',
-          success: '!border-green-900/[.1] !bg-green-950/[.4]',
-          error: '!border-red-900/[.1] !bg-red-950/[.4]',
-          warning: '!border-yellow-300/[.1] !bg-yellow-400/[.4]',
+            'rounded-2xl !bg-lt-gray text-lt-white border !border-lt-light-gray/60 shadow-none justify-center text-center has-[button]:justify-start has-[button]:text-left',
+          default: 'border-lt-black/[.2] bg-lt-gray/20',
+          success: '!text-green-200',
+          error: '!text-red-200',
+          warning: '!text-yellow-200',
           description: 'text-lt-lightest-gray text-balance',
           cancelButton:
             '!bg-transparent xl:hover:!bg-lt-light-gray !transition',
