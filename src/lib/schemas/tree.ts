@@ -75,3 +75,10 @@ export const UpdateTreeSchema = z.object({
   created_at: z.string().datetime().optional(),
   updated_at: z.string().datetime().optional()
 })
+
+export const AddLinkSchema = z.object({
+  name: z.string().min(5),
+  url: z.string().url(),
+  featured: z.coerce.boolean(),
+  image: z.string().url().nullable()
+})

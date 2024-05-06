@@ -3,7 +3,7 @@
 import { AuthError } from 'next-auth'
 import { signIn } from '@/lib/auth'
 import { LogInSchema } from '@/lib/schemas/auth'
-import { generateConfirmationToken } from '@/lib/services/generate-confirmation-token'
+import { generateConfirmationToken } from '@/lib/utils/generate-confirmation-token'
 import { getUserByEmail } from '@/lib/services/get-user-by-email'
 import { sendConfirmationEmail } from '@/lib/services/send-confirmation-email'
 

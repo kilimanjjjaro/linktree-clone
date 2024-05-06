@@ -89,13 +89,13 @@ model TreeSocialProfile {
 }
 
 model TreeLink {
-  id              String  @id @default(cuid())
-  name            String
-  url             String
-  featured        Boolean
-  backgroundImage String?
-  Tree            Tree    @relation(fields: [treeId], references: [id], onDelete: Cascade)
-  treeId          String
+  id       String  @id @default(cuid())
+  name     String
+  url      String
+  featured Boolean
+  image    String?
+  Tree     Tree    @relation(fields: [treeId], references: [id], onDelete: Cascade)
+  treeId   String
 
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt

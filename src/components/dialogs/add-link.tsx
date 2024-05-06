@@ -75,7 +75,7 @@ export default function AddLinkDialog() {
                 </div>
                 <Switch
                   id='featured-link'
-                  name='featured-link'
+                  name='featured'
                   checked={featuredLink}
                   onCheckedChange={setFeaturedLink}
                 />

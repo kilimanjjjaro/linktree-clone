@@ -3,7 +3,7 @@
 import bcrypt from 'bcryptjs'
 import { SignUpSchema } from '@/lib/schemas/auth'
 import db from '@/lib/database'
-import { generateConfirmationToken } from '@/lib/services/generate-confirmation-token'
+import { generateConfirmationToken } from '@/lib/utils/generate-confirmation-token'
 import { sendConfirmationEmail } from '@/lib/services/send-confirmation-email'
 
 export async function signUpWithEmail(prevState: any, formData: FormData) {

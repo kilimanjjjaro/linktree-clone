@@ -1,41 +1,53 @@
 'use server'
 
-import { z } from 'zod'
+import { revalidatePath } from 'next/cache'
 
-const schema = z.object({
-  name: z.string().min(5),
-  url: z.string().url(),
-  featuredLink: z.coerce.boolean()
-})
+import { getCurrentUser } from '@/lib/services/get-current-user'
+import { AddLinkSchema } from '@/lib/schemas/tree'
+import { getOgImage } from '@/lib/utils/get-og-image'
 
 export async function saveNewLink(prevState: any, payload: FormData) {
-  let linkImage = ''
+  let backgroundImage = ''
 
-  const { name, url, featuredLink } = schema.parse({
+  const user = await getCurrentUser()
+
+  if (user === null) {
+    return {
+      error: true,
+      success: false
+    }
+  }
+
+  const validatedFields = AddLinkSchema.safeParse({
     name: payload.get('name'),
     url: payload.get('url'),
-    featuredLink: payload.get('featured-link')
+    featured: payload.get('featured'),
+    image: payload.get('image')
   })
 
-  if (featuredLink) {
-    const response = await fetch('/api/get-link-image', {
-      method: 'POST',
-      body: url
-    })
-
-    const data = await response.json()
-
-    linkImage = data.image
+  if (!validatedFields.success) {
+    return {
+      error: 'Invalid fields.',
+      success: ''
+    }
   }
+
+  const { name, url, featured, image } = validatedFields.data
+
+  if (featured && image === null) backgroundImage = await getOgImage(url)
+
+  if (featured && image !== null) backgroundImage = image
 
   const newLink = {
     name,
     url,
-    featuredLink,
-    image: linkImage
+    featured,
+    image: backgroundImage
   }
 
-  console.log('NewLinkAction', newLink)
+  console.log('NEW_LINK: ', newLink)
+
+  revalidatePath('/')
 
   return { success: true, error: false }
 }

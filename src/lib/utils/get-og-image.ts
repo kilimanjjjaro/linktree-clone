@@ -1,7 +1,4 @@
-export async function POST(request: Request) {
-  const formData = await request.formData()
-  const url = formData.get('url') as string
-
+export async function getOgImage(url: string) {
   try {
     const response = await fetch(url)
     const html = await response.text()
@@ -23,9 +20,9 @@ export async function POST(request: Request) {
       }
     }
 
-    return Response.json({ image })
+    return image
   } catch (error) {
-    console.error(error)
-    return Response.json(null)
+    console.error('OG_IMAGE: ', error)
+    return ''
   }
 }
