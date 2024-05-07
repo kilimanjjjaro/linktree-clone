@@ -1,11 +1,12 @@
 'use server'
 
-import { revalidatePath } from 'next/cache'
+import { revalidateTag } from 'next/cache'
 import { Prisma } from '@prisma/client'
+import slugify from '@sindresorhus/slugify'
 
 import db from '@/lib/database'
 import { getCurrentUser } from '@/lib/services/get-current-user'
-import { DEMO_TREE_VALUES } from '@/lib/constants/trees'
+import { DEMO_TREE_VALUES, TREE_NAMES } from '@/lib/constants/trees'
 
 export async function createDefaultTree() {
   const user = await getCurrentUser()
@@ -18,11 +19,14 @@ export async function createDefaultTree() {
     }
   }
 
+  const randomIndex = Math.floor(Math.random() * TREE_NAMES.length)
+  const randomName = TREE_NAMES[randomIndex]
+
   const data: Prisma.TreeUncheckedCreateInput = {
     authorId: user.id,
     status: DEMO_TREE_VALUES.status,
-    name: DEMO_TREE_VALUES.name,
-    slug: DEMO_TREE_VALUES.slug,
+    name: randomName,
+    slug: slugify(randomName),
     url: DEMO_TREE_VALUES.url,
     description: DEMO_TREE_VALUES.description,
     avatar: DEMO_TREE_VALUES.avatar,
@@ -56,7 +60,8 @@ export async function createDefaultTree() {
       }
     })
 
-    revalidatePath('/')
+    revalidateTag('trees')
+    revalidateTag('tree')
 
     return {
       data: response,

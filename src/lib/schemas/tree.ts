@@ -77,6 +77,7 @@ export const UpdateTreeSchema = z.object({
 })
 
 export const AddLinkSchema = z.object({
+  treeId: z.string().min(1),
   name: z.string().min(5),
   url: z.string().url(),
   featured: z.coerce.boolean(),

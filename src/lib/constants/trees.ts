@@ -36,6 +36,19 @@ export const DEMO_TREE_VALUES: ExtendedTree = {
   updated_at: new Date()
 }
 
+export const TREE_NAMES = [
+  'Obscured by Clouds',
+  "When You're In",
+  'Burning Bridges',
+  "The Gold It's in the...",
+  "Wot's... Uh the Deal?",
+  'Mudmen',
+  "Childhood's End",
+  'Free Four',
+  'Stay',
+  'Absolutely Curtains'
+]
+
 export const ACCEPTED_FILE_TYPES = {
   'image/png': ['.png'],
   'image/jpeg': ['.jpeg']

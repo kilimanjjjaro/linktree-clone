@@ -1,46 +1,57 @@
 'use client'
 
 import { useEffect, useState } from 'react'
+import { usePathname, useRouter, useSearchParams } from 'next/navigation'
 
 import TreeSelectorButton from '@/components/navbar/tree-selector-button'
 import TreeSelectorList from '@/components/navbar/tree-selector-list'
 import { Popover } from '@/components/ui/popover'
-
-import { useStore } from '@/lib/store/store'
 import { DEMO_TREE_VALUES } from '@/lib/constants/trees'
 import { type ExtendedTree } from '@/lib/types/trees'
 
-export default function TreeSelector({ trees }: { trees: ExtendedTree[] }) {
-  const setSelectedTree = useStore((state) => state.setSelectedTree)
+interface Props {
+  trees: ExtendedTree[]
+  tree: ExtendedTree
+}
+
+export default function TreeSelector({ trees, tree }: Props) {
   const [open, setOpen] = useState(false)
+  const searchParams = useSearchParams()
+  const pathname = usePathname()
+  const router = useRouter()
+  const slug = searchParams.get('slug')
 
   useEffect(() => {
-    const localTree = localStorage.getItem('__SELECTED_TREE__')
+    const params = new URLSearchParams(searchParams.toString())
 
-    if (localTree != null) {
-      const parsedLocalTree = JSON.parse(localTree) as ExtendedTree
-      setSelectedTree(parsedLocalTree)
+    if (slug === null && trees.length > 0) {
+      params.set('slug', trees[0].slug)
+      router.replace(`${pathname}?slug=${trees[0].slug}`)
     }
 
-    if (localTree == null && trees.length === 0) {
-      setSelectedTree(DEMO_TREE_VALUES)
-
-      localStorage.setItem(
-        '__SELECTED_TREE__',
-        JSON.stringify(DEMO_TREE_VALUES)
-      )
+    if (slug === null && trees.length === 0) {
+      params.set('slug', DEMO_TREE_VALUES.slug)
+      router.replace(`${pathname}?slug=${DEMO_TREE_VALUES.slug}`)
     }
 
-    if (localTree == null && trees.length > 0) {
-      setSelectedTree(trees[0])
+    if (slug !== null && trees.length > 0) {
+      const existingTree = trees.some((tree) => tree.slug === slug)
 
-      localStorage.setItem('__SELECTED_TREE__', JSON.stringify(trees[0]))
+      if (!existingTree) {
+        params.set('slug', trees[0].slug)
+        router.replace(`${pathname}?slug=${trees[0].slug}`)
+      }
     }
-  }, [trees, setSelectedTree])
+
+    if (slug !== null && trees.length === 0) {
+      params.set('slug', DEMO_TREE_VALUES.slug)
+      router.replace(`${pathname}?slug=${DEMO_TREE_VALUES.slug}`)
+    }
+  }, [trees, slug, pathname, searchParams, router])
 
   return (
     <Popover open={open} onOpenChange={setOpen}>
-      <TreeSelectorButton />
+      <TreeSelectorButton treeName={tree.name} />
       <TreeSelectorList
         trees={trees}
         closePopover={() => {
