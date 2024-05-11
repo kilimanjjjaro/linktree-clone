@@ -3,9 +3,9 @@ import Navbar from '@/components/navbar'
 import TreeAppearance from '@/components/trees/appearance'
 import TreePreview from '@/components/trees/preview'
 import TreeSettings from '@/components/trees/settings'
-import { DEMO_TREE_VALUES } from '@/lib/constants/trees'
 import { getCurrentUser } from '@/lib/services/get-current-user'
 import { getCachedTree } from '@/lib/services/get-cached-tree'
+import { type ExtendedTree } from '@/lib/types/trees'
 
 interface Props {
   searchParams: { slug: string | undefined }
@@ -14,7 +14,7 @@ interface Props {
 export default async function Home({ searchParams }: Props) {
   const user = await getCurrentUser()
   const slug = searchParams.slug
-  let tree = DEMO_TREE_VALUES
+  let tree: ExtendedTree | null = null
 
   if (slug !== undefined && slug.length > 0) {
     const cachedTree = await getCachedTree(slug, user?.id)

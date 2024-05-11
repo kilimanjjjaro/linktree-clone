@@ -7,6 +7,7 @@ interface Props {
 }
 
 export default function SocialProfiles({ profiles }: Props) {
+  console.log(profiles)
   return (
     <ul className='mt-4 flex flex-wrap items-center justify-center gap-3 px-6'>
       {profiles.map((profile) => (

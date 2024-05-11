@@ -11,7 +11,7 @@ import { type ExtendedTree } from '@/lib/types/trees'
 
 interface Props {
   trees: ExtendedTree[]
-  tree: ExtendedTree
+  tree: ExtendedTree | null
 }
 
 export default function TreeSelector({ trees, tree }: Props) {
@@ -51,7 +51,7 @@ export default function TreeSelector({ trees, tree }: Props) {
 
   return (
     <Popover open={open} onOpenChange={setOpen}>
-      <TreeSelectorButton treeName={tree.name} />
+      <TreeSelectorButton treeName={tree?.name} />
       <TreeSelectorList
         trees={trees}
         closePopover={() => {

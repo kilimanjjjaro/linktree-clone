@@ -8,6 +8,7 @@ interface Props {
 }
 
 export default function TreeSelectorButton({ treeName }: Props) {
+  console.log('treeName', treeName)
   return (
     <PopoverTrigger asChild>
       <Button

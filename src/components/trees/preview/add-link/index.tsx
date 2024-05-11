@@ -21,7 +21,7 @@ import { getOgImage } from '@/lib/utils/get-og-image'
 import { AddLinkSchema } from '@/lib/schemas/tree'
 
 interface Props {
-  treeId: string
+  treeId: string | undefined
   isLogged: boolean
 }
 
@@ -30,6 +30,8 @@ export default function AddLink({ treeId, isLogged }: Props) {
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
+
+    if (treeId === undefined) return
 
     const formData = new FormData(event.currentTarget)
 
