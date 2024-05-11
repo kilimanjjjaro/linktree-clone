@@ -2,16 +2,17 @@
 
 import { useEffect, useState } from 'react'
 import { usePathname, useRouter, useSearchParams } from 'next/navigation'
+import { ChevronsUpDown } from 'lucide-react'
 
-import TreeSelectorButton from '@/components/navbar/tree-selector-button'
 import TreeSelectorList from '@/components/navbar/tree-selector-list'
-import { Popover } from '@/components/ui/popover'
+import { Button } from '@/components/ui/button'
+import { Popover, PopoverTrigger } from '@/components/ui/popover'
 import { DEMO_TREE_VALUES } from '@/lib/constants/trees'
 import { type ExtendedTree } from '@/lib/types/trees'
 
 interface Props {
   trees: ExtendedTree[]
-  tree: ExtendedTree | null
+  tree: ExtendedTree
 }
 
 export default function TreeSelector({ trees, tree }: Props) {
@@ -23,18 +24,20 @@ export default function TreeSelector({ trees, tree }: Props) {
 
   useEffect(() => {
     const params = new URLSearchParams(searchParams.toString())
+    const hasTrees = trees.length > 0
+    const hasSlug = slug !== null && slug.length > 0
 
-    if (slug === null && trees.length > 0) {
+    if (!hasSlug && hasTrees) {
       params.set('slug', trees[0].slug)
       router.replace(`${pathname}?slug=${trees[0].slug}`)
     }
 
-    if (slug === null && trees.length === 0) {
+    if (!hasSlug && !hasTrees) {
       params.set('slug', DEMO_TREE_VALUES.slug)
       router.replace(`${pathname}?slug=${DEMO_TREE_VALUES.slug}`)
     }
 
-    if (slug !== null && trees.length > 0) {
+    if (hasSlug && hasTrees) {
       const existingTree = trees.some((tree) => tree.slug === slug)
 
       if (!existingTree) {
@@ -43,7 +46,7 @@ export default function TreeSelector({ trees, tree }: Props) {
       }
     }
 
-    if (slug !== null && trees.length === 0) {
+    if (hasSlug && !hasTrees) {
       params.set('slug', DEMO_TREE_VALUES.slug)
       router.replace(`${pathname}?slug=${DEMO_TREE_VALUES.slug}`)
     }
@@ -51,7 +54,16 @@ export default function TreeSelector({ trees, tree }: Props) {
 
   return (
     <Popover open={open} onOpenChange={setOpen}>
-      <TreeSelectorButton treeName={tree?.name} />
+      <PopoverTrigger asChild>
+        <Button
+          variant='ghost'
+          role='combobox'
+          className='h-full p-0 text-xl font-normal xl:hover:bg-transparent xl:hover:text-lt-lightest-gray'
+        >
+          <span className='max-w-60 truncate text-left'>{tree.name}</span>
+          <ChevronsUpDown className='size-4 shrink-0' aria-hidden />
+        </Button>
+      </PopoverTrigger>
       <TreeSelectorList
         trees={trees}
         closePopover={() => {

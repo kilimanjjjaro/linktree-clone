@@ -14,7 +14,7 @@ import { getCurrentUser } from '@/lib/services/get-current-user'
 import { getCachedTrees } from '@/lib/services/get-cached-trees'
 import { type ExtendedTree } from '@/lib/types/trees'
 
-export default async function Navbar({ tree }: { tree: ExtendedTree | null }) {
+export default async function Navbar({ tree }: { tree: ExtendedTree }) {
   const user = await getCurrentUser()
   const trees = await getCachedTrees(user?.id)
 
