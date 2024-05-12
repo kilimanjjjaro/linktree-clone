@@ -1,7 +1,9 @@
+'use client'
+
 import { useTransition } from 'react'
-import { usePathname, useRouter, useSearchParams } from 'next/navigation'
-import { toast } from 'sonner'
+import { usePathname, useRouter } from 'next/navigation'
 import { LoaderCircle, X } from 'lucide-react'
+import { toast } from 'sonner'
 
 import {
   Command,
@@ -18,20 +20,19 @@ import { DEMO_TREE_VALUES } from '@/lib/constants/trees'
 import { type ExtendedTree } from '@/lib/types/trees'
 
 interface Props {
+  slug: string | undefined
   trees: ExtendedTree[]
-  closePopover: () => void
 }
 
-export default function TreeSelectorList({ trees, closePopover }: Props) {
+export default function TreeSelectorList({ slug, trees }: Props) {
   const [isPending, startTransition] = useTransition()
-  const searchParams = useSearchParams()
-  const slug = searchParams.get('slug')
   const pathname = usePathname()
   const router = useRouter()
-  const params = new URLSearchParams()
 
   const handleDelete = async (treeId: string) => {
     if (trees.length === 0) return
+
+    const params = new URLSearchParams()
 
     startTransition(async () => {
       const response = await deleteTree(treeId)
@@ -43,10 +44,14 @@ export default function TreeSelectorList({ trees, closePopover }: Props) {
 
         if (rest.length === 0) {
           params.set('slug', DEMO_TREE_VALUES.slug)
-          router.replace(`${pathname}?slug=${DEMO_TREE_VALUES.slug}`)
+          router.replace(`${pathname}?slug=${DEMO_TREE_VALUES.slug}`, {
+            scroll: false
+          })
         } else {
           params.set('slug', rest[0].slug)
-          router.replace(`${pathname}?slug=${rest[0].slug}`)
+          router.replace(`${pathname}?slug=${rest[0].slug}`, {
+            scroll: false
+          })
         }
 
         toast.success(response.success)
@@ -55,10 +60,11 @@ export default function TreeSelectorList({ trees, closePopover }: Props) {
   }
 
   const handleSelect = (slug: string) => {
+    const params = new URLSearchParams()
     params.set('slug', slug)
-    router.replace(`${pathname}?slug=${slug}`)
-
-    closePopover()
+    router.replace(`${pathname}?slug=${slug}`, {
+      scroll: false
+    })
   }
 
   return (

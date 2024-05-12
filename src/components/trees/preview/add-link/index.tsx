@@ -33,6 +33,8 @@ export default function AddLink({ treeId, isLogged }: Props) {
 
     if (treeId === undefined) return
 
+    // CHECK IF ARE NOT A DEMO TREE
+
     const formData = new FormData(event.currentTarget)
 
     const validatedFields = AddLinkSchema.safeParse({

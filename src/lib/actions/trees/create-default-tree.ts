@@ -1,6 +1,6 @@
 'use server'
 
-import { revalidateTag } from 'next/cache'
+import { revalidatePath } from 'next/cache'
 import { Prisma } from '@prisma/client'
 import slugify from '@sindresorhus/slugify'
 
@@ -60,8 +60,7 @@ export async function createDefaultTree() {
       }
     })
 
-    revalidateTag('trees')
-    revalidateTag('tree')
+    revalidatePath('/')
 
     return {
       data: response,

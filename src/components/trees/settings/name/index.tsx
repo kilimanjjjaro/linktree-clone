@@ -12,15 +12,12 @@ import { useStore } from '@/lib/store/store'
 import { UpdateTreeSchema } from '@/lib/schemas/tree'
 import { type ExtendedTree } from '@/lib/types/trees'
 
-export default function TreeName() {
+export default function TreeName({ tree }: { tree: ExtendedTree }) {
   const setSavingTree = useStore((state) => state.setSavingTree)
-  const setSelectedTree = useStore((state) => state.setSelectedTree)
-  const selectedTree = useStore((state) => state.selectedTree)
   const [errors, setErrors] = useState<string[]>([])
+  const [treeName, setTreeName] = useState(tree.name)
 
-  const handleChange = useDebouncedCallback(async (treeName: string) => {
-    if (selectedTree === null) return
-
+  const updateName = useDebouncedCallback(async () => {
     const validatedFields = UpdateTreeSchema.safeParse({
       name: treeName
     })
@@ -40,27 +37,10 @@ export default function TreeName() {
 
     if (name === undefined) return
 
-    const updatedTree = await updateTree({
-      ...selectedTree,
+    await updateTree({
+      ...tree,
       name
     })
-
-    if (updatedTree !== null) {
-      setSelectedTree(updatedTree)
-      localStorage.setItem('__SELECTED_TREE__', JSON.stringify(updatedTree))
-    } else {
-      const localTree = localStorage.getItem('__SELECTED_TREE__')
-
-      if (localTree === null) return
-
-      const tree = JSON.parse(localTree) as ExtendedTree
-
-      setSelectedTree({ ...tree, name })
-      localStorage.setItem(
-        '__SELECTED_TREE__',
-        JSON.stringify({ ...tree, name })
-      )
-    }
 
     setSavingTree(false)
   }, 300)
@@ -79,11 +59,12 @@ export default function TreeName() {
           id='tree-name'
           className='peer'
           type='text'
-          defaultValue={selectedTree?.name}
+          value={treeName}
           placeholder='Tree Demonstration'
           aria-invalid={errors.length > 0}
           onChange={async (event) => {
-            await handleChange(event.target.value)
+            setTreeName(event.target.value)
+            await updateName()
           }}
         />
         <ErrorTooltip errors={errors} />

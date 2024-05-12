@@ -6,11 +6,18 @@ import FeaturedLink from '@/components/trees/preview/link/featured-link'
 import TextLink from '@/components/trees/preview/link/text-link'
 import AddLink from '@/components/trees/preview/add-link'
 import { getCurrentUser } from '@/lib/services/get-current-user'
-import { type ExtendedTree } from '@/lib/types/trees'
-import { Skeleton } from '@/components/ui/skeleton'
+import { getCachedTree } from '@/lib/services/get-cached-tree'
+import { DEMO_TREE_VALUES } from '@/lib/constants/trees'
 
-export default function TreePreview({ tree }: { tree: ExtendedTree | null }) {
-  const user = getCurrentUser()
+interface Props {
+  slug: string | undefined
+}
+
+export default async function TreePreview({ slug }: Props) {
+  const user = await getCurrentUser()
+  let tree = await getCachedTree(slug, user?.id)
+
+  if (tree === null) tree = DEMO_TREE_VALUES
 
   const hasLinks = tree !== null && tree.links.length > 0
   const hasSocialProfiles = tree !== null && tree.socialProfiles.length > 0
@@ -21,56 +28,28 @@ export default function TreePreview({ tree }: { tree: ExtendedTree | null }) {
         <DeviceOverlay />
         <div className='relative flex h-[95%] w-[91%] flex-col gap-y-6 overflow-hidden px-5'>
           <header className='flex flex-col items-center pt-[20%]'>
-            {tree === null ? (
-              <Skeleton className='size-28 rounded-full' />
-            ) : (
-              <div className='relative size-28 overflow-hidden rounded-full border border-lt-light-gray/60'>
-                <Image
-                  className='absolute size-full object-cover object-center'
-                  src={tree.avatar}
-                  alt='Gonzalo'
-                  width={150}
-                  height={150}
-                  priority
-                />
-              </div>
-            )}
+            <div className='relative size-28 overflow-hidden rounded-full border border-lt-light-gray/60'>
+              <Image
+                className='absolute size-full object-cover object-center'
+                src={tree.avatar}
+                alt={`${tree.name}'s avatar`}
+                width={150}
+                height={150}
+                priority
+              />
+            </div>
             <h1 className='mt-5 text-center text-3xl font-semibold leading-none'>
-              {tree === null ? (
-                <Skeleton className='h-8 w-36 rounded-full' />
-              ) : (
-                tree.name
-              )}
+              {tree.name}
             </h1>
             <p className='mt-3 text-balance text-center text-sm text-zinc-400'>
-              {tree === null ? (
-                <span className='grid justify-items-center gap-y-1'>
-                  <Skeleton className='h-3 w-56 rounded-full' />
-                  <Skeleton className='h-3 w-48 rounded-full' />
-                </span>
-              ) : (
-                tree.description
-              )}
+              {tree.description}
             </p>
-            {!hasSocialProfiles ? (
-              <div className='mt-4 flex flex-wrap items-center justify-center gap-3 px-6'>
-                <Skeleton className='size-7 rounded-full' />
-                <Skeleton className='size-7 rounded-full' />
-                <Skeleton className='size-7 rounded-full' />
-                <Skeleton className='size-7 rounded-full' />
-              </div>
-            ) : (
+            {hasSocialProfiles && (
               <SocialProfiles profiles={tree.socialProfiles} />
             )}
           </header>
           <main className='grid grid-cols-1 gap-y-5'>
-            {/* Puede que la lista de link necesite ser abstraida */}
-            {!hasLinks ? (
-              <>
-                <Skeleton className='aspect-video h-full rounded-2xl' />
-                <Skeleton className='h-14 rounded-2xl' />
-              </>
-            ) : (
+            {hasLinks && (
               <>
                 {tree.links.map((link) => (
                   <div key={link.id} className='relative'>
@@ -84,7 +63,7 @@ export default function TreePreview({ tree }: { tree: ExtendedTree | null }) {
               </>
             )}
           </main>
-          <AddLink treeId={tree?.id} isLogged={user !== null ?? false} />
+          <AddLink treeId={tree.id} isLogged={user !== null ?? false} />
         </div>
       </div>
     </section>

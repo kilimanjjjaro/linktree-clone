@@ -7,6 +7,9 @@ export async function getTrees(authorId: string) {
       include: {
         links: true,
         socialProfiles: true
+      },
+      orderBy: {
+        name: 'asc'
       }
     })
 

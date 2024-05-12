@@ -24,7 +24,9 @@ export default function NewTreeButton() {
         const slug = response.data.slug
 
         params.set('slug', slug)
-        router.replace(`${pathname}?slug=${slug}`)
+        router.replace(`${pathname}?slug=${slug}`, {
+          scroll: false
+        })
 
         toast.success(response.success)
       }

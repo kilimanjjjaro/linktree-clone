@@ -7,16 +7,13 @@ import SessionBar from '@/components/navbar/session'
 import NewTreeButton from '@/components/navbar/new-tree-button'
 import LogInButton from '@/components/navbar/login-button'
 import SavingBadge from '@/components/navbar/saving-badge'
-import { Skeleton } from '@/components/ui/skeleton'
 import LinktreeLogo from '@/components/icons/linktree-logo'
+import { Skeleton } from '@/components/ui/skeleton'
 import { Separator } from '@/components/ui/separator'
 import { getCurrentUser } from '@/lib/services/get-current-user'
-import { getCachedTrees } from '@/lib/services/get-cached-trees'
-import { type ExtendedTree } from '@/lib/types/trees'
 
-export default async function Navbar({ tree }: { tree: ExtendedTree }) {
+export default async function Navbar({ slug }: { slug: string | undefined }) {
   const user = await getCurrentUser()
-  const trees = await getCachedTrees(user?.id)
 
   return (
     <header className='fixed inset-x-3 top-3 z-50 flex h-16 justify-between rounded-full border border-lt-light-gray/60 bg-lt-gray py-3 pl-6 pr-3'>
@@ -28,8 +25,10 @@ export default async function Navbar({ tree }: { tree: ExtendedTree }) {
           <LinktreeLogo className='w-7' />
         </Link>
         <Separator orientation='vertical' className='ml-[18px] mr-5 h-5' />
-        <Suspense fallback={<Skeleton className='h-6 w-[232px] rounded-2xl' />}>
-          <TreeSelector trees={trees} tree={tree} />
+        <Suspense
+          fallback={<Skeleton className='h-6 w-[232px] rounded-full' />}
+        >
+          <TreeSelector slug={slug} userId={user?.id} />
         </Suspense>
       </nav>
       <nav className='flex items-center gap-x-5'>

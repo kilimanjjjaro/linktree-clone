@@ -1,6 +1,6 @@
 'use server'
 
-import { revalidateTag } from 'next/cache'
+import { revalidatePath } from 'next/cache'
 import db from '@/lib/database'
 import { getCurrentUser } from '@/lib/services/get-current-user'
 
@@ -21,8 +21,7 @@ export async function deleteTree(treeId: string) {
       }
     })
 
-    revalidateTag('trees')
-    revalidateTag('tree')
+    revalidatePath('/')
 
     return {
       error: '',
