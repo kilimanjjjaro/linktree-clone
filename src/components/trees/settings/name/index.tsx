@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import { usePathname, useRouter } from 'next/navigation'
 import { useDebouncedCallback } from 'use-debounce'
 
 import { Input } from '@/components/ui/input'
@@ -16,6 +17,8 @@ export default function TreeName({ tree }: { tree: ExtendedTree }) {
   const setSavingTree = useStore((state) => state.setSavingTree)
   const [errors, setErrors] = useState<string[]>([])
   const [treeName, setTreeName] = useState(tree.name)
+  const pathname = usePathname()
+  const router = useRouter()
 
   const updateName = useDebouncedCallback(async () => {
     const validatedFields = UpdateTreeSchema.safeParse({
@@ -37,12 +40,26 @@ export default function TreeName({ tree }: { tree: ExtendedTree }) {
 
     if (name === undefined) return
 
-    await updateTree({
+    const response = await updateTree({
       ...tree,
       name
     })
 
-    setSavingTree(false)
+    const params = new URLSearchParams()
+
+    if (response !== null) {
+      setSavingTree(false)
+
+      params.set('slug', response.slug)
+      router.replace(`${pathname}?slug=${response.slug}`, {
+        scroll: false
+      })
+    } else {
+      params.set('slug', tree.slug)
+      router.replace(`${pathname}?slug=${tree.slug}`, {
+        scroll: false
+      })
+    }
   }, 300)
 
   return (

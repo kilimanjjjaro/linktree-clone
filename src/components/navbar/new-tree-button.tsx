@@ -42,8 +42,8 @@ export default function NewTreeButton() {
     >
       {isPending ? (
         <>
-          <LoaderCircle className='size-4 animate-spin' aria-hidden />
           Creating
+          <LoaderCircle className='size-4 animate-spin' aria-hidden />
         </>
       ) : (
         <>

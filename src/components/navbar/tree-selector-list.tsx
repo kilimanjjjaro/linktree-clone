@@ -41,6 +41,7 @@ export default function TreeSelectorList({ slug, trees }: Props) {
 
       if (response.success.length > 0) {
         const rest = trees.filter((tree) => tree.id !== treeId)
+        const currentTree = rest.find((tree) => tree.slug === slug)
 
         if (rest.length === 0) {
           params.set('slug', DEMO_TREE_VALUES.slug)
@@ -48,10 +49,17 @@ export default function TreeSelectorList({ slug, trees }: Props) {
             scroll: false
           })
         } else {
-          params.set('slug', rest[0].slug)
-          router.replace(`${pathname}?slug=${rest[0].slug}`, {
-            scroll: false
-          })
+          if (currentTree === undefined) {
+            params.set('slug', rest[0].slug)
+            router.replace(`${pathname}?slug=${rest[0].slug}`, {
+              scroll: false
+            })
+          } else {
+            params.set('slug', currentTree.slug)
+            router.replace(`${pathname}?slug=${currentTree.slug}`, {
+              scroll: false
+            })
+          }
         }
 
         toast.success(response.success)
@@ -85,20 +93,21 @@ export default function TreeSelectorList({ slug, trees }: Props) {
                 }}
               >
                 {tree.name}
-                <Button
-                  aria-label='deleteTree'
-                  className='absolute right-3 h-auto rounded-full bg-lt-lightest-gray p-0.5 opacity-0 xl:group-hover:opacity-100'
-                  onClick={async () => {
-                    await handleDelete(tree.id)
-                  }}
-                  disabled={isPending}
-                >
-                  {isPending ? (
-                    <LoaderCircle className='size-3 animate-spin' aria-hidden />
-                  ) : (
+                {isPending && (
+                  <LoaderCircle className='absolute right-3 size-5 animate-spin text-lt-lightest-gray opacity-0 group-aria-selected:opacity-100' />
+                )}
+                {!isPending && (
+                  <Button
+                    aria-label='deleteTree'
+                    className='absolute right-3 h-auto rounded-full bg-lt-lightest-gray p-0.5 opacity-0 xl:group-hover:opacity-100'
+                    onClick={async () => {
+                      await handleDelete(tree.id)
+                    }}
+                    disabled={isPending}
+                  >
                     <X className='size-3' strokeWidth={3} aria-hidden />
-                  )}
-                </Button>
+                  </Button>
+                )}
               </CommandItem>
             ))}
           </CommandGroup>
