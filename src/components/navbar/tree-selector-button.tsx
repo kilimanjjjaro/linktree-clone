@@ -6,8 +6,10 @@ import { ChevronsUpDown } from 'lucide-react'
 
 import { Button } from '@/components/ui/button'
 import { PopoverTrigger } from '@/components/ui/popover'
+import { useStore } from '@/lib/store/store'
 import { DEMO_TREE_VALUES } from '@/lib/constants/trees'
 import { type ExtendedTree } from '@/lib/types/trees'
+import { Skeleton } from '../ui/skeleton'
 
 interface Props {
   slug: string | undefined
@@ -15,6 +17,8 @@ interface Props {
 }
 
 export default function TreeSelectorButton({ slug, trees }: Props) {
+  const setSelectedTree = useStore((state) => state.setSelectedTree)
+  const selectedTree = useStore((state) => state.selectedTree)
   const pathname = usePathname()
   const router = useRouter()
 
@@ -24,6 +28,7 @@ export default function TreeSelectorButton({ slug, trees }: Props) {
     const hasSlug = slug !== undefined && slug.length > 0
 
     if (!hasSlug && hasTrees) {
+      setSelectedTree(trees[0])
       params.set('slug', trees[0].slug)
       router.replace(`${pathname}?slug=${trees[0].slug}`, {
         scroll: false
@@ -31,6 +36,7 @@ export default function TreeSelectorButton({ slug, trees }: Props) {
     }
 
     if (!hasSlug && !hasTrees) {
+      setSelectedTree(DEMO_TREE_VALUES)
       params.set('slug', DEMO_TREE_VALUES.slug)
       router.replace(`${pathname}?slug=${DEMO_TREE_VALUES.slug}`, {
         scroll: false
@@ -38,13 +44,16 @@ export default function TreeSelectorButton({ slug, trees }: Props) {
     }
 
     if (hasSlug && hasTrees) {
-      const existingTree = trees.some((tree) => tree.slug === slug)
+      const tree = trees.find((tree) => tree.slug === slug)
 
-      if (!existingTree) {
+      if (tree === undefined) {
+        setSelectedTree(trees[0])
         params.set('slug', trees[0].slug)
         router.replace(`${pathname}?slug=${trees[0].slug}`, {
           scroll: false
         })
+      } else {
+        setSelectedTree(tree)
       }
     }
 
@@ -54,10 +63,10 @@ export default function TreeSelectorButton({ slug, trees }: Props) {
         scroll: false
       })
     }
-  }, [trees, slug, pathname, router])
+  }, [trees, slug, pathname, router, setSelectedTree])
 
-  const name =
-    trees.find((tree) => tree.slug === slug)?.name ?? DEMO_TREE_VALUES.name
+  if (selectedTree === null)
+    return <Skeleton className='h-6 w-[232px] rounded-full' />
 
   return (
     <PopoverTrigger asChild>
@@ -65,8 +74,9 @@ export default function TreeSelectorButton({ slug, trees }: Props) {
         variant='ghost'
         role='combobox'
         className='h-full p-0 text-xl font-normal xl:hover:bg-transparent xl:hover:text-lt-lightest-gray'
+        disabled={selectedTree === null}
       >
-        <span className='max-w-60 truncate text-left'>{name}</span>
+        <span className='max-w-60 truncate text-left'>{selectedTree.name}</span>
         <ChevronsUpDown className='size-4 shrink-0' aria-hidden />
       </Button>
     </PopoverTrigger>

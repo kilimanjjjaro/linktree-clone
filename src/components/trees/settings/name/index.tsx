@@ -15,12 +15,13 @@ import { type ExtendedTree } from '@/lib/types/trees'
 
 export default function TreeName({ tree }: { tree: ExtendedTree }) {
   const setSavingTree = useStore((state) => state.setSavingTree)
+  const setSelectedTree = useStore((state) => state.setSelectedTree)
+  const selectedTree = useStore((state) => state.selectedTree)
   const [errors, setErrors] = useState<string[]>([])
-  const [treeName, setTreeName] = useState(tree.name)
   const pathname = usePathname()
   const router = useRouter()
 
-  const updateName = useDebouncedCallback(async () => {
+  const updateName = useDebouncedCallback(async (treeName: string) => {
     const validatedFields = UpdateTreeSchema.safeParse({
       name: treeName
     })
@@ -50,11 +51,13 @@ export default function TreeName({ tree }: { tree: ExtendedTree }) {
     if (response !== null) {
       setSavingTree(false)
 
+      setSelectedTree(response)
       params.set('slug', response.slug)
       router.replace(`${pathname}?slug=${response.slug}`, {
         scroll: false
       })
     } else {
+      setSelectedTree(tree)
       params.set('slug', tree.slug)
       router.replace(`${pathname}?slug=${tree.slug}`, {
         scroll: false
@@ -76,12 +79,14 @@ export default function TreeName({ tree }: { tree: ExtendedTree }) {
           id='tree-name'
           className='peer'
           type='text'
-          value={treeName}
+          defaultValue={selectedTree?.name}
           placeholder='Tree Demonstration'
           aria-invalid={errors.length > 0}
           onChange={async (event) => {
-            setTreeName(event.target.value)
-            await updateName()
+            if (selectedTree === null) return
+
+            setSelectedTree({ ...selectedTree, name: event.target.value })
+            await updateName(event.target.value)
           }}
         />
         <ErrorTooltip errors={errors} />

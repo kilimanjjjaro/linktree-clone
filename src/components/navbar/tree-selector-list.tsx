@@ -15,6 +15,7 @@ import {
 } from '@/components/ui/command'
 import { Button } from '@/components/ui/button'
 import { PopoverContent } from '@/components/ui/popover'
+import { useStore } from '@/lib/store/store'
 import { deleteTree } from '@/lib/actions/trees/delete-tree'
 import { DEMO_TREE_VALUES } from '@/lib/constants/trees'
 import { type ExtendedTree } from '@/lib/types/trees'
@@ -25,6 +26,7 @@ interface Props {
 }
 
 export default function TreeSelectorList({ slug, trees }: Props) {
+  const setSelectedTree = useStore((state) => state.setSelectedTree)
   const [isPending, startTransition] = useTransition()
   const pathname = usePathname()
   const router = useRouter()
@@ -44,17 +46,20 @@ export default function TreeSelectorList({ slug, trees }: Props) {
         const currentTree = rest.find((tree) => tree.slug === slug)
 
         if (rest.length === 0) {
+          setSelectedTree(DEMO_TREE_VALUES)
           params.set('slug', DEMO_TREE_VALUES.slug)
           router.replace(`${pathname}?slug=${DEMO_TREE_VALUES.slug}`, {
             scroll: false
           })
         } else {
           if (currentTree === undefined) {
+            setSelectedTree(rest[0])
             params.set('slug', rest[0].slug)
             router.replace(`${pathname}?slug=${rest[0].slug}`, {
               scroll: false
             })
           } else {
+            setSelectedTree(currentTree)
             params.set('slug', currentTree.slug)
             router.replace(`${pathname}?slug=${currentTree.slug}`, {
               scroll: false
