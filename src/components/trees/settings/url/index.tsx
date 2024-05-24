@@ -1,11 +1,16 @@
+'use client'
+
 import { Copy } from 'lucide-react'
 
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { HelpPopover } from '@/components/ui/help-popover'
+import { useCurrentUser } from '@/lib/hooks/useCurrentUser'
 
 export default function TreeUrl() {
+  const user = useCurrentUser()
+
   return (
     <section className='flex flex-col gap-y-3 p-5'>
       <div className='flex items-center gap-x-2'>

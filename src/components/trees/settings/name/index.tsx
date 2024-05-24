@@ -8,16 +8,17 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { ErrorTooltip } from '@/components/ui/error-tooltip'
 import { HelpPopover } from '@/components/ui/help-popover'
-import { updateTree } from '@/lib/actions/trees/update-tree'
 import { useStore } from '@/lib/store/store'
+import { useTree } from '@/lib/hooks/useTree'
 import { UpdateTreeSchema } from '@/lib/schemas/tree'
-import { type ExtendedTree } from '@/lib/types/trees'
+import { useCurrentUser } from '@/lib/hooks/useCurrentUser'
+import slugify from '@sindresorhus/slugify'
 
-export default function TreeName({ tree }: { tree: ExtendedTree }) {
-  const setSavingTree = useStore((state) => state.setSavingTree)
-  const setSelectedTree = useStore((state) => state.setSelectedTree)
+export default function TreeName() {
   const selectedTree = useStore((state) => state.selectedTree)
   const [errors, setErrors] = useState<string[]>([])
+  const user = useCurrentUser()
+  const { saveTree } = useTree()
   const pathname = usePathname()
   const router = useRouter()
 
@@ -35,31 +36,16 @@ export default function TreeName({ tree }: { tree: ExtendedTree }) {
       setErrors([])
     }
 
-    setSavingTree(true)
-
     const { name } = validatedFields.data
 
     if (name === undefined) return
 
-    const response = await updateTree({
-      ...tree,
-      name
-    })
-
-    const params = new URLSearchParams()
+    const response = await saveTree({ name, slug: slugify(name) })
 
     if (response !== null) {
-      setSavingTree(false)
-
-      setSelectedTree(response)
+      const params = new URLSearchParams()
       params.set('slug', response.slug)
       router.replace(`${pathname}?slug=${response.slug}`, {
-        scroll: false
-      })
-    } else {
-      setSelectedTree(tree)
-      params.set('slug', tree.slug)
-      router.replace(`${pathname}?slug=${tree.slug}`, {
         scroll: false
       })
     }
@@ -83,9 +69,6 @@ export default function TreeName({ tree }: { tree: ExtendedTree }) {
           placeholder='Tree Demonstration'
           aria-invalid={errors.length > 0}
           onChange={async (event) => {
-            if (selectedTree === null) return
-
-            setSelectedTree({ ...selectedTree, name: event.target.value })
             await updateName(event.target.value)
           }}
         />
