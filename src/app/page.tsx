@@ -22,9 +22,7 @@ export default async function Home({ searchParams }: Props) {
         <Suspense fallback={<PreviewSkeleton />}>
           <TreePreview slug={slug} />
         </Suspense>
-        <Suspense fallback={<PreviewSkeleton />}>
-          <TreeSettings slug={slug} />
-        </Suspense>
+        <TreeSettings />
       </main>
       <Footer />
     </>

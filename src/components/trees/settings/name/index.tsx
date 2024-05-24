@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import { usePathname, useRouter } from 'next/navigation'
 import { useDebouncedCallback } from 'use-debounce'
+import slugify from '@sindresorhus/slugify'
 
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
@@ -12,7 +13,7 @@ import { useStore } from '@/lib/store/store'
 import { useTree } from '@/lib/hooks/useTree'
 import { UpdateTreeSchema } from '@/lib/schemas/tree'
 import { useCurrentUser } from '@/lib/hooks/useCurrentUser'
-import slugify from '@sindresorhus/slugify'
+import { DEMO_TREE_VALUES } from '@/lib/constants/trees'
 
 export default function TreeName() {
   const selectedTree = useStore((state) => state.selectedTree)
@@ -66,7 +67,7 @@ export default function TreeName() {
           className='peer'
           type='text'
           defaultValue={selectedTree?.name}
-          placeholder='Tree Demonstration'
+          placeholder={DEMO_TREE_VALUES.name}
           aria-invalid={errors.length > 0}
           onChange={async (event) => {
             await updateName(event.target.value)

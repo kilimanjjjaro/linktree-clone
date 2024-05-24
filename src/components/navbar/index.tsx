@@ -1,4 +1,3 @@
-import { Suspense } from 'react'
 import Link from 'next/link'
 
 import TreeSelector from '@/components/navbar/tree-selector'
@@ -8,7 +7,6 @@ import NewTreeButton from '@/components/navbar/new-tree-button'
 import LogInButton from '@/components/navbar/login-button'
 import SavingBadge from '@/components/navbar/saving-badge'
 import LinktreeLogo from '@/components/icons/linktree-logo'
-import { Skeleton } from '@/components/ui/skeleton'
 import { Separator } from '@/components/ui/separator'
 import { getCurrentUser } from '@/lib/services/get-current-user'
 
@@ -25,11 +23,7 @@ export default async function Navbar({ slug }: { slug: string | undefined }) {
           <LinktreeLogo className='w-7' />
         </Link>
         <Separator orientation='vertical' className='ml-[18px] mr-5 h-5' />
-        <Suspense
-          fallback={<Skeleton className='h-6 w-[232px] rounded-full' />}
-        >
-          <TreeSelector slug={slug} userId={user?.id} />
-        </Suspense>
+        <TreeSelector slug={slug} userId={user?.id} />
       </nav>
       <nav className='flex items-center gap-x-5'>
         <SavingBadge />

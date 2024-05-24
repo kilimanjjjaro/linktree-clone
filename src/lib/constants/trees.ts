@@ -5,8 +5,8 @@ export const DEMO_TREE_VALUES: ExtendedTree = {
   id: 'demo',
   authorId: 'demo',
   status: 0,
-  name: 'Demostration example',
-  slug: 'demostration-example',
+  name: 'Tree example',
+  slug: 'Tree-example',
   url: `${BASE_URL}/#`,
   description:
     'Full Stack Developer & UX/UI Designer with +6 years of work experience.',

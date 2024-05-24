@@ -13,7 +13,7 @@ export default async function TreeSelector({ slug, userId }: Props) {
 
   return (
     <Popover>
-      <TreeSelectorButton slug={slug} trees={trees} />
+      <TreeSelectorButton />
       <TreeSelectorList slug={slug} trees={trees} />
     </Popover>
   )
