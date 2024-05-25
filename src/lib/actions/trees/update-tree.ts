@@ -1,80 +1,25 @@
 'use server'
 
 import { revalidatePath } from 'next/cache'
-import slugify from '@sindresorhus/slugify'
-import { Prisma } from '@prisma/client'
+import { Prisma, type Tree } from '@prisma/client'
 
 import db from '@/lib/database'
 import { getCurrentUser } from '@/lib/services/get-current-user'
-import { type ExtendedTree } from '@/lib/types/trees'
 
-export async function updateTree({ id: treeId, ...rest }: ExtendedTree) {
+export async function updateTree(tree: Partial<Tree>) {
   const user = await getCurrentUser()
 
   if (user?.id == null) return null
 
   try {
-    const response = await db.tree.upsert({
+    const response = await db.tree.update({
       where: {
         authorId: user.id,
-        id: treeId
+        id: tree.id
       },
-      update: {
-        status: rest.status,
-        name: rest.name,
-        slug: slugify(rest.name),
-        url: rest.url,
-        description: rest.description,
-        avatar: rest.avatar,
-        appearance: rest.appearance ?? Prisma.JsonNull,
-        links: {
-          deleteMany: {},
-          createMany: {
-            data: rest.links.map((link) => {
-              const { treeId, ...rest } = link
-
-              return rest
-            })
-          }
-        },
-        socialProfiles: {
-          deleteMany: {},
-          createMany: {
-            data: rest.socialProfiles.map((socialProfile) => {
-              const { treeId, ...rest } = socialProfile
-
-              return rest
-            })
-          }
-        }
-      },
-      create: {
-        authorId: user.id,
-        status: rest.status,
-        name: rest.name,
-        slug: slugify(rest.name),
-        url: rest.url,
-        description: rest.description,
-        avatar: rest.avatar,
-        appearance: rest.appearance ?? Prisma.JsonNull,
-        links: {
-          createMany: {
-            data: rest.links.map((link) => {
-              const { id, treeId, ...rest } = link
-
-              return rest
-            })
-          }
-        },
-        socialProfiles: {
-          createMany: {
-            data: rest.socialProfiles.map((socialMedia) => {
-              const { id, treeId, ...rest } = socialMedia
-
-              return rest
-            })
-          }
-        }
+      data: {
+        ...tree,
+        appearance: tree.appearance ?? Prisma.JsonNull
       },
       include: {
         links: true,
