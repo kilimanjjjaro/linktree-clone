@@ -2,14 +2,15 @@ import TreeSelectorButton from '@/components/navbar/tree-selector-button'
 import TreeSelectorList from '@/components/navbar/tree-selector-list'
 import { Popover } from '@/components/ui/popover'
 import { getCachedTrees } from '@/lib/services/get-cached-trees'
+import { getCurrentUser } from '@/lib/services/get-current-user'
 
 interface Props {
   slug: string | undefined
-  userId: string | undefined
 }
 
-export default async function TreeSelector({ slug, userId }: Props) {
-  const trees = await getCachedTrees(userId)
+export default async function TreeSelector({ slug }: Props) {
+  const user = await getCurrentUser()
+  const trees = await getCachedTrees(user?.id)
 
   return (
     <Popover>

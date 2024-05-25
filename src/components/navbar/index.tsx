@@ -23,7 +23,7 @@ export default async function Navbar({ slug }: { slug: string | undefined }) {
           <LinktreeLogo className='w-7' />
         </Link>
         <Separator orientation='vertical' className='ml-[18px] mr-5 h-5' />
-        <TreeSelector slug={slug} userId={user?.id} />
+        <TreeSelector slug={slug} />
       </nav>
       <nav className='flex items-center gap-x-5'>
         <SavingBadge />

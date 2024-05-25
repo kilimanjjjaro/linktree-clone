@@ -18,11 +18,11 @@ import { PopoverContent } from '@/components/ui/popover'
 import { useStore } from '@/lib/store/store'
 import { deleteTree } from '@/lib/actions/trees/delete-tree'
 import { DEMO_TREE_VALUES } from '@/lib/constants/trees'
-import { type ExtendedTree } from '@/lib/types/trees'
+import { type TreeInterface } from '@/lib/types/trees'
 
 interface Props {
   slug: string | undefined
-  trees: ExtendedTree[]
+  trees: TreeInterface[]
 }
 
 export default function TreeSelectorList({ slug, trees }: Props) {
