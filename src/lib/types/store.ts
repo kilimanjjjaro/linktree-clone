@@ -2,7 +2,7 @@ import {
   type TreeSocialProfilesInterface,
   type SocialProfileInterface
 } from '@/lib/types/globals'
-import { type ExtendedTree } from '@/lib/types/trees'
+import { type TreeInterface } from '@/lib/types/trees'
 
 export interface GlobalsSliceInterface {
   showDialog: number
@@ -30,8 +30,8 @@ export interface SocialProfilesSliceInterface {
 }
 
 export interface TreesStoreInterface {
-  selectedTree: ExtendedTree | null
-  setSelectedTree: (selectedTree: ExtendedTree) => void
+  selectedTree: TreeInterface | null
+  setSelectedTree: (selectedTree: TreeInterface) => void
 }
 
 export interface StoreInterface

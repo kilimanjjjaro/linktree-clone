@@ -1,13 +1,12 @@
-import { type ExtendedTree } from '@/lib/types/trees'
-import { BASE_URL } from './globals'
+import { type TreeInterface } from '@/lib/types/trees'
 
-export const DEMO_TREE_VALUES: ExtendedTree = {
+export const DEMO_TREE_VALUES: TreeInterface = {
   id: 'demo',
   authorId: 'demo',
   status: 0,
   name: 'Tree example',
-  slug: 'Tree-example',
-  url: `${BASE_URL}/#`,
+  slug: 'tree-example',
+  url: 'tree-example',
   description:
     'Full Stack Developer & UX/UI Designer with +6 years of work experience.',
   avatar:
@@ -59,4 +58,9 @@ export const CROPPED_AREA_VALUES = {
   height: 0,
   x: 0,
   y: 0
+}
+
+export const TREE_STATUS = {
+  DRAFT: 0,
+  PUBLISHED: 1
 }

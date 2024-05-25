@@ -6,11 +6,11 @@ import { useRouter, useSearchParams } from 'next/navigation'
 import { useStore } from '@/lib/store/store'
 import { DEMO_TREE_VALUES } from '@/lib/constants/trees'
 import { type ChildrenType } from '@/lib/types/globals'
-import { type ExtendedTree } from '@/lib/types/trees'
+import { type TreeInterface } from '@/lib/types/trees'
 
 interface Props {
   children: ChildrenType
-  trees: ExtendedTree[]
+  trees: TreeInterface[]
 }
 
 export default function InitApp({ children, trees }: Props) {
@@ -20,7 +20,7 @@ export default function InitApp({ children, trees }: Props) {
   const router = useRouter()
 
   const updateSelectedTree = useCallback(
-    (tree: ExtendedTree) => {
+    (tree: TreeInterface) => {
       setSelectedTree(tree)
 
       const params = new URLSearchParams()
@@ -41,7 +41,7 @@ export default function InitApp({ children, trees }: Props) {
       if (localTree === null) {
         updateSelectedTree(DEMO_TREE_VALUES)
       } else {
-        const tree = JSON.parse(localTree) as ExtendedTree
+        const tree = JSON.parse(localTree) as TreeInterface
         updateSelectedTree(tree)
       }
     }
@@ -65,7 +65,7 @@ export default function InitApp({ children, trees }: Props) {
       if (localTree === null) {
         updateSelectedTree(DEMO_TREE_VALUES)
       } else {
-        const tree = JSON.parse(localTree) as ExtendedTree
+        const tree = JSON.parse(localTree) as TreeInterface
         updateSelectedTree(tree)
       }
     }

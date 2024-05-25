@@ -6,9 +6,9 @@ import slugify from '@sindresorhus/slugify'
 
 import db from '@/lib/database'
 import { getCurrentUser } from '@/lib/services/get-current-user'
-import { type ExtendedTree } from '@/lib/types/trees'
+import { type TreeInterface } from '@/lib/types/trees'
 
-export async function createTree(tree: ExtendedTree) {
+export async function createTree(tree: TreeInterface) {
   const user = await getCurrentUser()
 
   if (user?.id === undefined)

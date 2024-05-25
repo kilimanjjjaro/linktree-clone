@@ -7,4 +7,4 @@ const treeWithRest = Prisma.validator<Prisma.TreeDefaultArgs>()({
   }
 })
 
-export type ExtendedTree = Prisma.TreeGetPayload<typeof treeWithRest>
+export type TreeInterface = Prisma.TreeGetPayload<typeof treeWithRest>
