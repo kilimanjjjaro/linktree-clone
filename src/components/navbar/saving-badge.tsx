@@ -16,7 +16,7 @@ export default function SavingBadge() {
       )}
     >
       <span className='size-1.5 rounded-full bg-lt-green' aria-hidden />
-      Syncing
+      Saving
     </span>
   )
 }

@@ -1,73 +1,65 @@
 'use client'
 
-import { useState, useTransition } from 'react'
-import { Textarea } from '@/components/ui/textarea'
-import { useStore } from '@/lib/store/store'
+import { useState } from 'react'
 import { useDebouncedCallback } from 'use-debounce'
-import { updateTree } from '@/lib/actions/trees/update-tree'
-import { LoaderCircle } from 'lucide-react'
-import { cn } from '@/lib/utils'
-import { type ExtendedTree } from '@/lib/types/trees'
+
+import { Textarea } from '@/components/ui/textarea'
+import { ErrorTooltip } from '@/components/ui/error-tooltip'
+import { useStore } from '@/lib/store/store'
+import { useTree } from '@/lib/hooks/useTree'
+import { UpdateTreeSchema } from '@/lib/schemas/tree'
+import { DEMO_TREE_VALUES } from '@/lib/constants/trees'
 
 export default function DescriptionInput() {
-  const setSelectedTree = useStore((state) => state.setSelectedTree)
   const selectedTree = useStore((state) => state.selectedTree)
   const [textareaLength, setTextareaLength] = useState(0)
-  const [isPending, startTransition] = useTransition()
+  const [errors, setErrors] = useState<string[]>([])
+  const { saveTree } = useTree()
 
-  const updateDescription = useDebouncedCallback((description: string) => {
-    if (selectedTree === null) return
-
-    startTransition(async () => {
-      const updatedTree = await updateTree({
-        ...selectedTree,
-        description
+  const updateDescription = useDebouncedCallback(
+    async (treeDescription: string) => {
+      const validatedFields = UpdateTreeSchema.safeParse({
+        description: treeDescription
       })
 
-      if (updatedTree !== null) {
-        setSelectedTree(updatedTree)
-        localStorage.setItem('__SELECTED_TREE__', JSON.stringify(updatedTree))
-      }
-
-      if (updatedTree === null) {
-        const localTree = localStorage.getItem('__SELECTED_TREE__')
-
-        if (localTree === null) return
-
-        const tree = JSON.parse(localTree) as ExtendedTree
-
-        localStorage.setItem(
-          '__SELECTED_TREE__',
-          JSON.stringify({ ...tree, description })
+      if (!validatedFields.success) {
+        const errors = validatedFields.error.errors.map(
+          (error) => error.message
         )
-        setSelectedTree({ ...tree, description })
+        setErrors(errors)
+
+        return
+      } else {
+        setErrors([])
       }
-    })
-  }, 300)
+
+      const { description } = validatedFields.data
+
+      if (description === undefined) return
+
+      await saveTree({ description })
+    },
+    300
+  )
 
   return (
     <div className='relative flex'>
       <Textarea
         id='tree-description'
         className='min-h-[86px] resize-none'
-        defaultValue={selectedTree?.description ?? ''}
-        placeholder='Full Stack Developer & UX/UI Designer with +6 years of work experience.'
+        defaultValue={selectedTree?.description}
+        placeholder={DEMO_TREE_VALUES.description}
+        aria-invalid={errors.length > 0}
         maxLength={120}
-        onChange={(event) => {
+        onChange={async (event) => {
           setTextareaLength(event.target.value.length)
-          updateDescription(event.target.value)
+          await updateDescription(event.target.value)
         }}
       />
       <span className='pointer-events-none absolute bottom-2.5 right-3 select-none text-[11px] leading-none text-lt-lightest-gray'>
         {textareaLength}/120
       </span>
-      <LoaderCircle
-        className={cn(
-          'absolute right-3 top-3 size-4 transition-opacity animate-spin opacity-0',
-          isPending && 'opacity-100'
-        )}
-        aria-hidden
-      />
+      <ErrorTooltip errors={errors} isDescription />
     </div>
   )
 }

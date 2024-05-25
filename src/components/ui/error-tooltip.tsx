@@ -1,17 +1,28 @@
 import { Ban } from 'lucide-react'
+
 import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
   TooltipTrigger
-} from './tooltip'
+} from '@/components/ui/tooltip'
+import { cn } from '@/lib/utils'
 
-export const ErrorTooltip = ({ errors }: { errors: string[] }) => {
+interface Props {
+  errors: string[]
+  isDescription?: boolean
+}
+
+export const ErrorTooltip = ({ errors, isDescription }: Props) => {
   return (
     <TooltipProvider delayDuration={0}>
       <Tooltip>
         <TooltipTrigger
-          className={`absolute right-3.5 opacity-0 transition-opacity ${errors.length > 0 && 'opacity-100'}`}
+          className={cn(
+            'absolute right-3.5 opacity-0 transition-opacity',
+            errors.length > 0 && 'opacity-100',
+            isDescription === true && 'top-3.5'
+          )}
         >
           <Ban className='size-3.5 text-red-400' aria-hidden />
           <span className='sr-only'>Show errors</span>

@@ -9,25 +9,23 @@ import { Button } from '@/components/ui/button'
 import { DialogFooter } from '@/components/ui/dialog'
 import { useStore } from '@/lib/store/store'
 import { updateAvatar } from '@/lib/actions/trees/update-avatar'
-import { updateTree } from '@/lib/actions/trees/update-tree'
+import { useTree } from '@/lib/hooks/useTree'
 import { cropImage } from '@/lib/utils/crop-image'
 import { fetchBlobData } from '@/lib/utils/fetch-blob-data'
 import { CROPPED_AREA_VALUES } from '@/lib/constants/trees'
 import { DIALOG } from '@/lib/constants/globals'
-import { type ExtendedTree } from '@/lib/types/trees'
 
 export default function CropAvatar() {
   const setShowDialog = useStore((state) => state.setShowDialog)
-  const setSelectedTree = useStore((state) => state.setSelectedTree)
   const selectedTree = useStore((state) => state.selectedTree)
   const avatarToCrop = useStore((state) => state.avatarToCrop)
   const setAvatarToCrop = useStore((state) => state.setAvatarToCrop)
-  const setAvatar = useStore((state) => state.setAvatar)
   const [isPending, startTransition] = useTransition()
   const [crop, setCrop] = useState({ x: 0, y: 0 })
   const [zoom, setZoom] = useState(1)
   const [croppedAvatar, setCroppedAvatar] = useState('')
   const [croppedArea, setCroppedArea] = useState<Area>(CROPPED_AREA_VALUES)
+  const { saveTree } = useTree()
 
   const onZoomChange = (value: [number]) => {
     setZoom(...value)
@@ -62,31 +60,11 @@ export default function CropAvatar() {
       if (updatedAvatar !== undefined) {
         const avatar: string = updatedAvatar.eager[0].secure_url
 
-        const response = await updateTree({
-          ...selectedTree,
+        await saveTree({
           avatar
         })
 
-        if (response !== null) {
-          setSelectedTree(response)
-          localStorage.setItem('__SELECTED_TREE__', JSON.stringify(response))
-        } else {
-          const localTree = localStorage.getItem('__SELECTED_TREE__')
-
-          if (localTree === null) return
-
-          const tree = JSON.parse(localTree) as ExtendedTree
-
-          localStorage.setItem(
-            '__SELECTED_TREE__',
-            JSON.stringify({ ...tree, avatar })
-          )
-
-          setSelectedTree({ ...tree, avatar })
-        }
-
         toast.success('Your avatar was updated!')
-        setAvatar(avatar)
         setShowDialog(DIALOG.HIDDEN)
         setCroppedAvatar('')
         setAvatarToCrop('')
@@ -94,14 +72,7 @@ export default function CropAvatar() {
         toast.error('Something happened. Please try again!')
       }
     })
-  }, [
-    croppedAvatar,
-    setAvatarToCrop,
-    setShowDialog,
-    setSelectedTree,
-    selectedTree,
-    setAvatar
-  ])
+  }, [croppedAvatar, setAvatarToCrop, setShowDialog, selectedTree, saveTree])
 
   const deleteAvatar = () => {
     setCroppedAvatar('')

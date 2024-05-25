@@ -1,19 +1,30 @@
 'use client'
 
 import { CircleHelp } from 'lucide-react'
+
 import { Label } from '@/components/ui/label'
+import { Switch } from '@/components/ui/switch'
 import {
   Popover,
   PopoverContent,
   PopoverTrigger
 } from '@/components/ui/popover'
-import { Switch } from '@/components/ui/switch'
-import { useState } from 'react'
+import { useStore } from '@/lib/store/store'
+import { useTree } from '@/lib/hooks/useTree'
+import { TREE_STATUS } from '@/lib/constants/trees'
 
 export default function TreeStatus() {
-  const [status, setStatus] = useState(false)
+  const selectedTree = useStore((state) => state.selectedTree)
+  const { saveTree } = useTree()
 
-  const text = status ? 'Published' : 'Draft'
+  const updateStatus = async (treeStatus: boolean) => {
+    const status = treeStatus ? TREE_STATUS.PUBLISHED : TREE_STATUS.DRAFT
+    await saveTree({ status })
+  }
+
+  const checkValue = selectedTree?.status === TREE_STATUS.PUBLISHED ?? false
+  const checkText =
+    selectedTree?.status === TREE_STATUS.PUBLISHED ? 'Published' : 'Draft'
 
   return (
     <section className='flex justify-between p-5'>
@@ -31,11 +42,11 @@ export default function TreeStatus() {
         </Popover>
       </div>
       <div className='flex items-center gap-x-3'>
-        <span className='text-sm text-lt-lightest-gray'>{text}</span>
+        <span className='text-sm text-lt-lightest-gray'>{checkText}</span>
         <Switch
           id='tree-status'
-          checked={status}
-          onCheckedChange={setStatus}
+          checked={checkValue}
+          onCheckedChange={updateStatus}
           required
         />
       </div>

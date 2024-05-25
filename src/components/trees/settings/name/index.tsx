@@ -12,13 +12,11 @@ import { HelpPopover } from '@/components/ui/help-popover'
 import { useStore } from '@/lib/store/store'
 import { useTree } from '@/lib/hooks/useTree'
 import { UpdateTreeSchema } from '@/lib/schemas/tree'
-import { useCurrentUser } from '@/lib/hooks/useCurrentUser'
 import { DEMO_TREE_VALUES } from '@/lib/constants/trees'
 
 export default function TreeName() {
   const selectedTree = useStore((state) => state.selectedTree)
   const [errors, setErrors] = useState<string[]>([])
-  const user = useCurrentUser()
   const { saveTree } = useTree()
   const pathname = usePathname()
   const router = useRouter()
@@ -64,7 +62,6 @@ export default function TreeName() {
       <div className='relative flex items-center'>
         <Input
           id='tree-name'
-          className='peer'
           type='text'
           defaultValue={selectedTree?.name}
           placeholder={DEMO_TREE_VALUES.name}

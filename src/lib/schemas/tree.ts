@@ -58,7 +58,7 @@ export const UpdateTreeSchema = z.object({
     })
     .optional(),
   slug: z.string().trim().min(5).optional(),
-  url: z.string().url().optional(),
+  url: z.string().trim().min(5).optional(),
   description: z
     .string()
     .min(1, {
