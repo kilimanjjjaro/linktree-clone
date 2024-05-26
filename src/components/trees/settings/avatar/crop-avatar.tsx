@@ -9,17 +9,23 @@ import { Button } from '@/components/ui/button'
 import { DialogFooter } from '@/components/ui/dialog'
 import { useStore } from '@/lib/store/store'
 import { updateAvatar } from '@/lib/actions/trees/update-avatar'
-import { useTree } from '@/lib/hooks/useTree'
+import useTree from '@/lib/hooks/useTree'
 import { cropImage } from '@/lib/utils/crop-image'
 import { fetchBlobData } from '@/lib/utils/fetch-blob-data'
 import { CROPPED_AREA_VALUES } from '@/lib/constants/trees'
-import { DIALOG } from '@/lib/constants/globals'
 
-export default function CropAvatar() {
-  const setShowDialog = useStore((state) => state.setShowDialog)
+interface Props {
+  closeDialog: () => void
+  avatarToCrop: string
+  setAvatarToCrop: (value: string) => void
+}
+
+export default function CropAvatar({
+  closeDialog,
+  avatarToCrop,
+  setAvatarToCrop
+}: Props) {
   const selectedTree = useStore((state) => state.selectedTree)
-  const avatarToCrop = useStore((state) => state.avatarToCrop)
-  const setAvatarToCrop = useStore((state) => state.setAvatarToCrop)
   const [isPending, startTransition] = useTransition()
   const [crop, setCrop] = useState({ x: 0, y: 0 })
   const [zoom, setZoom] = useState(1)
@@ -58,21 +64,19 @@ export default function CropAvatar() {
       const updatedAvatar = await updateAvatar(formData)
 
       if (updatedAvatar !== undefined) {
-        const avatar: string = updatedAvatar.eager[0].secure_url
-
         await saveTree({
-          avatar
+          avatar: updatedAvatar.eager[0].secure_url
         })
 
         toast.success('Your avatar was updated!')
-        setShowDialog(DIALOG.HIDDEN)
+        closeDialog()
         setCroppedAvatar('')
         setAvatarToCrop('')
       } else {
         toast.error('Something happened. Please try again!')
       }
     })
-  }, [croppedAvatar, setAvatarToCrop, setShowDialog, selectedTree, saveTree])
+  }, [croppedAvatar, setAvatarToCrop, closeDialog, selectedTree, saveTree])
 
   const deleteAvatar = () => {
     setCroppedAvatar('')
@@ -136,11 +140,8 @@ export default function CropAvatar() {
           >
             {isPending ? (
               <>
-                <LoaderCircle
-                  className='mr-2 size-4 animate-spin'
-                  aria-hidden
-                />
                 Uploading
+                <LoaderCircle className='size-4 animate-spin' aria-hidden />
               </>
             ) : (
               'Upload'

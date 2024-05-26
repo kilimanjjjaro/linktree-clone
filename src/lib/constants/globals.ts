@@ -3,12 +3,6 @@ export const BASE_URL =
     ? `https://linktree-clone-henna-pi.vercel.app`
     : 'http://localhost:3000'
 
-export const INPUT_TYPES = {
-  TEXT: 1,
-  TEL: 2,
-  EMAIL: 3
-}
-
 export const PUBLIC_ROUTES = ['/', '/dashboard', '/confirm-account']
 export const AUTH_ROUTES = [
   '/login',
@@ -19,7 +13,7 @@ export const AUTH_ROUTES = [
 
 export const DIALOG = {
   HIDDEN: 0,
-  SOCIAL_PROFILES: 1,
+  SocialProfileTypes: 1,
   SAVE_TREE: 2,
   UPLOAD_AVATAR: 3,
   ADD_LINK: 4

@@ -1,25 +1,28 @@
-import { toast } from 'sonner'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { useStore } from '@/lib/store/store'
-import { DIALOG } from '@/lib/constants/globals'
-import { createInputAttributes } from '@/lib/utils/create-input-attributes'
+import useSocialProfiles from '@/lib/hooks/useSocialProfiles'
 import { delay } from '@/lib/utils/delay'
+import { createInputAttributes } from '@/lib/utils/create-input-attributes'
 
-export default function SocialProfileSettings() {
-  const socialProfiles = useStore((state) => state.socialProfiles)
-  const setSocialProfiles = useStore((state) => state.setSocialProfiles)
-  const setShowDialog = useStore((state) => state.setShowDialog)
+interface Props {
+  closeDialog: () => void
+}
+
+export default function SocialProfileSettings({ closeDialog }: Props) {
+  const { saveProfiles } = useSocialProfiles()
+  const setStep = useStore((state) => state.setStep)
+  const selectedTree = useStore((state) => state.selectedTree)
   const selectedSocialProfile = useStore((state) => state.selectedSocialProfile)
   const setSelectedSocialProfile = useStore(
     (state) => state.setSelectedSocialProfile
   )
-  const setStep = useStore((state) => state.setStep)
 
   if (selectedSocialProfile === null) return
 
-  const submitForm = (event: React.FormEvent<HTMLFormElement>) => {
+  const submitForm = async (event: React.FormEvent<HTMLFormElement>) => {
+    if (selectedTree === null) return
     event.preventDefault()
 
     try {
@@ -29,17 +32,14 @@ export default function SocialProfileSettings() {
 
       if (socialProfileValue === '') return
 
-      const newSocialProfile = {
-        id: selectedSocialProfile.id,
-        name: selectedSocialProfile.name,
-        slug: selectedSocialProfile.slug,
-        inputValue: socialProfileValue,
-        link: selectedSocialProfile.link
-      }
+      await saveProfiles({
+        treeId: selectedTree.id,
+        type: selectedSocialProfile.type,
+        url: socialProfileValue,
+        name: selectedSocialProfile.name
+      })
 
-      setSocialProfiles([...socialProfiles, newSocialProfile])
-      setShowDialog(DIALOG.HIDDEN)
-      toast.success(`${newSocialProfile.name} icon added!`)
+      closeDialog()
       void delay(200).then(() => {
         setStep(1)
       })
@@ -48,10 +48,16 @@ export default function SocialProfileSettings() {
     }
   }
 
-  const goPrevStep = () => {
+  const goPrevStep = (event: React.MouseEvent<HTMLButtonElement>) => {
+    event.preventDefault()
+
     setStep(1)
     setSelectedSocialProfile(null)
   }
+
+  const existingSocialProfile = selectedTree?.socialProfiles.find(
+    (profile) => profile.type === selectedSocialProfile.type
+  )
 
   return (
     <form onSubmit={submitForm} className='mt-12 flex flex-col gap-y-3 p-5'>
@@ -69,6 +75,7 @@ export default function SocialProfileSettings() {
           className='rounded-none border-none focus-visible:ring-0 focus-visible:ring-offset-0'
           name='socialProfileValue'
           placeholder={selectedSocialProfile?.form.placeholder}
+          defaultValue={existingSocialProfile?.url ?? undefined}
           required
           autoFocus
           {...createInputAttributes(selectedSocialProfile.form.inputType)}
@@ -76,9 +83,15 @@ export default function SocialProfileSettings() {
       </div>
       <footer className='grid grid-cols-2 gap-x-3'>
         <Button type='submit' variant='secondary' className='order-2'>
-          Save
+          {existingSocialProfile !== undefined ? 'Update' : 'Add'}
         </Button>
-        <Button variant='outline' className='order-1' onClick={goPrevStep}>
+        <Button
+          variant='outline'
+          className='order-1'
+          onClick={(event) => {
+            goPrevStep(event)
+          }}
+        >
           Back
         </Button>
       </footer>

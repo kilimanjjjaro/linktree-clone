@@ -13,50 +13,50 @@ import { TwitterIcon } from '@/components/icons/twitter-icon'
 import { WhatsAppIcon } from '@/components/icons/whatsapp-icon'
 import { YouTubeIcon } from '@/components/icons/youtube-icon'
 import { cn } from '@/lib/utils'
-import type { SocialProfileType } from '@/lib/types/globals'
+import { SocialProfileTypes } from '@prisma/client'
 
 interface Props {
   className: string
-  name: SocialProfileType
+  type: SocialProfileTypes
 }
 
-const getIcon = (name: SocialProfileType) => {
-  switch (name) {
-    case 'email':
+const getIcon = (type: SocialProfileTypes) => {
+  switch (type) {
+    case SocialProfileTypes.EMAIL:
       return <EmailIcon />
-    case 'facebook':
+    case SocialProfileTypes.FACEBOOK:
       return <FacebookIcon />
-    case 'discord':
+    case SocialProfileTypes.DISCORD:
       return <DiscordIcon />
-    case 'instagram':
+    case SocialProfileTypes.INSTAGRAM:
       return <InstagramIcon />
-    case 'linkedin':
+    case SocialProfileTypes.LINKEDIN:
       return <LinkedInIcon />
-    case 'pinterest':
+    case SocialProfileTypes.PINTEREST:
       return <PinterestIcon />
-    case 'reddit':
+    case SocialProfileTypes.REDDIT:
       return <RedditIcon />
-    case 'telegram':
+    case SocialProfileTypes.TELEGRAM:
       return <TelegramIcon />
-    case 'threads':
+    case SocialProfileTypes.THREADS:
       return <ThreadsIcon />
-    case 'tiktok':
+    case SocialProfileTypes.TIKTOK:
       return <TikTokIcon />
-    case 'twitch':
+    case SocialProfileTypes.TWITCH:
       return <TwitchIcon />
-    case 'twitter':
+    case SocialProfileTypes.TWITTER:
       return <TwitterIcon />
-    case 'whatsapp':
+    case SocialProfileTypes.WHATSAPP:
       return <WhatsAppIcon />
-    case 'youtube':
+    case SocialProfileTypes.YOUTUBE:
       return <YouTubeIcon />
     default:
       return null
   }
 }
 
-export default function SocialProfileIcon({ className, name }: Props) {
-  const icon = getIcon(name)
+export default function SocialProfileIcon({ className, type }: Props) {
+  const icon = getIcon(type)
 
   return (
     <i aria-hidden className={cn('inline-block', className)}>

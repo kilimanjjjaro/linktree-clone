@@ -1,4 +1,4 @@
-import { INPUT_TYPES } from '@/lib/constants/globals'
+import { INPUT_TYPES } from '@/lib/types/globals'
 
 export function createInputAttributes(inputType: number) {
   let attributes = {}

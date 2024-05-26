@@ -14,6 +14,7 @@ interface Props {
 }
 
 export default function InitApp({ children, trees }: Props) {
+  const selectedTree = useStore((state) => state.selectedTree)
   const setSelectedTree = useStore((state) => state.setSelectedTree)
   const searchParams = useSearchParams()
   const slug = searchParams.get('slug')
@@ -33,7 +34,7 @@ export default function InitApp({ children, trees }: Props) {
   )
 
   useEffect(() => {
-    const localTree = localStorage.getItem('__LOCAL_TREE__')
+    const localTree = localStorage.getItem('__SELECTED_TREE__')
     const hasTrees = trees.length > 0
     const hasSlug = slug !== null && slug.length > 0
 
@@ -47,7 +48,6 @@ export default function InitApp({ children, trees }: Props) {
     }
 
     if (!hasSlug && hasTrees) {
-      console.log('sdasd')
       updateSelectedTree(trees[0])
     }
 
@@ -70,6 +70,12 @@ export default function InitApp({ children, trees }: Props) {
       }
     }
   }, [slug, trees, router, updateSelectedTree, searchParams])
+
+  useEffect(() => {
+    if (selectedTree === null) return
+
+    localStorage.setItem('__SELECTED_TREE__', JSON.stringify(selectedTree))
+  }, [selectedTree])
 
   return <>{children}</>
 }

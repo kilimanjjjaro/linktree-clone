@@ -11,7 +11,7 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { HelpPopover } from '@/components/ui/help-popover'
 import { useStore } from '@/lib/store/store'
-import { useTree } from '@/lib/hooks/useTree'
+import useTree from '@/lib/hooks/useTree'
 import { UpdateTreeSchema } from '@/lib/schemas/tree'
 import { BASE_URL } from '@/lib/constants/globals'
 

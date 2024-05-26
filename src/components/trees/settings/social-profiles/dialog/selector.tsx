@@ -1,4 +1,4 @@
-import SocialProfile from './item'
+import SocialProfile from '@/components/trees/settings/social-profiles/dialog/item'
 import {
   Command,
   CommandEmpty,
@@ -17,7 +17,7 @@ export default function SocialProfilesSelector() {
         <CommandGroup>
           {SOCIAL_PROFILES.map((socialProfile) => (
             <SocialProfile
-              key={socialProfile.id}
+              key={socialProfile.type}
               socialProfile={socialProfile}
             />
           ))}

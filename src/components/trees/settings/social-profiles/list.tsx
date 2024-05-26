@@ -1,50 +1,78 @@
 'use client'
 
 import { X } from 'lucide-react'
-import { Button } from '@/components/ui/button'
-import { useStore } from '@/lib/store/store'
-import { cn } from '@/lib/utils'
 import { useAutoAnimate } from '@formkit/auto-animate/react'
+import { type Prisma } from '@prisma/client'
 
-export default function SocialProfilesList() {
-  const socialProfiles = useStore((state) => state.socialProfiles)
-  const setSocialProfiles = useStore((state) => state.setSocialProfiles)
+import { useStore } from '@/lib/store/store'
+import useSocialProfiles from '@/lib/hooks/useSocialProfiles'
+import { cn } from '@/lib/utils'
+import { SOCIAL_PROFILES } from '@/lib/constants/social-profiles'
+
+interface Props {
+  setOpen: (open: boolean) => void
+}
+
+export default function SocialProfilesList({ setOpen }: Props) {
+  const setStep = useStore((state) => state.setStep)
+  const selectedTree = useStore((state) => state.selectedTree)
+  const setSelectedSocialProfile = useStore(
+    (state) => state.setSelectedSocialProfile
+  )
   const [parent] = useAutoAnimate({ duration: 200 })
+  const { removeProfile } = useSocialProfiles()
 
-  const removeSocialProfile = (socialProfileId: number) => {
-    const filteredSocialProfiles = socialProfiles.filter(
-      (socialProfile) => socialProfile.id !== socialProfileId
+  const updateSocialProfile = (
+    socialProfile: Prisma.TreeSocialProfileUpdateInput
+  ) => {
+    const profileToUpdate = SOCIAL_PROFILES.find(
+      (profile) => profile.type === socialProfile.type
     )
 
-    setSocialProfiles(filteredSocialProfiles)
+    if (profileToUpdate !== undefined) {
+      setStep(2)
+      setSelectedSocialProfile(profileToUpdate)
+      setOpen(true)
+    }
   }
+
+  if (selectedTree === null) return
 
   return (
     <ul
       ref={parent}
       className={cn(
         'hidden flex-wrap gap-2',
-        socialProfiles.length > 0 && 'flex'
+        selectedTree.socialProfiles.length > 0 && 'flex'
       )}
     >
-      {socialProfiles.map((socialProfile) => (
-        <li
-          className='flex items-center gap-x-2 rounded-full border border-lt-light-gray/60 py-1 pl-3 pr-1 text-sm leading-none'
-          key={socialProfile.id}
-        >
-          {socialProfile.name}
-          <Button
-            aria-label='Remove'
-            className='h-auto rounded-full p-1'
-            variant='ghost'
-            onClick={() => {
-              removeSocialProfile(socialProfile.id)
-            }}
+      {selectedTree.socialProfiles.map((socialProfile) => {
+        return (
+          <li
+            className='flex items-center gap-x-1 rounded-full border border-lt-light-gray/60 pr-1 text-sm leading-none transition-colors has-[:hover]:bg-lt-light-gray'
+            key={socialProfile.type}
           >
-            <X className='size-3' aria-hidden />
-          </Button>
-        </li>
-      ))}
+            <button
+              aria-label='Update URL'
+              className='py-1.5 pl-3'
+              onClick={() => {
+                updateSocialProfile(socialProfile)
+              }}
+            >
+              {socialProfile.name}
+            </button>
+            <button
+              aria-label='Remove'
+              className='h-auto rounded-full p-1 transition-colors xl:hover:bg-lt-gray'
+              onClick={async () => {
+                await removeProfile(socialProfile.type)
+              }}
+            >
+              <X className='size-3' aria-hidden />
+            </button>
+          </li>
+        )
+      })}
     </ul>
   )
 }

@@ -5,7 +5,7 @@ import { useCurrentUser } from '@/lib/hooks/useCurrentUser'
 import { updateTree } from '@/lib/actions/trees/update-tree'
 import { type Tree } from '@prisma/client'
 
-export function useTree() {
+export default function useTree() {
   const setSelectedTree = useStore((state) => state.setSelectedTree)
   const setSavingTree = useStore((state) => state.setSavingTree)
   const selectedTree = useStore((state) => state.selectedTree)
@@ -21,18 +21,16 @@ export function useTree() {
           ...data
         }
 
-        localStorage.setItem('__LOCAL_TREE__', JSON.stringify(treeToSave))
         setSelectedTree(treeToSave)
 
         return treeToSave
       } else {
         setSavingTree(true)
 
-        const response = await updateTree(data)
+        const response = await updateTree({ id: selectedTree.id, ...data })
 
         if (response !== null) {
           setSelectedTree(response)
-          localStorage.removeItem('__LOCAL_TREE__')
         }
 
         setSavingTree(false)

@@ -1,28 +1,19 @@
+import { type SocialProfileTypes } from '@prisma/client'
+
 export type ChildrenType = React.ReactNode
 
-export type SocialProfileType =
-  | 'email'
-  | 'facebook'
-  | 'discord'
-  | 'instagram'
-  | 'linkedin'
-  | 'pinterest'
-  | 'reddit'
-  | 'telegram'
-  | 'threads'
-  | 'tiktok'
-  | 'twitch'
-  | 'twitter'
-  | 'whatsapp'
-  | 'youtube'
+export enum INPUT_TYPES {
+  TEXT = 1,
+  TEL = 2,
+  EMAIL = 3
+}
 
 export interface SocialProfileInterface {
-  id: number
+  type: SocialProfileTypes
   name: string
-  slug: SocialProfileType
   link: string
   form: {
-    inputType: number
+    inputType: INPUT_TYPES
     label: string
     disabledText: string
     placeholder: string
@@ -30,9 +21,8 @@ export interface SocialProfileInterface {
 }
 
 export interface TreeSocialProfilesInterface {
-  id: number
+  type: SocialProfileTypes
   name: string
-  slug: SocialProfileType
   inputValue: string | number
   link: string
 }

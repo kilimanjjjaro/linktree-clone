@@ -10,31 +10,33 @@ interface Props {
 }
 
 export default function SocialProfile({ socialProfile }: Props) {
-  const socialProfiles = useStore((state) => state.socialProfiles)
+  const selectedTree = useStore((state) => state.selectedTree)
   const setSelectedSocialProfile = useStore(
     (state) => state.setSelectedSocialProfile
   )
   const setStep = useStore((state) => state.setStep)
 
   const selectSocialProfile = (socialProfile: SocialProfileInterface) => {
-    if (isAdded) return
-
     setSelectedSocialProfile(socialProfile)
     setStep(2)
   }
 
-  const isAdded = socialProfiles.some((item) => item.id === socialProfile.id)
+  if (selectedTree === null) return
+
+  const isAdded = selectedTree.socialProfiles.some(
+    (item) => item.type === socialProfile.type
+  )
 
   return (
     <CommandItem
-      key={socialProfile.id}
-      value={socialProfile.slug}
+      key={socialProfile.type}
+      value={socialProfile.type}
       onSelect={() => {
         selectSocialProfile(socialProfile)
       }}
     >
       <span className='flex items-center gap-x-2'>
-        <SocialProfileIcon className='size-5' name={socialProfile.slug} />
+        <SocialProfileIcon className='size-5' type={socialProfile.type} />
         {socialProfile.name}
       </span>
       <div className='flex items-center gap-x-1'>

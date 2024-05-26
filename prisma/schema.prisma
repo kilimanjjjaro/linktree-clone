@@ -80,14 +80,17 @@ model Tree {
 }
 
 model TreeSocialProfile {
-  id     String @id @default(cuid())
-  type   Int
+  id     String             @id @default(cuid())
+  type   SocialProfileTypes
   url    String
-  tree   Tree   @relation(fields: [treeId], references: [id], onDelete: Cascade)
+  name   String
+  tree   Tree               @relation(fields: [treeId], references: [id], onDelete: Cascade)
   treeId String
 
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt
+
+  @@unique([treeId, type])
 }
 
 model TreeLink {
@@ -101,4 +104,21 @@ model TreeLink {
 
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt
+}
+
+enum SocialProfileTypes {
+  DISCORD
+  EMAIL
+  FACEBOOK
+  INSTAGRAM
+  LINKEDIN
+  PINTEREST
+  REDDIT
+  TELEGRAM
+  THREADS
+  TIKTOK
+  TWITCH
+  TWITTER
+  WHATSAPP
+  YOUTUBE
 }

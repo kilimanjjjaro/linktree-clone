@@ -6,7 +6,7 @@ import { useDebouncedCallback } from 'use-debounce'
 import { Textarea } from '@/components/ui/textarea'
 import { ErrorTooltip } from '@/components/ui/error-tooltip'
 import { useStore } from '@/lib/store/store'
-import { useTree } from '@/lib/hooks/useTree'
+import useTree from '@/lib/hooks/useTree'
 import { UpdateTreeSchema } from '@/lib/schemas/tree'
 import { DEMO_TREE_VALUES } from '@/lib/constants/trees'
 

@@ -4,17 +4,16 @@ import { useTransition } from 'react'
 import Image from 'next/image'
 import { toast } from 'sonner'
 
+import AvatarDialog from '@/components/trees/settings/avatar/dialog'
 import { Skeleton } from '@/components/ui/skeleton'
 import { Button } from '@/components/ui/button'
 import { Label } from '@/components/ui/label'
 import { useStore } from '@/lib/store/store'
-import { useTree } from '@/lib/hooks/useTree'
+import useTree from '@/lib/hooks/useTree'
 import { DEMO_TREE_VALUES } from '@/lib/constants/trees'
-import { DIALOG } from '@/lib/constants/globals'
 
 export default function TreeAvatar() {
   const selectedTree = useStore((state) => state.selectedTree)
-  const setShowDialog = useStore((state) => state.setShowDialog)
   const [isPending, startTransition] = useTransition()
   const { saveTree } = useTree()
 
@@ -50,15 +49,7 @@ export default function TreeAvatar() {
           )}
         </div>
         <div className='grid flex-1 grid-cols-2 gap-x-3'>
-          <Button
-            id='tree-avatar'
-            variant='secondary'
-            onClick={() => {
-              setShowDialog(DIALOG.UPLOAD_AVATAR)
-            }}
-          >
-            Upload
-          </Button>
+          <AvatarDialog />
           <Button variant='outline' onClick={removeAvatar} disabled={isPending}>
             {isPending ? 'Removing' : 'Remove'}
           </Button>

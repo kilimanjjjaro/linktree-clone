@@ -1,12 +1,12 @@
-import { INPUT_TYPES } from '@/lib/constants/globals'
-import type { SocialProfileInterface } from '@/lib/types/globals'
+import { SocialProfileTypes } from '@prisma/client'
+
+import { INPUT_TYPES, type SocialProfileInterface } from '@/lib/types/globals'
 
 export const SOCIAL_PROFILES: SocialProfileInterface[] = [
   {
-    id: 0,
     name: 'Email',
-    slug: 'email',
     link: 'mailto:',
+    type: SocialProfileTypes.EMAIL,
     form: {
       inputType: INPUT_TYPES.EMAIL,
       label: 'Email address',
@@ -15,10 +15,9 @@ export const SOCIAL_PROFILES: SocialProfileInterface[] = [
     }
   },
   {
-    id: 1,
     name: 'Facebook',
-    slug: 'facebook',
     link: 'https://www.facebook.com/',
+    type: SocialProfileTypes.FACEBOOK,
     form: {
       inputType: INPUT_TYPES.TEXT,
       label: 'Username',
@@ -27,10 +26,9 @@ export const SOCIAL_PROFILES: SocialProfileInterface[] = [
     }
   },
   {
-    id: 2,
     name: 'Discord',
-    slug: 'discord',
     link: '',
+    type: SocialProfileTypes.DISCORD,
     form: {
       inputType: INPUT_TYPES.TEXT,
       label: 'Username',
@@ -39,10 +37,9 @@ export const SOCIAL_PROFILES: SocialProfileInterface[] = [
     }
   },
   {
-    id: 3,
     name: 'Instagram',
-    slug: 'instagram',
     link: 'https://www.instagram.com/',
+    type: SocialProfileTypes.INSTAGRAM,
     form: {
       inputType: INPUT_TYPES.TEXT,
       label: 'Username',
@@ -51,10 +48,9 @@ export const SOCIAL_PROFILES: SocialProfileInterface[] = [
     }
   },
   {
-    id: 4,
     name: 'LinkedIn',
-    slug: 'linkedin',
     link: 'https://www.linkedin.com/in/',
+    type: SocialProfileTypes.LINKEDIN,
     form: {
       inputType: INPUT_TYPES.TEXT,
       label: 'Account',
@@ -63,10 +59,9 @@ export const SOCIAL_PROFILES: SocialProfileInterface[] = [
     }
   },
   {
-    id: 5,
     name: 'Pinterest',
-    slug: 'pinterest',
     link: 'https://pinterest.com/',
+    type: SocialProfileTypes.PINTEREST,
     form: {
       inputType: INPUT_TYPES.TEXT,
       label: 'Username',
@@ -75,10 +70,9 @@ export const SOCIAL_PROFILES: SocialProfileInterface[] = [
     }
   },
   {
-    id: 6,
     name: 'Reddit',
-    slug: 'reddit',
     link: 'https://www.reddit.com/user/',
+    type: SocialProfileTypes.REDDIT,
     form: {
       inputType: INPUT_TYPES.TEXT,
       label: 'Username',
@@ -87,10 +81,9 @@ export const SOCIAL_PROFILES: SocialProfileInterface[] = [
     }
   },
   {
-    id: 7,
     name: 'Telegram',
-    slug: 'telegram',
     link: '',
+    type: SocialProfileTypes.TELEGRAM,
     form: {
       inputType: INPUT_TYPES.TEL,
       label: 'Number',
@@ -99,34 +92,31 @@ export const SOCIAL_PROFILES: SocialProfileInterface[] = [
     }
   },
   {
-    id: 8,
     name: 'Threads',
-    slug: 'threads',
     link: 'https://www.threads.net/@',
+    type: SocialProfileTypes.THREADS,
     form: {
       inputType: INPUT_TYPES.TEXT,
       label: 'Username',
       disabledText: 'threads.net/@',
-      placeholder: '@your-username'
+      placeholder: 'your-username'
     }
   },
   {
-    id: 9,
     name: 'TikTok',
-    slug: 'tiktok',
     link: 'https://www.tiktok.com/@',
+    type: SocialProfileTypes.TIKTOK,
     form: {
       inputType: INPUT_TYPES.TEXT,
       label: 'Username',
       disabledText: 'tiktok.com/@',
-      placeholder: '@your-username'
+      placeholder: 'your-username'
     }
   },
   {
-    id: 10,
     name: 'Twitch',
-    slug: 'twitch',
     link: 'https://www.twitch.tv/',
+    type: SocialProfileTypes.TWITCH,
     form: {
       inputType: INPUT_TYPES.TEXT,
       label: 'Username',
@@ -135,22 +125,20 @@ export const SOCIAL_PROFILES: SocialProfileInterface[] = [
     }
   },
   {
-    id: 11,
-    name: 'X (formerly Twitter)',
-    slug: 'twitter',
+    name: 'Twitter',
     link: 'https://twitter.com/',
+    type: SocialProfileTypes.TWITTER,
     form: {
       inputType: INPUT_TYPES.TEXT,
       label: 'Username',
       disabledText: 'twitter.com/',
-      placeholder: '@your-username'
+      placeholder: 'your-username'
     }
   },
   {
-    id: 12,
-    name: 'Whatsapp',
-    slug: 'whatsapp',
+    name: 'WhatsApp',
     link: 'https://api.whatsapp.com/send?phone=',
+    type: SocialProfileTypes.WHATSAPP,
     form: {
       inputType: INPUT_TYPES.TEL,
       label: 'Number',
@@ -159,10 +147,9 @@ export const SOCIAL_PROFILES: SocialProfileInterface[] = [
     }
   },
   {
-    id: 13,
     name: 'YouTube',
-    slug: 'youtube',
     link: 'https://www.youtube.com/@',
+    type: SocialProfileTypes.YOUTUBE,
     form: {
       inputType: INPUT_TYPES.TEXT,
       label: 'Username',
