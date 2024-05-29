@@ -16,12 +16,12 @@ import { cn } from '@/lib/utils'
 import { SocialProfileTypes } from '@prisma/client'
 
 interface Props {
-  className: string
-  type: SocialProfileTypes
+  className?: string
+  icon: SocialProfileTypes
 }
 
-const getIcon = (type: SocialProfileTypes) => {
-  switch (type) {
+const getIcon = (icon: SocialProfileTypes) => {
+  switch (icon) {
     case SocialProfileTypes.EMAIL:
       return <EmailIcon />
     case SocialProfileTypes.FACEBOOK:
@@ -55,12 +55,10 @@ const getIcon = (type: SocialProfileTypes) => {
   }
 }
 
-export default function SocialProfileIcon({ className, type }: Props) {
-  const icon = getIcon(type)
-
+export default function SocialProfileIcon({ className, icon }: Props) {
   return (
     <i aria-hidden className={cn('inline-block', className)}>
-      {icon}
+      {getIcon(icon)}
     </i>
   )
 }
