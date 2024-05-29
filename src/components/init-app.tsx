@@ -4,6 +4,7 @@ import { useCallback, useEffect } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 
 import { useStore } from '@/lib/store/store'
+import { useCurrentUser } from '@/lib/hooks/useCurrentUser'
 import { DEMO_TREE_VALUES } from '@/lib/constants/trees'
 import { type ChildrenType } from '@/lib/types/globals'
 import { type TreeInterface } from '@/lib/types/trees'
@@ -18,6 +19,7 @@ export default function InitApp({ children, trees }: Props) {
   const setSelectedTree = useStore((state) => state.setSelectedTree)
   const searchParams = useSearchParams()
   const slug = searchParams.get('slug')
+  const user = useCurrentUser()
   const router = useRouter()
 
   const updateSelectedTree = useCallback(
@@ -72,10 +74,10 @@ export default function InitApp({ children, trees }: Props) {
   }, [slug, trees, router, updateSelectedTree, searchParams])
 
   useEffect(() => {
-    if (selectedTree === null) return
-
-    localStorage.setItem('__SELECTED_TREE__', JSON.stringify(selectedTree))
-  }, [selectedTree])
+    if (selectedTree !== null && user === null) {
+      localStorage.setItem('__SELECTED_TREE__', JSON.stringify(selectedTree))
+    }
+  }, [user, selectedTree])
 
   return <>{children}</>
 }

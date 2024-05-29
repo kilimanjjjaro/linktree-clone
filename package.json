@@ -45,7 +45,7 @@
     "sonner": "1.4.41",
     "tailwind-merge": "2.3.0",
     "tailwindcss-animate": "1.0.7",
-    "use-debounce": "10.0.0",
+    "use-debounce": "10.0.1",
     "use-dencrypt-effect": "2.0.0",
     "uuid": "9.0.1",
     "zod": "3.23.8",
@@ -53,7 +53,7 @@
   },
   "devDependencies": {
     "@types/bcryptjs": "2.4.6",
-    "@types/node": "20.12.12",
+    "@types/node": "20.12.13",
     "@types/react": "18.3.3",
     "@types/react-dom": "18.3.0",
     "@types/uuid": "9.0.8",
@@ -70,6 +70,6 @@
     "typescript": "5.4.5"
   },
   "volta": {
-    "node": "20.12.2"
+    "node": "20.14.0"
   }
 }
