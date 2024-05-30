@@ -10,7 +10,11 @@ import LinktreeLogo from '@/components/icons/linktree-logo'
 import { Separator } from '@/components/ui/separator'
 import { getCurrentUser } from '@/lib/services/get-current-user'
 
-export default async function Navbar({ slug }: { slug: string | undefined }) {
+interface Props {
+  slug: string | undefined
+}
+
+export default async function Navbar({ slug }: Props) {
   const user = await getCurrentUser()
 
   return (

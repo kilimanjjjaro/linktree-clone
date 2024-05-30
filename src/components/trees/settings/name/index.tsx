@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { usePathname, useRouter } from 'next/navigation'
+import { useRouter } from 'next/navigation'
 import { useDebouncedCallback } from 'use-debounce'
 import slugify from '@sindresorhus/slugify'
 
@@ -18,7 +18,6 @@ export default function TreeName() {
   const selectedTree = useStore((state) => state.selectedTree)
   const [errors, setErrors] = useState<string[]>([])
   const { saveTree } = useTree()
-  const pathname = usePathname()
   const router = useRouter()
 
   const updateName = useDebouncedCallback(async (treeName: string) => {
@@ -44,7 +43,7 @@ export default function TreeName() {
     if (response !== null) {
       const params = new URLSearchParams()
       params.set('slug', response.slug)
-      router.replace(`${pathname}?slug=${response.slug}`, {
+      router.replace(`/?slug=${response.slug}`, {
         scroll: false
       })
     }
@@ -67,6 +66,8 @@ export default function TreeName() {
           placeholder={DEMO_TREE_VALUES.name}
           aria-invalid={errors.length > 0}
           onChange={async (event) => {
+            if (updateName.isPending()) updateName.cancel()
+
             await updateName(event.target.value)
           }}
         />

@@ -3,8 +3,8 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { useStore } from '@/lib/store/store'
 import useSocialProfiles from '@/lib/hooks/useSocialProfiles'
+import { generateInputAttributes } from '@/lib/utils/generate-input-attributes'
 import { delay } from '@/lib/utils/delay'
-import { createInputAttributes } from '@/lib/utils/create-input-attributes'
 
 interface Props {
   closeDialog: () => void
@@ -78,7 +78,7 @@ export default function SocialProfileSettings({ closeDialog }: Props) {
           defaultValue={existingSocialProfile?.url ?? undefined}
           required
           autoFocus
-          {...createInputAttributes(selectedSocialProfile.form.inputType)}
+          {...generateInputAttributes(selectedSocialProfile.form.inputType)}
         />
       </div>
       <footer className='grid grid-cols-2 gap-x-3'>

@@ -1,12 +1,12 @@
 'use server'
 
 import { revalidatePath } from 'next/cache'
-import { Prisma } from '@prisma/client'
 import slugify from '@sindresorhus/slugify'
 
 import db from '@/lib/database'
 import { getCurrentUser } from '@/lib/services/get-current-user'
-import { DEMO_TREE_VALUES, TREE_NAMES } from '@/lib/constants/trees'
+import { TREE_NAMES } from '@/lib/constants/trees'
+import { generateRawData } from '@/lib/utils/generate-raw-data'
 
 export async function createDefaultTree() {
   const user = await getCurrentUser()
@@ -22,38 +22,14 @@ export async function createDefaultTree() {
   const randomIndex = Math.floor(Math.random() * TREE_NAMES.length)
   const randomName = TREE_NAMES[randomIndex]
 
-  const data: Prisma.TreeUncheckedCreateInput = {
-    authorId: user.id,
-    status: DEMO_TREE_VALUES.status,
-    name: randomName,
-    slug: slugify(randomName),
-    url: DEMO_TREE_VALUES.url,
-    description: DEMO_TREE_VALUES.description,
-    avatar: DEMO_TREE_VALUES.avatar,
-    appearance: DEMO_TREE_VALUES.appearance ?? Prisma.JsonNull,
-    links: {
-      createMany: {
-        data: DEMO_TREE_VALUES.links.map((link) => {
-          const { id, treeId, ...rest } = link
-
-          return rest
-        })
-      }
-    },
-    socialProfiles: {
-      createMany: {
-        data: DEMO_TREE_VALUES.socialProfiles.map((socialMedia) => {
-          const { id, treeId, ...rest } = socialMedia
-
-          return rest
-        })
-      }
-    }
-  }
-
   try {
     const response = await db.tree.create({
-      data,
+      data: {
+        ...generateRawData(),
+        authorId: user.id,
+        name: randomName,
+        slug: slugify(randomName)
+      },
       include: {
         links: true,
         socialProfiles: true
