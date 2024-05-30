@@ -10,11 +10,11 @@ interface Props {
 }
 
 export default function SocialProfile({ socialProfile }: Props) {
+  const setStep = useStore((state) => state.setStep)
   const selectedTree = useStore((state) => state.selectedTree)
   const setSelectedSocialProfile = useStore(
     (state) => state.setSelectedSocialProfile
   )
-  const setStep = useStore((state) => state.setStep)
 
   const selectSocialProfile = (socialProfile: SocialProfileInterface) => {
     setSelectedSocialProfile(socialProfile)
@@ -36,7 +36,7 @@ export default function SocialProfile({ socialProfile }: Props) {
       }}
     >
       <span className='flex items-center gap-x-2'>
-        <SocialProfileIcon className='size-5' type={socialProfile.type} />
+        <SocialProfileIcon className='size-5' icon={socialProfile.type} />
         {socialProfile.name}
       </span>
       <div className='flex items-center gap-x-1'>

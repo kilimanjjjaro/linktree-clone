@@ -1,12 +1,9 @@
-import { Suspense } from 'react'
-
 import Footer from '@/components/footer'
 import Navbar from '@/components/navbar'
 import InitApp from '@/components/init-app'
 import TreeAppearance from '@/components/trees/appearance'
 import TreePreview from '@/components/trees/preview'
 import TreeSettings from '@/components/trees/settings'
-import PreviewSkeleton from '@/components/ui/skeletons/preview-skeleton'
 import { getCurrentUser } from '@/lib/services/get-current-user'
 import { getCachedTrees } from '@/lib/services/get-cached-trees'
 
@@ -24,9 +21,7 @@ export default async function Home({ searchParams }: Props) {
       <Navbar slug={slug} />
       <main className='relative grid h-dvh min-h-dvh grid-cols-[auto_1fr_auto] items-start justify-center p-3 pt-[88px]'>
         <TreeAppearance />
-        <Suspense fallback={<PreviewSkeleton />}>
-          <TreePreview slug={slug} />
-        </Suspense>
+        <TreePreview />
         <TreeSettings />
       </main>
       <Footer />

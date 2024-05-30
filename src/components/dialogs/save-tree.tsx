@@ -31,7 +31,7 @@ export default function SaveTreeDialog() {
       if (data !== null) {
         toast.success(success)
         setSelectedTree(data)
-        localStorage.setItem('__SELECTED_TREE__', JSON.stringify(data))
+        localStorage.setItem('__LOCAL_TREE__', JSON.stringify(data))
         setShowDialog(DIALOG.HIDDEN)
       } else {
         toast.error(error)
@@ -40,7 +40,7 @@ export default function SaveTreeDialog() {
   }
 
   const discardTree = () => {
-    localStorage.removeItem('__SELECTED_TREE__')
+    localStorage.removeItem('__LOCAL_TREE__')
     setShowDialog(DIALOG.HIDDEN)
     toast('Your tree was discarded.')
   }

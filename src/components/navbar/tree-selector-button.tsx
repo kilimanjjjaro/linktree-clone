@@ -11,7 +11,7 @@ export default function TreeSelectorButton() {
   const selectedTree = useStore((state) => state.selectedTree)
 
   if (selectedTree === null) {
-    return <Skeleton className='h-6 w-[232px] rounded-full' />
+    return <Skeleton className='h-6 w-[248px] rounded-full' />
   }
 
   return (
