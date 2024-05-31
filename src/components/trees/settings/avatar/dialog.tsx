@@ -13,7 +13,7 @@ import {
   DialogTrigger
 } from '@/components/ui/dialog'
 
-export default function AvatarDialog() {
+export default function UploadAvatarDialog() {
   const [avatarToCrop, setAvatarToCrop] = useState('')
   const [open, setOpen] = useState(false)
 

@@ -5,6 +5,7 @@ import { useStore } from '@/lib/store/store'
 import { updateTree } from '@/lib/actions/trees/update-tree'
 import { useCurrentUser } from '@/lib/hooks/useCurrentUser'
 import { UpdateTreeSchema } from '@/lib/schemas/tree'
+import slugify from '@sindresorhus/slugify'
 
 export default function useTree() {
   const setSavingTree = useStore((state) => state.setSavingTree)
@@ -30,10 +31,20 @@ export default function useTree() {
         setErrors([])
       }
 
+      const { name } = validatedFields.data
+
+      let rawData
+
+      if (name !== undefined) {
+        rawData = { ...validatedFields.data, slug: slugify(name) }
+      } else {
+        rawData = { ...validatedFields.data }
+      }
+
       if (user === null) {
         const treeToSave = {
           ...selectedTree,
-          ...validatedFields.data
+          ...rawData
         }
 
         setSelectedTree(treeToSave)
@@ -45,7 +56,7 @@ export default function useTree() {
 
         const response = await updateTree({
           id: selectedTree.id,
-          ...validatedFields.data
+          ...rawData
         })
 
         if (response !== null) {

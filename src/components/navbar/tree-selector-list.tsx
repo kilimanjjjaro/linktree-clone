@@ -26,6 +26,7 @@ interface Props {
 }
 
 export default function TreeSelectorList({ slug, trees }: Props) {
+  const setShowSaveTreeDialog = useStore((state) => state.setShowSaveTreeDialog)
   const setSelectedTree = useStore((state) => state.setSelectedTree)
   const [isPending, startTransition] = useTransition()
   const pathname = usePathname()
@@ -73,6 +74,13 @@ export default function TreeSelectorList({ slug, trees }: Props) {
   }
 
   const handleSelect = (slug: string) => {
+    const localTree = localStorage.getItem('__LOCAL_TREE__')
+
+    if (localTree !== null) {
+      setShowSaveTreeDialog(true)
+      return
+    }
+
     const params = new URLSearchParams()
     params.set('slug', slug)
     router.replace(`${pathname}?slug=${slug}`, {

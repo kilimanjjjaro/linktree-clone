@@ -1,13 +1,6 @@
 import { type SocialProfileInterface } from '@/lib/types/globals'
 import { type TreeInterface } from '@/lib/types/trees'
 
-export interface GlobalsSliceInterface {
-  showDialog: number
-  setShowDialog: (showDialog: number) => void
-  savingTree: boolean
-  setSavingTree: (savingTree: boolean) => void
-}
-
 export interface SocialProfilesSliceInterface {
   selectedSocialProfile: SocialProfileInterface | null
   setSelectedSocialProfile: (
@@ -20,9 +13,12 @@ export interface SocialProfilesSliceInterface {
 export interface TreesStoreInterface {
   selectedTree: TreeInterface | null
   setSelectedTree: (selectedTree: TreeInterface) => void
+  savingTree: boolean
+  setSavingTree: (savingTree: boolean) => void
+  showSaveTreeDialog: boolean
+  setShowSaveTreeDialog: (showSaveTreeDialog: boolean) => void
 }
 
 export interface StoreInterface
-  extends GlobalsSliceInterface,
-    SocialProfilesSliceInterface,
-    TreesStoreInterface {}
+  extends TreesStoreInterface,
+    SocialProfilesSliceInterface {}

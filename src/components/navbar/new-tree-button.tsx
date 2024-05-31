@@ -2,18 +2,27 @@
 
 import { useTransition } from 'react'
 import { usePathname, useRouter } from 'next/navigation'
-import { toast } from 'sonner'
 import { LoaderCircle, Plus } from 'lucide-react'
+import { toast } from 'sonner'
 
 import { Button } from '@/components/ui/button'
 import { createDefaultTree } from '@/lib/actions/trees/create-default-tree'
+import { useStore } from '@/lib/store/store'
 
 export default function NewTreeButton() {
+  const setShowSaveTreeDialog = useStore((state) => state.setShowSaveTreeDialog)
   const [isPending, startTransition] = useTransition()
   const pathname = usePathname()
   const router = useRouter()
 
   const handleCreate = async () => {
+    const localTree = localStorage.getItem('__LOCAL_TREE__')
+
+    if (localTree !== null) {
+      setShowSaveTreeDialog(true)
+      return
+    }
+
     startTransition(async () => {
       const response = await createDefaultTree()
 

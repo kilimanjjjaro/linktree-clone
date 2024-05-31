@@ -4,7 +4,7 @@ import { useTransition } from 'react'
 import Image from 'next/image'
 import { toast } from 'sonner'
 
-import AvatarDialog from '@/components/trees/settings/avatar/dialog'
+import UploadAvatarDialog from '@/components/trees/settings/avatar/dialog'
 import { Skeleton } from '@/components/ui/skeleton'
 import { Button } from '@/components/ui/button'
 import { Label } from '@/components/ui/label'
@@ -49,7 +49,7 @@ export default function TreeAvatar() {
           )}
         </div>
         <div className='grid flex-1 grid-cols-2 gap-x-3'>
-          <AvatarDialog />
+          <UploadAvatarDialog />
           <Button variant='outline' onClick={removeAvatar} disabled={isPending}>
             {isPending ? 'Removing' : 'Remove'}
           </Button>

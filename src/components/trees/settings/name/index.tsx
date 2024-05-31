@@ -1,7 +1,6 @@
 'use client'
 
 import { useRouter } from 'next/navigation'
-import slugify from '@sindresorhus/slugify'
 import { Forward } from 'lucide-react'
 
 import { Input } from '@/components/ui/input'
@@ -28,7 +27,7 @@ export default function TreeName() {
     const formData = new FormData(event.currentTarget)
     const name = formData.get('name') as string
 
-    const response = await saveTree({ name, slug: slugify(name) })
+    const response = await saveTree({ name })
 
     if (response !== null) {
       const params = new URLSearchParams()
