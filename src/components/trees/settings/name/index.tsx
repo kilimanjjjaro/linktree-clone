@@ -1,42 +1,32 @@
 'use client'
 
-import { useState } from 'react'
 import { useRouter } from 'next/navigation'
-import { useDebouncedCallback } from 'use-debounce'
 import slugify from '@sindresorhus/slugify'
+import { Forward } from 'lucide-react'
 
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
+import { Button } from '@/components/ui/button'
 import { ErrorTooltip } from '@/components/ui/error-tooltip'
 import { HelpPopover } from '@/components/ui/help-popover'
 import { useStore } from '@/lib/store/store'
 import useTree from '@/lib/hooks/useTree'
-import { UpdateTreeSchema } from '@/lib/schemas/tree'
 import { DEMO_TREE_VALUES } from '@/lib/constants/trees'
+import { cn } from '@/lib/utils'
 
 export default function TreeName() {
   const selectedTree = useStore((state) => state.selectedTree)
-  const [errors, setErrors] = useState<string[]>([])
-  const { saveTree } = useTree()
+  const savingTree = useStore((state) => state.savingTree)
+  const { saveTree, errors } = useTree()
   const router = useRouter()
 
-  const updateName = useDebouncedCallback(async (treeName: string) => {
-    const validatedFields = UpdateTreeSchema.safeParse({
-      name: treeName
-    })
+  const updateName = async (event: React.FormEvent<HTMLFormElement>) => {
+    if (savingTree) return
 
-    if (!validatedFields.success) {
-      const errors = validatedFields.error.errors.map((error) => error.message)
-      setErrors(errors)
+    event.preventDefault()
 
-      return
-    } else {
-      setErrors([])
-    }
-
-    const { name } = validatedFields.data
-
-    if (name === undefined) return
+    const formData = new FormData(event.currentTarget)
+    const name = formData.get('name') as string
 
     const response = await saveTree({ name, slug: slugify(name) })
 
@@ -47,10 +37,15 @@ export default function TreeName() {
         scroll: false
       })
     }
-  }, 300)
+  }
 
   return (
-    <section className='flex flex-col gap-y-3 p-5'>
+    <form
+      onSubmit={async (event) => {
+        await updateName(event)
+      }}
+      className='flex flex-col gap-y-3 p-5'
+    >
       <div className='flex items-center gap-x-2'>
         <Label htmlFor='tree-name'>Name</Label>
         <HelpPopover>
@@ -61,18 +56,27 @@ export default function TreeName() {
       <div className='relative flex items-center'>
         <Input
           id='tree-name'
+          name='name'
           type='text'
+          className='peer pr-7'
           defaultValue={selectedTree?.name}
           placeholder={DEMO_TREE_VALUES.name}
           aria-invalid={errors.length > 0}
-          onChange={async (event) => {
-            if (updateName.isPending()) updateName.cancel()
-
-            await updateName(event.target.value)
-          }}
         />
         <ErrorTooltip errors={errors} />
+        <Button
+          type='submit'
+          size='icon'
+          variant='outline'
+          className={cn(
+            'absolute right-1.5 size-6 border-none opacity-0 transition-opacity focus-visible:opacity-100 peer-focus-visible:opacity-100',
+            savingTree && '!opacity-0'
+          )}
+        >
+          <Forward className='size-4 translate-y-px rotate-180' />
+          <span className='sr-only'>Save</span>
+        </Button>
       </div>
-    </section>
+    </form>
   )
 }

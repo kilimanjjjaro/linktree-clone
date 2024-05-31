@@ -1,9 +1,7 @@
 'use client'
 
-import { useState } from 'react'
-import { Copy } from 'lucide-react'
-import { useDebouncedCallback } from 'use-debounce'
 import { toast } from 'sonner'
+import { Copy, Forward } from 'lucide-react'
 
 import { ErrorTooltip } from '@/components/ui/error-tooltip'
 import { Button } from '@/components/ui/button'
@@ -12,34 +10,24 @@ import { Label } from '@/components/ui/label'
 import { HelpPopover } from '@/components/ui/help-popover'
 import { useStore } from '@/lib/store/store'
 import useTree from '@/lib/hooks/useTree'
-import { UpdateTreeSchema } from '@/lib/schemas/tree'
 import { BASE_URL } from '@/lib/constants/globals'
+import { cn } from '@/lib/utils'
 
 export default function TreeUrl() {
   const selectedTree = useStore((state) => state.selectedTree)
-  const [errors, setErrors] = useState<string[]>([])
-  const { saveTree } = useTree()
+  const savingTree = useStore((state) => state.savingTree)
+  const { saveTree, errors } = useTree()
 
-  const updateUrl = useDebouncedCallback(async (treeUrl: string) => {
-    const validatedFields = UpdateTreeSchema.safeParse({
-      url: treeUrl
-    })
+  const updateUrl = async (event: React.FormEvent<HTMLFormElement>) => {
+    if (savingTree) return
 
-    if (!validatedFields.success) {
-      const errors = validatedFields.error.errors.map((error) => error.message)
-      setErrors(errors)
+    event.preventDefault()
 
-      return
-    } else {
-      setErrors([])
-    }
-
-    const { url } = validatedFields.data
-
-    if (url === undefined) return
+    const formData = new FormData(event.currentTarget)
+    const url = formData.get('url') as string
 
     await saveTree({ url })
-  }, 300)
+  }
 
   const copyUrl = () => {
     if (selectedTree === null) return
@@ -63,31 +51,39 @@ export default function TreeUrl() {
           it as many times as you want.
         </HelpPopover>
       </div>
-      <div className='group relative flex h-10 items-center overflow-hidden rounded-full border border-lt-light-gray/60 ring-lt-white ring-offset-2 ring-offset-lt-gray has-[:focus-visible]:ring-2 has-[input[aria-invalid=true]]:ring-2 has-[input[aria-invalid=true]]:ring-red-500'>
+      <form
+        onSubmit={updateUrl}
+        className='relative flex h-10 items-center rounded-full border border-lt-light-gray/60 ring-lt-white ring-offset-2 ring-offset-lt-gray has-[:focus-visible]:ring-2 has-[input[aria-invalid=true]]:ring-2 has-[input[aria-invalid=true]]:ring-red-500'
+      >
         <span className='flex h-full cursor-not-allowed select-none items-center border-r border-lt-light-gray/60 px-3 text-sm text-lt-lightest-gray'>
           linktr.ee/
         </span>
         <Input
           id='tree-url'
-          className='rounded-none border-none focus-visible:ring-0 focus-visible:ring-offset-0 aria-[invalid=true]:ring-0'
           type='text'
+          name='url'
+          className='peer rounded-none border-none pr-7 focus-visible:ring-0 focus-visible:ring-offset-0 aria-[invalid=true]:ring-0'
           defaultValue={selectedTree?.url}
           aria-invalid={errors.length > 0}
-          onChange={async (event) => {
-            await updateUrl(event.target.value)
-          }}
         />
         <ErrorTooltip errors={errors} />
         <Button
+          type='submit'
           size='icon'
           variant='outline'
-          className='absolute right-1.5 size-6 opacity-0 transition-opacity focus-visible:opacity-100 group-hover:opacity-100'
-          onClick={copyUrl}
+          className={cn(
+            'absolute right-1.5 size-6 border-none opacity-0 transition-opacity focus-visible:opacity-100 peer-focus-visible:opacity-100',
+            savingTree && '!opacity-0'
+          )}
         >
-          <Copy className='size-3' strokeWidth={1.5} aria-hidden />
-          <span className='sr-only'>Copy Order ID</span>
+          <Forward className='size-4 translate-y-px rotate-180' />
+          <span className='sr-only'>Save</span>
         </Button>
-      </div>
+      </form>
+      <Button variant='secondary' onClick={copyUrl}>
+        Copy
+        <Copy className='size-3' strokeWidth={1.5} aria-hidden />
+      </Button>
     </section>
   )
 }

@@ -1,46 +1,68 @@
-import { useCallback } from 'react'
-
-import { useStore } from '@/lib/store/store'
-import { useCurrentUser } from '@/lib/hooks/useCurrentUser'
-import { updateTree } from '@/lib/actions/trees/update-tree'
+import { useCallback, useState } from 'react'
 import { type Tree } from '@prisma/client'
 
+import { useStore } from '@/lib/store/store'
+import { updateTree } from '@/lib/actions/trees/update-tree'
+import { useCurrentUser } from '@/lib/hooks/useCurrentUser'
+import { UpdateTreeSchema } from '@/lib/schemas/tree'
+
 export default function useTree() {
-  const setSelectedTree = useStore((state) => state.setSelectedTree)
   const setSavingTree = useStore((state) => state.setSavingTree)
+  const setSelectedTree = useStore((state) => state.setSelectedTree)
   const selectedTree = useStore((state) => state.selectedTree)
+  const [errors, setErrors] = useState<string[]>([])
   const user = useCurrentUser()
 
   const saveTree = useCallback(
     async (data: Partial<Tree>) => {
       if (selectedTree === null) return null
 
+      const validatedFields = UpdateTreeSchema.safeParse(data)
+
+      if (!validatedFields.success) {
+        const errors = validatedFields.error.errors.map(
+          (error) => error.message
+        )
+        setErrors(errors)
+
+        return null
+      } else {
+        setErrors([])
+      }
+
       if (user === null) {
         const treeToSave = {
           ...selectedTree,
-          ...data
+          ...validatedFields.data
         }
 
         setSelectedTree(treeToSave)
+        localStorage.setItem('__LOCAL_TREE__', JSON.stringify(treeToSave))
 
         return treeToSave
       } else {
         setSavingTree(true)
 
-        const response = await updateTree({ id: selectedTree.id, ...data })
+        const response = await updateTree({
+          id: selectedTree.id,
+          ...validatedFields.data
+        })
 
         if (response !== null) {
           setSelectedTree(response)
+          localStorage.removeItem('__LOCAL_TREE__')
         }
 
         setSavingTree(false)
+
         return response
       }
     },
-    [selectedTree, setSavingTree, setSelectedTree, user]
+    [selectedTree, setSelectedTree, setSavingTree, user]
   )
 
   return {
-    saveTree
+    saveTree,
+    errors
   }
 }

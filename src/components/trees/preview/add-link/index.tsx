@@ -19,7 +19,6 @@ import { Alert, AlertDescription } from '@/components/ui/alert'
 import { createLink } from '@/lib/actions/trees/create-link'
 import { getOgImage } from '@/lib/utils/get-og-image'
 import { AddLinkSchema } from '@/lib/schemas/tree'
-import { useStore } from '@/lib/store/store'
 
 interface Props {
   treeId: string | undefined
@@ -27,7 +26,6 @@ interface Props {
 }
 
 export default function AddLink({ treeId, isLogged }: Props) {
-  const selectedTree = useStore((state) => state.selectedTree)
   const [error, setError] = useState('')
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {

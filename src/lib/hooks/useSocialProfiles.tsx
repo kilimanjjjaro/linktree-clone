@@ -9,7 +9,6 @@ import { deleteSocialProfile } from '@/lib/actions/trees/delete-social-profile'
 
 export default function useSocialProfiles() {
   const setSelectedTree = useStore((state) => state.setSelectedTree)
-  const setSavingTree = useStore((state) => state.setSavingTree)
   const selectedTree = useStore((state) => state.selectedTree)
   const user = useCurrentUser()
 
@@ -36,13 +35,14 @@ export default function useSocialProfiles() {
           })
         }
 
-        setSelectedTree({
+        const treeToSave = {
           ...selectedTree,
           socialProfiles
-        })
-      } else {
-        setSavingTree(true)
+        }
 
+        setSelectedTree(treeToSave)
+        localStorage.setItem('__LOCAL_TREE__', JSON.stringify(treeToSave))
+      } else {
         const newSocialProfiles = await createOrUpdateSocialProfile({
           treeId: selectedTree.id,
           type: data.type,
@@ -57,11 +57,10 @@ export default function useSocialProfiles() {
           })
         }
 
-        setSavingTree(false)
         return newSocialProfiles
       }
     },
-    [user, selectedTree, setSelectedTree, setSavingTree]
+    [user, selectedTree, setSelectedTree]
   )
 
   const removeProfile = useCallback(
@@ -78,8 +77,6 @@ export default function useSocialProfiles() {
           socialProfiles: filteredSocialProfiles
         })
       } else {
-        setSavingTree(true)
-
         await deleteSocialProfile({
           treeId: selectedTree.id,
           type
@@ -89,11 +86,9 @@ export default function useSocialProfiles() {
           ...selectedTree,
           socialProfiles: filteredSocialProfiles
         })
-
-        setSavingTree(false)
       }
     },
-    [user, selectedTree, setSavingTree, setSelectedTree]
+    [user, selectedTree, setSelectedTree]
   )
 
   return {
