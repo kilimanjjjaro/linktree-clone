@@ -1,5 +1,4 @@
 export const ErrorTooltip = ({ errors }: { errors: string[] }) => {
-  console.log('errors', errors)
   return (
     <div className='absolute -top-7 right-0 flex w-full items-center justify-end gap-1.5'>
       {errors.map((error) => (

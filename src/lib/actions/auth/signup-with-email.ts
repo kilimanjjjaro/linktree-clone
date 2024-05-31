@@ -66,7 +66,7 @@ export async function signUpWithEmail(prevState: any, formData: FormData) {
       error: ''
     }
   } catch (error: any) {
-    console.log('ACTION_ERROR: ', error.message)
+    console.error('ACTION_ERROR: ', error.message)
 
     return {
       error: 'Something went wrong.',

@@ -28,7 +28,7 @@ export async function deleteTree(treeId: string) {
       success: 'A tree was deleted.'
     }
   } catch (error) {
-    console.log(error)
+    console.error('ACTION_ERROR: ', error)
     return {
       error: 'Something went wrong.',
       success: ''

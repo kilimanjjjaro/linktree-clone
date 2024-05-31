@@ -10,8 +10,6 @@ import { generateRawData } from '@/lib/utils/generate-raw-data'
 export async function updateTree(tree: Partial<Tree>) {
   const user = await getCurrentUser()
 
-  console.log('asdasd', tree)
-
   if (user?.id === undefined) return null
 
   try {
@@ -38,7 +36,7 @@ export async function updateTree(tree: Partial<Tree>) {
 
     return response
   } catch (error) {
-    console.log(error)
+    console.error('ACTION_ERROR: ', error)
     return null
   }
 }

@@ -44,7 +44,7 @@ export async function createDefaultTree() {
       success: 'Task created.'
     }
   } catch (error) {
-    console.log(error)
+    console.error('ACTION_ERROR: ', error)
     return {
       data: null,
       error: 'Something went wrong.',

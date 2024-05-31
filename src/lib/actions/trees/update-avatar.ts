@@ -32,7 +32,7 @@ export async function updateAvatar(formData: FormData) {
         .end(buffer)
     })
   } catch (error) {
-    console.log('UPLOAD_AVATAR: ', error)
+    console.error('ACTION_ERROR: ', error)
     return undefined
   }
 }

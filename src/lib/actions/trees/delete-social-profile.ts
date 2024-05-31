@@ -28,6 +28,6 @@ export async function deleteSocialProfile({ treeId, type }: Props) {
 
     revalidatePath('/')
   } catch (error) {
-    console.log(error)
+    console.error('ACTION_ERROR: ', error)
   }
 }

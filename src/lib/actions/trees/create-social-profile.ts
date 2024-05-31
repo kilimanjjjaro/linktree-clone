@@ -37,7 +37,7 @@ export async function createOrUpdateSocialProfile(
 
     return response
   } catch (error) {
-    console.log(error)
+    console.error('ACTION_ERROR: ', error)
     return null
   }
 }

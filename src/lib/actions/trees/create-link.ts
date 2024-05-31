@@ -31,7 +31,7 @@ export async function createLink(link: Prisma.TreeLinkUncheckedCreateInput) {
 
     return { data: response, success: 'Link created.', error: '' }
   } catch (error) {
-    console.log(error)
+    console.error('ACTION_ERROR: ', error)
     return {
       data: null,
       success: '',

@@ -38,7 +38,7 @@ export async function resetPassword(prevState: any, formData: FormData) {
 
     return { success: 'Reset password email sent.', error: '' }
   } catch (error: any) {
-    console.log('ACTION_ERROR: ', error.message)
+    console.error('ACTION_ERROR: ', error.message)
 
     return {
       error: 'Something went wrong.',

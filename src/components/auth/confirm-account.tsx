@@ -27,7 +27,6 @@ export default function ConfirmAccount() {
 
     verifyConfirmationToken(token)
       .then((data) => {
-        console.log(data.error)
         setSuccess(data.success)
         setError(data.error)
       })
