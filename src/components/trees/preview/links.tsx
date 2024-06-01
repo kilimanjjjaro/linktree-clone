@@ -4,7 +4,7 @@ import { Fragment } from 'react'
 
 import FeaturedLink from '@/components/trees/preview/link/featured-link'
 import TextLink from '@/components/trees/preview/link/text-link'
-import AddLink from '@/components/trees/preview/add-link'
+import AddLink from '@/components/trees/preview/link/add-link'
 import { Skeleton } from '@/components/ui/skeleton'
 import { useStore } from '@/lib/store/store'
 
