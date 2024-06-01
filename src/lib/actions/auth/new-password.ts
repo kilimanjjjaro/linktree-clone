@@ -95,7 +95,7 @@ export async function newPassword(
     console.error('ACTION_ERROR: ', error.message)
 
     return {
-      error: 'Something went wrong.',
+      error: 'Something went wrong!',
       success: '',
       token: ''
     }

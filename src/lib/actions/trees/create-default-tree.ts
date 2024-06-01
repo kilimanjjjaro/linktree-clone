@@ -47,7 +47,7 @@ export async function createDefaultTree() {
     console.error('ACTION_ERROR: ', error)
     return {
       data: null,
-      error: 'Something went wrong.',
+      error: 'Something went wrong!',
       success: ''
     }
   }

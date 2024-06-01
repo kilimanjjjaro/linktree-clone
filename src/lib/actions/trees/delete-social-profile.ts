@@ -14,7 +14,12 @@ interface Props {
 export async function deleteSocialProfile({ treeId, type }: Props) {
   const user = await getCurrentUser()
 
-  if (user?.id == null) return
+  if (user?.id == null) {
+    return {
+      error: 'Must log in to delete social profiles.',
+      success: ''
+    }
+  }
 
   try {
     await db.treeSocialProfile.delete({
@@ -27,7 +32,16 @@ export async function deleteSocialProfile({ treeId, type }: Props) {
     })
 
     revalidatePath('/')
+
+    return {
+      error: '',
+      success: 'Social profile deleted.'
+    }
   } catch (error) {
     console.error('ACTION_ERROR: ', error)
+    return {
+      error: 'Something went wrong!',
+      success: ''
+    }
   }
 }

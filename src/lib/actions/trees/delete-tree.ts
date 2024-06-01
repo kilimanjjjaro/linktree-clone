@@ -9,7 +9,7 @@ export async function deleteTree(treeId: string) {
 
   if (user === null) {
     return {
-      error: 'You must log in to delete trees.',
+      error: 'Must log in to delete trees.',
       success: ''
     }
   }
@@ -25,12 +25,12 @@ export async function deleteTree(treeId: string) {
 
     return {
       error: '',
-      success: 'A tree was deleted.'
+      success: 'Tree deleted.'
     }
   } catch (error) {
     console.error('ACTION_ERROR: ', error)
     return {
-      error: 'Something went wrong.',
+      error: 'Something went wrong!',
       success: ''
     }
   }

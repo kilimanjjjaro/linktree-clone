@@ -1,21 +1,18 @@
-import { useCallback, useState } from 'react'
+import { useCallback } from 'react'
 import { v4 as uuidv4 } from 'uuid'
 import { type Prisma } from '@prisma/client'
 
 import { createLink } from '@/lib/actions/trees/create-link'
+import { createTree } from '@/lib/actions/trees/create-tree'
 import { useStore } from '@/lib/store/store'
 import useCurrentUser from '@/lib/hooks/useCurrentUser'
-import useTree from '@/lib/hooks/useTree'
 import { AddLinkSchema } from '@/lib/schemas/tree'
 import { DEMO_TREE_VALUES } from '@/lib/constants/trees'
 import { getOgImage } from '@/lib/utils/get-og-image'
 
 export default function useLinks() {
-  const setSavingTree = useStore((state) => state.setSavingTree)
   const setSelectedTree = useStore((state) => state.setSelectedTree)
   const selectedTree = useStore((state) => state.selectedTree)
-  const [errors, setErrors] = useState<string[]>([])
-  const { saveTree } = useTree()
   const user = useCurrentUser()
 
   const addLink = useCallback(
@@ -32,17 +29,7 @@ export default function useLinks() {
 
       const validatedFields = AddLinkSchema.safeParse(rawData)
 
-      if (!validatedFields.success) {
-        const errors = validatedFields.error.errors.map(
-          (error) => error.message
-        )
-        console.log(validatedFields.error.errors)
-        setErrors(errors)
-
-        return null
-      } else {
-        setErrors([])
-      }
+      if (!validatedFields.success) return null
 
       if (user === null) {
         const newLink = {
@@ -62,30 +49,27 @@ export default function useLinks() {
 
         return newLink
       } else {
-        setSavingTree(true)
-
         if (selectedTree.id === DEMO_TREE_VALUES.id) {
-          const newTree = await saveTree(selectedTree)
+          const newTree = await createTree(selectedTree)
 
-          if (newTree === null) return null
+          if (newTree.data === null) return null
 
-          const response = await createLink({
+          const newLink = await createLink({
             ...validatedFields.data,
-            treeId: newTree.id
+            treeId: newTree.data.id
           })
 
-          if (response === null) return null
+          if (newLink === null) return null
 
           const treeToSave = {
-            ...newTree,
-            links: [...newTree.links, response]
+            ...newTree.data,
+            links: [...newTree.data.links, newLink]
           }
 
           setSelectedTree(treeToSave)
           localStorage.removeItem('__LOCAL_TREE__')
-          setSavingTree(false)
 
-          return response
+          return newLink
         } else {
           const response = await createLink({
             ...validatedFields.data,
@@ -100,17 +84,15 @@ export default function useLinks() {
           }
 
           setSelectedTree(treeToSave)
-          setSavingTree(false)
 
           return response
         }
       }
     },
-    [selectedTree, setSelectedTree, setSavingTree, user]
+    [selectedTree, setSelectedTree, user]
   )
 
   return {
-    addLink,
-    errors
+    addLink
   }
 }

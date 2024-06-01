@@ -35,13 +35,13 @@ export async function createTree(tree: TreeInterface) {
     return {
       data: response,
       error: '',
-      success: 'Your tree was saved.'
+      success: 'Tree created.'
     }
   } catch (error) {
     console.error('ACTION_ERROR: ', error)
     return {
       data: null,
-      error: 'Something went wrong.',
+      error: 'Something went wrong!',
       success: ''
     }
   }

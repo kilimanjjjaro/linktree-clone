@@ -12,21 +12,22 @@ export default function useSocialProfiles() {
   const selectedTree = useStore((state) => state.selectedTree)
   const user = useCurrentUser()
 
-  const saveProfiles = useCallback(
+  const saveProfile = useCallback(
     async (data: Prisma.TreeSocialProfileUncheckedCreateInput) => {
       if (selectedTree === null) return null
 
       if (user === null) {
-        const socialProfiles = [...selectedTree.socialProfiles]
-
-        const existingProfile = socialProfiles.find(
+        const existingIndex = selectedTree.socialProfiles.findIndex(
           (profile) => profile.type === data.type
         )
 
-        if (existingProfile !== undefined) {
-          existingProfile.url = data.url
+        const treeToSave = { ...selectedTree }
+
+        if (existingIndex !== -1) {
+          treeToSave.socialProfiles[existingIndex].url = data.url
+          treeToSave.socialProfiles[existingIndex].updated_at = new Date()
         } else {
-          socialProfiles.push({
+          treeToSave.socialProfiles.push({
             ...data,
             id: uuidv4(),
             treeId: selectedTree.id,
@@ -35,29 +36,36 @@ export default function useSocialProfiles() {
           })
         }
 
-        const treeToSave = {
-          ...selectedTree,
-          socialProfiles
-        }
-
         setSelectedTree(treeToSave)
         localStorage.setItem('__LOCAL_TREE__', JSON.stringify(treeToSave))
       } else {
-        const newSocialProfiles = await createOrUpdateSocialProfile({
+        const newSocialProfile = await createOrUpdateSocialProfile({
           treeId: selectedTree.id,
           type: data.type,
           url: data.url,
           name: data.name
         })
 
-        if (newSocialProfiles !== null) {
-          setSelectedTree({
-            ...selectedTree,
-            socialProfiles: [...selectedTree.socialProfiles, newSocialProfiles]
-          })
+        if (newSocialProfile === null) return null
+
+        const existingIndex = selectedTree.socialProfiles.findIndex(
+          (profile) => profile.type === newSocialProfile.type
+        )
+
+        const treeToSave = { ...selectedTree }
+
+        if (existingIndex !== -1) {
+          treeToSave.socialProfiles[existingIndex].url = newSocialProfile.url
+          treeToSave.socialProfiles[existingIndex].updated_at =
+            newSocialProfile.updated_at
+        } else {
+          treeToSave.socialProfiles.push(newSocialProfile)
         }
 
-        return newSocialProfiles
+        setSelectedTree(treeToSave)
+        localStorage.removeItem('__LOCAL_TREE__')
+
+        return newSocialProfile
       }
     },
     [user, selectedTree, setSelectedTree]
@@ -65,7 +73,7 @@ export default function useSocialProfiles() {
 
   const removeProfile = useCallback(
     async (type: SocialProfileTypes) => {
-      if (selectedTree === null) return null
+      if (selectedTree === null) return
 
       const filteredSocialProfiles = selectedTree.socialProfiles.filter(
         (socialProfile) => socialProfile.type !== type
@@ -92,7 +100,7 @@ export default function useSocialProfiles() {
   )
 
   return {
-    saveProfiles,
+    saveProfile,
     removeProfile
   }
 }

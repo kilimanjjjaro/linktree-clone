@@ -1,3 +1,6 @@
+import { useTransition } from 'react'
+import { LoaderCircle } from 'lucide-react'
+
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
@@ -11,13 +14,14 @@ interface Props {
 }
 
 export default function SocialProfileSettings({ closeDialog }: Props) {
-  const { saveProfiles } = useSocialProfiles()
+  const [isPending, startTransition] = useTransition()
   const setStep = useStore((state) => state.setStep)
   const selectedTree = useStore((state) => state.selectedTree)
   const selectedSocialProfile = useStore((state) => state.selectedSocialProfile)
   const setSelectedSocialProfile = useStore(
     (state) => state.setSelectedSocialProfile
   )
+  const { saveProfile } = useSocialProfiles()
 
   if (selectedSocialProfile === null) return
 
@@ -25,14 +29,14 @@ export default function SocialProfileSettings({ closeDialog }: Props) {
     if (selectedTree === null) return
     event.preventDefault()
 
-    try {
+    startTransition(async () => {
       const form = event.target as HTMLFormElement
       const formData = new FormData(form)
       const socialProfileValue = formData.get('socialProfileValue') as string
 
       if (socialProfileValue === '') return
 
-      await saveProfiles({
+      await saveProfile({
         treeId: selectedTree.id,
         type: selectedSocialProfile.type,
         url: socialProfileValue,
@@ -43,9 +47,7 @@ export default function SocialProfileSettings({ closeDialog }: Props) {
       void delay(200).then(() => {
         setStep(1)
       })
-    } catch (error) {
-      console.error(error)
-    }
+    })
   }
 
   const goPrevStep = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -83,7 +85,29 @@ export default function SocialProfileSettings({ closeDialog }: Props) {
       </div>
       <footer className='grid grid-cols-2 gap-x-3'>
         <Button type='submit' variant='secondary' className='order-2'>
-          {existingSocialProfile !== undefined ? 'Update' : 'Add'}
+          {existingSocialProfile !== undefined ? (
+            <>
+              {isPending ? (
+                <>
+                  Updating
+                  <LoaderCircle className='size-4 animate-spin' aria-hidden />
+                </>
+              ) : (
+                'Update'
+              )}
+            </>
+          ) : (
+            <>
+              {isPending ? (
+                <>
+                  Adding
+                  <LoaderCircle className='size-4 animate-spin' aria-hidden />
+                </>
+              ) : (
+                'Add'
+              )}
+            </>
+          )}
         </Button>
         <Button
           variant='outline'

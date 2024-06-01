@@ -69,7 +69,7 @@ export async function signUpWithEmail(prevState: any, formData: FormData) {
     console.error('ACTION_ERROR: ', error.message)
 
     return {
-      error: 'Something went wrong.',
+      error: 'Something went wrong!',
       success: ''
     }
   }

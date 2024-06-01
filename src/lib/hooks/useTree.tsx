@@ -42,15 +42,16 @@ export default function useTree() {
       }
 
       if (user === null) {
-        const treeToSave = {
+        const newTree = {
           ...selectedTree,
-          ...rawData
+          ...rawData,
+          updated_at: new Date()
         }
 
-        setSelectedTree(treeToSave)
-        localStorage.setItem('__LOCAL_TREE__', JSON.stringify(treeToSave))
+        setSelectedTree(newTree)
+        localStorage.setItem('__LOCAL_TREE__', JSON.stringify(newTree))
 
-        return treeToSave
+        return newTree
       } else {
         setSavingTree(true)
 
@@ -59,11 +60,10 @@ export default function useTree() {
           ...rawData
         })
 
-        if (response !== null) {
-          setSelectedTree(response)
-          localStorage.removeItem('__LOCAL_TREE__')
-        }
+        if (response === null) return null
 
+        setSelectedTree(response)
+        localStorage.removeItem('__LOCAL_TREE__')
         setSavingTree(false)
 
         return response
