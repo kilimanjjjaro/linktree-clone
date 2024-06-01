@@ -1,6 +1,6 @@
 import { useCallback, useState } from 'react'
 import { v4 as uuidv4 } from 'uuid'
-import { Prisma } from '@prisma/client'
+import { type Prisma } from '@prisma/client'
 
 import { createLink } from '@/lib/actions/trees/create-link'
 import { useStore } from '@/lib/store/store'
@@ -24,7 +24,7 @@ export default function useLinks() {
 
       const rawData = { ...data, treeId: selectedTree.id }
 
-      if (rawData.featured && rawData.url !== undefined) {
+      if (rawData.featured === true && rawData.url !== undefined) {
         rawData.image = await getOgImage(rawData.url)
       } else {
         rawData.image = null
