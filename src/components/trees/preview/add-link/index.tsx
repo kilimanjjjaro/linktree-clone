@@ -1,11 +1,12 @@
 'use client'
 
-import { useState } from 'react'
-import { toast } from 'sonner'
-import { Plus, ShieldAlert } from 'lucide-react'
+import { useState, useTransition } from 'react'
+import { LoaderCircle, Plus } from 'lucide-react'
 
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
+import { Switch } from '@/components/ui/switch'
+import { Label } from '@/components/ui/label'
 import {
   Dialog,
   DialogContent,
@@ -13,70 +14,36 @@ import {
   DialogTitle,
   DialogTrigger
 } from '@/components/ui/dialog'
-import { Switch } from '@/components/ui/switch'
-import { Label } from '@/components/ui/label'
-import { Alert, AlertDescription } from '@/components/ui/alert'
-import { createLink } from '@/lib/actions/trees/create-link'
-import { getOgImage } from '@/lib/utils/get-og-image'
-import { AddLinkSchema } from '@/lib/schemas/tree'
+import useLinks from '@/lib/hooks/useLinks'
 
-interface Props {
-  treeId: string | undefined
-  isLogged: boolean
-}
-
-export default function AddLink({ treeId, isLogged }: Props) {
-  const [error, setError] = useState('')
+export default function AddLink() {
+  const [isPending, startTransition] = useTransition()
+  const [open, setOpen] = useState(false)
+  const { addLink } = useLinks()
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
 
-    if (treeId === undefined) return
+    startTransition(async () => {
+      const formData = new FormData(event.currentTarget)
 
-    // CHECK IF ARE NOT A DEMO TREE
+      const newLink = {
+        name: formData.get('name') as string,
+        url: formData.get('url') as string,
+        featured: formData.get('featured') !== null ?? false
+      }
 
-    const formData = new FormData(event.currentTarget)
+      const response = await addLink(newLink)
 
-    const validatedFields = AddLinkSchema.safeParse({
-      treeId,
-      name: formData.get('name'),
-      url: formData.get('url'),
-      featured: formData.get('featured'),
-      image: formData.get('image')
+      if (response !== null) {
+        setOpen(false)
+      }
     })
-
-    if (!validatedFields.success) {
-      setError('Invalid fields.')
-      return
-    } else {
-      setError('')
-    }
-
-    const data = validatedFields.data
-    let backgroundImage = ''
-
-    if (data.featured) {
-      if (data.image === null) backgroundImage = await getOgImage(data.url)
-      if (data.image !== null) backgroundImage = data.image
-    }
-
-    if (isLogged) {
-      const response = await createLink({
-        treeId,
-        name: validatedFields.data.name,
-        url: validatedFields.data.url,
-        featured: validatedFields.data.featured,
-        image: backgroundImage
-      })
-
-      if (response.success.length > 0) toast.success(response.success)
-      if (response.error.length > 0) toast.error(response.error)
-    }
   }
 
   return (
     <footer className='absolute inset-x-5 bottom-8'>
-      <Dialog>
+      <Dialog open={open} onOpenChange={setOpen}>
         <DialogTrigger asChild>
           <Button className='w-full'>
             Add link <Plus className='size-3.5' aria-hidden />
@@ -88,12 +55,6 @@ export default function AddLink({ treeId, isLogged }: Props) {
           </DialogHeader>
           <main className='mt-12 flex gap-5 p-5'>
             <form onSubmit={handleSubmit} className='grid grid-cols-1 gap-y-5'>
-              {error.length > 0 && (
-                <Alert variant='error'>
-                  <ShieldAlert aria-hidden />
-                  <AlertDescription>{error}</AlertDescription>
-                </Alert>
-              )}
               <div className='flex flex-col gap-y-3'>
                 <Label htmlFor='link-name'>Name</Label>
                 <Input
@@ -125,8 +86,23 @@ export default function AddLink({ treeId, isLogged }: Props) {
                 </div>
                 <Switch id='featured-link' name='featured' />
               </div>
-              <Button type='submit' variant='secondary' className='w-full'>
-                Save
+              <Button
+                type='submit'
+                variant='secondary'
+                className='w-full'
+                disabled={isPending}
+              >
+                {isPending ? (
+                  <>
+                    Adding
+                    <LoaderCircle className='size-4 animate-spin' aria-hidden />
+                  </>
+                ) : (
+                  <>
+                    Add
+                    <Plus className='size-4' aria-hidden />
+                  </>
+                )}
               </Button>
             </form>
           </main>

@@ -3,7 +3,7 @@ import { type Tree } from '@prisma/client'
 
 import { useStore } from '@/lib/store/store'
 import { updateTree } from '@/lib/actions/trees/update-tree'
-import { useCurrentUser } from '@/lib/hooks/useCurrentUser'
+import useCurrentUser from '@/lib/hooks/useCurrentUser'
 import { UpdateTreeSchema } from '@/lib/schemas/tree'
 import slugify from '@sindresorhus/slugify'
 

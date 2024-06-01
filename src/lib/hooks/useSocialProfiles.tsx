@@ -3,7 +3,7 @@ import { v4 as uuidv4 } from 'uuid'
 import { type SocialProfileTypes, type Prisma } from '@prisma/client'
 
 import { useStore } from '@/lib/store/store'
-import { useCurrentUser } from '@/lib/hooks/useCurrentUser'
+import useCurrentUser from '@/lib/hooks/useCurrentUser'
 import { createOrUpdateSocialProfile } from '@/lib/actions/trees/create-social-profile'
 import { deleteSocialProfile } from '@/lib/actions/trees/delete-social-profile'
 

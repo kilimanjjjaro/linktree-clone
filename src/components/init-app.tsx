@@ -4,7 +4,7 @@ import { useCallback, useEffect } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 
 import { useStore } from '@/lib/store/store'
-import { useCurrentUser } from '@/lib/hooks/useCurrentUser'
+import useCurrentUser from '@/lib/hooks/useCurrentUser'
 import { DEMO_TREE_VALUES } from '@/lib/constants/trees'
 import { type ChildrenType } from '@/lib/types/globals'
 import { type TreeInterface } from '@/lib/types/trees'

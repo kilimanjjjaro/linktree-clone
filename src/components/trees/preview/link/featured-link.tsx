@@ -4,7 +4,7 @@ import { Upload } from 'lucide-react'
 
 export default function FeaturedLink({ link }: { link: TreeLinkType }) {
   return (
-    <>
+    <div className='relative'>
       <a href={link.url} target='_blank' rel='noopener noreferrer'>
         <div
           className='relative flex aspect-video items-end overflow-hidden rounded-xl bg-cover bg-center'
@@ -24,6 +24,6 @@ export default function FeaturedLink({ link }: { link: TreeLinkType }) {
       >
         <Upload className='size-3' strokeWidth={2.5} />
       </Button>
-    </>
+    </div>
   )
 }

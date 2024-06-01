@@ -18,7 +18,6 @@ export default async function TreePreview() {
             <TreeSocialProfiles />
           </header>
           <TreeLinks />
-          {/* <AddLink /> */}
         </div>
       </div>
     </section>

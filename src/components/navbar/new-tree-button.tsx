@@ -15,15 +15,15 @@ export default function NewTreeButton() {
   const pathname = usePathname()
   const router = useRouter()
 
-  const handleCreate = async () => {
-    const localTree = localStorage.getItem('__LOCAL_TREE__')
-
-    if (localTree !== null) {
-      setShowSaveTreeDialog(true)
-      return
-    }
-
+  const createTree = async () => {
     startTransition(async () => {
+      const localTree = localStorage.getItem('__LOCAL_TREE__')
+
+      if (localTree !== null) {
+        setShowSaveTreeDialog(true)
+        return
+      }
+
       const response = await createDefaultTree()
 
       if (response.data === null) {
@@ -46,7 +46,7 @@ export default function NewTreeButton() {
     <Button
       variant='secondary'
       className='h-full'
-      onClick={handleCreate}
+      onClick={createTree}
       disabled={isPending}
     >
       {isPending ? (

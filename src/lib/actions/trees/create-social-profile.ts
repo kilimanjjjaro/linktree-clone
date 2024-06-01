@@ -13,6 +13,8 @@ export async function createOrUpdateSocialProfile(
 
   if (user?.id == null) return null
 
+  console.log('TREE_ID: ', data.treeId)
+
   try {
     const response = await db.treeSocialProfile.upsert({
       where: {
@@ -32,6 +34,8 @@ export async function createOrUpdateSocialProfile(
         name: data.name
       }
     })
+
+    console.log('RESPONSE: ', response)
 
     revalidatePath('/')
 

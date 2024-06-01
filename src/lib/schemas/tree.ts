@@ -9,22 +9,21 @@ import z from 'zod'
 //   updated_at: z.string().datetime()
 // })
 
-// const LinkSchema = z.object({
-//   id: z.string().cuid(),
-//   treeId: z.string().cuid(),
-//   name: z
-//     .string()
-//     .trim()
-//     .min(1, {
-//       message: 'Required field'
-//     })
-//     .max(40, {
-//       message: 'Maximum 40 chars'
-//     }),
-//   url: z.string().url(),
-//   featured: z.boolean(),
-//   image: z.string().url()
-// })
+export const AddLinkSchema = z.object({
+  treeId: z.string(),
+  name: z
+    .string()
+    .trim()
+    .min(1, {
+      message: 'Required field'
+    })
+    .max(40, {
+      message: 'Maximum 40 chars'
+    }),
+  url: z.string().url(),
+  featured: z.boolean(),
+  image: z.string().url().nullable()
+})
 
 // const AppearanceSchema = z.object({
 //   background: z.object({
@@ -73,12 +72,4 @@ export const UpdateTreeSchema = z.object({
       message: 'Maximum 250 chars'
     })
     .optional()
-})
-
-export const AddLinkSchema = z.object({
-  treeId: z.string().min(1),
-  name: z.string().min(5),
-  url: z.string().url(),
-  featured: z.coerce.boolean(),
-  image: z.string().url().nullable()
 })
