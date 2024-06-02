@@ -81,7 +81,7 @@ export default function AddLink() {
                   <Label htmlFor='featured-link'>Featured link</Label>
                   <p className='text-balance text-sm text-lt-lightest-gray'>
                     This will be displayed with a background image. We took it
-                    from the link, or you can upload your own.
+                    from the link. Soon you will able to upload one.
                   </p>
                 </div>
                 <Switch id='featured-link' name='featured' />
