@@ -14,7 +14,7 @@ export default function TreeLinks() {
   if (selectedTree === null) {
     return (
       <div className='grid grid-cols-1 gap-y-5'>
-        <Skeleton className='aspect-video h-full rounded-xl' />
+        <Skeleton className='aspect-video h-full rounded-2xl' />
         <Skeleton className='h-14 rounded-2xl' />
       </div>
     )

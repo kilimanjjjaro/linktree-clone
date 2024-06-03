@@ -7,7 +7,7 @@ export default function FeaturedLink({ link }: { link: TreeLinkType }) {
     <div className='relative'>
       <a href={link.url} target='_blank' rel='noopener noreferrer'>
         <div
-          className='relative flex aspect-video items-end overflow-hidden rounded-xl bg-cover bg-center'
+          className='relative flex aspect-video items-end overflow-hidden rounded-2xl bg-cover bg-center'
           style={{
             backgroundImage: `url(${link.image ?? ''})`
           }}
