@@ -10,7 +10,7 @@ import {
   generateRawDataToUpdate
 } from '@/lib/utils/generate-raw-data'
 
-export async function upsertTree(tree: Partial<Tree>) {
+export async function updateTree(tree: Partial<Tree>) {
   const user = await getCurrentUser()
 
   if (user?.id === undefined) return null

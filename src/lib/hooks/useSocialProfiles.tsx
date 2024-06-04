@@ -5,7 +5,7 @@ import { type SocialProfileTypes, type Prisma } from '@prisma/client'
 
 import { useStore } from '@/lib/store/store'
 import useCurrentUser from '@/lib/hooks/useCurrentUser'
-import { upsertSocialProfile } from '@/lib/actions/trees/upsert-social-profile'
+import { updateSocialProfile } from '@/lib/actions/trees/update-social-profile'
 import { deleteSocialProfile } from '@/lib/actions/trees/delete-social-profile'
 import { DEMO_TREE_VALUES } from '@/lib/constants/trees'
 import { createTree } from '@/lib/actions/trees/create-tree'
@@ -67,7 +67,7 @@ export default function useSocialProfiles() {
           })
         }
 
-        const newProfile = await upsertSocialProfile({
+        const newProfile = await updateSocialProfile({
           treeId,
           type: data.type,
           url: data.url,

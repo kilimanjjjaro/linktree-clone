@@ -3,7 +3,7 @@ import { usePathname, useRouter } from 'next/navigation'
 import { v4 as uuidv4 } from 'uuid'
 import { type Prisma } from '@prisma/client'
 
-import { upsertLink } from '@/lib/actions/trees/upsert-link'
+import { updateLink } from '@/lib/actions/trees/update-link'
 import { useStore } from '@/lib/store/store'
 import useCurrentUser from '@/lib/hooks/useCurrentUser'
 import { AddLinkSchema } from '@/lib/schemas/tree'
@@ -81,7 +81,7 @@ export default function useLinks() {
           })
         }
 
-        const newLink = await upsertLink({
+        const newLink = await updateLink({
           ...validatedFields.data,
           treeId
         })

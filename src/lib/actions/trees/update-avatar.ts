@@ -14,25 +14,33 @@ export async function updateAvatar(formData: FormData) {
   const buffer = Buffer.from(arrayBuffer)
 
   try {
-    return await new Promise<UploadApiResponse | undefined>((resolve) => {
-      cloudinary.uploader
-        .upload_stream(
-          {
-            upload_preset: 'cgbdjdkz',
-            folder: 'linktree/links-avatar'
-          },
-          function (error, result) {
-            if (error != null) {
-              throw new Error(error?.message)
-            }
+    const response = await new Promise<UploadApiResponse | undefined>(
+      (resolve) => {
+        cloudinary.uploader
+          .upload_stream(
+            {
+              upload_preset: 'cgbdjdkz',
+              folder: 'linktree/links-avatar'
+            },
+            function (error, result) {
+              if (error != null) {
+                throw new Error(error?.message)
+              }
 
-            resolve(result)
-          }
-        )
-        .end(buffer)
-    })
+              resolve(result)
+            }
+          )
+          .end(buffer)
+      }
+    )
+
+    if (response !== undefined) {
+      return response
+    } else {
+      return null
+    }
   } catch (error) {
     console.error('ACTION_ERROR: ', error)
-    return undefined
+    return null
   }
 }

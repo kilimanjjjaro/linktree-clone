@@ -6,31 +6,30 @@ import { type Prisma } from '@prisma/client'
 import db from '@/lib/database'
 import { getCurrentUser } from '@/lib/services/get-current-user'
 
-export async function upsertLink(data: Prisma.TreeLinkUncheckedCreateInput) {
+export async function updateSocialProfile(
+  data: Prisma.TreeSocialProfileUncheckedCreateInput
+) {
   const user = await getCurrentUser()
 
   if (user?.id == null) return null
 
   try {
-    const response = await db.treeLink.upsert({
+    const response = await db.treeSocialProfile.upsert({
       where: {
-        treeId_url: {
+        treeId_type: {
           treeId: data.treeId,
-          url: data.url
+          type: data.type
         }
       },
       update: {
         name: data.name,
-        url: data.url,
-        featured: data.featured,
-        image: data.image
+        url: data.url
       },
       create: {
         treeId: data.treeId,
+        type: data.type,
         name: data.name,
-        url: data.url,
-        featured: data.featured,
-        image: data.image
+        url: data.url
       }
     })
 

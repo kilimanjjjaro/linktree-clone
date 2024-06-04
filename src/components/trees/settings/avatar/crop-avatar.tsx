@@ -63,7 +63,7 @@ export default function CropAvatar({
 
       const updatedAvatar = await updateAvatar(formData)
 
-      if (updatedAvatar !== undefined) {
+      if (updatedAvatar !== null) {
         await saveTree({
           avatar: updatedAvatar.eager[0].secure_url
         })

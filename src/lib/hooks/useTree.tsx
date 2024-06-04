@@ -2,7 +2,7 @@ import { useCallback, useState } from 'react'
 import { type Tree } from '@prisma/client'
 
 import { useStore } from '@/lib/store/store'
-import { upsertTree } from '@/lib/actions/trees/upsert-tree'
+import { updateTree } from '@/lib/actions/trees/update-tree'
 import useCurrentUser from '@/lib/hooks/useCurrentUser'
 import { UpdateTreeSchema } from '@/lib/schemas/tree'
 
@@ -48,7 +48,7 @@ export default function useTree() {
       } else {
         setSavingTree(true)
 
-        const response = await upsertTree(rawData)
+        const response = await updateTree(rawData)
 
         if (response === null) return null
 
