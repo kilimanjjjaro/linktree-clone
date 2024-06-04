@@ -17,15 +17,12 @@ import {
 import { useStore } from '@/lib/store/store'
 import useLinks from '@/lib/hooks/useLinks'
 
-interface Props {
-  open: boolean
-  setOpen: (value: boolean) => void
-}
-
-export default function AddLink({ open, setOpen }: Props) {
+export default function AddLink() {
   const selectedTree = useStore((state) => state.selectedTree)
   const selectedLink = useStore((state) => state.selectedLink)
   const setSelectedLink = useStore((state) => state.setSelectedLink)
+  const showAddLinkDialog = useStore((state) => state.showAddLinkDialog)
+  const setShowAddLinkDialog = useStore((state) => state.setShowAddLinkDialog)
   const [isPending, startTransition] = useTransition()
   const { addLink } = useLinks()
 
@@ -46,18 +43,18 @@ export default function AddLink({ open, setOpen }: Props) {
       const response = await addLink(newLink)
 
       if (response !== null) {
-        setOpen(false)
+        setShowAddLinkDialog(false)
         setSelectedLink(null)
       }
     })
   }
 
   return (
-    <footer className='absolute inset-x-5 bottom-8'>
+    <footer className='absolute inset-x-5 bottom-10'>
       <Dialog
-        open={open}
+        open={showAddLinkDialog}
         onOpenChange={(value) => {
-          setOpen(value)
+          setShowAddLinkDialog(value)
           setSelectedLink(null)
         }}
       >

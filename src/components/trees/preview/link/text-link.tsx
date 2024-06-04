@@ -1,21 +1,19 @@
-import { Settings2 } from 'lucide-react'
+import { Settings2, Trash } from 'lucide-react'
 import { type TreeLink } from '@prisma/client'
 
 import { Button, buttonVariants } from '@/components/ui/button'
 import { useStore } from '@/lib/store/store'
+import useLinks from '@/lib/hooks/useLinks'
 import { cn } from '@/lib/utils'
 
-interface Props {
-  link: TreeLink
-  setOpen: (value: boolean) => void
-}
-
-export default function TextLink({ link, setOpen }: Props) {
+export default function TextLink({ link }: { link: TreeLink }) {
   const setSelectedLink = useStore((state) => state.setSelectedLink)
+  const setShowAddLinkDialog = useStore((state) => state.setShowAddLinkDialog)
+  const { removeLink } = useLinks()
 
   const updateLink = (link: TreeLink) => {
     setSelectedLink(link)
-    setOpen(true)
+    setShowAddLinkDialog(true)
   }
 
   return (
@@ -32,8 +30,17 @@ export default function TextLink({ link, setOpen }: Props) {
         {link.name}
       </a>
       <Button
+        aria-label='Delete link'
+        className='absolute left-3 h-auto rounded-full bg-lt-white p-1 opacity-0 transition-opacity group-hover:xl:opacity-100'
+        onClick={async () => {
+          await removeLink(link.id)
+        }}
+      >
+        <Trash className='size-4' strokeWidth={2.5} />
+      </Button>
+      <Button
         aria-label='Update link'
-        className='absolute right-3 z-20 h-auto rounded-full bg-lt-white p-1 mix-blend-difference'
+        className='absolute right-3 h-auto rounded-full bg-lt-white p-1 opacity-0 transition-opacity group-hover:xl:opacity-100'
         onClick={() => {
           updateLink(link)
         }}

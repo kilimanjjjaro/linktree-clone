@@ -24,7 +24,7 @@ export default function DeviceOverlay() {
       />
       <path
         fill='white'
-        fillOpacity='.5'
+        fillOpacity='.0'
         d='M112 602a2 2 0 0 1 2-2h92a2 2 0 1 1 0 4h-92a2 2 0 0 1-2-2Z'
       />
     </svg>

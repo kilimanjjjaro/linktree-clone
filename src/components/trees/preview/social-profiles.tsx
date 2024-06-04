@@ -1,11 +1,14 @@
 'use client'
 
+import { useAutoAnimate } from '@formkit/auto-animate/react'
+
 import SocialProfileIcon from '@/components/trees/settings/social-profiles/icon'
 import { Skeleton } from '@/components/ui/skeleton'
 import { useStore } from '@/lib/store/store'
 
 export default function TreeSocialProfiles() {
   const selectedTree = useStore((state) => state.selectedTree)
+  const [parent] = useAutoAnimate({ duration: 200 })
 
   if (selectedTree === null) {
     return (
@@ -21,7 +24,10 @@ export default function TreeSocialProfiles() {
   if (selectedTree.socialProfiles.length === 0) return
 
   return (
-    <ul className='mt-4 flex flex-wrap items-center justify-center gap-3 px-6'>
+    <ul
+      ref={parent}
+      className='mt-4 flex flex-wrap items-center justify-center gap-3 px-6'
+    >
       {selectedTree.socialProfiles.map((socialProfile) => (
         <a
           key={socialProfile.type}

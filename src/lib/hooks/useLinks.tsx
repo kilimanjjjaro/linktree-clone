@@ -11,6 +11,7 @@ import { AddLinkSchema } from '@/lib/schemas/tree'
 import { getOgImage } from '@/lib/utils/get-og-image'
 import { createTree } from '@/lib/actions/trees/create-tree'
 import { DEMO_TREE_VALUES } from '@/lib/constants/trees'
+import { deleteLink } from '../actions/trees/delete-link'
 
 export default function useLinks() {
   const setSelectedTree = useStore((state) => state.setSelectedTree)
@@ -126,7 +127,37 @@ export default function useLinks() {
     [selectedTree, setSelectedTree, user, router, pathname]
   )
 
+  const removeLink = useCallback(
+    async (id: string) => {
+      if (selectedTree === null) return
+
+      const filteredLinks = selectedTree.links.filter((link) => link.id !== id)
+
+      if (user === null) {
+        setSelectedTree({
+          ...selectedTree,
+          links: filteredLinks
+        })
+      } else {
+        const response = await deleteLink({ linkId: id })
+
+        if (response.success.length > 0) {
+          setSelectedTree({
+            ...selectedTree,
+            links: filteredLinks
+          })
+
+          localStorage.removeItem('__LOCAL_TREE__')
+        } else {
+          toast.error(response.error)
+        }
+      }
+    },
+    [user, selectedTree, setSelectedTree]
+  )
+
   return {
-    addLink
+    addLink,
+    removeLink
   }
 }

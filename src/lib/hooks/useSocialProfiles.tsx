@@ -119,15 +119,21 @@ export default function useSocialProfiles() {
           socialProfiles: filteredSocialProfiles
         })
       } else {
-        await deleteSocialProfile({
+        const response = await deleteSocialProfile({
           treeId: selectedTree.id,
           type
         })
 
-        setSelectedTree({
-          ...selectedTree,
-          socialProfiles: filteredSocialProfiles
-        })
+        if (response.success.length > 0) {
+          setSelectedTree({
+            ...selectedTree,
+            socialProfiles: filteredSocialProfiles
+          })
+
+          localStorage.removeItem('__LOCAL_TREE__')
+        } else {
+          toast.error(response.error)
+        }
       }
     },
     [user, selectedTree, setSelectedTree]

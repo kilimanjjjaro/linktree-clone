@@ -1,16 +1,16 @@
 'use client'
 
-import { Fragment, useState } from 'react'
+import { Fragment } from 'react'
+import { useAutoAnimate } from '@formkit/auto-animate/react'
 
 import FeaturedLink from '@/components/trees/preview/link/featured-link'
 import TextLink from '@/components/trees/preview/link/text-link'
-import AddLink from '@/components/trees/preview/link/add-link'
 import { Skeleton } from '@/components/ui/skeleton'
 import { useStore } from '@/lib/store/store'
 
 export default function TreeLinks() {
   const selectedTree = useStore((state) => state.selectedTree)
-  const [open, setOpen] = useState(false)
+  const [parent] = useAutoAnimate({ duration: 200 })
 
   if (selectedTree === null) {
     return (
@@ -22,19 +22,16 @@ export default function TreeLinks() {
   }
 
   return (
-    <>
-      <main className='grid grid-cols-1 gap-y-5'>
-        {selectedTree.links.map((link) => (
-          <Fragment key={link.id}>
-            {link.featured ? (
-              <FeaturedLink link={link} setOpen={setOpen} />
-            ) : (
-              <TextLink link={link} setOpen={setOpen} />
-            )}
-          </Fragment>
-        ))}
-      </main>
-      <AddLink open={open} setOpen={setOpen} />
-    </>
+    <main ref={parent} className='mb-[33%] grid grid-cols-1 gap-y-4'>
+      {selectedTree.links.map((link) => (
+        <Fragment key={link.id}>
+          {link.featured ? (
+            <FeaturedLink link={link} />
+          ) : (
+            <TextLink link={link} />
+          )}
+        </Fragment>
+      ))}
+    </main>
   )
 }

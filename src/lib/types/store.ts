@@ -24,6 +24,8 @@ export interface SocialProfilesSliceInterface {
 export interface LinksSliceInterface {
   selectedLink: TreeLink | null
   setSelectedLink: (selectedLink: TreeLink | null) => void
+  showAddLinkDialog: boolean
+  setShowAddLinkDialog: (showAddLinkDialog: boolean) => void
 }
 
 export interface StoreInterface
