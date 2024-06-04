@@ -28,7 +28,6 @@ export default function SaveTreeDialog() {
       const { data, error } = await createTree(selectedTree)
 
       if (data !== null) {
-        toast.success('Tree was saved, you can continue.')
         setSelectedTree(data)
         localStorage.removeItem('__LOCAL_TREE__')
         setShowSaveTreeDialog(false)
@@ -41,7 +40,6 @@ export default function SaveTreeDialog() {
   const discardTree = () => {
     localStorage.removeItem('__LOCAL_TREE__')
     setShowSaveTreeDialog(false)
-    toast('Tree was discarded, you can continue.')
   }
 
   const saveButtonText = isPending ? 'Saving' : 'Save'

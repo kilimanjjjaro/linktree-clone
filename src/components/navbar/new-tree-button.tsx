@@ -36,8 +36,6 @@ export default function NewTreeButton() {
         router.replace(`${pathname}?tree=${treeUrl}`, {
           scroll: false
         })
-
-        toast.success(response.success)
       }
     })
   }

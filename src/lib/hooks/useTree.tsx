@@ -56,7 +56,7 @@ export default function useTree() {
         localStorage.removeItem('__LOCAL_TREE__')
         setSavingTree(false)
 
-        return response
+        return response.data
       }
     },
     [selectedTree, setSelectedTree, setSavingTree, user]

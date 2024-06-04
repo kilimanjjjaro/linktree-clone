@@ -48,7 +48,7 @@ export default function TreeUrl() {
         toast.success('Url copied. Go and share it!')
       })
       .catch(() => {
-        toast.error('Somethign went wrong!')
+        toast.error('Something went wrong.')
       })
   }
 

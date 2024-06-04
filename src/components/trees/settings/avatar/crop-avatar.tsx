@@ -68,12 +68,11 @@ export default function CropAvatar({
           avatar: updatedAvatar.eager[0].secure_url
         })
 
-        toast.success('Your avatar was updated!')
         closeDialog()
         setCroppedAvatar('')
         setAvatarToCrop('')
       } else {
-        toast.error('Something happened. Please try again!')
+        toast.error('Something went wrong.')
       }
     })
   }, [croppedAvatar, setAvatarToCrop, closeDialog, selectedTree, saveTree])

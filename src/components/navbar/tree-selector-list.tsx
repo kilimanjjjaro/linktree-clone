@@ -37,6 +37,8 @@ export default function TreeSelectorList({ treeUrl, trees }: Props) {
 
     const params = new URLSearchParams()
 
+    console.log(treeId)
+
     startTransition(async () => {
       const response = await deleteTree(treeId)
 
@@ -49,26 +51,24 @@ export default function TreeSelectorList({ treeUrl, trees }: Props) {
         if (rest.length === 0) {
           setSelectedTree(DEMO_TREE_VALUES)
           params.set('tree', DEMO_TREE_VALUES.url)
-          router.replace(`${pathname}?treeUrl=${DEMO_TREE_VALUES.url}`, {
+          router.replace(`${pathname}?tree=${DEMO_TREE_VALUES.url}`, {
             scroll: false
           })
         } else {
           if (currentTree === undefined) {
             setSelectedTree(rest[0])
             params.set('tree', rest[0].url)
-            router.replace(`${pathname}?treeUrl=${rest[0].url}`, {
+            router.replace(`${pathname}?tree=${rest[0].url}`, {
               scroll: false
             })
           } else {
             setSelectedTree(currentTree)
             params.set('tree', currentTree.url)
-            router.replace(`${pathname}?treeUrl=${currentTree.url}`, {
+            router.replace(`${pathname}?tree=${currentTree.url}`, {
               scroll: false
             })
           }
         }
-
-        toast.success(response.success)
       }
     })
   }
@@ -114,7 +114,7 @@ export default function TreeSelectorList({ treeUrl, trees }: Props) {
                     aria-label='deleteTree'
                     className='absolute right-3 h-auto rounded-full bg-lt-lightest-gray p-0.5 opacity-0 xl:group-hover:opacity-100'
                     onClick={async () => {
-                      await handleDelete(tree.url)
+                      await handleDelete(tree.id)
                     }}
                     disabled={isPending}
                   >

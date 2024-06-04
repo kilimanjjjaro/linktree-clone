@@ -2,7 +2,6 @@
 
 import { useTransition } from 'react'
 import Image from 'next/image'
-import { toast } from 'sonner'
 
 import UploadAvatarDialog from '@/components/trees/settings/avatar/dialog'
 import { Skeleton } from '@/components/ui/skeleton'
@@ -24,8 +23,6 @@ export default function TreeAvatar() {
       await saveTree({
         avatar: DEMO_TREE_VALUES.avatar
       })
-
-      toast.success('Your avatar was removed!')
     })
 
     // TODO: Delete avatar from cloudinary
