@@ -35,9 +35,15 @@ export default function TreeSelectorList({ treeUrl, trees }: Props) {
   const handleDelete = async (treeId: string) => {
     if (trees.length === 0) return
 
-    const params = new URLSearchParams()
+    const updateParams = (tree: TreeInterface) => {
+      setSelectedTree(tree)
 
-    console.log(treeId)
+      const params = new URLSearchParams()
+      params.set('tree', tree.url)
+      router.replace(`${pathname}?tree=${tree.url}`, {
+        scroll: false
+      })
+    }
 
     startTransition(async () => {
       const response = await deleteTree(treeId)
@@ -49,24 +55,12 @@ export default function TreeSelectorList({ treeUrl, trees }: Props) {
         const currentTree = rest.find((tree) => tree.url === treeUrl)
 
         if (rest.length === 0) {
-          setSelectedTree(DEMO_TREE_VALUES)
-          params.set('tree', DEMO_TREE_VALUES.url)
-          router.replace(`${pathname}?tree=${DEMO_TREE_VALUES.url}`, {
-            scroll: false
-          })
+          updateParams(DEMO_TREE_VALUES)
         } else {
           if (currentTree === undefined) {
-            setSelectedTree(rest[0])
-            params.set('tree', rest[0].url)
-            router.replace(`${pathname}?tree=${rest[0].url}`, {
-              scroll: false
-            })
+            updateParams(rest[0])
           } else {
-            setSelectedTree(currentTree)
-            params.set('tree', currentTree.url)
-            router.replace(`${pathname}?tree=${currentTree.url}`, {
-              scroll: false
-            })
+            updateParams(currentTree)
           }
         }
       }

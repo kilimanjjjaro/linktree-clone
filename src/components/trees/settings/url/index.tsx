@@ -1,8 +1,10 @@
 'use client'
 
+import { useEffect, useState } from 'react'
+import { usePathname, useRouter } from 'next/navigation'
+import slugify from '@sindresorhus/slugify'
 import { toast } from 'sonner'
 import { Copy, Forward } from 'lucide-react'
-import { usePathname, useRouter } from 'next/navigation'
 
 import { ErrorTooltip } from '@/components/ui/error-tooltip'
 import { Button } from '@/components/ui/button'
@@ -17,6 +19,7 @@ import { cn } from '@/lib/utils'
 export default function TreeUrl() {
   const selectedTree = useStore((state) => state.selectedTree)
   const savingTree = useStore((state) => state.savingTree)
+  const [treeUrl, setTreeUrl] = useState('')
   const { saveTree, errors } = useTree()
   const pathname = usePathname()
   const router = useRouter()
@@ -28,7 +31,7 @@ export default function TreeUrl() {
     const formData = new FormData(event.currentTarget)
     const url = formData.get('url') as string
 
-    const response = await saveTree({ url })
+    const response = await saveTree({ url: slugify(url) })
 
     if (response === null) return
 
@@ -52,6 +55,12 @@ export default function TreeUrl() {
       })
   }
 
+  useEffect(() => {
+    if (selectedTree === null) return
+
+    setTreeUrl(selectedTree.url)
+  }, [selectedTree])
+
   return (
     <section className='flex flex-col gap-y-3 p-5'>
       <div className='flex items-center gap-x-2'>
@@ -73,7 +82,10 @@ export default function TreeUrl() {
           type='text'
           name='url'
           className='peer rounded-none border-none pr-7 focus-visible:ring-0 focus-visible:ring-offset-0 aria-[invalid=true]:ring-0'
-          defaultValue={selectedTree?.url}
+          value={treeUrl}
+          onChange={(event) => {
+            setTreeUrl(event.target.value)
+          }}
           aria-invalid={errors.length > 0}
         />
         <ErrorTooltip errors={errors} />
