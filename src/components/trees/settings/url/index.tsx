@@ -2,6 +2,7 @@
 
 import { toast } from 'sonner'
 import { Copy, Forward } from 'lucide-react'
+import { usePathname, useRouter } from 'next/navigation'
 
 import { ErrorTooltip } from '@/components/ui/error-tooltip'
 import { Button } from '@/components/ui/button'
@@ -17,16 +18,25 @@ export default function TreeUrl() {
   const selectedTree = useStore((state) => state.selectedTree)
   const savingTree = useStore((state) => state.savingTree)
   const { saveTree, errors } = useTree()
+  const pathname = usePathname()
+  const router = useRouter()
 
   const updateUrl = async (event: React.FormEvent<HTMLFormElement>) => {
     if (savingTree) return
-
     event.preventDefault()
 
     const formData = new FormData(event.currentTarget)
     const url = formData.get('url') as string
 
-    await saveTree({ url })
+    const response = await saveTree({ url })
+
+    if (response === null) return
+
+    const params = new URLSearchParams()
+    params.set('tree', response.url)
+    router.replace(`${pathname}?tree=${response.url}`, {
+      scroll: false
+    })
   }
 
   const copyUrl = () => {

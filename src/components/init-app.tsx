@@ -1,10 +1,9 @@
 'use client'
 
 import { useCallback, useEffect } from 'react'
-import { useRouter, useSearchParams } from 'next/navigation'
+import { usePathname, useRouter, useSearchParams } from 'next/navigation'
 
 import { useStore } from '@/lib/store/store'
-import useCurrentUser from '@/lib/hooks/useCurrentUser'
 import { DEMO_TREE_VALUES } from '@/lib/constants/trees'
 import { type ChildrenType } from '@/lib/types/globals'
 import { type TreeInterface } from '@/lib/types/trees'
@@ -15,24 +14,25 @@ interface Props {
 }
 
 export default function InitApp({ children, trees }: Props) {
-  const selectedTree = useStore((state) => state.selectedTree)
   const setSelectedTree = useStore((state) => state.setSelectedTree)
   const searchParams = useSearchParams()
-  const slug = searchParams.get('slug')
-  const user = useCurrentUser()
+  const pathname = usePathname()
+  const treeUrl = searchParams.get('tree')
   const router = useRouter()
 
-  const updateSelectedTree = useCallback(
-    (tree: TreeInterface) => {
+  const updateAppState = useCallback(
+    (tree: TreeInterface, updateParams: boolean) => {
       setSelectedTree(tree)
 
-      const params = new URLSearchParams()
-      params.set('slug', tree.slug)
-      router.replace(`/?slug=${tree.slug}`, {
-        scroll: false
-      })
+      if (updateParams) {
+        const params = new URLSearchParams()
+        params.set('tree', tree.url)
+        router.replace(`${pathname}?tree=${tree.url}`, {
+          scroll: false
+        })
+      }
     },
-    [router, setSelectedTree]
+    [router, pathname, setSelectedTree]
   )
 
   useEffect(() => {
@@ -41,40 +41,34 @@ export default function InitApp({ children, trees }: Props) {
     if (localTree !== null) {
       const tree = JSON.parse(localTree) as TreeInterface
 
-      updateSelectedTree(tree)
+      updateAppState(tree, false)
     } else {
       const hasTrees = trees.length > 0
-      const hasSlug = slug !== null && slug.length > 0
+      const hasTreeUrl = treeUrl !== null && treeUrl.length > 0
 
-      if (hasSlug && hasTrees) {
-        const tree = trees.find((tree) => tree.slug === slug)
+      if (hasTreeUrl && hasTrees) {
+        const tree = trees.find((tree) => tree.url === treeUrl)
 
         if (tree === undefined) {
-          updateSelectedTree(trees[0])
+          updateAppState(trees[0], false)
         } else {
-          updateSelectedTree(tree)
+          updateAppState(tree, false)
         }
       }
 
-      if (hasSlug && !hasTrees) {
-        updateSelectedTree(DEMO_TREE_VALUES)
+      if (hasTreeUrl && !hasTrees) {
+        updateAppState(DEMO_TREE_VALUES, false)
       }
 
-      if (!hasSlug && hasTrees) {
-        updateSelectedTree(trees[0])
+      if (!hasTreeUrl && hasTrees) {
+        updateAppState(trees[0], false)
       }
 
-      if (!hasSlug && !hasTrees) {
-        updateSelectedTree(DEMO_TREE_VALUES)
+      if (!hasTreeUrl && !hasTrees) {
+        setSelectedTree(DEMO_TREE_VALUES)
       }
     }
-  }, [slug, trees, updateSelectedTree])
-
-  useEffect(() => {
-    // if (selectedTree !== null && user === null) {
-    //   localStorage.setItem('__LOCAL_TREE__', JSON.stringify(selectedTree))
-    // }
-  }, [user, selectedTree])
+  }, [treeUrl, trees, setSelectedTree, updateAppState])
 
   return <>{children}</>
 }

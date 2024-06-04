@@ -1,6 +1,5 @@
 'use client'
 
-import { useRouter } from 'next/navigation'
 import { Forward } from 'lucide-react'
 
 import { Input } from '@/components/ui/input'
@@ -17,25 +16,15 @@ export default function TreeName() {
   const selectedTree = useStore((state) => state.selectedTree)
   const savingTree = useStore((state) => state.savingTree)
   const { saveTree, errors } = useTree()
-  const router = useRouter()
 
   const updateName = async (event: React.FormEvent<HTMLFormElement>) => {
     if (savingTree) return
-
     event.preventDefault()
 
     const formData = new FormData(event.currentTarget)
     const name = formData.get('name') as string
 
-    const response = await saveTree({ name })
-
-    if (response !== null) {
-      const params = new URLSearchParams()
-      params.set('slug', response.slug)
-      router.replace(`/?slug=${response.slug}`, {
-        scroll: false
-      })
-    }
+    await saveTree({ name })
   }
 
   return (

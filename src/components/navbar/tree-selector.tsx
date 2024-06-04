@@ -5,17 +5,17 @@ import { getCachedTrees } from '@/lib/services/get-cached-trees'
 import { getCurrentUser } from '@/lib/services/get-current-user'
 
 interface Props {
-  slug: string | undefined
+  treeUrl: string | undefined
 }
 
-export default async function TreeSelector({ slug }: Props) {
+export default async function TreeSelector({ treeUrl }: Props) {
   const user = await getCurrentUser()
   const trees = await getCachedTrees(user?.id)
 
   return (
     <Popover>
       <TreeSelectorButton />
-      <TreeSelectorList slug={slug} trees={trees} />
+      <TreeSelectorList treeUrl={treeUrl} trees={trees} />
     </Popover>
   )
 }

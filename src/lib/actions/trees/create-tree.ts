@@ -1,10 +1,10 @@
 'use server'
 
-import { revalidatePath } from 'next/cache'
+import { revalidateTag } from 'next/cache'
 
 import db from '@/lib/database'
 import { getCurrentUser } from '@/lib/services/get-current-user'
-import { generateRawData } from '@/lib/utils/generate-raw-data'
+import { generateRawDataToCreate } from '@/lib/utils/generate-raw-data'
 import { type TreeInterface } from '@/lib/types/trees'
 
 export async function createTree(tree: TreeInterface) {
@@ -21,7 +21,7 @@ export async function createTree(tree: TreeInterface) {
   try {
     const response = await db.tree.create({
       data: {
-        ...generateRawData(tree),
+        ...generateRawDataToCreate(tree),
         authorId: user.id
       },
       include: {
@@ -30,7 +30,7 @@ export async function createTree(tree: TreeInterface) {
       }
     })
 
-    revalidatePath('/')
+    revalidateTag('trees')
 
     return {
       data: response,

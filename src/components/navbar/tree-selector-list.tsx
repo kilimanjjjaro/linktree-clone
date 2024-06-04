@@ -21,11 +21,11 @@ import { DEMO_TREE_VALUES } from '@/lib/constants/trees'
 import { type TreeInterface } from '@/lib/types/trees'
 
 interface Props {
-  slug: string | undefined
+  treeUrl: string | undefined
   trees: TreeInterface[]
 }
 
-export default function TreeSelectorList({ slug, trees }: Props) {
+export default function TreeSelectorList({ treeUrl, trees }: Props) {
   const setShowSaveTreeDialog = useStore((state) => state.setShowSaveTreeDialog)
   const setSelectedTree = useStore((state) => state.setSelectedTree)
   const [isPending, startTransition] = useTransition()
@@ -43,26 +43,26 @@ export default function TreeSelectorList({ slug, trees }: Props) {
       if (response.error.length > 0) toast.error(response.error)
 
       if (response.success.length > 0) {
-        const rest = trees.filter((tree) => tree.id !== treeId)
-        const currentTree = rest.find((tree) => tree.slug === slug)
+        const rest = trees.filter((tree) => tree.url !== treeId)
+        const currentTree = rest.find((tree) => tree.url === treeUrl)
 
         if (rest.length === 0) {
           setSelectedTree(DEMO_TREE_VALUES)
-          params.set('slug', DEMO_TREE_VALUES.slug)
-          router.replace(`${pathname}?slug=${DEMO_TREE_VALUES.slug}`, {
+          params.set('tree', DEMO_TREE_VALUES.url)
+          router.replace(`${pathname}?treeUrl=${DEMO_TREE_VALUES.url}`, {
             scroll: false
           })
         } else {
           if (currentTree === undefined) {
             setSelectedTree(rest[0])
-            params.set('slug', rest[0].slug)
-            router.replace(`${pathname}?slug=${rest[0].slug}`, {
+            params.set('tree', rest[0].url)
+            router.replace(`${pathname}?treeUrl=${rest[0].url}`, {
               scroll: false
             })
           } else {
             setSelectedTree(currentTree)
-            params.set('slug', currentTree.slug)
-            router.replace(`${pathname}?slug=${currentTree.slug}`, {
+            params.set('tree', currentTree.url)
+            router.replace(`${pathname}?treeUrl=${currentTree.url}`, {
               scroll: false
             })
           }
@@ -73,7 +73,7 @@ export default function TreeSelectorList({ slug, trees }: Props) {
     })
   }
 
-  const handleSelect = (slug: string) => {
+  const handleSelect = (treeUrl: string) => {
     const localTree = localStorage.getItem('__LOCAL_TREE__')
 
     if (localTree !== null) {
@@ -82,15 +82,15 @@ export default function TreeSelectorList({ slug, trees }: Props) {
     }
 
     const params = new URLSearchParams()
-    params.set('slug', slug)
-    router.replace(`${pathname}?slug=${slug}`, {
+    params.set('tree', treeUrl)
+    router.replace(`${pathname}?tree=${treeUrl}`, {
       scroll: false
     })
   }
 
   return (
     <PopoverContent align='start' className='w-60 p-0'>
-      <Command value={slug ?? DEMO_TREE_VALUES.slug}>
+      <Command value={treeUrl ?? DEMO_TREE_VALUES.url}>
         <CommandInput placeholder='Search tree...' />
         <CommandList>
           <CommandEmpty>No trees found.</CommandEmpty>
@@ -98,8 +98,8 @@ export default function TreeSelectorList({ slug, trees }: Props) {
             {trees.map((tree) => (
               <CommandItem
                 className='group'
-                key={tree.id}
-                value={tree.slug}
+                key={tree.url}
+                value={tree.url}
                 disabled={isPending}
                 onSelect={(value) => {
                   handleSelect(value)
@@ -114,7 +114,7 @@ export default function TreeSelectorList({ slug, trees }: Props) {
                     aria-label='deleteTree'
                     className='absolute right-3 h-auto rounded-full bg-lt-lightest-gray p-0.5 opacity-0 xl:group-hover:opacity-100'
                     onClick={async () => {
-                      await handleDelete(tree.id)
+                      await handleDelete(tree.url)
                     }}
                     disabled={isPending}
                   >

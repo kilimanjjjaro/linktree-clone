@@ -1,74 +1,100 @@
 import { useCallback } from 'react'
+import { usePathname, useRouter } from 'next/navigation'
 import { v4 as uuidv4 } from 'uuid'
 import { type SocialProfileTypes, type Prisma } from '@prisma/client'
 
 import { useStore } from '@/lib/store/store'
 import useCurrentUser from '@/lib/hooks/useCurrentUser'
-import { createOrUpdateSocialProfile } from '@/lib/actions/trees/create-social-profile'
+import { upsertSocialProfile } from '@/lib/actions/trees/upsert-social-profile'
 import { deleteSocialProfile } from '@/lib/actions/trees/delete-social-profile'
+import { DEMO_TREE_VALUES } from '@/lib/constants/trees'
+import { createTree } from '@/lib/actions/trees/create-tree'
 
 export default function useSocialProfiles() {
   const setSelectedTree = useStore((state) => state.setSelectedTree)
   const selectedTree = useStore((state) => state.selectedTree)
   const user = useCurrentUser()
+  const pathname = usePathname()
+  const router = useRouter()
 
   const saveProfile = useCallback(
     async (data: Prisma.TreeSocialProfileUncheckedCreateInput) => {
       if (selectedTree === null) return null
 
+      const existingProfiles = [...selectedTree.socialProfiles]
+      const existingProfile = existingProfiles.findIndex(
+        (profile) => profile.type === data.type
+      )
+
       if (user === null) {
-        const existingIndex = selectedTree.socialProfiles.findIndex(
-          (profile) => profile.type === data.type
-        )
+        const newProfile = {
+          ...data,
+          id: uuidv4(),
+          treeId: selectedTree.id,
+          createdAt: new Date(),
+          updatedAt: new Date()
+        }
 
-        const treeToSave = { ...selectedTree }
-
-        if (existingIndex !== -1) {
-          treeToSave.socialProfiles[existingIndex].url = data.url
-          treeToSave.socialProfiles[existingIndex].updated_at = new Date()
+        if (existingProfile !== -1) {
+          existingProfiles[existingProfile].url = data.url
+          existingProfiles[existingProfile].updatedAt = new Date()
         } else {
-          treeToSave.socialProfiles.push({
-            ...data,
-            id: uuidv4(),
-            treeId: selectedTree.id,
-            created_at: new Date(),
-            updated_at: new Date()
-          })
+          existingProfiles.push(newProfile)
+        }
+
+        const treeToSave = {
+          ...selectedTree,
+          socialProfiles: existingProfiles
         }
 
         setSelectedTree(treeToSave)
         localStorage.setItem('__LOCAL_TREE__', JSON.stringify(treeToSave))
+
+        return newProfile
       } else {
-        const newSocialProfile = await createOrUpdateSocialProfile({
-          treeId: selectedTree.id,
+        let treeId = selectedTree.id
+
+        if (selectedTree.id === DEMO_TREE_VALUES.id) {
+          const newTree = await createTree(selectedTree)
+
+          if (newTree.data === null) return null
+
+          treeId = newTree.data.id
+          const params = new URLSearchParams()
+          params.set('tree', newTree.data.url)
+          router.replace(`${pathname}?tree=${newTree.data.url}`, {
+            scroll: false
+          })
+        }
+
+        const newProfile = await upsertSocialProfile({
+          treeId,
           type: data.type,
           url: data.url,
           name: data.name
         })
 
-        if (newSocialProfile === null) return null
+        if (newProfile === null) return null
 
-        const existingIndex = selectedTree.socialProfiles.findIndex(
-          (profile) => profile.type === newSocialProfile.type
-        )
-
-        const treeToSave = { ...selectedTree }
-
-        if (existingIndex !== -1) {
-          treeToSave.socialProfiles[existingIndex].url = newSocialProfile.url
-          treeToSave.socialProfiles[existingIndex].updated_at =
-            newSocialProfile.updated_at
+        if (existingProfile !== -1) {
+          existingProfiles[existingProfile].url = newProfile.url
+          existingProfiles[existingProfile].updatedAt = newProfile.updatedAt
         } else {
-          treeToSave.socialProfiles.push(newSocialProfile)
+          existingProfiles.push(newProfile)
+        }
+
+        const treeToSave = {
+          ...selectedTree,
+          socialProfiles: existingProfiles
         }
 
         setSelectedTree(treeToSave)
         localStorage.removeItem('__LOCAL_TREE__')
 
-        return newSocialProfile
+        return newProfile
       }
     },
-    [user, selectedTree, setSelectedTree]
+    [user, selectedTree, setSelectedTree, router, pathname]
   )
 
   const removeProfile = useCallback(

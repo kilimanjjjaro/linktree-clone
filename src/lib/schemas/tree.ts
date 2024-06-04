@@ -5,8 +5,8 @@ import z from 'zod'
 //   treeId: z.string().cuid(),
 //   type: z.number(),
 //   url: z.string().url(),
-//   created_at: z.string().datetime(),
-//   updated_at: z.string().datetime()
+//   createdAt: z.string().datetime(),
+//   updatedAt: z.string().datetime()
 // })
 
 export const AddLinkSchema = z.object({

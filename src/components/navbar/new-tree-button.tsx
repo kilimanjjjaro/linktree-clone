@@ -30,10 +30,10 @@ export default function NewTreeButton() {
         toast.error(response.error)
       } else {
         const params = new URLSearchParams()
-        const slug = response.data.slug
+        const treeUrl = response.data.url
 
-        params.set('slug', slug)
-        router.replace(`${pathname}?slug=${slug}`, {
+        params.set('tree', treeUrl)
+        router.replace(`${pathname}?tree=${treeUrl}`, {
           scroll: false
         })
 

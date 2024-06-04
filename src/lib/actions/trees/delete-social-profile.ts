@@ -1,6 +1,6 @@
 'use server'
 
-import { revalidatePath } from 'next/cache'
+import { revalidateTag } from 'next/cache'
 
 import db from '@/lib/database'
 import { getCurrentUser } from '@/lib/services/get-current-user'
@@ -31,7 +31,7 @@ export async function deleteSocialProfile({ treeId, type }: Props) {
       }
     })
 
-    revalidatePath('/')
+    revalidateTag('trees')
 
     return {
       error: '',

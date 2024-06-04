@@ -1,12 +1,12 @@
 'use server'
 
-import { revalidatePath } from 'next/cache'
+import { revalidateTag } from 'next/cache'
 import slugify from '@sindresorhus/slugify'
 
 import db from '@/lib/database'
 import { getCurrentUser } from '@/lib/services/get-current-user'
 import { TREE_NAMES } from '@/lib/constants/trees'
-import { generateRawData } from '@/lib/utils/generate-raw-data'
+import { generateRawDataToCreate } from '@/lib/utils/generate-raw-data'
 
 export async function createDefaultTree() {
   const user = await getCurrentUser()
@@ -25,10 +25,10 @@ export async function createDefaultTree() {
   try {
     const response = await db.tree.create({
       data: {
-        ...generateRawData(),
+        ...generateRawDataToCreate(),
         authorId: user.id,
         name: randomName,
-        slug: slugify(randomName)
+        url: slugify(randomName)
       },
       include: {
         links: true,
@@ -36,7 +36,7 @@ export async function createDefaultTree() {
       }
     })
 
-    revalidatePath('/')
+    revalidateTag('trees')
 
     return {
       data: response,

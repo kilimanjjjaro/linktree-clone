@@ -1,27 +1,30 @@
 import { useCallback } from 'react'
+import { usePathname, useRouter } from 'next/navigation'
 import { v4 as uuidv4 } from 'uuid'
 import { type Prisma } from '@prisma/client'
 
-import { createLink } from '@/lib/actions/trees/create-link'
-import { createTree } from '@/lib/actions/trees/create-tree'
+import { upsertLink } from '@/lib/actions/trees/upsert-link'
 import { useStore } from '@/lib/store/store'
 import useCurrentUser from '@/lib/hooks/useCurrentUser'
 import { AddLinkSchema } from '@/lib/schemas/tree'
-import { DEMO_TREE_VALUES } from '@/lib/constants/trees'
 import { getOgImage } from '@/lib/utils/get-og-image'
+import { createTree } from '@/lib/actions/trees/create-tree'
+import { DEMO_TREE_VALUES } from '@/lib/constants/trees'
 
 export default function useLinks() {
   const setSelectedTree = useStore((state) => state.setSelectedTree)
   const selectedTree = useStore((state) => state.selectedTree)
   const user = useCurrentUser()
+  const pathname = usePathname()
+  const router = useRouter()
 
   const addLink = useCallback(
-    async (data: Partial<Prisma.TreeLinkUncheckedCreateInput>) => {
+    async (data: Prisma.TreeLinkUncheckedCreateInput) => {
       if (selectedTree === null) return null
 
       const rawData = { ...data, treeId: selectedTree.id }
 
-      if (rawData.featured === true && rawData.url !== undefined) {
+      if (rawData.featured && rawData.url !== undefined) {
         rawData.image = await getOgImage(rawData.url)
       } else {
         rawData.image = null
@@ -31,17 +34,31 @@ export default function useLinks() {
 
       if (!validatedFields.success) return null
 
+      const existingLinks = [...selectedTree.links]
+      const existingLink = existingLinks.findIndex(
+        (profile) => profile.url === validatedFields.data.url
+      )
+
       if (user === null) {
         const newLink = {
           ...validatedFields.data,
           id: uuidv4(),
-          created_at: new Date(),
-          updated_at: new Date()
+          createdAt: new Date(),
+          updatedAt: new Date()
+        }
+
+        if (existingLink !== -1) {
+          existingLinks[existingLink].name = validatedFields.data.name
+          existingLinks[existingLink].url = validatedFields.data.url
+          existingLinks[existingLink].featured = validatedFields.data.featured
+          existingLinks[existingLink].updatedAt = new Date()
+        } else {
+          existingLinks.push(newLink)
         }
 
         const treeToSave = {
           ...selectedTree,
-          links: [...selectedTree.links, newLink]
+          links: existingLinks
         }
 
         setSelectedTree(treeToSave)
@@ -49,47 +66,49 @@ export default function useLinks() {
 
         return newLink
       } else {
+        let treeId = selectedTree.id
+
         if (selectedTree.id === DEMO_TREE_VALUES.id) {
           const newTree = await createTree(selectedTree)
 
           if (newTree.data === null) return null
 
-          const newLink = await createLink({
-            ...validatedFields.data,
-            treeId: newTree.data.id
+          treeId = newTree.data.id
+          const params = new URLSearchParams()
+          params.set('tree', newTree.data.url)
+          router.replace(`${pathname}?tree=${newTree.data.url}`, {
+            scroll: false
           })
-
-          if (newLink === null) return null
-
-          const treeToSave = {
-            ...newTree.data,
-            links: [...newTree.data.links, newLink]
-          }
-
-          setSelectedTree(treeToSave)
-          localStorage.removeItem('__LOCAL_TREE__')
-
-          return newLink
-        } else {
-          const response = await createLink({
-            ...validatedFields.data,
-            treeId: selectedTree.id
-          })
-
-          if (response === null) return null
-
-          const treeToSave = {
-            ...selectedTree,
-            links: [...selectedTree.links, response]
-          }
-
-          setSelectedTree(treeToSave)
-
-          return response
         }
+
+        const newLink = await upsertLink({
+          ...validatedFields.data,
+          treeId
+        })
+
+        if (newLink === null) return null
+
+        if (existingLink !== -1) {
+          existingLinks[existingLink].name = newLink.name
+          existingLinks[existingLink].url = newLink.url
+          existingLinks[existingLink].featured = newLink.featured
+          existingLinks[existingLink].updatedAt = newLink.updatedAt
+        } else {
+          existingLinks.push(newLink)
+        }
+
+        const treeToSave = {
+          ...selectedTree,
+          links: existingLinks
+        }
+
+        setSelectedTree(treeToSave)
+        localStorage.removeItem('__LOCAL_TREE__')
+
+        return newLink
       }
     },
-    [selectedTree, setSelectedTree, user]
+    [selectedTree, setSelectedTree, user, router, pathname]
   )
 
   return {

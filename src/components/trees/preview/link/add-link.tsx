@@ -15,19 +15,23 @@ import {
   DialogTrigger
 } from '@/components/ui/dialog'
 import useLinks from '@/lib/hooks/useLinks'
+import { useStore } from '@/lib/store/store'
 
 export default function AddLink() {
+  const selectedTree = useStore((state) => state.selectedTree)
   const [isPending, startTransition] = useTransition()
   const [open, setOpen] = useState(false)
   const { addLink } = useLinks()
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    if (selectedTree === null) return
     event.preventDefault()
 
     startTransition(async () => {
       const formData = new FormData(event.currentTarget)
 
       const newLink = {
+        treeId: selectedTree.id,
         name: formData.get('name') as string,
         url: formData.get('url') as string,
         featured: formData.get('featured') !== null ?? false

@@ -11,10 +11,10 @@ import { Separator } from '@/components/ui/separator'
 import { getCurrentUser } from '@/lib/services/get-current-user'
 
 interface Props {
-  slug: string | undefined
+  treeUrl: string | undefined
 }
 
-export default async function Navbar({ slug }: Props) {
+export default async function Navbar({ treeUrl }: Props) {
   const user = await getCurrentUser()
 
   return (
@@ -27,7 +27,7 @@ export default async function Navbar({ slug }: Props) {
           <LinktreeLogo className='w-7' />
         </Link>
         <Separator orientation='vertical' className='ml-[18px] mr-5 h-5' />
-        <TreeSelector slug={slug} />
+        <TreeSelector treeUrl={treeUrl} />
       </nav>
       <nav className='flex items-center gap-x-5'>
         <SavingBadge />

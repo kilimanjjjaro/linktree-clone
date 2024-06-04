@@ -5,9 +5,10 @@ import { useSearchParams } from 'next/navigation'
 import Link from 'next/link'
 import { useAutoAnimate } from '@formkit/auto-animate/react'
 import { useDencrypt } from 'use-dencrypt-effect'
-import { cn } from '@/lib/utils'
-import { geistMono } from '@/lib/utils/fonts'
+
 import { verifyConfirmationToken } from '@/lib/actions/auth/verifyConfirmationToken'
+import { geistMono } from '@/lib/utils/fonts'
+import { cn } from '@/lib/utils'
 
 const DICTIONARY = '0123456789qwertyuiopasdfghjklzxcvbnm!?></a`~+*=@#$%'
 

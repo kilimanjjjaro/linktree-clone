@@ -5,7 +5,6 @@ export const DEMO_TREE_VALUES: TreeInterface = {
   authorId: 'demo',
   status: 0,
   name: 'Tree example',
-  slug: 'tree-example',
   url: 'tree-example',
   description:
     'Full Stack Developer & UX/UI Designer with +6 years of work experience.',
@@ -31,8 +30,8 @@ export const DEMO_TREE_VALUES: TreeInterface = {
       contentContainer: false
     }
   },
-  created_at: new Date(),
-  updated_at: new Date()
+  createdAt: new Date(),
+  updatedAt: new Date()
 }
 
 export const TREE_NAMES = [

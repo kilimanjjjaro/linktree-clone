@@ -3,7 +3,7 @@ import { Prisma } from '@prisma/client'
 import { DEMO_TREE_VALUES } from '@/lib/constants/trees'
 import { type TreeInterface } from '@/lib/types/trees'
 
-export function generateRawData(tree?: Partial<TreeInterface>) {
+export function generateRawDataToCreate(tree?: Partial<TreeInterface>) {
   const appearance = tree?.appearance ?? DEMO_TREE_VALUES.appearance
   const links = tree?.links ?? DEMO_TREE_VALUES.links
   const socialProfiles = tree?.socialProfiles ?? DEMO_TREE_VALUES.socialProfiles
@@ -11,7 +11,6 @@ export function generateRawData(tree?: Partial<TreeInterface>) {
   return {
     status: tree?.status ?? DEMO_TREE_VALUES.status,
     name: tree?.name ?? DEMO_TREE_VALUES.name,
-    slug: tree?.slug ?? DEMO_TREE_VALUES.slug,
     url: tree?.url ?? DEMO_TREE_VALUES.url,
     description: tree?.description ?? DEMO_TREE_VALUES.description,
     avatar: tree?.avatar ?? DEMO_TREE_VALUES.avatar,
@@ -19,7 +18,7 @@ export function generateRawData(tree?: Partial<TreeInterface>) {
     links: {
       createMany: {
         data: links.map((link) => {
-          const { id, treeId, ...rest } = link
+          const { id, treeId, createdAt, updatedAt, ...rest } = link
 
           return rest
         })
@@ -28,11 +27,26 @@ export function generateRawData(tree?: Partial<TreeInterface>) {
     socialProfiles: {
       createMany: {
         data: socialProfiles.map((socialMedia) => {
-          const { id, treeId, ...rest } = socialMedia
+          const { id, treeId, createdAt, updatedAt, ...rest } = socialMedia
 
           return rest
         })
       }
     }
+  }
+}
+
+export function generateRawDataToUpdate(tree?: Partial<TreeInterface>) {
+  const appearance = tree?.appearance ?? DEMO_TREE_VALUES.appearance
+
+  if (tree?.id === undefined) return null
+
+  return {
+    status: tree?.status ?? DEMO_TREE_VALUES.status,
+    name: tree?.name ?? DEMO_TREE_VALUES.name,
+    url: tree?.url ?? DEMO_TREE_VALUES.url,
+    description: tree?.description ?? DEMO_TREE_VALUES.description,
+    avatar: tree?.avatar ?? DEMO_TREE_VALUES.avatar,
+    appearance: appearance ?? Prisma.JsonNull
   }
 }

@@ -1,13 +1,16 @@
 'use server'
 
-import { revalidatePath } from 'next/cache'
+import { revalidateTag } from 'next/cache'
 import { Prisma, type Tree } from '@prisma/client'
 
 import db from '@/lib/database'
 import { getCurrentUser } from '@/lib/services/get-current-user'
-import { generateRawData } from '@/lib/utils/generate-raw-data'
+import {
+  generateRawDataToCreate,
+  generateRawDataToUpdate
+} from '@/lib/utils/generate-raw-data'
 
-export async function updateTree(tree: Partial<Tree>) {
+export async function upsertTree(tree: Partial<Tree>) {
   const user = await getCurrentUser()
 
   if (user?.id === undefined) return null
@@ -15,15 +18,15 @@ export async function updateTree(tree: Partial<Tree>) {
   try {
     const response = await db.tree.upsert({
       where: {
-        authorId: tree.authorId,
+        authorId: user.id,
         id: tree.id
       },
       update: {
-        ...tree,
+        ...generateRawDataToUpdate(tree),
         appearance: tree.appearance ?? Prisma.JsonNull
       },
       create: {
-        ...generateRawData(tree),
+        ...generateRawDataToCreate(tree),
         authorId: user.id
       },
       include: {
@@ -32,7 +35,7 @@ export async function updateTree(tree: Partial<Tree>) {
       }
     })
 
-    revalidatePath('/')
+    revalidateTag('trees')
 
     return response
   } catch (error) {

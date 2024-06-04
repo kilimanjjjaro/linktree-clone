@@ -14,10 +14,11 @@ model User {
   emailVerified DateTime? @map("email_verified")
   password      String?
   image         String    @default("https://res.cloudinary.com/dsvcixsbp/image/upload/c_scale,h_150/v1714920612/linktree/default-user-avatar_zujorl.jpg")
-  created_at    DateTime  @default(now())
-  updated_at    DateTime  @updatedAt
   accounts      Account[]
   trees         Tree[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
 model Account {
@@ -35,8 +36,8 @@ model Account {
   id_token          String?
   session_state     String?
 
-  created_at DateTime @default(now())
-  updated_at DateTime @updatedAt
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   @@unique([provider, providerAccountId])
 }
@@ -65,7 +66,6 @@ model Tree {
   authorId       String              @map("author_id")
   status         Int
   name           String
-  slug           String
   url            String
   description    String
   avatar         String
@@ -73,37 +73,39 @@ model Tree {
   links          TreeLink[]
   appearance     Json
 
-  created_at DateTime @default(now())
-  updated_at DateTime @updatedAt
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
-  @@unique([authorId, name])
+  @@unique([authorId, url])
 }
 
 model TreeSocialProfile {
   id     String             @id @default(cuid())
+  tree   Tree               @relation(fields: [treeId], references: [id], onDelete: Cascade)
+  treeId String
   type   SocialProfileTypes
   url    String
   name   String
-  tree   Tree               @relation(fields: [treeId], references: [id], onDelete: Cascade)
-  treeId String
 
-  created_at DateTime @default(now())
-  updated_at DateTime @updatedAt
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   @@unique([treeId, type])
 }
 
 model TreeLink {
   id       String  @id @default(cuid())
+  Tree     Tree    @relation(fields: [treeId], references: [id], onDelete: Cascade)
+  treeId   String
   name     String
   url      String
   featured Boolean
   image    String?
-  Tree     Tree    @relation(fields: [treeId], references: [id], onDelete: Cascade)
-  treeId   String
 
-  created_at DateTime @default(now())
-  updated_at DateTime @updatedAt
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([treeId, url])
 }
 
 enum SocialProfileTypes {

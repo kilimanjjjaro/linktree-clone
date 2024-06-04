@@ -19,7 +19,6 @@ export default function DescriptionInput() {
 
   const updateDescription = async (event: React.FormEvent<HTMLFormElement>) => {
     if (savingTree) return
-
     event.preventDefault()
 
     const formData = new FormData(event.currentTarget)
