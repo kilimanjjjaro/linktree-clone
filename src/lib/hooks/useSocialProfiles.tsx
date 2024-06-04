@@ -2,6 +2,7 @@ import { useCallback } from 'react'
 import { usePathname, useRouter } from 'next/navigation'
 import { v4 as uuidv4 } from 'uuid'
 import { type SocialProfileTypes, type Prisma } from '@prisma/client'
+import { toast } from 'sonner'
 
 import { useStore } from '@/lib/store/store'
 import useCurrentUser from '@/lib/hooks/useCurrentUser'
@@ -57,7 +58,10 @@ export default function useSocialProfiles() {
         if (selectedTree.id === DEMO_TREE_VALUES.id) {
           const newTree = await createTree(selectedTree)
 
-          if (newTree.data === null) return null
+          if (newTree.data === null) {
+            toast.error(newTree.error)
+            return null
+          }
 
           treeId = newTree.data.id
           const params = new URLSearchParams()
@@ -74,13 +78,17 @@ export default function useSocialProfiles() {
           name: data.name
         })
 
-        if (newProfile === null) return null
+        if (newProfile.data === null) {
+          toast.error(newProfile.error)
+          return null
+        }
 
         if (existingProfile !== -1) {
-          existingProfiles[existingProfile].url = newProfile.url
-          existingProfiles[existingProfile].updatedAt = newProfile.updatedAt
+          existingProfiles[existingProfile].url = newProfile.data.url
+          existingProfiles[existingProfile].updatedAt =
+            newProfile.data.updatedAt
         } else {
-          existingProfiles.push(newProfile)
+          existingProfiles.push(newProfile.data)
         }
 
         const treeToSave = {

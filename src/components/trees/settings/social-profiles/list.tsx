@@ -46,33 +46,31 @@ export default function SocialProfilesList({ setOpen }: Props) {
         selectedTree.socialProfiles.length > 0 && 'flex'
       )}
     >
-      {selectedTree.socialProfiles.map((socialProfile) => {
-        return (
-          <li
-            className='flex items-center gap-x-1 rounded-full border border-lt-light-gray/60 pr-1 text-sm leading-none transition-colors has-[:hover]:bg-lt-light-gray'
-            key={socialProfile.type}
+      {selectedTree.socialProfiles.map((socialProfile) => (
+        <li
+          className='flex items-center gap-x-1 rounded-full border border-lt-light-gray/60 pr-1 text-sm leading-none transition-colors has-[:hover]:bg-lt-light-gray'
+          key={socialProfile.type}
+        >
+          <button
+            aria-label='Update URL'
+            className='py-1.5 pl-3'
+            onClick={() => {
+              updateSocialProfile(socialProfile)
+            }}
           >
-            <button
-              aria-label='Update URL'
-              className='py-1.5 pl-3'
-              onClick={() => {
-                updateSocialProfile(socialProfile)
-              }}
-            >
-              {socialProfile.name}
-            </button>
-            <button
-              aria-label='Remove'
-              className='h-auto rounded-full p-1 transition-colors xl:hover:bg-lt-gray'
-              onClick={async () => {
-                await removeProfile(socialProfile.type)
-              }}
-            >
-              <X className='size-3' aria-hidden />
-            </button>
-          </li>
-        )
-      })}
+            {socialProfile.name}
+          </button>
+          <button
+            aria-label='Remove'
+            className='h-auto rounded-full p-1 transition-colors xl:hover:bg-lt-gray'
+            onClick={async () => {
+              await removeProfile(socialProfile.type)
+            }}
+          >
+            <X className='size-3' aria-hidden />
+          </button>
+        </li>
+      ))}
     </ul>
   )
 }

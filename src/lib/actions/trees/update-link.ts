@@ -9,7 +9,13 @@ import { getCurrentUser } from '@/lib/services/get-current-user'
 export async function updateLink(data: Prisma.TreeLinkUncheckedCreateInput) {
   const user = await getCurrentUser()
 
-  if (user?.id == null) return null
+  if (user?.id === undefined) {
+    return {
+      data: null,
+      error: 'Must log in to update links.',
+      success: ''
+    }
+  }
 
   try {
     const response = await db.treeLink.upsert({
@@ -34,11 +40,21 @@ export async function updateLink(data: Prisma.TreeLinkUncheckedCreateInput) {
       }
     })
 
+    console.log(response)
+
     revalidateTag('trees')
 
-    return response
+    return {
+      data: response,
+      error: '',
+      success: 'Link updated.'
+    }
   } catch (error) {
     console.error('ACTION_ERROR: ', error)
-    return null
+    return {
+      data: null,
+      error: 'Something went wrong.',
+      success: ''
+    }
   }
 }

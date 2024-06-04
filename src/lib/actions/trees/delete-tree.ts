@@ -7,7 +7,7 @@ import { getCurrentUser } from '@/lib/services/get-current-user'
 export async function deleteTree(treeId: string) {
   const user = await getCurrentUser()
 
-  if (user === null) {
+  if (user?.id === undefined) {
     return {
       error: 'Must log in to delete trees.',
       success: ''
@@ -29,8 +29,9 @@ export async function deleteTree(treeId: string) {
     }
   } catch (error) {
     console.error('ACTION_ERROR: ', error)
+
     return {
-      error: 'Something went wrong!',
+      error: 'Something went wrong.',
       success: ''
     }
   }

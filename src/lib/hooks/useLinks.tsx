@@ -2,6 +2,7 @@ import { useCallback } from 'react'
 import { usePathname, useRouter } from 'next/navigation'
 import { v4 as uuidv4 } from 'uuid'
 import { type Prisma } from '@prisma/client'
+import { toast } from 'sonner'
 
 import { updateLink } from '@/lib/actions/trees/update-link'
 import { useStore } from '@/lib/store/store'
@@ -71,7 +72,10 @@ export default function useLinks() {
         if (selectedTree.id === DEMO_TREE_VALUES.id) {
           const newTree = await createTree(selectedTree)
 
-          if (newTree.data === null) return null
+          if (newTree.data === null) {
+            toast.error(newTree.error)
+            return null
+          }
 
           treeId = newTree.data.id
           const params = new URLSearchParams()
@@ -86,15 +90,18 @@ export default function useLinks() {
           treeId
         })
 
-        if (newLink === null) return null
+        if (newLink.data === null) {
+          toast.error(newLink.error)
+          return null
+        }
 
         if (existingLink !== -1) {
-          existingLinks[existingLink].name = newLink.name
-          existingLinks[existingLink].url = newLink.url
-          existingLinks[existingLink].featured = newLink.featured
-          existingLinks[existingLink].updatedAt = newLink.updatedAt
+          existingLinks[existingLink].name = newLink.data.name
+          existingLinks[existingLink].url = newLink.data.url
+          existingLinks[existingLink].featured = newLink.data.featured
+          existingLinks[existingLink].updatedAt = newLink.data.updatedAt
         } else {
-          existingLinks.push(newLink)
+          existingLinks.push(newLink.data)
         }
 
         const treeToSave = {

@@ -14,7 +14,7 @@ interface Props {
 export async function deleteSocialProfile({ treeId, type }: Props) {
   const user = await getCurrentUser()
 
-  if (user?.id == null) {
+  if (user?.id === undefined) {
     return {
       error: 'Must log in to delete social profiles.',
       success: ''
@@ -39,8 +39,9 @@ export async function deleteSocialProfile({ treeId, type }: Props) {
     }
   } catch (error) {
     console.error('ACTION_ERROR: ', error)
+
     return {
-      error: 'Something went wrong!',
+      error: 'Something went wrong.',
       success: ''
     }
   }

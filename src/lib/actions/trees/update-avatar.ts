@@ -41,6 +41,7 @@ export async function updateAvatar(formData: FormData) {
     }
   } catch (error) {
     console.error('ACTION_ERROR: ', error)
+
     return null
   }
 }

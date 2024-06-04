@@ -50,9 +50,9 @@ export default function useTree() {
 
         const response = await updateTree(rawData)
 
-        if (response === null) return null
+        if (response.data === null) return null
 
-        setSelectedTree(response)
+        setSelectedTree(response.data)
         localStorage.removeItem('__LOCAL_TREE__')
         setSavingTree(false)
 

@@ -70,7 +70,7 @@ export async function logInWithEmail(prevState: any, formData: FormData) {
         }
         default: {
           return {
-            error: 'Something went wrong!',
+            error: 'Something went wrong.',
             success: ''
           }
         }

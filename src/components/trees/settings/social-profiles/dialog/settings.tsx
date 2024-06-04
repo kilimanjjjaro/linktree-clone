@@ -58,7 +58,7 @@ export default function SocialProfileSettings({ closeDialog }: Props) {
   }
 
   const existingSocialProfile = selectedTree?.socialProfiles.find(
-    (profile) => profile.type === selectedSocialProfile.type
+    (socialProfile) => socialProfile.type === selectedSocialProfile.type
   )
 
   return (

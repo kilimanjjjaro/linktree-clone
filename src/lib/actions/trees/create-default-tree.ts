@@ -2,6 +2,7 @@
 
 import { revalidateTag } from 'next/cache'
 import slugify from '@sindresorhus/slugify'
+import { Prisma } from '@prisma/client'
 
 import db from '@/lib/database'
 import { getCurrentUser } from '@/lib/services/get-current-user'
@@ -14,7 +15,7 @@ export async function createDefaultTree() {
   if (user?.id === undefined) {
     return {
       data: null,
-      error: 'You must log in to create new trees.',
+      error: 'Must log in to create trees.',
       success: ''
     }
   }
@@ -45,9 +46,20 @@ export async function createDefaultTree() {
     }
   } catch (error) {
     console.error('ACTION_ERROR: ', error)
+
+    if (error instanceof Prisma.PrismaClientKnownRequestError) {
+      if (error.code === 'P2002') {
+        return {
+          data: null,
+          error: 'A tree with this URL already exists.',
+          success: ''
+        }
+      }
+    }
+
     return {
       data: null,
-      error: 'Something went wrong!',
+      error: 'Something went wrong.',
       success: ''
     }
   }

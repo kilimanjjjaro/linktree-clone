@@ -26,8 +26,8 @@ export function generateRawDataToCreate(tree?: Partial<TreeInterface>) {
     },
     socialProfiles: {
       createMany: {
-        data: socialProfiles.map((socialMedia) => {
-          const { id, treeId, createdAt, updatedAt, ...rest } = socialMedia
+        data: socialProfiles.map((socialProfile) => {
+          const { id, treeId, createdAt, updatedAt, ...rest } = socialProfile
 
           return rest
         })

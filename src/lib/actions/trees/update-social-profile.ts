@@ -11,7 +11,13 @@ export async function updateSocialProfile(
 ) {
   const user = await getCurrentUser()
 
-  if (user?.id == null) return null
+  if (user?.id === undefined) {
+    return {
+      data: null,
+      error: 'Must log in to update social profiles.',
+      success: ''
+    }
+  }
 
   try {
     const response = await db.treeSocialProfile.upsert({
@@ -35,9 +41,17 @@ export async function updateSocialProfile(
 
     revalidateTag('trees')
 
-    return response
+    return {
+      data: response,
+      error: '',
+      success: 'Social profile updated.'
+    }
   } catch (error) {
     console.error('ACTION_ERROR: ', error)
-    return null
+    return {
+      data: null,
+      error: 'Something went wrong.',
+      success: ''
+    }
   }
 }
