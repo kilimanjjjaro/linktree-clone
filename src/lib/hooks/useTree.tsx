@@ -8,6 +8,7 @@ import useCurrentUser from '@/lib/hooks/useCurrentUser'
 import { UpdateTreeSchema } from '@/lib/schemas/tree'
 
 export default function useTree() {
+  const setSavingTree = useStore((state) => state.setSavingTree)
   const setSelectedTree = useStore((state) => state.setSelectedTree)
   const selectedTree = useStore((state) => state.selectedTree)
   const [errors, setErrors] = useState<string[]>([])
@@ -46,20 +47,24 @@ export default function useTree() {
 
         return newTree
       } else {
+        setSavingTree(true)
+
         const response = await updateTree(rawData)
 
         if (response.data === null) {
           toast.error(response.error)
+          setSavingTree(false)
           return null
         }
 
         setSelectedTree(response.data)
         localStorage.removeItem('__LOCAL_TREE__')
+        setSavingTree(false)
 
         return response.data
       }
     },
-    [selectedTree, setSelectedTree, user]
+    [selectedTree, setSelectedTree, setSavingTree, user]
   )
 
   return {

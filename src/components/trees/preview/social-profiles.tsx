@@ -18,6 +18,8 @@ export default function TreeSocialProfiles() {
     )
   }
 
+  if (selectedTree.socialProfiles.length === 0) return
+
   return (
     <ul className='mt-4 flex flex-wrap items-center justify-center gap-3 px-6'>
       {selectedTree.socialProfiles.map((socialProfile) => (

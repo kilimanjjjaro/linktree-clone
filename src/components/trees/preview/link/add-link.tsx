@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useTransition } from 'react'
+import { useTransition } from 'react'
 import { LoaderCircle, Plus } from 'lucide-react'
 
 import { Button } from '@/components/ui/button'
@@ -14,13 +14,19 @@ import {
   DialogTitle,
   DialogTrigger
 } from '@/components/ui/dialog'
-import useLinks from '@/lib/hooks/useLinks'
 import { useStore } from '@/lib/store/store'
+import useLinks from '@/lib/hooks/useLinks'
 
-export default function AddLink() {
+interface Props {
+  open: boolean
+  setOpen: (value: boolean) => void
+}
+
+export default function AddLink({ open, setOpen }: Props) {
   const selectedTree = useStore((state) => state.selectedTree)
+  const selectedLink = useStore((state) => state.selectedLink)
+  const setSelectedLink = useStore((state) => state.setSelectedLink)
   const [isPending, startTransition] = useTransition()
-  const [open, setOpen] = useState(false)
   const { addLink } = useLinks()
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -41,13 +47,20 @@ export default function AddLink() {
 
       if (response !== null) {
         setOpen(false)
+        setSelectedLink(null)
       }
     })
   }
 
   return (
     <footer className='absolute inset-x-5 bottom-8'>
-      <Dialog open={open} onOpenChange={setOpen}>
+      <Dialog
+        open={open}
+        onOpenChange={(value) => {
+          setOpen(value)
+          setSelectedLink(null)
+        }}
+      >
         <DialogTrigger asChild>
           <Button className='w-full'>
             Add link <Plus className='size-3.5' aria-hidden />
@@ -65,6 +78,7 @@ export default function AddLink() {
                   type='text'
                   id='link-name'
                   name='name'
+                  defaultValue={selectedLink?.name}
                   placeholder='Example link'
                   required
                   autoFocus
@@ -76,6 +90,7 @@ export default function AddLink() {
                   type='url'
                   id='link-url'
                   name='url'
+                  defaultValue={selectedLink?.url}
                   placeholder='https://www.example.com/'
                   required
                 />
@@ -88,7 +103,11 @@ export default function AddLink() {
                     from the link. Soon you will able to upload one.
                   </p>
                 </div>
-                <Switch id='featured-link' name='featured' />
+                <Switch
+                  id='featured-link'
+                  name='featured'
+                  defaultChecked={selectedLink?.featured}
+                />
               </div>
               <Button
                 type='submit'
@@ -96,15 +115,33 @@ export default function AddLink() {
                 className='w-full'
                 disabled={isPending}
               >
-                {isPending ? (
+                {selectedLink !== null ? (
                   <>
-                    Adding
-                    <LoaderCircle className='size-4 animate-spin' aria-hidden />
+                    {isPending ? (
+                      <>
+                        Updating
+                        <LoaderCircle
+                          className='size-4 animate-spin'
+                          aria-hidden
+                        />
+                      </>
+                    ) : (
+                      'Update'
+                    )}
                   </>
                 ) : (
                   <>
-                    Add
-                    <Plus className='size-4' aria-hidden />
+                    {isPending ? (
+                      <>
+                        Adding
+                        <LoaderCircle
+                          className='size-4 animate-spin'
+                          aria-hidden
+                        />
+                      </>
+                    ) : (
+                      'Add'
+                    )}
                   </>
                 )}
               </Button>

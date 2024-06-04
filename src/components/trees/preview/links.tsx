@@ -1,6 +1,6 @@
 'use client'
 
-import { Fragment } from 'react'
+import { Fragment, useState } from 'react'
 
 import FeaturedLink from '@/components/trees/preview/link/featured-link'
 import TextLink from '@/components/trees/preview/link/text-link'
@@ -10,6 +10,7 @@ import { useStore } from '@/lib/store/store'
 
 export default function TreeLinks() {
   const selectedTree = useStore((state) => state.selectedTree)
+  const [open, setOpen] = useState(false)
 
   if (selectedTree === null) {
     return (
@@ -26,14 +27,14 @@ export default function TreeLinks() {
         {selectedTree.links.map((link) => (
           <Fragment key={link.id}>
             {link.featured ? (
-              <FeaturedLink link={link} />
+              <FeaturedLink link={link} setOpen={setOpen} />
             ) : (
-              <TextLink link={link} />
+              <TextLink link={link} setOpen={setOpen} />
             )}
           </Fragment>
         ))}
       </main>
-      <AddLink />
+      <AddLink open={open} setOpen={setOpen} />
     </>
   )
 }

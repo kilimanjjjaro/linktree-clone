@@ -1,8 +1,22 @@
-import { Button } from '@/components/ui/button'
-import { type TreeLink as TreeLinkType } from '@prisma/client'
-import { Upload } from 'lucide-react'
+import { Settings2 } from 'lucide-react'
+import { type TreeLink } from '@prisma/client'
 
-export default function FeaturedLink({ link }: { link: TreeLinkType }) {
+import { Button } from '@/components/ui/button'
+import { useStore } from '@/lib/store/store'
+
+interface Props {
+  link: TreeLink
+  setOpen: (value: boolean) => void
+}
+
+export default function FeaturedLink({ link, setOpen }: Props) {
+  const setSelectedLink = useStore((state) => state.setSelectedLink)
+
+  const updateLink = (link: TreeLink) => {
+    setSelectedLink(link)
+    setOpen(true)
+  }
+
   return (
     <div className='relative'>
       <a href={link.url} target='_blank' rel='noopener noreferrer'>
@@ -19,10 +33,13 @@ export default function FeaturedLink({ link }: { link: TreeLinkType }) {
         </div>
       </a>
       <Button
-        aria-label='Upload background image'
-        className='absolute right-2 top-2 z-20 h-auto rounded-full bg-lt-white/90 p-1.5'
+        aria-label='Update link'
+        className='absolute right-3 top-3 z-20 h-auto rounded-full bg-lt-white p-1 mix-blend-difference'
+        onClick={() => {
+          updateLink(link)
+        }}
       >
-        <Upload className='size-3' strokeWidth={2.5} />
+        <Settings2 className='size-4' strokeWidth={2.5} />
       </Button>
     </div>
   )

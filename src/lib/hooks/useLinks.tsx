@@ -26,7 +26,15 @@ export default function useLinks() {
       const rawData = { ...data, treeId: selectedTree.id }
 
       if (rawData.featured && rawData.url !== undefined) {
-        rawData.image = await getOgImage(rawData.url)
+        const response = await getOgImage(rawData.url)
+
+        if (response.length > 0) {
+          rawData.image = response
+        } else {
+          toast.error(
+            'The extraction of the image was blocked by the site. This link cannot be featured.'
+          )
+        }
       } else {
         rawData.image = null
       }
