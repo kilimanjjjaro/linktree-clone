@@ -34,11 +34,11 @@ export default function TreeSelectorList({ treeUrl, trees }: Props) {
 
   const handleDelete = async (treeId: string) => {
     if (trees.length === 0) return
+    const params = new URLSearchParams()
 
     const updateParams = (tree: TreeInterface) => {
       setSelectedTree(tree)
 
-      const params = new URLSearchParams()
       params.set('tree', tree.url)
       router.replace(`${pathname}?tree=${tree.url}`, {
         scroll: false
@@ -51,8 +51,8 @@ export default function TreeSelectorList({ treeUrl, trees }: Props) {
       if (response.error.length > 0) toast.error(response.error)
 
       if (response.success.length > 0) {
-        const rest = trees.filter((tree) => tree.url !== treeId)
-        const currentTree = rest.find((tree) => tree.url === treeUrl)
+        const rest = trees.filter((tree) => tree.id !== treeId)
+        const currentTree = rest.find((tree) => tree.id === treeUrl)
 
         if (rest.length === 0) {
           updateParams(DEMO_TREE_VALUES)

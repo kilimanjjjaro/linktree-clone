@@ -81,7 +81,7 @@ export default function TreeUrl() {
           id='tree-url'
           type='text'
           name='url'
-          className='peer rounded-none border-none pr-7 focus-visible:ring-0 focus-visible:ring-offset-0 aria-[invalid=true]:ring-0'
+          className='peer overflow-hidden rounded-full rounded-l-none border-none pr-7 focus-visible:ring-0 focus-visible:ring-offset-0 aria-[invalid=true]:ring-0'
           value={treeUrl}
           onChange={(event) => {
             setTreeUrl(event.target.value)
