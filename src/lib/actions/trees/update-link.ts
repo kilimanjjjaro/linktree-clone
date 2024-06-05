@@ -40,8 +40,6 @@ export async function updateLink(data: Prisma.TreeLinkUncheckedCreateInput) {
       }
     })
 
-    console.log(response)
-
     revalidateTag('trees')
 
     return {

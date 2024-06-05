@@ -52,7 +52,7 @@ export default function TreeSelectorList({ treeUrl, trees }: Props) {
 
       if (response.success.length > 0) {
         const rest = trees.filter((tree) => tree.id !== treeId)
-        const currentTree = rest.find((tree) => tree.id === treeUrl)
+        const currentTree = rest.find((tree) => tree.id === treeId)
 
         if (rest.length === 0) {
           updateParams(DEMO_TREE_VALUES)

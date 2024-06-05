@@ -1,4 +1,4 @@
-import Footer from '@/components/footer'
+// import Footer from '@/components/footer'
 import Navbar from '@/components/navbar'
 import InitApp from '@/components/init-app'
 import TreeAppearance from '@/components/trees/appearance'
@@ -24,7 +24,7 @@ export default async function Home({ searchParams }: Props) {
         <TreePreview />
         <TreeSettings />
       </main>
-      <Footer />
+      {/* <Footer /> */}
     </InitApp>
   )
 }

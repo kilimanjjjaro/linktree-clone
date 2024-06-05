@@ -10,7 +10,7 @@ import { ScrollArea } from '@/components/ui/scroll-area'
 export default async function TreeSettings() {
   return (
     <aside className='relative flex max-h-[calc(100dvh-100px)] w-[340px] flex-col rounded-2xl border border-lt-light-gray/60 bg-lt-gray'>
-      <h2 className='flex h-12 items-center justify-center px-4 text-lg leading-none'>
+      <h2 className='sticky top-0 flex h-12 shrink-0 items-center justify-center px-4 text-lg leading-none'>
         Settings
       </h2>
       <Separator />

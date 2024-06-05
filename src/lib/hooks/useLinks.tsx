@@ -1,17 +1,17 @@
 import { useCallback } from 'react'
 import { usePathname, useRouter } from 'next/navigation'
 import { v4 as uuidv4 } from 'uuid'
-import { type Prisma } from '@prisma/client'
 import { toast } from 'sonner'
+import { type Prisma } from '@prisma/client'
 
 import { updateLink } from '@/lib/actions/trees/update-link'
+import { deleteLink } from '@/lib/actions/trees/delete-link'
+import { getOgImage } from '@/lib/actions/trees/get-og-image'
 import { useStore } from '@/lib/store/store'
 import useCurrentUser from '@/lib/hooks/useCurrentUser'
 import { AddLinkSchema } from '@/lib/schemas/tree'
-import { getOgImage } from '@/lib/utils/get-og-image'
 import { createTree } from '@/lib/actions/trees/create-tree'
 import { DEMO_TREE_VALUES } from '@/lib/constants/trees'
-import { deleteLink } from '../actions/trees/delete-link'
 
 export default function useLinks() {
   const setSelectedTree = useStore((state) => state.setSelectedTree)
@@ -26,14 +26,14 @@ export default function useLinks() {
 
       const rawData = { ...data, treeId: selectedTree.id }
 
-      if (rawData.featured && rawData.url !== undefined) {
+      if (rawData.featured) {
         const response = await getOgImage(rawData.url)
 
-        if (response.length > 0) {
-          rawData.image = response
+        if (response !== null) {
+          rawData.image = response.url
         } else {
           toast.error(
-            'The extraction of the image was blocked by the site. This link cannot be featured.'
+            'Something went wrong extraction the image from the site. Please try again.'
           )
         }
       } else {
