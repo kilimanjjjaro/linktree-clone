@@ -1,7 +1,7 @@
-export default function DeviceOverlay() {
+export default function DeviceOverlay () {
   return (
     <svg
-      className='pointer-events-none absolute inset-0 z-10 w-full select-none'
+      className='pointer-events-none absolute inset-0 z-10 select-none'
       xmlns='http://www.w3.org/2000/svg'
       viewBox='0 0 320 630'
       fill='none'

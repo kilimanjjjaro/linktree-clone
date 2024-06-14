@@ -17,7 +17,7 @@ import {
 import { useStore } from '@/lib/store/store'
 import useLinks from '@/lib/hooks/useLinks'
 
-export default function AddLink() {
+export default function AddLink () {
   const selectedTree = useStore((state) => state.selectedTree)
   const selectedLink = useStore((state) => state.selectedLink)
   const setSelectedLink = useStore((state) => state.setSelectedLink)
@@ -50,7 +50,7 @@ export default function AddLink() {
   }
 
   return (
-    <footer className='absolute inset-x-5 bottom-10'>
+    <footer className='absolute inset-x-[16.5px] bottom-10 z-10 px-4'>
       <Dialog
         open={showAddLinkDialog}
         onOpenChange={(value) => {
@@ -112,9 +112,11 @@ export default function AddLink() {
                 className='w-full'
                 disabled={isPending}
               >
-                {selectedLink !== null ? (
+                {selectedLink !== null
+                  ? (
                   <>
-                    {isPending ? (
+                    {isPending
+                      ? (
                       <>
                         Updating
                         <LoaderCircle
@@ -122,13 +124,16 @@ export default function AddLink() {
                           aria-hidden
                         />
                       </>
-                    ) : (
-                      'Update'
-                    )}
+                        )
+                      : (
+                          'Update'
+                        )}
                   </>
-                ) : (
+                    )
+                  : (
                   <>
-                    {isPending ? (
+                    {isPending
+                      ? (
                       <>
                         Adding
                         <LoaderCircle
@@ -136,11 +141,12 @@ export default function AddLink() {
                           aria-hidden
                         />
                       </>
-                    ) : (
-                      'Add'
-                    )}
+                        )
+                      : (
+                          'Add'
+                        )}
                   </>
-                )}
+                    )}
               </Button>
             </form>
           </main>
