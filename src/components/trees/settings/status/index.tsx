@@ -42,8 +42,7 @@ export default function TreeStatus () {
             <span className='sr-only'>Show help</span>
           </PopoverTrigger>
           <PopoverContent>
-            By default, when you create a new tree, it is in draft status. Only
-            you can access it.
+            By default, new trees are in draft status. If you want that people can access to it, you need to publish it.
           </PopoverContent>
         </Popover>
       </div>
