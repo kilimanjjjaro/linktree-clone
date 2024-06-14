@@ -9,7 +9,7 @@ interface Props {
   children: ChildrenType
 }
 
-export default async function Wrapper({ children }: Props) {
+export default async function Wrapper ({ children }: Props) {
   const session = await auth()
 
   return (

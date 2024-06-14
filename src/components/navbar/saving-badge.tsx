@@ -4,7 +4,7 @@ import { useStore } from '@/lib/store/store'
 import { cn } from '@/lib/utils'
 import { geistMono } from '@/lib/utils/fonts'
 
-export default function SavingBadge() {
+export default function SavingBadge () {
   const savingTree = useStore((state) => state.savingTree)
 
   return (

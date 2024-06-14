@@ -14,7 +14,7 @@ import { Button } from '@/components/ui/button'
 import { useStore } from '@/lib/store/store'
 import { createTree } from '@/lib/actions/trees/create-tree'
 
-export default function SaveTreeDialog() {
+export default function SaveTreeDialog () {
   const showSaveTreeDialog = useStore((state) => state.showSaveTreeDialog)
   const setShowSaveTreeDialog = useStore((state) => state.setShowSaveTreeDialog)
   const selectedTree = useStore((state) => state.selectedTree)

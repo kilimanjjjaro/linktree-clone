@@ -9,7 +9,7 @@ import { getCurrentUser } from '@/lib/services/get-current-user'
 import { TREE_NAMES } from '@/lib/constants/trees'
 import { generateRawDataToCreate } from '@/lib/utils/generate-raw-data'
 
-export async function createDefaultTree() {
+export async function createDefaultTree () {
   const user = await getCurrentUser()
 
   if (user?.id === undefined) {

@@ -18,7 +18,7 @@ interface Props {
   setOpen: (open: boolean) => void
 }
 
-export default function SocialProfilesDialog({ open, setOpen }: Props) {
+export default function SocialProfilesDialog ({ open, setOpen }: Props) {
   const step = useStore((state) => state.step)
   const setStep = useStore((state) => state.setStep)
 

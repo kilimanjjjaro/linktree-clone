@@ -4,7 +4,7 @@ import { Skeleton } from '@/components/ui/skeleton'
 import { useStore } from '@/lib/store/store'
 import Image from 'next/image'
 
-export default function TreeAvatar() {
+export default function TreeAvatar () {
   const selectedTree = useStore((state) => state.selectedTree)
 
   if (selectedTree === null) {

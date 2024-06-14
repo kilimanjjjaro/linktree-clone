@@ -2,7 +2,7 @@ import Link from 'next/link'
 import { Unlock } from 'lucide-react'
 import { buttonVariants } from '@/components/ui/button'
 
-export default function LogInButton() {
+export default function LogInButton () {
   return (
     <Link
       className={`h-full ${buttonVariants({ variant: 'default' })}`}

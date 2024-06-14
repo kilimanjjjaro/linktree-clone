@@ -10,7 +10,7 @@ export default {
   secret: process.env.AUTH_SECRET,
   providers: [
     Credentials({
-      async authorize(credentials) {
+      async authorize (credentials) {
         const validatedFields = LogInSchema.safeParse(credentials)
 
         if (validatedFields.success) {

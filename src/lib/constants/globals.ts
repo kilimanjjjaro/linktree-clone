@@ -1,6 +1,6 @@
 export const BASE_URL =
   process.env.NODE_ENV === 'production'
-    ? `https://linktree-clone-henna-pi.vercel.app`
+    ? 'https://linktree-clone-henna-pi.vercel.app'
     : 'http://localhost:3000'
 
 export const PUBLIC_ROUTES = ['/', '/dashboard', '/confirm-account']

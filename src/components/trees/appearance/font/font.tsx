@@ -8,7 +8,7 @@ interface Props {
   slug: string
 }
 
-export default function Font({ name, slug }: Props) {
+export default function Font ({ name, slug }: Props) {
   return (
     <div>
       <RadioGroupItem

@@ -9,7 +9,7 @@ import { Button } from '@/components/ui/button'
 import { createDefaultTree } from '@/lib/actions/trees/create-default-tree'
 import { useStore } from '@/lib/store/store'
 
-export default function NewTreeButton() {
+export default function NewTreeButton () {
   const setShowSaveTreeDialog = useStore((state) => state.setShowSaveTreeDialog)
   const [isPending, startTransition] = useTransition()
   const pathname = usePathname()
@@ -47,17 +47,19 @@ export default function NewTreeButton() {
       onClick={createTree}
       disabled={isPending}
     >
-      {isPending ? (
+      {isPending
+        ? (
         <>
           Creating
           <LoaderCircle className='size-4 animate-spin' aria-hidden />
         </>
-      ) : (
+          )
+        : (
         <>
           New tree
           <Plus className='size-4' aria-hidden />
         </>
-      )}
+          )}
     </Button>
   )
 }

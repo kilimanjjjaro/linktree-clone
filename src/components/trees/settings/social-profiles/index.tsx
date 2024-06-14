@@ -6,7 +6,7 @@ import { Label } from '@/components/ui/label'
 import { HelpPopover } from '@/components/ui/help-popover'
 import { useState } from 'react'
 
-export default function TreeSocialProfiles() {
+export default function TreeSocialProfiles () {
   const [open, setOpen] = useState(false)
 
   return (

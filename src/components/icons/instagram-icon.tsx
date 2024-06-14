@@ -1,4 +1,4 @@
-export function InstagramIcon({ className }: { className?: string }) {
+export function InstagramIcon ({ className }: { className?: string }) {
   return (
     <svg
       className={className}

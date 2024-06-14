@@ -8,7 +8,7 @@ import {
 import ConfirmAccount from '@/components/auth/confirm-account'
 import { Suspense } from 'react'
 
-export default async function ConfirmAccountPage() {
+export default async function ConfirmAccountPage () {
   return (
     <Card className='w-[350px] border-none bg-transparent'>
       <CardHeader className='text-center'>

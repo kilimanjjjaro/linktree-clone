@@ -5,7 +5,7 @@ import { Label } from '@/components/ui/label'
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
 import { Check, Film, Image } from 'lucide-react'
 
-export default function TreeBackground() {
+export default function TreeBackground () {
   return (
     <section className='p-5'>
       <h3 className='text-sm font-medium leading-none'>Background</h3>

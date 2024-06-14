@@ -2,7 +2,7 @@ import DescriptionInput from '@/components/trees/settings/description/input'
 import { Label } from '@/components/ui/label'
 import { HelpPopover } from '@/components/ui/help-popover'
 
-export default function TreeDescription() {
+export default function TreeDescription () {
   return (
     <section className='flex flex-col gap-y-3 p-5'>
       <div className='flex items-center gap-x-2'>

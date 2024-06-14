@@ -14,7 +14,7 @@ interface Props {
   treeUrl: string | undefined
 }
 
-export default async function Navbar({ treeUrl }: Props) {
+export default async function Navbar ({ treeUrl }: Props) {
   const user = await getCurrentUser()
 
   return (

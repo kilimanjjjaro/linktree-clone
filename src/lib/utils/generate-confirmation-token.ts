@@ -3,7 +3,7 @@ import { v4 as uuidv4 } from 'uuid'
 import db from '@/lib/database'
 import { getConfirmationTokenByEmail } from '@/lib/services/confirmation-token'
 
-export async function generateConfirmationToken(email: string) {
+export async function generateConfirmationToken (email: string) {
   const token = uuidv4()
   const expiresAt = new Date(new Date().getTime() + 3600 * 1000)
 

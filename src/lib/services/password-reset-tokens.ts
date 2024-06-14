@@ -1,6 +1,6 @@
 import db from '@/lib/database'
 
-export async function getPasswordResetTokenByEmail(email: string) {
+export async function getPasswordResetTokenByEmail (email: string) {
   try {
     const passwordResetToken = await db.passwordResetToken.findFirst({
       where: { email }
@@ -12,7 +12,7 @@ export async function getPasswordResetTokenByEmail(email: string) {
   }
 }
 
-export async function getPasswordResetTokenByToken(token: string) {
+export async function getPasswordResetTokenByToken (token: string) {
   try {
     const passwordResetToken = await db.passwordResetToken.findUnique({
       where: { token }

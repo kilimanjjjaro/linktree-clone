@@ -1,6 +1,6 @@
 import { INPUT_TYPES } from '@/lib/types/globals'
 
-export function generateInputAttributes(inputType: number) {
+export function generateInputAttributes (inputType: number) {
   let attributes = {}
 
   if (inputType === INPUT_TYPES.TEXT) {

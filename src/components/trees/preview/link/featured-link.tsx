@@ -5,7 +5,7 @@ import { Button } from '@/components/ui/button'
 import { useStore } from '@/lib/store/store'
 import useLinks from '@/lib/hooks/useLinks'
 
-export default function FeaturedLink({ link }: { link: TreeLink }) {
+export default function FeaturedLink ({ link }: { link: TreeLink }) {
   const setSelectedLink = useStore((state) => state.setSelectedLink)
   const setShowAddLinkDialog = useStore((state) => state.setShowAddLinkDialog)
   const { removeLink } = useLinks()

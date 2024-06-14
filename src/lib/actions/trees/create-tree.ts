@@ -8,7 +8,7 @@ import { getCurrentUser } from '@/lib/services/get-current-user'
 import { generateRawDataToCreate } from '@/lib/utils/generate-raw-data'
 import { type TreeInterface } from '@/lib/types/trees'
 
-export async function createTree(tree: TreeInterface) {
+export async function createTree (tree: TreeInterface) {
   const user = await getCurrentUser()
 
   if (user?.id === undefined) {

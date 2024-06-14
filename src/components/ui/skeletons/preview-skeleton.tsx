@@ -1,7 +1,7 @@
 import DeviceOverlay from '@/components/trees/preview/device-overlay'
 import { Skeleton } from '@/components/ui/skeleton'
 
-export default function PreviewSkeleton() {
+export default function PreviewSkeleton () {
   return (
     <div className='flex flex-col items-center self-center'>
       <div className='relative flex aspect-[320/630] w-[360px] items-center justify-center'>

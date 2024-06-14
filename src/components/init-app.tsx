@@ -13,7 +13,7 @@ interface Props {
   trees: TreeInterface[]
 }
 
-export default function InitApp({ children, trees }: Props) {
+export default function InitApp ({ children, trees }: Props) {
   const setSelectedTree = useStore((state) => state.setSelectedTree)
   const searchParams = useSearchParams()
   const pathname = usePathname()

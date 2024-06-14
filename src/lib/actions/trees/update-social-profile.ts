@@ -6,7 +6,7 @@ import { type Prisma } from '@prisma/client'
 import db from '@/lib/database'
 import { getCurrentUser } from '@/lib/services/get-current-user'
 
-export async function updateSocialProfile(
+export async function updateSocialProfile (
   data: Prisma.TreeSocialProfileUncheckedCreateInput
 ) {
   const user = await getCurrentUser()

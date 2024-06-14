@@ -2,7 +2,7 @@ import { type StateCreator } from 'zustand'
 import type { SocialProfilesSliceInterface } from '@/lib/types/store'
 
 export const createSocialProfilesSlice: StateCreator<
-  SocialProfilesSliceInterface
+SocialProfilesSliceInterface
 > = (set) => ({
   selectedSocialProfile: null,
   setSelectedSocialProfile: (selectedSocialProfile) => {

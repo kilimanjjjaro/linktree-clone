@@ -20,7 +20,7 @@ interface Props {
   setAvatarToCrop: (value: string) => void
 }
 
-export default function CropAvatar({
+export default function CropAvatar ({
   closeDialog,
   avatarToCrop,
   setAvatarToCrop
@@ -127,26 +127,30 @@ export default function CropAvatar({
         <Button variant='outline' onClick={deleteAvatar}>
           Delete
         </Button>
-        {croppedAvatar.length === 0 ? (
+        {croppedAvatar.length === 0
+          ? (
           <Button variant='secondary' onClick={saveCrop}>
             Crop
           </Button>
-        ) : (
+            )
+          : (
           <Button
             variant='secondary'
             onClick={uploadAvatar}
             disabled={isPending}
           >
-            {isPending ? (
+            {isPending
+              ? (
               <>
                 Uploading
                 <LoaderCircle className='size-4 animate-spin' aria-hidden />
               </>
-            ) : (
-              'Upload'
-            )}
+                )
+              : (
+                  'Upload'
+                )}
           </Button>
-        )}
+            )}
       </DialogFooter>
     </section>
   )

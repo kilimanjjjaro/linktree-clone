@@ -4,7 +4,7 @@ import { useState } from 'react'
 import { Label } from '@/components/ui/label'
 import { Switch } from '@/components/ui/switch'
 
-export default function TreeGeneral() {
+export default function TreeGeneral () {
   const [cornerStyle, setCornerStyle] = useState(true)
   const [contendContainer, setContendContainer] = useState(false)
 

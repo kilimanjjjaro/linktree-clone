@@ -14,7 +14,7 @@ import { useStore } from '@/lib/store/store'
 import useTree from '@/lib/hooks/useTree'
 import { TREE_STATUS } from '@/lib/constants/trees'
 
-export default function TreeStatus() {
+export default function TreeStatus () {
   const selectedTree = useStore((state) => state.selectedTree)
   const [published, setPublished] = useState(false)
   const { saveTree } = useTree()

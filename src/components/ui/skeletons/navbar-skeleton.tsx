@@ -4,7 +4,7 @@ import LinktreeLogo from '@/components/icons/linktree-logo'
 import { Skeleton } from '@/components/ui/skeleton'
 import { Separator } from '@/components/ui/separator'
 
-export default function NavbarSkeleton() {
+export default function NavbarSkeleton () {
   return (
     <div className='fixed inset-x-3 top-3 z-50 flex h-16 justify-between rounded-full border border-lt-light-gray/60 bg-lt-gray py-3 pl-6 pr-3'>
       <div className='flex items-center'>

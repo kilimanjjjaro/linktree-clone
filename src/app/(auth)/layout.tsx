@@ -2,7 +2,7 @@ import Link from 'next/link'
 import { ArrowLeft } from 'lucide-react'
 import { type ChildrenType } from '@/lib/types/globals'
 
-export default function AuthLayout({ children }: { children: ChildrenType }) {
+export default function AuthLayout ({ children }: { children: ChildrenType }) {
   return (
     <main className='grid h-dvh min-h-dvh grid-cols-2'>
       <section className='border-r border-lt-light-gray/60 bg-lt-gray' />

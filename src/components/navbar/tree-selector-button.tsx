@@ -7,7 +7,7 @@ import { PopoverTrigger } from '@/components/ui/popover'
 import { Skeleton } from '@/components/ui/skeleton'
 import { useStore } from '@/lib/store/store'
 
-export default function TreeSelectorButton() {
+export default function TreeSelectorButton () {
   const selectedTree = useStore((state) => state.selectedTree)
 
   if (selectedTree === null) {

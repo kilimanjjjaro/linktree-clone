@@ -6,7 +6,7 @@ import { useStore } from '@/lib/store/store'
 import useLinks from '@/lib/hooks/useLinks'
 import { cn } from '@/lib/utils'
 
-export default function TextLink({ link }: { link: TreeLink }) {
+export default function TextLink ({ link }: { link: TreeLink }) {
   const setSelectedLink = useStore((state) => state.setSelectedLink)
   const setShowAddLinkDialog = useStore((state) => state.setShowAddLinkDialog)
   const { removeLink } = useLinks()

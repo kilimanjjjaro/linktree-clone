@@ -13,7 +13,7 @@ import { AddLinkSchema } from '@/lib/schemas/tree'
 import { createTree } from '@/lib/actions/trees/create-tree'
 import { DEMO_TREE_VALUES } from '@/lib/constants/trees'
 
-export default function useLinks() {
+export default function useLinks () {
   const setSelectedTree = useStore((state) => state.setSelectedTree)
   const selectedTree = useStore((state) => state.selectedTree)
   const user = useCurrentUser()

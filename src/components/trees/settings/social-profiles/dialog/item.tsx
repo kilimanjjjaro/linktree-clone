@@ -9,7 +9,7 @@ interface Props {
   socialProfile: SocialProfileInterface
 }
 
-export default function SocialProfile({ socialProfile }: Props) {
+export default function SocialProfile ({ socialProfile }: Props) {
   const setStep = useStore((state) => state.setStep)
   const selectedTree = useStore((state) => state.selectedTree)
   const setSelectedSocialProfile = useStore(

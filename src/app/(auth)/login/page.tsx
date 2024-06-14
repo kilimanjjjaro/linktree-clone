@@ -10,7 +10,7 @@ import {
   CardTitle
 } from '@/components/ui/card'
 
-export default async function LogInPage() {
+export default async function LogInPage () {
   return (
     <div className='grid place-items-center gap-y-3'>
       <Card className='w-[350px]'>

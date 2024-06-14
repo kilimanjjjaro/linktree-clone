@@ -30,5 +30,5 @@ export interface LinksSliceInterface {
 
 export interface StoreInterface
   extends TreesStoreInterface,
-    SocialProfilesSliceInterface,
-    LinksSliceInterface {}
+  SocialProfilesSliceInterface,
+  LinksSliceInterface {}

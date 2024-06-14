@@ -3,7 +3,7 @@
 import { Skeleton } from '@/components/ui/skeleton'
 import { useStore } from '@/lib/store/store'
 
-export default function TreeDescription() {
+export default function TreeDescription () {
   const selectedTree = useStore((state) => state.selectedTree)
 
   if (selectedTree === null) {

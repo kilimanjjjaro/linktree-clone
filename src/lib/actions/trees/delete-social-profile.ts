@@ -11,7 +11,7 @@ interface Props {
   type: SocialProfileTypes
 }
 
-export async function deleteSocialProfile({ treeId, type }: Props) {
+export async function deleteSocialProfile ({ treeId, type }: Props) {
   const user = await getCurrentUser()
 
   if (user?.id === undefined) {

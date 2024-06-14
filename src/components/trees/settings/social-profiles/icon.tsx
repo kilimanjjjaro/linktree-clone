@@ -55,7 +55,7 @@ const getIcon = (icon: SocialProfileTypes) => {
   }
 }
 
-export default function SocialProfileIcon({ className, icon }: Props) {
+export default function SocialProfileIcon ({ className, icon }: Props) {
   return (
     <i aria-hidden className={cn('inline-block', className)}>
       {getIcon(icon)}

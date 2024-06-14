@@ -5,7 +5,7 @@ interface Props {
   name: string | null | undefined
 }
 
-export default function Avatar({ image, name }: Props) {
+export default function Avatar ({ image, name }: Props) {
   if (image == null || name == null) return
 
   return (

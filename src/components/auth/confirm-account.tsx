@@ -12,7 +12,7 @@ import { cn } from '@/lib/utils'
 
 const DICTIONARY = '0123456789qwertyuiopasdfghjklzxcvbnm!?></a`~+*=@#$%'
 
-export default function ConfirmAccount() {
+export default function ConfirmAccount () {
   const [success, setSuccess] = useState('')
   const [error, setError] = useState('')
   const [text, setText] = useDencrypt({ chars: DICTIONARY })

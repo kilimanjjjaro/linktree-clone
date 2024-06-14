@@ -14,7 +14,7 @@ const INITIAL_STATE = {
   error: ''
 }
 
-export default function LogInForm() {
+export default function LogInForm () {
   const [state, formAction] = useFormState(logInWithEmail, INITIAL_STATE)
   const [parent] = useAutoAnimate({ duration: 200 })
 

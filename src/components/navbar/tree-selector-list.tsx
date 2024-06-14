@@ -25,7 +25,7 @@ interface Props {
   trees: TreeInterface[]
 }
 
-export default function TreeSelectorList({ treeUrl, trees }: Props) {
+export default function TreeSelectorList ({ treeUrl, trees }: Props) {
   const setShowSaveTreeDialog = useStore((state) => state.setShowSaveTreeDialog)
   const setSelectedTree = useStore((state) => state.setSelectedTree)
   const [isPending, startTransition] = useTransition()

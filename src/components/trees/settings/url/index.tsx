@@ -16,7 +16,7 @@ import useTree from '@/lib/hooks/useTree'
 import { BASE_URL } from '@/lib/constants/globals'
 import { cn } from '@/lib/utils'
 
-export default function TreeUrl() {
+export default function TreeUrl () {
   const selectedTree = useStore((state) => state.selectedTree)
   const savingTree = useStore((state) => state.savingTree)
   const [treeUrl, setTreeUrl] = useState('')

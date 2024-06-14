@@ -7,7 +7,7 @@ interface Props {
   setAvatarToCrop: (value: string) => void
 }
 
-export default function DropAvatar({ setAvatarToCrop }: Props) {
+export default function DropAvatar ({ setAvatarToCrop }: Props) {
   const onDrop = useCallback(
     (files: FileWithPath[]) => {
       const image = URL.createObjectURL(files[0])

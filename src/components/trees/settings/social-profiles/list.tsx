@@ -13,7 +13,7 @@ interface Props {
   setOpen: (open: boolean) => void
 }
 
-export default function SocialProfilesList({ setOpen }: Props) {
+export default function SocialProfilesList ({ setOpen }: Props) {
   const setStep = useStore((state) => state.setStep)
   const selectedTree = useStore((state) => state.selectedTree)
   const setSelectedSocialProfile = useStore(

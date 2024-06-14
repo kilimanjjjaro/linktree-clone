@@ -13,7 +13,7 @@ const INITIAL_STATE = {
   success: ''
 }
 
-export default function SignUpForm() {
+export default function SignUpForm () {
   const [state, formAction] = useFormState(signUpWithEmail, INITIAL_STATE)
   const [parent] = useAutoAnimate({ duration: 200 })
 

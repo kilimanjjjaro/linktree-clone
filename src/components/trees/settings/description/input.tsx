@@ -11,7 +11,7 @@ import useTree from '@/lib/hooks/useTree'
 import { DEMO_TREE_VALUES } from '@/lib/constants/trees'
 import { cn } from '@/lib/utils'
 
-export default function DescriptionInput() {
+export default function DescriptionInput () {
   const selectedTree = useStore((state) => state.selectedTree)
   const savingTree = useStore((state) => state.savingTree)
   const [textareaLength, setTextareaLength] = useState(0)
