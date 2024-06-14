@@ -1,31 +1,32 @@
 import Image from 'next/image'
-import { Label } from '@/components/ui/label'
-import { RadioGroupItem } from '@/components/ui/radio-group'
 import { Check } from 'lucide-react'
 
+import { Label } from '@/components/ui/label'
+import { RadioGroupItem } from '@/components/ui/radio-group'
+import { type FONT_VARIANTS } from '@/lib/constants/appearance'
+
 interface Props {
-  name: string
-  slug: string
+  font: typeof FONT_VARIANTS[0]
 }
 
-export default function Font ({ name, slug }: Props) {
+export default function Font ({ font }: Props) {
   return (
     <div>
       <RadioGroupItem
-        id={`${slug}-font`}
+        id={`${font.slug}-font`}
         className='peer'
-        value={slug}
+        value={font.slug}
         hidden
       />
       <Label
-        htmlFor={`${slug}-font`}
+        htmlFor={`${font.slug}-font`}
         className='relative flex aspect-square cursor-pointer flex-col items-center gap-y-1.5 peer-data-[state=checked]:[&>div:nth-child(2)]:opacity-100'
       >
         <div className='relative size-full rounded-2xl bg-lt-light-gray'>
           <Image
             className='bg-cover'
-            src={`/images/font-variants/${slug}.png`}
-            alt={name}
+            src={`/images/font-variants/${font.slug}.png`}
+            alt={font.name}
             fill
             sizes='(min-width: 1280px) 50vw, 100vw'
           />
@@ -39,7 +40,7 @@ export default function Font ({ name, slug }: Props) {
           <span className='sr-only'>Selected</span>
         </div>
         <span className='text-center text-xs text-lt-lightest-gray'>
-          {name}
+          {font.name}
         </span>
       </Label>
     </div>

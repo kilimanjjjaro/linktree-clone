@@ -8,3 +8,18 @@ const treeWithRest = Prisma.validator<Prisma.TreeDefaultArgs>()({
 })
 
 export type TreeInterface = Prisma.TreeGetPayload<typeof treeWithRest>
+
+export interface TreeAppearanceInterface {
+  background: {
+    type: number
+    settings: {
+      steps: Array<[number, number, number]>
+      angle: number
+    }
+  }
+  font: number
+  general: {
+    cornerStyle: number
+    contentContainer: boolean
+  }
+}
