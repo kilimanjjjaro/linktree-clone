@@ -22,8 +22,11 @@ export default async function TreePreview () {
           }}
         >
           <ScrollArea
-            scrollHideDelay={0}
             className='h-full px-4'
+            scrollHideDelay={0}
+            style={{
+              maskImage: 'linear-gradient(to bottom, black 70%, transparent 100%)'
+            }}
           >
             <header className='mb-4 mt-16 flex flex-col items-center'>
               <TreeAvatar />
