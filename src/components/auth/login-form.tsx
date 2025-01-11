@@ -1,6 +1,6 @@
 'use client'
 
-import { useFormState } from 'react-dom'
+import { useActionState } from 'react'
 import { useAutoAnimate } from '@formkit/auto-animate/react'
 import EmailButton from '@/components/auth/submit-button'
 import Feedback from '@/components/auth/feedback'
@@ -15,7 +15,7 @@ const INITIAL_STATE = {
 }
 
 export default function LogInForm () {
-  const [state, formAction] = useFormState(logInWithEmail, INITIAL_STATE)
+  const [state, formAction] = useActionState(logInWithEmail, INITIAL_STATE)
   const [parent] = useAutoAnimate({ duration: 200 })
 
   return (
