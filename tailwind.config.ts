@@ -1,3 +1,4 @@
+import tailwindcssAnimate from 'tailwindcss-animate';
 import type { Config } from 'tailwindcss'
 
 const config = {
@@ -11,24 +12,8 @@ const config = {
     transitionDuration: {
       DEFAULT: '200ms'
     },
-    extend: {
-      fontFamily: {
-        'geist-sans': ['var(--font-geist-sans)'],
-        'geist-mono': ['var(--font-geist-mono)']
-      },
-      colors: {
-        'lt-black': 'hsl(var(--color-black) / <alpha-value>)',
-        'lt-white': 'hsl(var(--color-white) / <alpha-value>)',
-        'lt-gray': 'hsl(var(--color-gray) / <alpha-value>)',
-        'lt-light-gray': 'hsl(var(--color-light-gray) / <alpha-value>)',
-        'lt-lightest-gray': 'hsl(var(--color-lightest-gray) / <alpha-value>)',
-        'lt-dark-gray': 'hsl(var(--color-dark-gray) / <alpha-value>)',
-        'lt-darkest-gray': 'hsl(var(--color-darkest-gray) / <alpha-value>)',
-        'lt-green': 'hsl(var(--color-green) / <alpha-value>)'
-      }
-    }
   },
-  plugins: [require('tailwindcss-animate')]
+  plugins: [tailwindcssAnimate]
 } satisfies Config
 
 export default config
