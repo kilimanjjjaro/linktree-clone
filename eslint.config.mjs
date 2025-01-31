@@ -14,9 +14,9 @@ const eslintConfig = [
   ...compat.extends("next/core-web-vitals", "next/typescript"),
   {
     ...love,
-    files: ['**/*.jsx', '**/*.tsx'],
+    files: ['**/*.tsx', '**/*.ts'],
     rules: {
-      "explicit-function-return-type": "off",
+      "@typescript-eslint/explicit-function-return-type": "off",
     }
   },
 ];
