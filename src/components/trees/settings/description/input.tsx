@@ -11,7 +11,7 @@ import useTree from '@/lib/hooks/useTree'
 import { DEMO_TREE_VALUES } from '@/lib/constants/trees'
 import { cn } from '@/lib/utils'
 
-export default function DescriptionInput () {
+export default function DescriptionInput() {
   const selectedTree = useStore((state) => state.selectedTree)
   const savingTree = useStore((state) => state.savingTree)
   const [textareaLength, setTextareaLength] = useState(0)
@@ -47,7 +47,7 @@ export default function DescriptionInput () {
           setTextareaLength(event.target.value.length)
         }}
       />
-      <span className='pointer-events-none absolute bottom-2.5 right-3 select-none text-[11px] leading-none text-lt-lightest-gray'>
+      <span className='text-lt-lightest-gray pointer-events-none absolute right-3 bottom-2.5 text-[11px] leading-none select-none'>
         {textareaLength}/120
       </span>
       <ErrorTooltip errors={errors} />
@@ -56,7 +56,7 @@ export default function DescriptionInput () {
         size='icon'
         variant='outline'
         className={cn(
-          'absolute right-1.5 top-1.5 size-6 border-none opacity-0 transition-opacity focus-visible:opacity-100 peer-focus-visible:opacity-100',
+          'absolute top-1.5 right-1.5 size-6 border-none opacity-0 transition-opacity peer-focus-visible:opacity-100 focus-visible:opacity-100',
           savingTree && '!opacity-0'
         )}
       >

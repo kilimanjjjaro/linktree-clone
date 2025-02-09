@@ -9,7 +9,7 @@ import {
 import NewPasswordForm from '@/components/auth/new-password-form'
 import Link from 'next/link'
 
-export default async function NewPasswordPage () {
+export default async function NewPasswordPage() {
   return (
     <div className='grid place-items-center gap-y-3'>
       <Card className='w-[350px]'>

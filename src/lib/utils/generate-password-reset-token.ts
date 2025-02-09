@@ -3,7 +3,7 @@ import { v4 as uuidv4 } from 'uuid'
 import db from '@/lib/database'
 import { getPasswordResetTokenByEmail } from '@/lib/services/password-reset-tokens'
 
-export async function generatePasswordResetToken (email: string) {
+export async function generatePasswordResetToken(email: string) {
   const token = uuidv4()
   const expiresAt = new Date(new Date().getTime() + 3600 * 1000)
 

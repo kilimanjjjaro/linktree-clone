@@ -14,7 +14,7 @@ import { useStore } from '@/lib/store/store'
 import useTree from '@/lib/hooks/useTree'
 import { TREE_STATUS } from '@/lib/constants/trees'
 
-export default function TreeStatus () {
+export default function TreeStatus() {
   const selectedTree = useStore((state) => state.selectedTree)
   const [published, setPublished] = useState(false)
   const { saveTree } = useTree()
@@ -42,12 +42,13 @@ export default function TreeStatus () {
             <span className='sr-only'>Show help</span>
           </PopoverTrigger>
           <PopoverContent>
-            By default, new trees are in draft status. If you want that people can access to it, you need to publish it.
+            By default, new trees are in draft status. If you want that people
+            can access to it, you need to publish it.
           </PopoverContent>
         </Popover>
       </div>
       <div className='flex items-center gap-x-3'>
-        <span className='text-sm text-lt-lightest-gray'>
+        <span className='text-lt-lightest-gray text-sm'>
           {published ? 'Published' : 'Draft'}
         </span>
         <Switch

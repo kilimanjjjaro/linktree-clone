@@ -3,7 +3,7 @@ import { Prisma } from '@prisma/client'
 import { DEMO_TREE_VALUES } from '@/lib/constants/trees'
 import { type TreeInterface } from '@/lib/types/trees'
 
-export function generateRawDataToCreate (tree?: Partial<TreeInterface>) {
+export function generateRawDataToCreate(tree?: Partial<TreeInterface>) {
   const appearance = tree?.appearance ?? DEMO_TREE_VALUES.appearance
   const links = tree?.links ?? DEMO_TREE_VALUES.links
   const socialProfiles = tree?.socialProfiles ?? DEMO_TREE_VALUES.socialProfiles
@@ -36,7 +36,7 @@ export function generateRawDataToCreate (tree?: Partial<TreeInterface>) {
   }
 }
 
-export function generateRawDataToUpdate (tree?: Partial<TreeInterface>) {
+export function generateRawDataToUpdate(tree?: Partial<TreeInterface>) {
   const appearance = tree?.appearance ?? DEMO_TREE_VALUES.appearance
 
   if (tree?.id === undefined) return null

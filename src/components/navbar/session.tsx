@@ -17,13 +17,12 @@ interface Props {
   user: DefaultSession['user']
 }
 
-export default async function SessionBar ({ user }: Props) {
+export default async function SessionBar({ user }: Props) {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <button className='relative flex aspect-square h-full items-center justify-center overflow-hidden rounded-full border border-lt-light-gray/60 outline-none transition-opacity focus-visible:ring-2 focus-visible:ring-lt-white focus-visible:ring-offset-2 focus-visible:ring-offset-lt-gray xl:hover:opacity-70'>
-          {user !== undefined
-            ? (
+        <button className='border-lt-light-gray/60 focus-visible:ring-lt-white focus-visible:ring-offset-lt-gray relative flex aspect-square h-full items-center justify-center overflow-hidden rounded-full border transition-opacity outline-none focus-visible:ring-2 focus-visible:ring-offset-2 xl:hover:opacity-70'>
+          {user !== undefined ? (
             <Image
               className='absolute size-full object-cover object-center'
               src={user.image ?? DEMO_TREE_VALUES.avatar}
@@ -32,10 +31,9 @@ export default async function SessionBar ({ user }: Props) {
               height={50}
               priority
             />
-              )
-            : (
+          ) : (
             <Skeleton className='aspect-square h-full rounded-full' />
-              )}
+          )}
         </button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align='end' className='w-auto'>

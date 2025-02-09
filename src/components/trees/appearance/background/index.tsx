@@ -5,10 +5,10 @@ import { Label } from '@/components/ui/label'
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
 import { Check, Film, Image } from 'lucide-react'
 
-export default function TreeBackground () {
+export default function TreeBackground() {
   return (
     <section className='p-5'>
-      <h3 className='text-sm font-medium leading-none'>Background</h3>
+      <h3 className='text-sm leading-none font-medium'>Background</h3>
       <RadioGroup className='mt-3 grid-cols-2 gap-3' defaultValue='lava-lamp'>
         <article>
           <RadioGroupItem
@@ -38,14 +38,14 @@ export default function TreeBackground () {
                 />
               </picture>
             </div>
-            <div className='absolute right-2 top-2 flex size-4 items-center justify-center rounded-full bg-lt-white opacity-0 transition-opacity'>
+            <div className='bg-lt-white absolute top-2 right-2 flex size-4 items-center justify-center rounded-full opacity-0 transition-opacity'>
               <Check
-                className='w-2.5 translate-y-px text-lt-black'
+                className='text-lt-black w-2.5 translate-y-px'
                 strokeWidth={3.5}
                 aria-hidden
               />
             </div>
-            <span className='text-center text-xs text-lt-lightest-gray'>
+            <span className='text-lt-lightest-gray text-center text-xs'>
               Lava Lamp
             </span>
           </Label>
@@ -78,14 +78,14 @@ export default function TreeBackground () {
                 />
               </picture>
             </div>
-            <div className='absolute right-2 top-2 flex size-4 items-center justify-center rounded-full bg-lt-white opacity-0 transition-opacity'>
+            <div className='bg-lt-white absolute top-2 right-2 flex size-4 items-center justify-center rounded-full opacity-0 transition-opacity'>
               <Check
-                className='w-2.5 translate-y-px text-lt-black'
+                className='text-lt-black w-2.5 translate-y-px'
                 strokeWidth={3.5}
                 aria-hidden
               />
             </div>
-            <span className='text-center text-xs text-lt-lightest-gray'>
+            <span className='text-lt-lightest-gray text-center text-xs'>
               Pattern
             </span>
           </Label>
@@ -96,17 +96,17 @@ export default function TreeBackground () {
             htmlFor='image'
             className='relative flex aspect-video cursor-pointer flex-col items-center gap-y-2 peer-data-[state=checked]:[&>div:nth-child(2)]:opacity-100'
           >
-            <div className='flex size-full items-center justify-center rounded-2xl bg-lt-light-gray'>
-              <Image className='size-10 text-lt-white' />
+            <div className='bg-lt-light-gray flex size-full items-center justify-center rounded-2xl'>
+              <Image className='text-lt-white size-10' />
             </div>
-            <div className='absolute right-2 top-2 flex size-4 items-center justify-center rounded-full bg-lt-white opacity-0 transition-opacity'>
+            <div className='bg-lt-white absolute top-2 right-2 flex size-4 items-center justify-center rounded-full opacity-0 transition-opacity'>
               <Check
-                className='w-2.5 translate-y-px text-lt-black'
+                className='text-lt-black w-2.5 translate-y-px'
                 strokeWidth={3.5}
                 aria-hidden
               />
             </div>
-            <span className='text-center text-xs text-lt-lightest-gray'>
+            <span className='text-lt-lightest-gray text-center text-xs'>
               Image
             </span>
           </Label>
@@ -117,17 +117,17 @@ export default function TreeBackground () {
             htmlFor='video'
             className='relative flex aspect-video cursor-pointer flex-col items-center gap-y-2 peer-data-[state=checked]:[&>div:nth-child(2)]:opacity-100'
           >
-            <div className='flex size-full items-center justify-center rounded-2xl bg-lt-light-gray'>
-              <Film className='size-10 text-lt-white' />
+            <div className='bg-lt-light-gray flex size-full items-center justify-center rounded-2xl'>
+              <Film className='text-lt-white size-10' />
             </div>
-            <div className='absolute right-2 top-2 flex size-4 items-center justify-center rounded-full bg-lt-white opacity-0 transition-opacity'>
+            <div className='bg-lt-white absolute top-2 right-2 flex size-4 items-center justify-center rounded-full opacity-0 transition-opacity'>
               <Check
-                className='w-2.5 translate-y-px text-lt-black'
+                className='text-lt-black w-2.5 translate-y-px'
                 strokeWidth={3.5}
                 aria-hidden
               />
             </div>
-            <span className='text-center text-xs text-lt-lightest-gray'>
+            <span className='text-lt-lightest-gray text-center text-xs'>
               Video
             </span>
           </Label>
@@ -144,14 +144,14 @@ export default function TreeBackground () {
             className='relative flex aspect-video cursor-pointer flex-col items-center gap-y-2 peer-data-[state=checked]:[&>div:nth-child(2)]:opacity-100'
           >
             <div className='size-full rounded-2xl bg-gradient-to-t from-red-700 to-yellow-300' />
-            <div className='absolute right-2 top-2 flex size-4 items-center justify-center rounded-full bg-lt-white opacity-0 transition-opacity'>
+            <div className='bg-lt-white absolute top-2 right-2 flex size-4 items-center justify-center rounded-full opacity-0 transition-opacity'>
               <Check
-                className='w-2.5 translate-y-px text-lt-black'
+                className='text-lt-black w-2.5 translate-y-px'
                 strokeWidth={3.5}
                 aria-hidden
               />
             </div>
-            <span className='text-center text-xs text-lt-lightest-gray'>
+            <span className='text-lt-lightest-gray text-center text-xs'>
               Gradient Color
             </span>
           </Label>
@@ -168,14 +168,14 @@ export default function TreeBackground () {
             className='relative flex aspect-video cursor-pointer flex-col items-center gap-y-2 peer-data-[state=checked]:[&>div:nth-child(2)]:opacity-100'
           >
             <div className='size-full rounded-2xl bg-yellow-500' />
-            <div className='absolute right-2 top-2 flex size-4 items-center justify-center rounded-full bg-lt-white opacity-0 transition-opacity'>
+            <div className='bg-lt-white absolute top-2 right-2 flex size-4 items-center justify-center rounded-full opacity-0 transition-opacity'>
               <Check
-                className='w-2.5 translate-y-px text-lt-black'
+                className='text-lt-black w-2.5 translate-y-px'
                 strokeWidth={3.5}
                 aria-hidden
               />
             </div>
-            <span className='text-center text-xs text-lt-lightest-gray'>
+            <span className='text-lt-lightest-gray text-center text-xs'>
               Flat Color
             </span>
           </Label>

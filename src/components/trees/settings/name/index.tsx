@@ -12,7 +12,7 @@ import useTree from '@/lib/hooks/useTree'
 import { DEMO_TREE_VALUES } from '@/lib/constants/trees'
 import { cn } from '@/lib/utils'
 
-export default function TreeName () {
+export default function TreeName() {
   const selectedTree = useStore((state) => state.selectedTree)
   const savingTree = useStore((state) => state.savingTree)
   const { saveTree, errors } = useTree()
@@ -57,7 +57,7 @@ export default function TreeName () {
           size='icon'
           variant='outline'
           className={cn(
-            'absolute right-1.5 size-6 border-none opacity-0 transition-opacity focus-visible:opacity-100 peer-focus-visible:opacity-100',
+            'absolute right-1.5 size-6 border-none opacity-0 transition-opacity peer-focus-visible:opacity-100 focus-visible:opacity-100',
             savingTree && '!opacity-0'
           )}
         >

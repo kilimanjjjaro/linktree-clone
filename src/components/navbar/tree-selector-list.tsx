@@ -25,7 +25,7 @@ interface Props {
   trees: TreeInterface[]
 }
 
-export default function TreeSelectorList ({ treeUrl, trees }: Props) {
+export default function TreeSelectorList({ treeUrl, trees }: Props) {
   const setShowSaveTreeDialog = useStore((state) => state.setShowSaveTreeDialog)
   const setSelectedTree = useStore((state) => state.setSelectedTree)
   const [isPending, startTransition] = useTransition()
@@ -101,12 +101,12 @@ export default function TreeSelectorList ({ treeUrl, trees }: Props) {
               >
                 {tree.name}
                 {isPending && (
-                  <LoaderCircle className='absolute right-3 size-5 animate-spin text-lt-lightest-gray opacity-0 group-aria-selected:opacity-100' />
+                  <LoaderCircle className='text-lt-lightest-gray absolute right-3 size-5 animate-spin opacity-0 group-aria-selected:opacity-100' />
                 )}
                 {!isPending && (
                   <Button
                     aria-label='deleteTree'
-                    className='absolute right-3 h-auto rounded-full bg-lt-lightest-gray p-0.5 opacity-0 xl:group-hover:opacity-100'
+                    className='bg-lt-lightest-gray absolute right-3 h-auto rounded-full p-0.5 opacity-0 xl:group-hover:opacity-100'
                     onClick={async () => {
                       await handleDelete(tree.id)
                     }}

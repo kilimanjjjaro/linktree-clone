@@ -14,19 +14,19 @@ interface Props {
   treeUrl: string | undefined
 }
 
-export default async function Navbar ({ treeUrl }: Props) {
+export default async function Navbar({ treeUrl }: Props) {
   const user = await getCurrentUser()
 
   return (
-    <header className='fixed inset-x-3 top-3 z-50 flex h-16 justify-between rounded-full border border-lt-light-gray/60 bg-lt-gray py-3 pl-6 pr-3'>
+    <header className='border-lt-light-gray/60 bg-lt-gray fixed inset-x-3 top-3 z-50 flex h-16 justify-between rounded-full border py-3 pr-3 pl-6'>
       <nav className='flex items-center'>
         <Link
-          className='text-lt-green transition-colors xl:hover:text-lt-lightest-gray'
+          className='text-lt-green xl:hover:text-lt-lightest-gray transition-colors'
           href='/'
         >
           <LinktreeLogo className='w-7' />
         </Link>
-        <Separator orientation='vertical' className='ml-[18px] mr-5 h-5' />
+        <Separator orientation='vertical' className='mr-5 ml-[18px] h-5' />
         <TreeSelector treeUrl={treeUrl} />
       </nav>
       <nav className='flex items-center gap-x-5'>

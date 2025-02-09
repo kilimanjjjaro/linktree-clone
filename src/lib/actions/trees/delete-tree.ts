@@ -4,7 +4,7 @@ import { revalidateTag } from 'next/cache'
 import db from '@/lib/database'
 import { getCurrentUser } from '@/lib/services/get-current-user'
 
-export async function deleteTree (treeId: string) {
+export async function deleteTree(treeId: string) {
   const user = await getCurrentUser()
 
   if (user?.id === undefined) {

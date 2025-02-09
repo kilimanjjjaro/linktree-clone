@@ -9,7 +9,7 @@ import { Label } from '@/components/ui/label'
 import { useSearchParams } from 'next/navigation'
 import { newPassword } from '@/lib/actions/auth/new-password'
 
-export default function NewPasswordForm () {
+export default function NewPasswordForm() {
   const searchParams = useSearchParams()
   const token = searchParams.get('token')
   const [state, formAction] = useFormState(newPassword, {

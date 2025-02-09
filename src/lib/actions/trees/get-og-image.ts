@@ -2,7 +2,7 @@
 
 import mql from '@microlink/mql'
 
-export async function getOgImage (url: string) {
+export async function getOgImage(url: string) {
   try {
     const { data } = await mql(url, { meta: true })
 

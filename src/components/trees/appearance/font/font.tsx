@@ -6,10 +6,10 @@ import { RadioGroupItem } from '@/components/ui/radio-group'
 import { type FONT_VARIANTS } from '@/lib/constants/appearance'
 
 interface Props {
-  font: typeof FONT_VARIANTS[0]
+  font: (typeof FONT_VARIANTS)[0]
 }
 
-export default function Font ({ font }: Props) {
+export default function Font({ font }: Props) {
   return (
     <div>
       <RadioGroupItem
@@ -22,7 +22,7 @@ export default function Font ({ font }: Props) {
         htmlFor={`${font.slug}-font`}
         className='relative flex aspect-square cursor-pointer flex-col items-center gap-y-1.5 peer-data-[state=checked]:[&>div:nth-child(2)]:opacity-100'
       >
-        <div className='relative size-full rounded-2xl bg-lt-light-gray'>
+        <div className='bg-lt-light-gray relative size-full rounded-2xl'>
           <Image
             className='bg-cover'
             src={`/images/font-variants/${font.slug}.png`}
@@ -31,15 +31,15 @@ export default function Font ({ font }: Props) {
             sizes='(min-width: 1280px) 50vw, 100vw'
           />
         </div>
-        <div className='absolute right-2 top-2 flex size-4 items-center justify-center rounded-full bg-lt-white opacity-0 transition-opacity'>
+        <div className='bg-lt-white absolute top-2 right-2 flex size-4 items-center justify-center rounded-full opacity-0 transition-opacity'>
           <Check
-            className='w-2.5 translate-y-px text-lt-black'
+            className='text-lt-black w-2.5 translate-y-px'
             strokeWidth={3.5}
             aria-hidden
           />
           <span className='sr-only'>Selected</span>
         </div>
-        <span className='text-center text-xs text-lt-lightest-gray'>
+        <span className='text-lt-lightest-gray text-center text-xs'>
           {font.name}
         </span>
       </Label>

@@ -11,8 +11,8 @@ interface Props {
   searchParams: Promise<{ tree: string | undefined }>
 }
 
-export default async function Home (props: Props) {
-  const searchParams = await props.searchParams;
+export default async function Home(props: Props) {
+  const searchParams = await props.searchParams
   const treeUrl = searchParams.tree
   const user = await getCurrentUser()
   const trees = await getCachedTrees(user?.id)

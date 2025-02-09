@@ -13,7 +13,7 @@ interface Props {
   closeDialog: () => void
 }
 
-export default function SocialProfileSettings ({ closeDialog }: Props) {
+export default function SocialProfileSettings({ closeDialog }: Props) {
   const [isPending, startTransition] = useTransition()
   const setStep = useStore((state) => state.setStep)
   const selectedTree = useStore((state) => state.selectedTree)
@@ -66,9 +66,9 @@ export default function SocialProfileSettings ({ closeDialog }: Props) {
       <Label htmlFor='social-profile-input'>
         {selectedSocialProfile?.form.label}
       </Label>
-      <div className='flex h-10 items-center overflow-hidden rounded-full border border-lt-light-gray/60'>
+      <div className='border-lt-light-gray/60 flex h-10 items-center overflow-hidden rounded-full border'>
         {selectedSocialProfile.form.disabledText.length > 0 && (
-          <span className='flex h-full cursor-not-allowed select-none items-center border-r border-lt-light-gray/60 px-3 text-sm text-lt-lightest-gray'>
+          <span className='border-lt-light-gray/60 text-lt-lightest-gray flex h-full cursor-not-allowed items-center border-r px-3 text-sm select-none'>
             {selectedSocialProfile?.form.disabledText}
           </span>
         )}
@@ -85,35 +85,29 @@ export default function SocialProfileSettings ({ closeDialog }: Props) {
       </div>
       <footer className='grid grid-cols-2 gap-x-3'>
         <Button type='submit' variant='secondary' className='order-2'>
-          {existingSocialProfile !== undefined
-            ? (
+          {existingSocialProfile !== undefined ? (
             <>
-              {isPending
-                ? (
+              {isPending ? (
                 <>
                   Updating
                   <LoaderCircle className='size-4 animate-spin' aria-hidden />
                 </>
-                  )
-                : (
-                    'Update'
-                  )}
+              ) : (
+                'Update'
+              )}
             </>
-              )
-            : (
+          ) : (
             <>
-              {isPending
-                ? (
+              {isPending ? (
                 <>
                   Adding
                   <LoaderCircle className='size-4 animate-spin' aria-hidden />
                 </>
-                  )
-                : (
-                    'Add'
-                  )}
-            </>
+              ) : (
+                'Add'
               )}
+            </>
+          )}
         </Button>
         <Button
           variant='outline'

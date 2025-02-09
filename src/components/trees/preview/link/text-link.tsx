@@ -6,7 +6,7 @@ import { useStore } from '@/lib/store/store'
 import useLinks from '@/lib/hooks/useLinks'
 import { cn } from '@/lib/utils'
 
-export default function TextLink ({ link }: { link: TreeLink }) {
+export default function TextLink({ link }: { link: TreeLink }) {
   const setSelectedLink = useStore((state) => state.setSelectedLink)
   const setShowAddLinkDialog = useStore((state) => state.setShowAddLinkDialog)
   const { removeLink } = useLinks()
@@ -21,7 +21,7 @@ export default function TextLink ({ link }: { link: TreeLink }) {
       <a
         className={cn(
           buttonVariants({ variant: 'default' }),
-          'py-7 rounded-2xl bg-lt-white w-full'
+          'bg-lt-white w-full rounded-2xl py-7'
         )}
         href={link.url}
         target='_blank'
@@ -31,7 +31,7 @@ export default function TextLink ({ link }: { link: TreeLink }) {
       </a>
       <Button
         aria-label='Delete link'
-        className='absolute left-3 h-auto rounded-full bg-lt-white p-1 opacity-0 transition-opacity group-hover:xl:opacity-100'
+        className='bg-lt-white absolute left-3 h-auto rounded-full p-1 opacity-0 transition-opacity group-hover:xl:opacity-100'
         onClick={async () => {
           await removeLink(link.id)
         }}
@@ -40,7 +40,7 @@ export default function TextLink ({ link }: { link: TreeLink }) {
       </Button>
       <Button
         aria-label='Update link'
-        className='absolute right-3 h-auto rounded-full bg-lt-white p-1 opacity-0 transition-opacity group-hover:xl:opacity-100'
+        className='bg-lt-white absolute right-3 h-auto rounded-full p-1 opacity-0 transition-opacity group-hover:xl:opacity-100'
         onClick={() => {
           updateLink(link)
         }}

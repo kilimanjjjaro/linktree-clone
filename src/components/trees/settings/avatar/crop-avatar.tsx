@@ -20,7 +20,7 @@ interface Props {
   setAvatarToCrop: (value: string) => void
 }
 
-export default function CropAvatar ({
+export default function CropAvatar({
   closeDialog,
   avatarToCrop,
   setAvatarToCrop
@@ -84,7 +84,7 @@ export default function CropAvatar ({
 
   return (
     <section className='flex flex-col gap-y-3'>
-      <section className='relative aspect-square w-full overflow-hidden rounded-2xl border border-lt-light-gray bg-lt-light-gray/90'>
+      <section className='border-lt-light-gray bg-lt-light-gray/90 relative aspect-square w-full overflow-hidden rounded-2xl border'>
         {avatarToCrop.length > 0 && croppedAvatar.length === 0 && (
           <>
             <Cropper
@@ -112,7 +112,7 @@ export default function CropAvatar ({
           </>
         )}
         {croppedAvatar.length > 0 && (
-          <div className='relative size-full overflow-hidden rounded-full border border-lt-light-gray/60'>
+          <div className='border-lt-light-gray/60 relative size-full overflow-hidden rounded-full border'>
             <Image
               className='absolute h-auto w-full object-cover object-center'
               src={croppedAvatar}
@@ -127,30 +127,26 @@ export default function CropAvatar ({
         <Button variant='outline' onClick={deleteAvatar}>
           Delete
         </Button>
-        {croppedAvatar.length === 0
-          ? (
+        {croppedAvatar.length === 0 ? (
           <Button variant='secondary' onClick={saveCrop}>
             Crop
           </Button>
-            )
-          : (
+        ) : (
           <Button
             variant='secondary'
             onClick={uploadAvatar}
             disabled={isPending}
           >
-            {isPending
-              ? (
+            {isPending ? (
               <>
                 Uploading
                 <LoaderCircle className='size-4 animate-spin' aria-hidden />
               </>
-                )
-              : (
-                  'Upload'
-                )}
-          </Button>
+            ) : (
+              'Upload'
             )}
+          </Button>
+        )}
       </DialogFooter>
     </section>
   )

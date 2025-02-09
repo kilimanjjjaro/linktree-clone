@@ -13,7 +13,7 @@ interface PrevStateInterface {
   token: string
 }
 
-export async function newPassword (
+export async function newPassword(
   prevState: PrevStateInterface,
   formData: FormData
 ) {

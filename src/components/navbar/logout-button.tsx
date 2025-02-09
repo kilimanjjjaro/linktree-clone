@@ -6,7 +6,7 @@ import { LogOut } from 'lucide-react'
 import { DropdownMenuItem } from '@/components/ui/dropdown-menu'
 import { logOut } from '@/lib/actions/auth/logout'
 
-export default function LogOutButton () {
+export default function LogOutButton() {
   return (
     <DropdownMenuItem
       onClick={async () => {

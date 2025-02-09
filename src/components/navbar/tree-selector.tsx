@@ -8,7 +8,7 @@ interface Props {
   treeUrl: string | undefined
 }
 
-export default async function TreeSelector ({ treeUrl }: Props) {
+export default async function TreeSelector({ treeUrl }: Props) {
   const user = await getCurrentUser()
   const trees = await getCachedTrees(user?.id)
 

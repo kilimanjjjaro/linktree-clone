@@ -6,7 +6,7 @@ import { type Prisma } from '@prisma/client'
 import db from '@/lib/database'
 import { getCurrentUser } from '@/lib/services/get-current-user'
 
-export async function updateLink (data: Prisma.TreeLinkUncheckedCreateInput) {
+export async function updateLink(data: Prisma.TreeLinkUncheckedCreateInput) {
   const user = await getCurrentUser()
 
   if (user?.id === undefined) {

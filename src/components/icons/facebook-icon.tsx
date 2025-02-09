@@ -1,4 +1,4 @@
-export function FacebookIcon () {
+export function FacebookIcon() {
   return (
     <svg
       className='*:translate-y-[1.5px]'

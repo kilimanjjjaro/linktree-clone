@@ -3,7 +3,7 @@
 import { Skeleton } from '@/components/ui/skeleton'
 import { useStore } from '@/lib/store/store'
 
-export default function TreeDescription () {
+export default function TreeDescription() {
   const selectedTree = useStore((state) => state.selectedTree)
 
   if (selectedTree === null) {
@@ -16,7 +16,7 @@ export default function TreeDescription () {
   }
 
   return (
-    <p className='mt-3 text-balance text-center text-sm text-zinc-400'>
+    <p className='mt-3 text-center text-sm text-balance text-zinc-400'>
       {selectedTree.description}
     </p>
   )

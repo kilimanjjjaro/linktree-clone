@@ -4,7 +4,7 @@ import { Button } from '@/components/ui/button'
 import { GitHubIcon } from '@/components/icons/github-icon'
 import { logInWithGitHub } from '@/lib/actions/auth/login-with-github'
 
-export default function GitHubButton () {
+export default function GitHubButton() {
   return (
     <Button
       variant='secondary'

@@ -1,4 +1,4 @@
-import tailwindcssAnimate from 'tailwindcss-animate';
+import tailwindcssAnimate from 'tailwindcss-animate'
 import type { Config } from 'tailwindcss'
 
 const config = {
@@ -11,7 +11,7 @@ const config = {
   theme: {
     transitionDuration: {
       DEFAULT: '200ms'
-    },
+    }
   },
   plugins: [tailwindcssAnimate]
 } satisfies Config

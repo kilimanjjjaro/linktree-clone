@@ -1,13 +1,13 @@
 import { cn } from '@/lib/utils'
 
-function Skeleton ({
+function Skeleton({
   className,
   ...props
 }: React.HTMLAttributes<HTMLDivElement>) {
   return (
     <div
       className={cn(
-        'animate-pulse rounded-md bg-lt-light-gray border border-lt-lightest-gray/10',
+        'bg-lt-light-gray border-lt-lightest-gray/10 animate-pulse rounded-md border',
         className
       )}
       {...props}

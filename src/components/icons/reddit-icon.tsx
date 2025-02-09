@@ -1,4 +1,4 @@
-export function RedditIcon () {
+export function RedditIcon() {
   return (
     <svg
       xmlns='http://www.w3.org/2000/svg'

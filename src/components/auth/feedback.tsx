@@ -8,7 +8,7 @@ interface Props {
   }
 }
 
-export default function Feedback ({ data }: Props) {
+export default function Feedback({ data }: Props) {
   const isError = data.error.length > 0
   const isSuccess = data.success.length > 0
 

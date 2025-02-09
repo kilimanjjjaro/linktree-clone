@@ -7,7 +7,7 @@ import { PopoverTrigger } from '@/components/ui/popover'
 import { Skeleton } from '@/components/ui/skeleton'
 import { useStore } from '@/lib/store/store'
 
-export default function TreeSelectorButton () {
+export default function TreeSelectorButton() {
   const selectedTree = useStore((state) => state.selectedTree)
 
   if (selectedTree === null) {
@@ -19,7 +19,7 @@ export default function TreeSelectorButton () {
       <Button
         variant='ghost'
         role='combobox'
-        className='h-full p-0 text-xl font-normal xl:hover:bg-transparent xl:hover:text-lt-lightest-gray'
+        className='xl:hover:text-lt-lightest-gray h-full p-0 text-xl font-normal xl:hover:bg-transparent'
         disabled={selectedTree === null}
       >
         <span className='max-w-60 truncate text-left'>{selectedTree.name}</span>

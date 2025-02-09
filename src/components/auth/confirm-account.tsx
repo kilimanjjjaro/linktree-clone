@@ -12,7 +12,7 @@ import { cn } from '@/lib/utils'
 
 const DICTIONARY = '0123456789qwertyuiopasdfghjklzxcvbnm!?></a`~+*=@#$%'
 
-export default function ConfirmAccount () {
+export default function ConfirmAccount() {
   const [success, setSuccess] = useState('')
   const [error, setError] = useState('')
   const [text, setText] = useDencrypt({ chars: DICTIONARY })
@@ -64,10 +64,10 @@ export default function ConfirmAccount () {
     <div className='grid justify-items-center gap-y-3.5' ref={parent}>
       <span
         className={cn(
-          'rounded-full border border-lt-light-gray/60 bg-lt-gray transition-colors pt-px font-geist-mono leading-none font-light text-base flex w-36 h-12 justify-center items-center',
+          'border-lt-light-gray/60 bg-lt-gray font-geist-mono flex h-12 w-36 items-center justify-center rounded-full border pt-px text-base leading-none font-light transition-colors',
           success.length > 0 &&
-            'border-green-800/30 bg-green-950/50 w-auto px-4',
-          error.length > 0 && 'border-red-800/30 bg-red-950/50 w-auto px-4',
+            'w-auto border-green-800/30 bg-green-950/50 px-4',
+          error.length > 0 && 'w-auto border-red-800/30 bg-red-950/50 px-4',
           geistMono
         )}
       >
@@ -75,7 +75,7 @@ export default function ConfirmAccount () {
       </span>
       {success.length > 0 && (
         <Link
-          className='text-sm text-lt-lightest-gray xl:hover:underline'
+          className='text-lt-lightest-gray text-sm xl:hover:underline'
           href='/login'
         >
           Log In

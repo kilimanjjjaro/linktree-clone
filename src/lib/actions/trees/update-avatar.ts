@@ -8,7 +8,7 @@ cloudinary.config({
   api_secret: process.env.CLOUDINARY_API_SECRET
 })
 
-export async function updateAvatar (formData: FormData) {
+export async function updateAvatar(formData: FormData) {
   const file = formData.get('file') as File
   const arrayBuffer = await file.arrayBuffer()
   const buffer = Buffer.from(arrayBuffer)

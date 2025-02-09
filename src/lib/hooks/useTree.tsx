@@ -7,7 +7,7 @@ import { updateTree } from '@/lib/actions/trees/update-tree'
 import useCurrentUser from '@/lib/hooks/useCurrentUser'
 import { UpdateTreeSchema } from '@/lib/schemas/tree'
 
-export default function useTree () {
+export default function useTree() {
   const setSavingTree = useStore((state) => state.setSavingTree)
   const setSelectedTree = useStore((state) => state.setSelectedTree)
   const selectedTree = useStore((state) => state.selectedTree)

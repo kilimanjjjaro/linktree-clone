@@ -9,7 +9,7 @@ interface Props {
   linkId: string
 }
 
-export async function deleteLink ({ linkId }: Props) {
+export async function deleteLink({ linkId }: Props) {
   const user = await getCurrentUser()
 
   if (user?.id === undefined) {

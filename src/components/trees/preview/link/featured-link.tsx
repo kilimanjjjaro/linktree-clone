@@ -5,7 +5,7 @@ import { Button } from '@/components/ui/button'
 import { useStore } from '@/lib/store/store'
 import useLinks from '@/lib/hooks/useLinks'
 
-export default function FeaturedLink ({ link }: { link: TreeLink }) {
+export default function FeaturedLink({ link }: { link: TreeLink }) {
   const setSelectedLink = useStore((state) => state.setSelectedLink)
   const setShowAddLinkDialog = useStore((state) => state.setShowAddLinkDialog)
   const { removeLink } = useLinks()
@@ -26,13 +26,13 @@ export default function FeaturedLink ({ link }: { link: TreeLink }) {
         >
           <div className='absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-black/95 to-black/0' />
           <div className='z-10 p-5'>
-            <h3 className='text-balance text-xl leading-none'>{link.name}</h3>
+            <h3 className='text-xl leading-none text-balance'>{link.name}</h3>
           </div>
         </div>
       </a>
       <Button
         aria-label='Delete link'
-        className='absolute left-3 top-3 h-auto rounded-full bg-lt-white p-1 opacity-0 transition-opacity group-hover:xl:opacity-100'
+        className='bg-lt-white absolute top-3 left-3 h-auto rounded-full p-1 opacity-0 transition-opacity group-hover:xl:opacity-100'
         onClick={async () => {
           await removeLink(link.id)
         }}
@@ -41,7 +41,7 @@ export default function FeaturedLink ({ link }: { link: TreeLink }) {
       </Button>
       <Button
         aria-label='Update link'
-        className='absolute right-3 top-3 h-auto rounded-full bg-lt-white p-1 opacity-0 transition-opacity group-hover:xl:opacity-100'
+        className='bg-lt-white absolute top-3 right-3 h-auto rounded-full p-1 opacity-0 transition-opacity group-hover:xl:opacity-100'
         onClick={() => {
           updateLink(link)
         }}

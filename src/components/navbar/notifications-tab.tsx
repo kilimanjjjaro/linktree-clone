@@ -14,7 +14,7 @@ import {
 } from '@/components/ui/tooltip'
 import { Separator } from '../ui/separator'
 
-export default function NotificationsTab () {
+export default function NotificationsTab() {
   return (
     <Popover>
       <TooltipProvider delayDuration={0}>
@@ -22,7 +22,7 @@ export default function NotificationsTab () {
           <TooltipTrigger asChild>
             <PopoverTrigger className='relative'>
               <Dot
-                className='absolute right-0.5 top-2 size-1.5 rounded-full bg-lt-green'
+                className='bg-lt-green absolute top-2 right-0.5 size-1.5 rounded-full'
                 aria-hidden
               />
               <Bell className='size-5' aria-hidden />
@@ -34,7 +34,7 @@ export default function NotificationsTab () {
       </TooltipProvider>
       <PopoverContent className='p-0'>
         <ul>
-          <li className='relative flex items-center gap-x-4 p-4 text-lt-white opacity-40'>
+          <li className='text-lt-white relative flex items-center gap-x-4 p-4 opacity-40'>
             <div className='flex flex-col gap-y-2'>
               <p className='w-full text-sm font-light'>
                 Lorem ipsum dolor sit amet, consectetur adipiscing.
@@ -43,14 +43,14 @@ export default function NotificationsTab () {
                 <span className='flex items-center gap-1 leading-none'>
                   <Clock className='size-3.5' />4 hours ago
                 </span>
-                <span className='rounded-full border border-lt-light-gray px-2 py-1 leading-none'>
+                <span className='border-lt-light-gray rounded-full border px-2 py-1 leading-none'>
                   New feature
                 </span>
               </div>
             </div>
           </li>
           <Separator />
-          <li className='group relative flex items-center gap-x-4 p-4 text-lt-white'>
+          <li className='group text-lt-white relative flex items-center gap-x-4 p-4'>
             <div className='flex flex-col gap-y-2'>
               <p className='w-full text-sm font-light'>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris
@@ -60,24 +60,24 @@ export default function NotificationsTab () {
                 <span className='flex items-center gap-1 leading-none'>
                   <Clock className='size-3.5' />4 hours ago
                 </span>
-                <span className='rounded-full border border-lt-white px-2 py-1 leading-none'>
+                <span className='border-lt-white rounded-full border px-2 py-1 leading-none'>
                   New feature
                 </span>
               </div>
             </div>
             <Dot
-              className='absolute right-3.5 top-3.5 size-1.5 rounded-full bg-lt-green opacity-100 transition-opacity xl:group-hover:opacity-0'
+              className='bg-lt-green absolute top-3.5 right-3.5 size-1.5 rounded-full opacity-100 transition-opacity xl:group-hover:opacity-0'
               aria-hidden
             />
             <Button
               aria-label='Mark as read'
-              className='absolute right-2 top-2 h-auto rounded-full bg-lt-lightest-gray p-0.5 opacity-0 xl:hover:bg-lt-white xl:group-hover:opacity-100'
+              className='bg-lt-lightest-gray xl:hover:bg-lt-white absolute top-2 right-2 h-auto rounded-full p-0.5 opacity-0 xl:group-hover:opacity-100'
             >
               <Check className='size-3 translate-y-px' strokeWidth={3} />
             </Button>
           </li>
           <Separator />
-          <li className='relative flex items-center gap-x-4 p-4 text-lt-white opacity-40'>
+          <li className='text-lt-white relative flex items-center gap-x-4 p-4 opacity-40'>
             <div className='flex flex-col gap-y-2'>
               <p className='w-full text-sm font-light'>
                 Lorem ipsum dolor sit amet, consectetur. Mauris justo risus.
@@ -86,7 +86,7 @@ export default function NotificationsTab () {
                 <span className='flex items-center gap-1 leading-none'>
                   <Clock className='size-3.5' />4 hours ago
                 </span>
-                <span className='rounded-full border border-lt-light-gray px-2 py-1 leading-none'>
+                <span className='border-lt-light-gray rounded-full border px-2 py-1 leading-none'>
                   New feature
                 </span>
               </div>

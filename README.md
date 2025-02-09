@@ -20,10 +20,10 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 You must add an environment variable to your project, this is neccessary only in development environment.
 
-| Key              | Value  |
-| ---------------- | ------ |
-| `DATABASE_URL` | `string` |
-| `AUTH_SECRET` | `string` |
-| `RESEND_API_KEY` | `string` |
-| `AUTH_GOOGLE_ID` | `string` |
+| Key                  | Value    |
+| -------------------- | -------- |
+| `DATABASE_URL`       | `string` |
+| `AUTH_SECRET`        | `string` |
+| `RESEND_API_KEY`     | `string` |
+| `AUTH_GOOGLE_ID`     | `string` |
 | `AUTH_GOOGLE_SECRET` | `string` |

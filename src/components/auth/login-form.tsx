@@ -14,7 +14,7 @@ const INITIAL_STATE = {
   error: ''
 }
 
-export default function LogInForm () {
+export default function LogInForm() {
   const [state, formAction] = useActionState(logInWithEmail, INITIAL_STATE)
   const [parent] = useAutoAnimate({ duration: 200 })
 
@@ -45,7 +45,7 @@ export default function LogInForm () {
         />
         <Link
           href='/reset-password'
-          className='text-sm leading-none text-lt-lightest-gray xl:hover:underline'
+          className='text-lt-lightest-gray text-sm leading-none xl:hover:underline'
         >
           Forgot your password?
         </Link>

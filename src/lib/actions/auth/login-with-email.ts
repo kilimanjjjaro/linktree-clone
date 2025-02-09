@@ -7,7 +7,7 @@ import { generateConfirmationToken } from '@/lib/utils/generate-confirmation-tok
 import { getUserByEmail } from '@/lib/services/get-user-by-email'
 import { sendConfirmationEmail } from '@/lib/services/send-confirmation-email'
 
-export async function logInWithEmail (prevState: any, formData: FormData) {
+export async function logInWithEmail(prevState: any, formData: FormData) {
   const validatedFields = LogInSchema.safeParse({
     email: formData.get('email'),
     password: formData.get('password')

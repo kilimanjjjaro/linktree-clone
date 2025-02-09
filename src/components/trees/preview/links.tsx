@@ -8,7 +8,7 @@ import TextLink from '@/components/trees/preview/link/text-link'
 import { Skeleton } from '@/components/ui/skeleton'
 import { useStore } from '@/lib/store/store'
 
-export default function TreeLinks () {
+export default function TreeLinks() {
   const selectedTree = useStore((state) => state.selectedTree)
   const [parent] = useAutoAnimate({ duration: 200 })
 
@@ -25,13 +25,11 @@ export default function TreeLinks () {
     <main ref={parent} className='mb-[88px] grid grid-cols-1 gap-y-4'>
       {selectedTree.links.map((link) => (
         <Fragment key={link.id}>
-          {link.featured
-            ? (
+          {link.featured ? (
             <FeaturedLink link={link} />
-              )
-            : (
+          ) : (
             <TextLink link={link} />
-              )}
+          )}
         </Fragment>
       ))}
     </main>

@@ -11,7 +11,7 @@ import { deleteSocialProfile } from '@/lib/actions/trees/delete-social-profile'
 import { DEMO_TREE_VALUES } from '@/lib/constants/trees'
 import { createTree } from '@/lib/actions/trees/create-tree'
 
-export default function useSocialProfiles () {
+export default function useSocialProfiles() {
   const setSelectedTree = useStore((state) => state.setSelectedTree)
   const selectedTree = useStore((state) => state.selectedTree)
   const user = useCurrentUser()

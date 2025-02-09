@@ -9,7 +9,7 @@ interface Props {
   token: string
 }
 
-export async function sendPasswordResetEmail ({ email, token }: Props) {
+export async function sendPasswordResetEmail({ email, token }: Props) {
   const resetPasswordLink = `${BASE_URL}/new-password?token=${token}`
 
   const response = await resend.emails.send({
@@ -23,7 +23,7 @@ export async function sendPasswordResetEmail ({ email, token }: Props) {
   console.log('PASSWORD_RESET_EMAIL: ', response)
 }
 
-function html ({ url }: { url: string }) {
+function html({ url }: { url: string }) {
   return `
 <body style="background-color:#ffffff;font-family:-apple-system,BlinkMacSystemFont,&quot;Segoe UI&quot;,Roboto,Oxygen-Sans,Ubuntu,Cantarell,&quot;Helvetica Neue&quot;,sans-serif">
   <table align="center" width="100%" border="0" cellPadding="0" cellSpacing="0" role="presentation" style="background-color:#ffffff;max-width:500px;margin:0 auto;padding:20px 0 48px">
@@ -53,6 +53,6 @@ function html ({ url }: { url: string }) {
 `
 }
 
-function text ({ url }: { url: string }) {
+function text({ url }: { url: string }) {
   return `Reset your password of Linktree Clone\n${url}\n\n`
 }

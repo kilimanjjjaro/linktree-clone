@@ -2,7 +2,7 @@ import { useStore } from '@/lib/store/store'
 import { FONT_VARIANTS } from '@/lib/constants/appearance'
 import { type TreeAppearanceInterface } from '@/lib/types/trees'
 
-export default function useFonts () {
+export default function useFonts() {
   const setSelectedTree = useStore((state) => state.setSelectedTree)
   const selectedTree = useStore((state) => state.selectedTree)
 
@@ -13,7 +13,8 @@ export default function useFonts () {
 
     if (selectedFont === undefined) return
 
-    const currentAppearance = selectedTree.appearance as unknown as TreeAppearanceInterface
+    const currentAppearance =
+      selectedTree.appearance as unknown as TreeAppearanceInterface
 
     setSelectedTree({
       ...selectedTree,
@@ -23,13 +24,16 @@ export default function useFonts () {
       }
     })
 
-    localStorage.setItem('__LOCAL_TREE__', JSON.stringify({
-      ...selectedTree,
-      appearance: {
-        ...currentAppearance,
-        font: selectedFont.id
-      }
-    }))
+    localStorage.setItem(
+      '__LOCAL_TREE__',
+      JSON.stringify({
+        ...selectedTree,
+        appearance: {
+          ...currentAppearance,
+          font: selectedFont.id
+        }
+      })
+    )
   }
 
   return {

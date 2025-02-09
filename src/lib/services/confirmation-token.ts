@@ -1,6 +1,6 @@
 import db from '@/lib/database'
 
-export async function getConfirmationTokenByEmail (email: string) {
+export async function getConfirmationTokenByEmail(email: string) {
   try {
     const confirmationToken = await db.confirmationToken.findFirst({
       where: {
@@ -14,7 +14,7 @@ export async function getConfirmationTokenByEmail (email: string) {
   }
 }
 
-export async function getConfirmationTokenByToken (token: string) {
+export async function getConfirmationTokenByToken(token: string) {
   try {
     const confirmationToken = await db.confirmationToken.findUnique({
       where: { token }

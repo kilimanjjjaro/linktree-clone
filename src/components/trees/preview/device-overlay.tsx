@@ -1,4 +1,4 @@
-export default function DeviceOverlay () {
+export default function DeviceOverlay() {
   return (
     <svg
       className='pointer-events-none absolute inset-0 z-10 select-none'

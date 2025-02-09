@@ -13,7 +13,7 @@ const INITIAL_STATE = {
   error: ''
 }
 
-export default function ResetPasswordForm () {
+export default function ResetPasswordForm() {
   const [state, formAction] = useFormState(resetPassword, INITIAL_STATE)
   const [parent] = useAutoAnimate({ duration: 200 })
 

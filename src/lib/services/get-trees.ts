@@ -1,6 +1,6 @@
 import db from '@/lib/database'
 
-export async function getTrees (authorId: string) {
+export async function getTrees(authorId: string) {
   try {
     const data = await db.tree.findMany({
       where: { authorId },

@@ -17,7 +17,7 @@ import {
 import { useStore } from '@/lib/store/store'
 import useLinks from '@/lib/hooks/useLinks'
 
-export default function AddLink () {
+export default function AddLink() {
   const selectedTree = useStore((state) => state.selectedTree)
   const selectedLink = useStore((state) => state.selectedLink)
   const setSelectedLink = useStore((state) => state.setSelectedLink)
@@ -92,10 +92,10 @@ export default function AddLink () {
                   required
                 />
               </div>
-              <div className='flex items-center gap-x-3 rounded-2xl border border-lt-light-gray/60 p-5'>
+              <div className='border-lt-light-gray/60 flex items-center gap-x-3 rounded-2xl border p-5'>
                 <div className='flex flex-col gap-y-1.5'>
                   <Label htmlFor='featured-link'>Featured link</Label>
-                  <p className='text-balance text-sm text-lt-lightest-gray'>
+                  <p className='text-lt-lightest-gray text-sm text-balance'>
                     This will be displayed with a background image. We took it
                     from the link. Soon you will able to upload one.
                   </p>
@@ -112,11 +112,9 @@ export default function AddLink () {
                 className='w-full'
                 disabled={isPending}
               >
-                {selectedLink !== null
-                  ? (
+                {selectedLink !== null ? (
                   <>
-                    {isPending
-                      ? (
+                    {isPending ? (
                       <>
                         Updating
                         <LoaderCircle
@@ -124,16 +122,13 @@ export default function AddLink () {
                           aria-hidden
                         />
                       </>
-                        )
-                      : (
-                          'Update'
-                        )}
+                    ) : (
+                      'Update'
+                    )}
                   </>
-                    )
-                  : (
+                ) : (
                   <>
-                    {isPending
-                      ? (
+                    {isPending ? (
                       <>
                         Adding
                         <LoaderCircle
@@ -141,12 +136,11 @@ export default function AddLink () {
                           aria-hidden
                         />
                       </>
-                        )
-                      : (
-                          'Add'
-                        )}
-                  </>
+                    ) : (
+                      'Add'
                     )}
+                  </>
+                )}
               </Button>
             </form>
           </main>

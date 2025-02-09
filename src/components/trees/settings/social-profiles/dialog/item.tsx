@@ -9,7 +9,7 @@ interface Props {
   socialProfile: SocialProfileInterface
 }
 
-export default function SocialProfile ({ socialProfile }: Props) {
+export default function SocialProfile({ socialProfile }: Props) {
   const setStep = useStore((state) => state.setStep)
   const selectedTree = useStore((state) => state.selectedTree)
   const setSelectedSocialProfile = useStore(
@@ -42,7 +42,7 @@ export default function SocialProfile ({ socialProfile }: Props) {
       <div className='flex items-center gap-x-1'>
         <span
           className={cn(
-            'opacity-0 text-xs rounded-full border border-lt-lightest-gray px-2 py-1 leading-none',
+            'border-lt-lightest-gray rounded-full border px-2 py-1 text-xs leading-none opacity-0',
             isAdded && 'opacity-100'
           )}
         >

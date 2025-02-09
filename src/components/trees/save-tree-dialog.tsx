@@ -14,7 +14,7 @@ import { Button } from '@/components/ui/button'
 import { useStore } from '@/lib/store/store'
 import { createTree } from '@/lib/actions/trees/create-tree'
 
-export default function SaveTreeDialog () {
+export default function SaveTreeDialog() {
   const showSaveTreeDialog = useStore((state) => state.showSaveTreeDialog)
   const setShowSaveTreeDialog = useStore((state) => state.setShowSaveTreeDialog)
   const selectedTree = useStore((state) => state.selectedTree)
@@ -51,7 +51,7 @@ export default function SaveTreeDialog () {
           <DialogTitle>Save tree</DialogTitle>
         </DialogHeader>
         <main className='mt-12 grid gap-y-5 p-5'>
-          <p className=' text-center text-lt-lightest-gray'>
+          <p className='text-lt-lightest-gray text-center'>
             Before continue, save or discard this tree.
           </p>
           <div className='grid grid-cols-2 gap-x-3'>

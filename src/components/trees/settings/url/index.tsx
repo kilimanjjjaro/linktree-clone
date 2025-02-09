@@ -16,7 +16,7 @@ import useTree from '@/lib/hooks/useTree'
 import { BASE_URL } from '@/lib/constants/globals'
 import { cn } from '@/lib/utils'
 
-export default function TreeUrl () {
+export default function TreeUrl() {
   const selectedTree = useStore((state) => state.selectedTree)
   const savingTree = useStore((state) => state.savingTree)
   const [treeUrl, setTreeUrl] = useState('')
@@ -72,9 +72,9 @@ export default function TreeUrl () {
       </div>
       <form
         onSubmit={updateUrl}
-        className='relative flex h-10 items-center rounded-full border border-lt-light-gray/60 ring-lt-white ring-offset-2 ring-offset-lt-gray has-[:focus-visible]:ring-2 has-[input[aria-invalid=true]]:ring-2 has-[input[aria-invalid=true]]:ring-red-500'
+        className='border-lt-light-gray/60 ring-lt-white ring-offset-lt-gray relative flex h-10 items-center rounded-full border ring-offset-2 has-[:focus-visible]:ring-2 has-[input[aria-invalid=true]]:ring-2 has-[input[aria-invalid=true]]:ring-red-500'
       >
-        <span className='flex h-full cursor-not-allowed select-none items-center border-r border-lt-light-gray/60 px-3 text-sm text-lt-lightest-gray'>
+        <span className='border-lt-light-gray/60 text-lt-lightest-gray flex h-full cursor-not-allowed items-center border-r px-3 text-sm select-none'>
           linktr.ee/
         </span>
         <Input
@@ -94,7 +94,7 @@ export default function TreeUrl () {
           size='icon'
           variant='outline'
           className={cn(
-            'absolute right-1.5 size-6 border-none opacity-0 transition-opacity focus-visible:opacity-100 peer-focus-visible:opacity-100',
+            'absolute right-1.5 size-6 border-none opacity-0 transition-opacity peer-focus-visible:opacity-100 focus-visible:opacity-100',
             savingTree && '!opacity-0'
           )}
         >

@@ -13,7 +13,7 @@ import {
   DialogTrigger
 } from '@/components/ui/dialog'
 
-export default function UploadAvatarDialog () {
+export default function UploadAvatarDialog() {
   const [avatarToCrop, setAvatarToCrop] = useState('')
   const [open, setOpen] = useState(false)
 
@@ -29,11 +29,9 @@ export default function UploadAvatarDialog () {
           <DialogTitle>Upload avatar</DialogTitle>
         </DialogHeader>
         <main className='mt-12 p-5'>
-          {avatarToCrop.length === 0
-            ? (
+          {avatarToCrop.length === 0 ? (
             <DropAvatar setAvatarToCrop={setAvatarToCrop} />
-              )
-            : (
+          ) : (
             <CropAvatar
               closeDialog={() => {
                 setOpen(false)
@@ -41,7 +39,7 @@ export default function UploadAvatarDialog () {
               avatarToCrop={avatarToCrop}
               setAvatarToCrop={setAvatarToCrop}
             />
-              )}
+          )}
         </main>
       </DialogContent>
     </Dialog>

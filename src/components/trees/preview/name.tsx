@@ -3,7 +3,7 @@
 import { Skeleton } from '@/components/ui/skeleton'
 import { useStore } from '@/lib/store/store'
 
-export default function TreeName () {
+export default function TreeName() {
   const selectedTree = useStore((state) => state.selectedTree)
 
   if (selectedTree === null) {
@@ -11,7 +11,7 @@ export default function TreeName () {
   }
 
   return (
-    <h1 className='mt-5 text-center text-3xl font-semibold leading-none'>
+    <h1 className='mt-5 text-center text-3xl leading-none font-semibold'>
       {selectedTree.name}
     </h1>
   )

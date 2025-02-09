@@ -7,7 +7,7 @@ interface Props {
   setAvatarToCrop: (value: string) => void
 }
 
-export default function DropAvatar ({ setAvatarToCrop }: Props) {
+export default function DropAvatar({ setAvatarToCrop }: Props) {
   const onDrop = useCallback(
     (files: FileWithPath[]) => {
       const image = URL.createObjectURL(files[0])
@@ -31,12 +31,12 @@ export default function DropAvatar ({ setAvatarToCrop }: Props) {
   return (
     <section
       {...getRootProps({ className: 'dropzone' })}
-      className='flex aspect-square cursor-pointer items-center justify-center rounded-2xl border-2 border-dashed border-lt-light-gray/60 bg-lt-black p-24 text-lt-white outline-none transition-colors focus-visible:border-white xl:hover:border-lt-lightest-gray'
+      className='border-lt-light-gray/60 bg-lt-black text-lt-white xl:hover:border-lt-lightest-gray flex aspect-square cursor-pointer items-center justify-center rounded-2xl border-2 border-dashed p-24 transition-colors outline-none focus-visible:border-white'
     >
       <input {...getInputProps()} />
       <div className='flex flex-col items-center gap-y-4'>
         <ImageIcon className='size-10' aria-hidden />
-        <span className='text-balance text-center text-sm'>
+        <span className='text-center text-sm text-balance'>
           Click to select your image or drag-and-drop here to upload it.
         </span>
       </div>

@@ -2,7 +2,7 @@
 
 import { signIn } from '@/lib/auth'
 
-export async function logInWithGoogle () {
+export async function logInWithGoogle() {
   await signIn('google', {
     redirectTo: '/'
   })

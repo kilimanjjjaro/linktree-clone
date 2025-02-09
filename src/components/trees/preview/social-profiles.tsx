@@ -6,7 +6,7 @@ import SocialProfileIcon from '@/components/trees/settings/social-profiles/icon'
 import { Skeleton } from '@/components/ui/skeleton'
 import { useStore } from '@/lib/store/store'
 
-export default function TreeSocialProfiles () {
+export default function TreeSocialProfiles() {
   const selectedTree = useStore((state) => state.selectedTree)
   const [parent] = useAutoAnimate({ duration: 200 })
 

@@ -13,7 +13,7 @@ interface Props {
   setOpen: (open: boolean) => void
 }
 
-export default function SocialProfilesList ({ setOpen }: Props) {
+export default function SocialProfilesList({ setOpen }: Props) {
   const setStep = useStore((state) => state.setStep)
   const selectedTree = useStore((state) => state.selectedTree)
   const setSelectedSocialProfile = useStore(
@@ -48,7 +48,7 @@ export default function SocialProfilesList ({ setOpen }: Props) {
     >
       {selectedTree.socialProfiles.map((socialProfile) => (
         <li
-          className='flex items-center gap-x-1 rounded-full border border-lt-light-gray/60 pr-1 text-sm leading-none transition-colors has-[:hover]:bg-lt-light-gray'
+          className='border-lt-light-gray/60 has-[:hover]:bg-lt-light-gray flex items-center gap-x-1 rounded-full border pr-1 text-sm leading-none transition-colors'
           key={socialProfile.type}
         >
           <button
@@ -62,7 +62,7 @@ export default function SocialProfilesList ({ setOpen }: Props) {
           </button>
           <button
             aria-label='Remove'
-            className='h-auto rounded-full p-1 transition-colors xl:hover:bg-lt-gray'
+            className='xl:hover:bg-lt-gray h-auto rounded-full p-1 transition-colors'
             onClick={async () => {
               await removeProfile(socialProfile.type)
             }}

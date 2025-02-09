@@ -11,7 +11,7 @@ import { useStore } from '@/lib/store/store'
 import useTree from '@/lib/hooks/useTree'
 import { DEMO_TREE_VALUES } from '@/lib/constants/trees'
 
-export default function TreeAvatar () {
+export default function TreeAvatar() {
   const selectedTree = useStore((state) => state.selectedTree)
   const [isPending, startTransition] = useTransition()
   const { saveTree } = useTree()
@@ -32,9 +32,8 @@ export default function TreeAvatar () {
     <section className='p-5'>
       <Label htmlFor='tree-avatar'>Profile picture</Label>
       <div className='mt-2 flex items-center gap-x-5'>
-        <div className='relative flex size-20 items-center justify-center overflow-hidden rounded-full border border-lt-light-gray/60'>
-          {selectedTree !== null
-            ? (
+        <div className='border-lt-light-gray/60 relative flex size-20 items-center justify-center overflow-hidden rounded-full border'>
+          {selectedTree !== null ? (
             <Image
               className='absolute size-full object-cover object-center'
               src={selectedTree.avatar}
@@ -42,10 +41,9 @@ export default function TreeAvatar () {
               width={100}
               height={100}
             />
-              )
-            : (
+          ) : (
             <Skeleton className='size-full rounded-full' />
-              )}
+          )}
         </div>
         <div className='grid flex-1 grid-cols-2 gap-x-3'>
           <UploadAvatarDialog />
