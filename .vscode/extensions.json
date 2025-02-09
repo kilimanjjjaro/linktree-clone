@@ -3,6 +3,7 @@
     "dbaeumer.vscode-eslint",
     "bradlc.vscode-tailwindcss",
     "usernamehw.errorlens",
-    "meganrogge.template-string-converter"
+    "meganrogge.template-string-converter",
+    "esbenp.prettier-vscode"
   ]
 }
