@@ -6,7 +6,7 @@ import db from '@/lib/database'
 import { generateConfirmationToken } from '@/lib/utils/generate-confirmation-token'
 import { sendConfirmationEmail } from '@/lib/services/send-confirmation-email'
 
-export async function signUpWithEmail(prevState: any, formData: FormData) {
+export async function signUpWithEmail(prevState: unknown, formData: FormData) {
   const validatedFields = SignUpSchema.safeParse({
     name: formData.get('name'),
     email: formData.get('email'),
@@ -65,7 +65,7 @@ export async function signUpWithEmail(prevState: any, formData: FormData) {
       success: 'Link confirmation was sent.',
       error: ''
     }
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error('ACTION_ERROR: ', error.message)
 
     return {

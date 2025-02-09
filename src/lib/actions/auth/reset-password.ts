@@ -5,7 +5,7 @@ import { getUserByEmail } from '@/lib/services/get-user-by-email'
 import { generatePasswordResetToken } from '@/lib/utils/generate-password-reset-token'
 import { sendPasswordResetEmail } from '@/lib/services/send-password-reset-email'
 
-export async function resetPassword(prevState: any, formData: FormData) {
+export async function resetPassword(prevState: unknown, formData: FormData) {
   const validatedFields = ResetPasswordSchema.safeParse({
     email: formData.get('email')
   })
@@ -37,7 +37,7 @@ export async function resetPassword(prevState: any, formData: FormData) {
     })
 
     return { success: 'Reset password email sent.', error: '' }
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error('ACTION_ERROR: ', error.message)
 
     return {
