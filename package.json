@@ -36,8 +36,8 @@
     "lucide-react": "0.475.0",
     "next": "15.1.6",
     "next-auth": "5.0.0-beta.25",
-    "react": "19.0.0",
-    "react-dom": "19.0.0",
+    "react": "19.2.4",
+    "react-dom": "19.2.4",
     "react-dropzone": "14.3.5",
     "react-easy-crop": "5.2.0",
     "resend": "4.1.2",
@@ -54,8 +54,8 @@
     "@tailwindcss/postcss": "4.0.5",
     "@types/bcryptjs": "2.4.6",
     "@types/node": "22.13.1",
-    "@types/react": "19.0.8",
-    "@types/react-dom": "19.0.3",
+    "@types/react": "19.2.14",
+    "@types/react-dom": "19.2.3",
     "@types/uuid": "10.0.0",
     "eslint": "9.20.0",
     "eslint-config-next": "15.1.6",
@@ -72,8 +72,8 @@
   },
   "pnpm": {
     "overrides": {
-      "@types/react": "19.0.8",
-      "@types/react-dom": "19.0.3"
+      "@types/react": "19.2.14",
+      "@types/react-dom": "19.2.3"
     }
   }
 }
