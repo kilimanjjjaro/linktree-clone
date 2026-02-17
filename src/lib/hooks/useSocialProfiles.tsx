@@ -1,7 +1,7 @@
 import { useCallback } from 'react'
 import { usePathname, useRouter } from 'next/navigation'
 import { v4 as uuidv4 } from 'uuid'
-import { type SocialProfileTypes, type Prisma } from '@prisma/client'
+import { type SocialProfileTypes, type Prisma } from '@/generated/prisma/browser'
 import { toast } from 'sonner'
 
 import { useStore } from '@/lib/store/store'

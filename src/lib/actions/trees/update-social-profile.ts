@@ -1,7 +1,7 @@
 'use server'
 
 import { revalidateTag } from 'next/cache'
-import { type Prisma } from '@prisma/client'
+import { type Prisma } from '@/generated/prisma/client'
 
 import db from '@/lib/database'
 import { getCurrentUser } from '@/lib/services/get-current-user'

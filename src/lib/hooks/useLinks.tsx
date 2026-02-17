@@ -2,7 +2,7 @@ import { useCallback } from 'react'
 import { usePathname, useRouter } from 'next/navigation'
 import { v4 as uuidv4 } from 'uuid'
 import { toast } from 'sonner'
-import { type Prisma } from '@prisma/client'
+import { type Prisma } from '@/generated/prisma/browser'
 
 import { updateLink } from '@/lib/actions/trees/update-link'
 import { deleteLink } from '@/lib/actions/trees/delete-link'

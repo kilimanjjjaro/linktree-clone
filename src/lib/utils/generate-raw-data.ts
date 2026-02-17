@@ -1,4 +1,4 @@
-import { Prisma } from '@prisma/client'
+import { Prisma } from '@/generated/prisma/client'
 
 import { DEMO_TREE_VALUES } from '@/lib/constants/trees'
 import type { TreeInterface } from '@/lib/types/trees'

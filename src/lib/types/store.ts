@@ -1,4 +1,4 @@
-import { type TreeLink } from '@prisma/client'
+import { type TreeLink } from '@/generated/prisma/browser'
 
 import { type SocialProfileInterface } from '@/lib/types/globals'
 import { type TreeInterface } from '@/lib/types/trees'

@@ -4,7 +4,7 @@ import { revalidateTag } from 'next/cache'
 
 import db from '@/lib/database'
 import { getCurrentUser } from '@/lib/services/get-current-user'
-import { type SocialProfileTypes } from '@prisma/client'
+import { type SocialProfileTypes } from '@/generated/prisma/client'
 
 interface Props {
   treeId: string

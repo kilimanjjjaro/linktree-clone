@@ -2,7 +2,7 @@
 
 import { X } from 'lucide-react'
 import { useAutoAnimate } from '@formkit/auto-animate/react'
-import { type Prisma } from '@prisma/client'
+import { type Prisma } from '@/generated/prisma/browser'
 
 import { useStore } from '@/lib/store/store'
 import useSocialProfiles from '@/lib/hooks/useSocialProfiles'

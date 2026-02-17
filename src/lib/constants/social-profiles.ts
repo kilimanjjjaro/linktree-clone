@@ -1,4 +1,4 @@
-import { SocialProfileTypes } from '@prisma/client'
+import { SocialProfileTypes } from '@/generated/prisma/browser'
 
 import { INPUT_TYPES, type SocialProfileInterface } from '@/lib/types/globals'
 

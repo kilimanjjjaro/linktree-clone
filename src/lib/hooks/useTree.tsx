@@ -1,5 +1,5 @@
 import { useCallback, useState } from 'react'
-import { type Tree } from '@prisma/client'
+import { type Tree } from '@/generated/prisma/browser'
 import { toast } from 'sonner'
 
 import { useStore } from '@/lib/store/store'

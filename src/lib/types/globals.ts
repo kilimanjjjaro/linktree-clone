@@ -1,4 +1,4 @@
-import { type SocialProfileTypes } from '@prisma/client'
+import { type SocialProfileTypes } from '@/generated/prisma/browser'
 
 export type ChildrenType = React.ReactNode
 

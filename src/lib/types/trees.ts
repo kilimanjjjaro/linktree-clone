@@ -1,13 +1,11 @@
-import { Prisma } from '@prisma/client'
+import { type Prisma } from '@/generated/prisma/browser'
 
-const treeWithRest = Prisma.validator<Prisma.TreeDefaultArgs>()({
+export type TreeInterface = Prisma.TreeGetPayload<{
   include: {
-    links: true,
+    links: true
     socialProfiles: true
   }
-})
-
-export type TreeInterface = Prisma.TreeGetPayload<typeof treeWithRest>
+}>
 
 export interface TreeAppearanceInterface {
   background: {

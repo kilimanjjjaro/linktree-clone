@@ -1,5 +1,5 @@
 import { Settings2, Trash } from 'lucide-react'
-import { type TreeLink } from '@prisma/client'
+import { type TreeLink } from '@/generated/prisma/browser'
 
 import { Button } from '@/components/ui/button'
 import { useStore } from '@/lib/store/store'
