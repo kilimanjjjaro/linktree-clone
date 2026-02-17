@@ -7,7 +7,7 @@ export async function getPasswordResetTokenByEmail(email: string) {
     })
 
     return passwordResetToken
-  } catch (error) {
+  } catch {
     return null
   }
 }
@@ -19,7 +19,7 @@ export async function getPasswordResetTokenByToken(token: string) {
     })
 
     return passwordResetToken
-  } catch (error) {
+  } catch {
     return null
   }
 }

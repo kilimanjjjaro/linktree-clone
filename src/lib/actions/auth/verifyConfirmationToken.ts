@@ -52,7 +52,7 @@ export async function verifyConfirmationToken(token: string) {
       error: '',
       success: 'Account verified'
     }
-  } catch (error) {
+  } catch {
     return {
       error: 'Error',
       success: ''

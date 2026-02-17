@@ -14,7 +14,7 @@ export async function getTrees(authorId: string) {
     })
 
     return data
-  } catch (error) {
+  } catch {
     return []
   }
 }

@@ -12,7 +12,7 @@ export async function getUserById(id: string) {
     })
 
     return user
-  } catch (error) {
+  } catch {
     return null
   }
 }

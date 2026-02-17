@@ -9,7 +9,7 @@ export async function getConfirmationTokenByEmail(email: string) {
     })
 
     return confirmationToken
-  } catch (error) {
+  } catch {
     return null
   }
 }
@@ -21,7 +21,7 @@ export async function getConfirmationTokenByToken(token: string) {
     })
 
     return confirmationToken
-  } catch (error) {
+  } catch {
     return null
   }
 }

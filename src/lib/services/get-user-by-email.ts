@@ -9,7 +9,7 @@ export async function getUserByEmail(email: string) {
     })
 
     return user
-  } catch (error) {
+  } catch {
     return null
   }
 }
