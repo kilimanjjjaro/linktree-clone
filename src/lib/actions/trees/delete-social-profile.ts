@@ -31,7 +31,7 @@ export async function deleteSocialProfile({ treeId, type }: Props) {
       }
     })
 
-    revalidateTag('trees')
+    revalidateTag('trees', 'max')
 
     return {
       error: '',

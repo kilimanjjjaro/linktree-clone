@@ -37,7 +37,7 @@ export default function AddLink() {
         treeId: selectedTree.id,
         name: formData.get('name') as string,
         url: formData.get('url') as string,
-        featured: formData.get('featured') !== null ?? false
+        featured: formData.get('featured') !== null
       }
 
       const response = await addLink(newLink)

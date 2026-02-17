@@ -1,4 +1,4 @@
-import Prisma from '@prisma/client'
+import { Prisma } from '@prisma/client'
 
 const treeWithRest = Prisma.validator<Prisma.TreeDefaultArgs>()({
   include: {

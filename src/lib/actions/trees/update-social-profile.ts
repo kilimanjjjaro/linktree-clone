@@ -39,7 +39,7 @@ export async function updateSocialProfile(
       }
     })
 
-    revalidateTag('trees')
+    revalidateTag('trees', 'max')
 
     return {
       data: response,

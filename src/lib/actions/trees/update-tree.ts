@@ -41,7 +41,7 @@ export async function updateTree(tree: Partial<Tree>) {
       }
     })
 
-    revalidateTag('trees')
+    revalidateTag('trees', 'max')
 
     return {
       data: response,

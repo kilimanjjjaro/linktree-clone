@@ -37,7 +37,7 @@ export async function createDefaultTree() {
       }
     })
 
-    revalidateTag('trees')
+    revalidateTag('trees', 'max')
 
     return {
       data: response,

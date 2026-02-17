@@ -22,7 +22,7 @@ export async function deleteLink({ linkId }: Props) {
   try {
     await db.treeLink.delete({ where: { id: linkId } })
 
-    revalidateTag('trees')
+    revalidateTag('trees', 'max')
 
     return {
       error: '',

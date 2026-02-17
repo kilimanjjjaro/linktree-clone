@@ -29,7 +29,7 @@ export default function TreeStatus() {
   useEffect(() => {
     if (selectedTree === null) return
 
-    setPublished(selectedTree?.status === TREE_STATUS.PUBLISHED ?? false)
+    setPublished(selectedTree.status === TREE_STATUS.PUBLISHED)
   }, [selectedTree])
 
   return (

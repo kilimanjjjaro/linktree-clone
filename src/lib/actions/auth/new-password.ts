@@ -91,8 +91,8 @@ export async function newPassword(
       error: '',
       token: ''
     }
-  } catch (error: unknown) {
-    console.error('ACTION_ERROR: ', error.message)
+  } catch (error) {
+    console.error('ACTION_ERROR: ', error instanceof Error ? error.message : error)
 
     return {
       error: 'Something went wrong.',

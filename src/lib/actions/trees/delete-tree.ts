@@ -21,7 +21,7 @@ export async function deleteTree(treeId: string) {
       }
     })
 
-    revalidateTag('trees')
+    revalidateTag('trees', 'max')
 
     return {
       error: '',

@@ -65,8 +65,8 @@ export async function signUpWithEmail(prevState: unknown, formData: FormData) {
       success: 'Link confirmation was sent.',
       error: ''
     }
-  } catch (error: unknown) {
-    console.error('ACTION_ERROR: ', error.message)
+  } catch (error) {
+    console.error('ACTION_ERROR: ', error instanceof Error ? error.message : error)
 
     return {
       error: 'Something went wrong.',
