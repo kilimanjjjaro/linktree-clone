@@ -21,8 +21,8 @@ export default function useTree() {
       const validatedFields = UpdateTreeSchema.safeParse(data)
 
       if (!validatedFields.success) {
-        const errors = validatedFields.error.errors.map(
-          (error) => error.message
+        const errors = validatedFields.error.issues.map(
+          (issue) => issue.message
         )
         setErrors(errors)
 
