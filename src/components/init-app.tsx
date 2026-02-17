@@ -1,6 +1,6 @@
 'use client'
 
-import { useCallback, useEffect } from 'react'
+import { useCallback, useEffect, useRef } from 'react'
 import { usePathname, useRouter, useSearchParams } from 'next/navigation'
 
 import { useStore } from '@/lib/store/store'
@@ -19,6 +19,7 @@ export default function InitApp({ children, trees }: Props) {
   const pathname = usePathname()
   const treeUrl = searchParams.get('tree')
   const router = useRouter()
+  const treesRef = useRef(trees)
 
   const updateAppState = useCallback(
     (tree: TreeInterface, updateParams: boolean) => {
@@ -36,6 +37,10 @@ export default function InitApp({ children, trees }: Props) {
   )
 
   useEffect(() => {
+    treesRef.current = trees
+  }, [trees])
+
+  useEffect(() => {
     const localTree = localStorage.getItem('__LOCAL_TREE__')
 
     if (localTree !== null) {
@@ -43,14 +48,14 @@ export default function InitApp({ children, trees }: Props) {
 
       updateAppState(tree, false)
     } else {
-      const hasTrees = trees.length > 0
+      const hasTrees = treesRef.current.length > 0
       const hasTreeUrl = treeUrl !== null && treeUrl.length > 0
 
       if (hasTreeUrl && hasTrees) {
-        const tree = trees.find((tree) => tree.url === treeUrl)
+        const tree = treesRef.current.find((tree) => tree.url === treeUrl)
 
         if (tree === undefined) {
-          updateAppState(trees[0], false)
+          updateAppState(treesRef.current[0], false)
         } else {
           updateAppState(tree, false)
         }
@@ -61,14 +66,14 @@ export default function InitApp({ children, trees }: Props) {
       }
 
       if (!hasTreeUrl && hasTrees) {
-        updateAppState(trees[0], false)
+        updateAppState(treesRef.current[0], false)
       }
 
       if (!hasTreeUrl && !hasTrees) {
         setSelectedTree(DEMO_TREE_VALUES)
       }
     }
-  }, [treeUrl, trees, setSelectedTree, updateAppState])
+  }, [treeUrl, setSelectedTree, updateAppState])
 
   return <>{children}</>
 }
