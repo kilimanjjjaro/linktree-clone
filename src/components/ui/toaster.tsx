@@ -8,7 +8,6 @@ const Toaster = ({ ...props }: ToasterProps) => {
   return (
     <Sonner
       position='top-center'
-      pauseWhenPageIsHidden
       toastOptions={{
         classNames: {
           toast:
