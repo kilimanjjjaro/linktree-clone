@@ -1,16 +1,17 @@
 'use server'
 
 import { revalidateTag } from 'next/cache'
-import { Prisma, type Tree } from '@/generated/prisma/client'
 
+import { Prisma } from '@/generated/prisma/client'
 import db from '@/lib/database'
 import { getCurrentUser } from '@/lib/services/get-current-user'
 import {
   generateRawDataToCreate,
   generateRawDataToUpdate
 } from '@/lib/utils/generate-raw-data'
+import { type TreeInterface } from '@/lib/types/trees'
 
-export async function updateTree(tree: Partial<Tree>) {
+export async function updateTree(tree: Partial<TreeInterface>) {
   const user = await getCurrentUser()
 
   if (user?.id === undefined) {
@@ -29,7 +30,8 @@ export async function updateTree(tree: Partial<Tree>) {
       },
       update: {
         ...generateRawDataToUpdate(tree),
-        appearance: tree.appearance ?? Prisma.JsonNull
+        appearance:
+          (tree.appearance as Prisma.InputJsonValue) ?? Prisma.JsonNull
       },
       create: {
         ...generateRawDataToCreate(tree),
@@ -44,7 +46,7 @@ export async function updateTree(tree: Partial<Tree>) {
     revalidateTag('trees', 'max')
 
     return {
-      data: response,
+      data: response as TreeInterface,
       error: '',
       success: 'Tree updated.'
     }

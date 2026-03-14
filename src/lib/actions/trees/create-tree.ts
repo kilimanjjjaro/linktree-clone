@@ -34,7 +34,7 @@ export async function createTree(tree: TreeInterface) {
     revalidateTag('trees', 'max')
 
     return {
-      data: response,
+      data: response as TreeInterface,
       error: '',
       success: 'Tree created.'
     }

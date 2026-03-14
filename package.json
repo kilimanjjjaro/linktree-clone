@@ -65,14 +65,5 @@
     "prisma": "7.4.0",
     "tailwindcss": "4.1.18",
     "typescript": "5.9.3"
-  },
-  "volta": {
-    "node": "22.22.0"
-  },
-  "pnpm": {
-    "overrides": {
-      "@types/react": "19.2.14",
-      "@types/react-dom": "19.2.3"
-    }
   }
 }

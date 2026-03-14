@@ -8,6 +8,7 @@ import db from '@/lib/database'
 import { getCurrentUser } from '@/lib/services/get-current-user'
 import { TREE_NAMES } from '@/lib/constants/trees'
 import { generateRawDataToCreate } from '@/lib/utils/generate-raw-data'
+import { type TreeInterface } from '@/lib/types/trees'
 
 export async function createDefaultTree() {
   const user = await getCurrentUser()
@@ -40,7 +41,7 @@ export async function createDefaultTree() {
     revalidateTag('trees', 'max')
 
     return {
-      data: response,
+      data: response as TreeInterface,
       error: '',
       success: 'Task created.'
     }

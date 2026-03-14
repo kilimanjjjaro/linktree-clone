@@ -1,5 +1,4 @@
 import { Prisma } from '@/generated/prisma/client'
-
 import { DEMO_TREE_VALUES } from '@/lib/constants/trees'
 import type { TreeInterface } from '@/lib/types/trees'
 
@@ -14,7 +13,7 @@ export function generateRawDataToCreate(tree?: Partial<TreeInterface>) {
     url: tree?.url ?? DEMO_TREE_VALUES.url,
     description: tree?.description ?? DEMO_TREE_VALUES.description,
     avatar: tree?.avatar ?? DEMO_TREE_VALUES.avatar,
-    appearance: appearance ?? Prisma.JsonNull,
+    appearance: (appearance as Prisma.InputJsonValue) ?? Prisma.JsonNull,
     links: {
       createMany: {
         data: links.map((link) => {

@@ -1,4 +1,5 @@
 import db from '@/lib/database'
+import { type TreeInterface } from '@/lib/types/trees'
 
 export async function getTrees(authorId: string) {
   try {
@@ -13,7 +14,7 @@ export async function getTrees(authorId: string) {
       }
     })
 
-    return data
+    return data as TreeInterface[]
   } catch {
     return []
   }

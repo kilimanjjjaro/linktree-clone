@@ -1,13 +1,17 @@
 import { type Prisma } from '@/generated/prisma/browser'
 
-export type TreeInterface = Prisma.TreeGetPayload<{
+type PrismaTree = Prisma.TreeGetPayload<{
   include: {
     links: true
     socialProfiles: true
   }
 }>
 
-export interface TreeAppearanceInterface {
+export type TreeInterface = Omit<PrismaTree, 'appearance'> & {
+  appearance: TreeAppearanceInterface
+}
+
+export type TreeAppearanceInterface = {
   background: {
     type: number
     settings: {

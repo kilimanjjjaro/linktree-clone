@@ -1,3 +1,7 @@
+'use client'
+
+import { useEffect } from 'react'
+
 import DeviceOverlay from '@/components/trees/preview/device-overlay'
 import TreeAvatar from '@/components/trees/preview/avatar'
 import TreeName from '@/components/trees/preview/name'
@@ -6,8 +10,19 @@ import TreeSocialProfiles from '@/components/trees/preview/social-profiles'
 import TreeLinks from '@/components/trees/preview/links'
 import AddLink from '@/components/trees/preview/link/add-link'
 import { ScrollArea } from '@/components/ui/scroll-area'
+import { useStore } from '@/lib/store/store'
+import { loadFont, getFontFamily } from '@/lib/utils/fonts'
 
-export default async function TreePreview() {
+export default function TreePreview() {
+  const selectedTree = useStore((state) => state.selectedTree)
+
+  const appearance = selectedTree?.appearance
+  const fontId = appearance?.font ?? 0
+
+  useEffect(() => {
+    loadFont(fontId)
+  }, [fontId])
+
   return (
     <section className='flex flex-col items-center self-center'>
       <div className='relative flex aspect-[320/630] w-[360px] items-start justify-center overflow-hidden'>
@@ -26,6 +41,7 @@ export default async function TreePreview() {
             className='h-full px-4'
             scrollHideDelay={0}
             style={{
+              fontFamily: getFontFamily(fontId),
               maskImage:
                 'linear-gradient(to bottom, black 70%, transparent 100%)'
             }}
