@@ -26,8 +26,11 @@ export const DEMO_TREE_VALUES: TreeInterface = {
     },
     font: 0,
     general: {
-      cornerStyle: 1,
-      contentContainer: false
+      cornerStyle: 3,
+      contentContainer: {
+        enabled: false,
+        color: 0
+      }
     }
   },
   createdAt: new Date(),

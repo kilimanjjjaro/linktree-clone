@@ -4,11 +4,16 @@ import { type TreeLink } from '@/generated/prisma/browser'
 import { Button } from '@/components/ui/button'
 import { useStore } from '@/lib/store/store'
 import useLinks from '@/lib/hooks/useLinks'
+import { getCornerClassName } from '@/lib/constants/appearance'
+import { cn } from '@/lib/utils'
 
 export default function FeaturedLink({ link }: { link: TreeLink }) {
+  const selectedTree = useStore((state) => state.selectedTree)
   const setSelectedLink = useStore((state) => state.setSelectedLink)
   const setShowAddLinkDialog = useStore((state) => state.setShowAddLinkDialog)
   const { removeLink } = useLinks()
+
+  const cornerStyle = selectedTree?.appearance.general.cornerStyle ?? 3
 
   const updateLink = (link: TreeLink) => {
     setSelectedLink(link)
@@ -19,7 +24,10 @@ export default function FeaturedLink({ link }: { link: TreeLink }) {
     <div className='group relative'>
       <a href={link.url} target='_blank' rel='noopener noreferrer'>
         <div
-          className='relative flex aspect-video items-end overflow-hidden rounded-2xl bg-cover bg-center'
+          className={cn(
+            'relative flex aspect-video items-end overflow-hidden bg-cover bg-center',
+            getCornerClassName(cornerStyle)
+          )}
           style={{
             backgroundImage: `url(${link.image ?? ''})`
           }}

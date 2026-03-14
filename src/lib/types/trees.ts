@@ -22,6 +22,9 @@ export type TreeAppearanceInterface = {
   font: number
   general: {
     cornerStyle: number
-    contentContainer: boolean
+    contentContainer: {
+      enabled: boolean
+      color: number
+    }
   }
 }

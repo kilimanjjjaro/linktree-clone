@@ -12,6 +12,11 @@ import AddLink from '@/components/trees/preview/link/add-link'
 import { ScrollArea } from '@/components/ui/scroll-area'
 import { useStore } from '@/lib/store/store'
 import { loadFont, getFontFamily } from '@/lib/utils/fonts'
+import {
+  getContainerColor,
+  getCornerClassName
+} from '@/lib/constants/appearance'
+import { cn } from '@/lib/utils'
 
 export default function TreePreview() {
   const selectedTree = useStore((state) => state.selectedTree)
@@ -46,13 +51,38 @@ export default function TreePreview() {
                 'linear-gradient(to bottom, black 70%, transparent 100%)'
             }}
           >
-            <header className='mt-16 mb-4 flex flex-col items-center'>
-              <TreeAvatar />
-              <TreeName />
-              <TreeDescription />
-              <TreeSocialProfiles />
-            </header>
-            <TreeLinks />
+            <div
+              className={cn(
+                appearance?.general.contentContainer.enabled &&
+                  'mx-auto mt-16 mb-4 px-3 py-4',
+                appearance?.general.contentContainer.enabled &&
+                  getCornerClassName(appearance.general.cornerStyle)
+              )}
+              style={
+                appearance?.general.contentContainer.enabled
+                  ? {
+                      backgroundColor: getContainerColor(
+                        appearance.general.contentContainer.color
+                      )
+                    }
+                  : undefined
+              }
+            >
+              <header
+                className={cn(
+                  'mb-4 flex flex-col items-center',
+                  appearance?.general.contentContainer.enabled
+                    ? 'mt-4'
+                    : 'mt-16'
+                )}
+              >
+                <TreeAvatar />
+                <TreeName />
+                <TreeDescription />
+                <TreeSocialProfiles />
+              </header>
+              <TreeLinks />
+            </div>
           </ScrollArea>
           <AddLink />
         </div>
