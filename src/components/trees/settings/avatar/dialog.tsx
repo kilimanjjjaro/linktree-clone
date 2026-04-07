@@ -20,9 +20,7 @@ export default function UploadAvatarDialog() {
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <Button id='tree-avatar' variant='secondary'>
-          Upload
-        </Button>
+        <Button id='tree-avatar'>Upload</Button>
       </DialogTrigger>
       <DialogContent className='p-0 outline-none'>
         <DialogHeader>

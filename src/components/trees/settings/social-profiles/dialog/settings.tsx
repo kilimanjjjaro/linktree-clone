@@ -84,7 +84,7 @@ export default function SocialProfileSettings({ closeDialog }: Props) {
         />
       </div>
       <footer className='grid grid-cols-2 gap-x-3'>
-        <Button type='submit' variant='secondary' className='order-2'>
+        <Button type='submit' className='order-2'>
           {existingSocialProfile !== undefined ? (
             <>
               {isPending ? (
@@ -110,7 +110,7 @@ export default function SocialProfileSettings({ closeDialog }: Props) {
           )}
         </Button>
         <Button
-          variant='outline'
+          variant='secondary'
           className='order-1'
           onClick={(event) => {
             goPrevStep(event)

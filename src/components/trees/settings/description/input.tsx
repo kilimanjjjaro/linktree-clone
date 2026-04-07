@@ -1,7 +1,7 @@
 'use client'
 
-import { useEffect, useState } from 'react'
-import { Forward } from 'lucide-react'
+import { useState } from 'react'
+import { Check } from 'lucide-react'
 
 import { Textarea } from '@/components/ui/textarea'
 import { ErrorTooltip } from '@/components/ui/error-tooltip'
@@ -14,8 +14,16 @@ import { cn } from '@/lib/utils'
 export default function DescriptionInput() {
   const selectedTree = useStore((state) => state.selectedTree)
   const savingTree = useStore((state) => state.savingTree)
-  const [textareaLength, setTextareaLength] = useState(0)
+  const [textareaLength, setTextareaLength] = useState(selectedTree?.description.length ?? 0)
+  const [prevTree, setPrevTree] = useState(selectedTree)
   const { saveTree, errors } = useTree()
+
+  if (selectedTree !== prevTree) {
+    setPrevTree(selectedTree)
+    if (selectedTree !== null) {
+      setTextareaLength(selectedTree.description.length)
+    }
+  }
 
   const updateDescription = async (event: React.FormEvent<HTMLFormElement>) => {
     if (savingTree) return
@@ -26,12 +34,6 @@ export default function DescriptionInput() {
 
     await saveTree({ description })
   }
-
-  useEffect(() => {
-    if (selectedTree === null) return
-
-    setTextareaLength(selectedTree.description.length)
-  }, [selectedTree])
 
   return (
     <form onSubmit={updateDescription} className='relative flex'>
@@ -54,13 +56,12 @@ export default function DescriptionInput() {
       <Button
         type='submit'
         size='icon'
-        variant='outline'
         className={cn(
           'absolute top-1.5 right-1.5 size-6 border-none opacity-0 transition-opacity peer-focus-visible:opacity-100 focus-visible:opacity-100',
-          savingTree && '!opacity-0'
+          savingTree && 'opacity-0!'
         )}
       >
-        <Forward className='size-4 translate-y-px rotate-180' />
+        <Check className='size-4 translate-y-px' />
         <span className='sr-only'>Save</span>
       </Button>
     </form>

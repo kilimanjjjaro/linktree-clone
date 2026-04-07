@@ -47,7 +47,11 @@ export default function TreeAvatar() {
         </div>
         <div className='grid flex-1 grid-cols-2 gap-x-3'>
           <UploadAvatarDialog />
-          <Button variant='outline' onClick={removeAvatar} disabled={isPending}>
+          <Button
+            variant='secondary'
+            onClick={removeAvatar}
+            disabled={isPending}
+          >
             {isPending ? 'Removing' : 'Remove'}
           </Button>
         </div>

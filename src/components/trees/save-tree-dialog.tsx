@@ -55,10 +55,10 @@ export default function SaveTreeDialog() {
             Before continue, save or discard this tree.
           </p>
           <div className='grid grid-cols-2 gap-x-3'>
-            <Button variant='outline' onClick={discardTree}>
+            <Button variant='secondary' onClick={discardTree}>
               Discard
             </Button>
-            <Button variant='secondary' onClick={saveTree} disabled={isPending}>
+            <Button onClick={saveTree} disabled={isPending}>
               {isPending && (
                 <LoaderCircle className='size-4 animate-spin' aria-hidden />
               )}

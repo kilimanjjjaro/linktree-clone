@@ -33,7 +33,7 @@ export default function SocialProfilesDialog({ open, setOpen }: Props) {
       }}
     >
       <DialogTrigger asChild>
-        <Button id='tree-social-profiles' variant='secondary'>
+        <Button id='tree-social-profiles'>
           Add <Plus className='size-3.5' aria-hidden />
         </Button>
       </DialogTrigger>

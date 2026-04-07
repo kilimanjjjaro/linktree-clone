@@ -106,12 +106,7 @@ export default function AddLink() {
                   defaultChecked={selectedLink?.featured}
                 />
               </div>
-              <Button
-                type='submit'
-                variant='secondary'
-                className='w-full'
-                disabled={isPending}
-              >
+              <Button type='submit' className='w-full' disabled={isPending}>
                 {selectedLink !== null ? (
                   <>
                     {isPending ? (

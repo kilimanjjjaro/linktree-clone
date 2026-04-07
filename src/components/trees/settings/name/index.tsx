@@ -1,6 +1,6 @@
 'use client'
 
-import { Forward } from 'lucide-react'
+import { Check, Forward, SaveIcon } from 'lucide-react'
 
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
@@ -55,13 +55,12 @@ export default function TreeName() {
         <Button
           type='submit'
           size='icon'
-          variant='outline'
           className={cn(
             'absolute right-1.5 size-6 border-none opacity-0 transition-opacity peer-focus-visible:opacity-100 focus-visible:opacity-100',
-            savingTree && '!opacity-0'
+            savingTree && 'opacity-0!'
           )}
         >
-          <Forward className='size-4 translate-y-px rotate-180' />
+          <Check className='size-4 translate-y-px' />
           <span className='sr-only'>Save</span>
         </Button>
       </div>

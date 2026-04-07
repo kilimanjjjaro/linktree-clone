@@ -42,7 +42,6 @@ export default function BackgroundPopoverContent({
 
   const saveButton = (
     <Button
-      variant='secondary'
       className='mt-3 w-full'
       onClick={() => {
         if (selectedTree) saveTree({ appearance: selectedTree.appearance })

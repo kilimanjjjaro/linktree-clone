@@ -1,10 +1,10 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { usePathname, useRouter } from 'next/navigation'
 import slugify from '@sindresorhus/slugify'
 import { toast } from 'sonner'
-import { Copy, Forward } from 'lucide-react'
+import { Check, Copy } from 'lucide-react'
 
 import { ErrorTooltip } from '@/components/ui/error-tooltip'
 import { Button } from '@/components/ui/button'
@@ -19,10 +19,18 @@ import { cn } from '@/lib/utils'
 export default function TreeUrl() {
   const selectedTree = useStore((state) => state.selectedTree)
   const savingTree = useStore((state) => state.savingTree)
-  const [treeUrl, setTreeUrl] = useState('')
+  const [treeUrl, setTreeUrl] = useState(selectedTree?.url ?? '')
+  const [prevTree, setPrevTree] = useState(selectedTree)
   const { saveTree, errors } = useTree()
   const pathname = usePathname()
   const router = useRouter()
+
+  if (selectedTree !== prevTree) {
+    setPrevTree(selectedTree)
+    if (selectedTree !== null) {
+      setTreeUrl(selectedTree.url)
+    }
+  }
 
   const updateUrl = async (event: React.FormEvent<HTMLFormElement>) => {
     if (savingTree) return
@@ -55,12 +63,6 @@ export default function TreeUrl() {
       })
   }
 
-  useEffect(() => {
-    if (selectedTree === null) return
-
-    setTreeUrl(selectedTree.url)
-  }, [selectedTree])
-
   return (
     <section className='flex flex-col gap-y-3 p-5'>
       <div className='flex items-center gap-x-2'>
@@ -92,19 +94,18 @@ export default function TreeUrl() {
         <Button
           type='submit'
           size='icon'
-          variant='outline'
           className={cn(
             'absolute right-1.5 size-6 border-none opacity-0 transition-opacity peer-focus-visible:opacity-100 focus-visible:opacity-100',
-            savingTree && '!opacity-0'
+            savingTree && 'opacity-0!'
           )}
         >
-          <Forward className='size-4 translate-y-px rotate-180' />
+          <Check className='size-4 translate-y-px' />
           <span className='sr-only'>Save</span>
         </Button>
       </form>
-      <Button variant='secondary' onClick={copyUrl}>
+      <Button onClick={copyUrl}>
         Copy
-        <Copy className='size-3' strokeWidth={1.5} aria-hidden />
+        <Copy className='size-3.5' aria-hidden />
       </Button>
     </section>
   )
