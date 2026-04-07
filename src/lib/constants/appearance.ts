@@ -1,5 +1,17 @@
 export const GEIST_FONT_FAMILY = 'var(--font-geist-sans)'
 
+export const BACKGROUND_TYPES = [
+  { id: 0, name: 'Flat Color', slug: 'flat-color' },
+  { id: 1, name: 'Gradient Color', slug: 'gradient-color' },
+  { id: 2, name: 'Image', slug: 'image' },
+  { id: 3, name: 'Video', slug: 'video' }
+]
+
+export const BG_FLAT_COLOR = BACKGROUND_TYPES[0].id
+export const BG_GRADIENT = BACKGROUND_TYPES[1].id
+export const BG_IMAGE = BACKGROUND_TYPES[2].id
+export const BG_VIDEO = BACKGROUND_TYPES[3].id
+
 export const CORNER_VARIANTS = [
   { id: 0, name: 'None', className: 'rounded-none' },
   { id: 1, name: 'XS', className: 'rounded-sm' },
@@ -7,20 +19,6 @@ export const CORNER_VARIANTS = [
   { id: 3, name: 'MD', className: 'rounded-2xl' },
   { id: 4, name: 'LG', className: 'rounded-4xl' }
 ]
-
-export const getCornerClassName = (cornerStyle: number) => {
-  return (
-    CORNER_VARIANTS.find((v) => v.id === cornerStyle)?.className ??
-    'rounded-2xl'
-  )
-}
-
-export const getContainerColor = (colorId: number) => {
-  return (
-    CONTAINER_COLORS.find((c) => c.id === colorId)?.value ??
-    CONTAINER_COLORS[0].value
-  )
-}
 
 export const CONTAINER_COLORS = [
   { id: 0, name: 'White', value: 'rgba(255, 255, 255, 0.15)' },

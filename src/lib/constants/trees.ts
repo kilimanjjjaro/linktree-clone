@@ -16,12 +16,10 @@ export const DEMO_TREE_VALUES: TreeInterface = {
     background: {
       type: 0,
       settings: {
-        steps: [
-          [251, 231, 225],
-          [42, 70, 122],
-          [0, 2, 11]
-        ],
-        angle: 0
+        steps: [],
+        angle: 0,
+        color: [18, 18, 18],
+        url: ''
       }
     },
     font: 0,

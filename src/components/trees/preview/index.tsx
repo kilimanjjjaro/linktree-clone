@@ -12,11 +12,12 @@ import AddLink from '@/components/trees/preview/link/add-link'
 import { ScrollArea } from '@/components/ui/scroll-area'
 import { useStore } from '@/lib/store/store'
 import { loadFont, getFontFamily } from '@/lib/utils/fonts'
-import {
-  getContainerColor,
-  getCornerClassName
-} from '@/lib/constants/appearance'
+import { getBackgroundStyle } from '@/lib/utils/get-background-style'
+import { getCornerClassName } from '@/lib/utils/get-corner-class-name'
+import { getContainerColor } from '@/lib/utils/get-container-color'
+import { BG_VIDEO } from '@/lib/constants/appearance'
 import { cn } from '@/lib/utils'
+
 
 export default function TreePreview() {
   const selectedTree = useStore((state) => state.selectedTree)
@@ -30,7 +31,7 @@ export default function TreePreview() {
 
   return (
     <section className='flex flex-col items-center self-center'>
-      <div className='relative flex aspect-[320/630] w-[360px] items-start justify-center overflow-hidden'>
+      <div className='relative flex aspect-320/630 w-90 items-start justify-center overflow-hidden'>
         <DeviceOverlay />
         <div
           className='relative size-full p-[16.5px]'
@@ -39,9 +40,21 @@ export default function TreePreview() {
               'url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0nMzIwJyBoZWlnaHQ9JzYzMCcgdmlld0JveD0nMCAwIDMyMCA2MzAnIGZpbGw9J25vbmUnIHhtbG5zPSdodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2Zyc+PHBhdGggZD0nTTAgNTJDMCAyMy4yODEyIDIzLjI4MTIgMCA1MiAwSDI2OEMyOTYuNzE5IDAgMzIwIDIzLjI4MTIgMzIwIDUyVjU3OEMzMjAgNjA2LjcxOSAyOTYuNzE5IDYzMCAyNjggNjMwSDUyQzIzLjI4MTIgNjMwIDAgNjA2LjcxOSAwIDU3OFY1MlonIGZpbGw9J3doaXRlJy8+PC9zdmc+Cg==")',
             maskPosition: 'center',
             maskRepeat: 'no-repeat',
-            maskSize: '100%'
+            maskSize: '100%',
+            ...(appearance ? getBackgroundStyle(appearance.background) : {})
           }}
         >
+          {appearance?.background.type === BG_VIDEO &&
+            appearance.background.settings.url && (
+              <video
+                src={appearance.background.settings.url}
+                className='absolute inset-0 size-full object-cover'
+                muted
+                autoPlay
+                loop
+                playsInline
+              />
+            )}
           <ScrollArea
             className='h-full px-4'
             scrollHideDelay={0}

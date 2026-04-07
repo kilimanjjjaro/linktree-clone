@@ -18,7 +18,7 @@ export default async function Home(props: Props) {
   const trees = await getCachedTrees(user?.id)
 
   return (
-    <InitApp trees={trees}>
+    <InitApp trees={trees} treeUrl={treeUrl}>
       <Navbar treeUrl={treeUrl} />
       <main className='relative grid h-dvh min-h-dvh grid-cols-[auto_1fr_auto] items-start justify-center p-3 pt-[88px]'>
         <TreeAppearance />

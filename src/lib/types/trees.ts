@@ -17,6 +17,8 @@ export type TreeAppearanceInterface = {
     settings: {
       steps: Array<[number, number, number]>
       angle: number
+      color: [number, number, number]
+      url: string
     }
   }
   font: number

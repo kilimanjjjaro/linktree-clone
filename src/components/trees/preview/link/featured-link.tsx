@@ -4,10 +4,14 @@ import { type TreeLink } from '@/generated/prisma/browser'
 import { Button } from '@/components/ui/button'
 import { useStore } from '@/lib/store/store'
 import useLinks from '@/lib/hooks/useLinks'
-import { getCornerClassName } from '@/lib/constants/appearance'
+import { getCornerClassName } from '@/lib/utils/get-corner-class-name'
 import { cn } from '@/lib/utils'
 
-export default function FeaturedLink({ link }: { link: TreeLink }) {
+interface Props {
+  link: TreeLink
+}
+
+export default function FeaturedLink({ link }: Props) {
   const selectedTree = useStore((state) => state.selectedTree)
   const setSelectedLink = useStore((state) => state.setSelectedLink)
   const setShowAddLinkDialog = useStore((state) => state.setShowAddLinkDialog)

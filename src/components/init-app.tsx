@@ -1,7 +1,7 @@
 'use client'
 
 import { useCallback, useEffect, useRef } from 'react'
-import { usePathname, useRouter, useSearchParams } from 'next/navigation'
+import { usePathname, useRouter } from 'next/navigation'
 
 import { useStore } from '@/lib/store/store'
 import { DEMO_TREE_VALUES } from '@/lib/constants/trees'
@@ -11,13 +11,12 @@ import { type TreeInterface } from '@/lib/types/trees'
 interface Props {
   children: ChildrenType
   trees: TreeInterface[]
+  treeUrl?: string
 }
 
-export default function InitApp({ children, trees }: Props) {
+export default function InitApp({ children, trees, treeUrl }: Props) {
   const setSelectedTree = useStore((state) => state.setSelectedTree)
-  const searchParams = useSearchParams()
   const pathname = usePathname()
-  const treeUrl = searchParams.get('tree')
   const router = useRouter()
   const treesRef = useRef(trees)
 
@@ -49,7 +48,7 @@ export default function InitApp({ children, trees }: Props) {
       updateAppState(tree, false)
     } else {
       const hasTrees = treesRef.current.length > 0
-      const hasTreeUrl = treeUrl !== null && treeUrl.length > 0
+      const hasTreeUrl = treeUrl !== undefined && treeUrl.length > 0
 
       if (hasTreeUrl && hasTrees) {
         const tree = treesRef.current.find((tree) => tree.url === treeUrl)

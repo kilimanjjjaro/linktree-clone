@@ -1,6 +1,6 @@
-import TreeGeneral from './general'
-import TreeFont from './font'
-import TreeBackground from './background'
+import TreeGeneral from '@/components/trees/appearance/general'
+import TreeFont from '@/components/trees/appearance/font'
+import TreeBackground from '@/components/trees/appearance/background'
 import { Separator } from '@/components/ui/separator'
 import { ScrollArea } from '@/components/ui/scroll-area'
 
