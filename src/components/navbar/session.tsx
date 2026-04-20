@@ -21,7 +21,7 @@ export default async function SessionBar({ user }: Props) {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <button className='border-lt-light-gray/60 focus-visible:ring-lt-white focus-visible:ring-offset-lt-gray relative flex aspect-square h-full items-center justify-center overflow-hidden rounded-full border transition-opacity outline-none focus-visible:ring-2 focus-visible:ring-offset-2 xl:hover:opacity-70'>
+        <button className='border-lt-light-gray/60 focus-visible:ring-lt-white focus-visible:ring-offset-lt-gray relative flex aspect-square h-full cursor-pointer items-center justify-center overflow-hidden rounded-full border transition-opacity outline-none focus-visible:ring-2 focus-visible:ring-offset-2 xl:hover:opacity-70'>
           {user !== undefined ? (
             <Image
               className='absolute size-full object-cover object-center'

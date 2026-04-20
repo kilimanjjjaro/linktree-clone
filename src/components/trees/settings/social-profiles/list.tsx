@@ -53,7 +53,7 @@ export default function SocialProfilesList({ setOpen }: Props) {
         >
           <button
             aria-label='Update URL'
-            className='py-1.5 pl-3'
+            className='cursor-pointer py-1.5 pl-3'
             onClick={() => {
               updateSocialProfile(socialProfile)
             }}
@@ -62,7 +62,7 @@ export default function SocialProfilesList({ setOpen }: Props) {
           </button>
           <button
             aria-label='Remove'
-            className='xl:hover:bg-lt-gray h-auto rounded-full p-1 transition-colors'
+            className='xl:hover:bg-lt-gray h-auto cursor-pointer rounded-full p-1 transition-colors'
             onClick={() => {
               removeProfile(socialProfile.type)
             }}

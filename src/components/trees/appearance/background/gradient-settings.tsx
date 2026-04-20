@@ -40,7 +40,7 @@ export default function GradientSettings({ steps, angle, onChange }: Props) {
             {canRemove && (
               <button
                 type='button'
-                className='text-lt-lightest-gray hover:text-lt-white transition-colors'
+                className='cursor-pointer text-lt-lightest-gray hover:text-lt-white transition-colors'
                 onClick={() => {
                   const newSteps = steps.filter((_, i) => i !== index)
                   onChange({ steps: newSteps })
@@ -56,7 +56,7 @@ export default function GradientSettings({ steps, angle, onChange }: Props) {
       {canAdd && (
         <button
           type='button'
-          className='border-lt-light-gray/60 hover:bg-lt-light-gray/30 flex items-center justify-center gap-1.5 rounded-lg border px-3 py-1.5 text-xs transition-colors'
+          className='border-lt-light-gray/60 hover:bg-lt-light-gray/30 flex cursor-pointer items-center justify-center gap-1.5 rounded-lg border px-3 py-1.5 text-xs transition-colors'
           onClick={() => {
             onChange({ steps: [...steps, [128, 128, 128]] })
           }}

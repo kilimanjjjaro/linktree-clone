@@ -10,7 +10,7 @@ import { type ChildrenType } from '@/lib/types/globals'
 export const HelpPopover = ({ children }: { children: ChildrenType }) => {
   return (
     <Popover>
-      <PopoverTrigger>
+      <PopoverTrigger className='cursor-pointer'>
         <CircleHelp className='size-3.5' aria-hidden />
         <span className='sr-only'>Show help</span>
       </PopoverTrigger>

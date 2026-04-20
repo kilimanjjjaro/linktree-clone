@@ -98,7 +98,7 @@ export default function TreeGeneral() {
                     key={color.id}
                     type='button'
                     className={cn(
-                      'relative flex aspect-square items-center justify-center rounded-lg border transition-colors',
+                      'relative flex aspect-square cursor-pointer items-center justify-center rounded-lg border transition-colors',
                       contentContainer.color === color.id
                         ? 'border-lt-white'
                         : 'border-lt-light-gray/60'

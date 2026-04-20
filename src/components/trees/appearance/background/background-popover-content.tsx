@@ -59,7 +59,7 @@ export default function BackgroundPopoverContent({
         <Label className='text-lt-lightest-gray'>Upload image</Label>
         <button
           type='button'
-          className='border-lt-light-gray/60 hover:bg-lt-light-gray/30 flex items-center justify-center gap-2 rounded-lg border px-4 py-2 text-sm transition-colors'
+          className='border-lt-light-gray/60 hover:bg-lt-light-gray/30 flex cursor-pointer items-center justify-center gap-2 rounded-lg border px-4 py-2 text-sm transition-colors'
           onClick={() => imageInputRef.current?.click()}
         >
           <ImageIcon className='size-4' aria-hidden />
@@ -84,7 +84,7 @@ export default function BackgroundPopoverContent({
         <Label className='text-lt-lightest-gray'>Upload video</Label>
         <button
           type='button'
-          className='border-lt-light-gray/60 hover:bg-lt-light-gray/30 flex items-center justify-center gap-2 rounded-lg border px-4 py-2 text-sm transition-colors'
+          className='border-lt-light-gray/60 hover:bg-lt-light-gray/30 flex cursor-pointer items-center justify-center gap-2 rounded-lg border px-4 py-2 text-sm transition-colors'
           onClick={() => videoInputRef.current?.click()}
         >
           <FilmIcon className='size-4' aria-hidden />
