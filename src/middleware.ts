@@ -1,16 +1,24 @@
 import { NextResponse } from 'next/server'
 import NextAuth from 'next-auth'
 import authConfig from '@/lib/auth/auth.config'
-import { PUBLIC_ROUTES, AUTH_ROUTES } from '@/lib/constants/globals'
+import { GUEST_ROUTES, AUTH_ROUTES } from '@/lib/constants/globals'
 
 const { auth } = NextAuth(authConfig)
+
+const KNOWN_ROUTES = new Set([...GUEST_ROUTES, ...AUTH_ROUTES])
+
+function isTreeRoute(pathname: string) {
+  if (KNOWN_ROUTES.has(pathname)) return false
+  // Single-segment paths like /my-tree (no nested slashes, no file extension)
+  return /^\/[^/.]+$/.test(pathname)
+}
 
 export default auth((request) => {
   const { nextUrl } = request
   const isLoggedIn = request.auth !== null
 
   const isApiAuthRoute = nextUrl.pathname.startsWith('/api/auth')
-  const isPublicRoute = PUBLIC_ROUTES.includes(nextUrl.pathname)
+  const isGuestRoute = GUEST_ROUTES.includes(nextUrl.pathname)
   const isAuthRoute = AUTH_ROUTES.includes(nextUrl.pathname)
 
   if (isApiAuthRoute) return NextResponse.next()
@@ -21,7 +29,9 @@ export default auth((request) => {
     return NextResponse.next()
   }
 
-  if (!isLoggedIn && !isPublicRoute) {
+  if (isTreeRoute(nextUrl.pathname)) return NextResponse.next()
+
+  if (!isLoggedIn && !isGuestRoute) {
     return NextResponse.redirect(new URL('/login', nextUrl))
   }
 
