@@ -8,9 +8,11 @@ import { toast } from 'sonner'
 import { Button } from '@/components/ui/button'
 import { createDefaultTree } from '@/lib/actions/trees/create-default-tree'
 import { useStore } from '@/lib/store/store'
+import useCurrentUser from '@/lib/hooks/useCurrentUser'
 
 export default function NewTreeButton() {
   const hasUnsavedChanges = useStore((state) => state.hasUnsavedChanges)
+  const user = useCurrentUser()
   const setSelectedTree = useStore((state) => state.setSelectedTree)
   const setSavedTree = useStore((state) => state.setSavedTree)
   const [isPending, startTransition] = useTransition()
@@ -36,7 +38,7 @@ export default function NewTreeButton() {
 
   return (
     <Button
-      variant='secondary'
+      variant={user !== null ? 'default' : 'secondary'}
       className='h-full'
       onClick={handleCreate}
       disabled={isPending}

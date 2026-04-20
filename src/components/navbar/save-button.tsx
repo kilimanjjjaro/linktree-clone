@@ -70,7 +70,7 @@ export default function SaveButton() {
 
   return (
     <Button
-      variant='secondary'
+      variant={user !== null ? 'default' : 'secondary'}
       className='h-full'
       onClick={handleSave}
       disabled={isPending}
