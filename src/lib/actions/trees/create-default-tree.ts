@@ -6,9 +6,32 @@ import { Prisma } from '@/generated/prisma/client'
 
 import db from '@/lib/database'
 import { getCurrentUser } from '@/lib/services/get-current-user'
-import { TREE_NAMES } from '@/lib/constants/trees'
+import { DEFAULT_TREE_NAME } from '@/lib/constants/trees'
 import { generateRawDataToCreate } from '@/lib/utils/generate-raw-data'
 import { type TreeInterface } from '@/lib/types/trees'
+
+async function getNextTreeName(userId: string) {
+  const existingTrees = await db.tree.findMany({
+    where: {
+      authorId: userId,
+      name: { startsWith: DEFAULT_TREE_NAME }
+    },
+    select: { name: true }
+  })
+
+  if (existingTrees.length === 0) return DEFAULT_TREE_NAME
+
+  const usedNumbers = existingTrees.map((tree) => {
+    if (tree.name === DEFAULT_TREE_NAME) return 1
+    const suffix = tree.name.slice(DEFAULT_TREE_NAME.length).trim()
+    const num = Number(suffix)
+    return Number.isInteger(num) ? num : 0
+  })
+
+  const maxNumber = Math.max(...usedNumbers)
+
+  return `${DEFAULT_TREE_NAME} ${maxNumber + 1}`
+}
 
 export async function createDefaultTree() {
   const user = await getCurrentUser()
@@ -21,16 +44,15 @@ export async function createDefaultTree() {
     }
   }
 
-  const randomIndex = Math.floor(Math.random() * TREE_NAMES.length)
-  const randomName = TREE_NAMES[randomIndex]
+  const name = await getNextTreeName(user.id)
 
   try {
     const response = await db.tree.create({
       data: {
         ...generateRawDataToCreate(),
         authorId: user.id,
-        name: randomName,
-        url: slugify(randomName)
+        name,
+        url: slugify(name)
       },
       include: {
         links: true,

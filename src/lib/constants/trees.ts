@@ -4,8 +4,8 @@ export const DEMO_TREE_VALUES: TreeInterface = {
   id: 'demo',
   authorId: 'demo',
   status: 0,
-  name: 'Tree example',
-  url: 'tree-example',
+  name: 'Example Tree',
+  url: 'example-tree',
   description:
     'Full Stack Developer & UX/UI Designer with +6 years of work experience.',
   avatar:
@@ -35,18 +35,7 @@ export const DEMO_TREE_VALUES: TreeInterface = {
   updatedAt: new Date()
 }
 
-export const TREE_NAMES = [
-  'Obscured by Clouds',
-  "When You're In",
-  'Burning Bridges',
-  "The Gold It's in the...",
-  "Wot's... Uh the Deal?",
-  'Mudmen',
-  "Childhood's End",
-  'Free Four',
-  'Stay',
-  'Absolutely Curtains'
-]
+export const DEFAULT_TREE_NAME = 'Example Tree'
 
 export const ACCEPTED_FILE_TYPES = {
   'image/png': ['.png'],
