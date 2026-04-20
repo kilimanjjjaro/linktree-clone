@@ -1,6 +1,6 @@
 'use client'
 
-import { useFormState } from 'react-dom'
+import { useActionState } from 'react'
 import { useAutoAnimate } from '@formkit/auto-animate/react'
 import EmailButton from '@/components/auth/submit-button'
 import Feedback from '@/components/auth/feedback'
@@ -12,7 +12,7 @@ import { newPassword } from '@/lib/actions/auth/new-password'
 export default function NewPasswordForm() {
   const searchParams = useSearchParams()
   const token = searchParams.get('token')
-  const [state, formAction] = useFormState(newPassword, {
+  const [state, formAction] = useActionState(newPassword, {
     error: '',
     success: '',
     token: token ?? ''

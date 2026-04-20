@@ -1,6 +1,6 @@
 'use client'
 
-import { useFormState } from 'react-dom'
+import { useActionState } from 'react'
 import { useAutoAnimate } from '@formkit/auto-animate/react'
 import EmailButton from '@/components/auth/submit-button'
 import Feedback from '@/components/auth/feedback'
@@ -14,7 +14,7 @@ const INITIAL_STATE = {
 }
 
 export default function ResetPasswordForm() {
-  const [state, formAction] = useFormState(resetPassword, INITIAL_STATE)
+  const [state, formAction] = useActionState(resetPassword, INITIAL_STATE)
   const [parent] = useAutoAnimate({ duration: 200 })
 
   return (
