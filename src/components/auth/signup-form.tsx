@@ -10,7 +10,8 @@ import { signUpWithEmail } from '@/lib/actions/auth/signup-with-email'
 
 const INITIAL_STATE = {
   error: '',
-  success: ''
+  success: '',
+  fields: { name: '', email: '' }
 }
 
 export default function SignUpForm() {
@@ -28,6 +29,7 @@ export default function SignUpForm() {
           name='name'
           placeholder='Hugo'
           autoComplete='name'
+          defaultValue={state.fields?.name}
           required
           autoFocus
         />
@@ -40,6 +42,7 @@ export default function SignUpForm() {
           name='email'
           placeholder='example@mail.com'
           autoComplete='email'
+          defaultValue={state.fields?.email}
           required
         />
       </div>

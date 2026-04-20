@@ -7,17 +7,25 @@ import { generateConfirmationToken } from '@/lib/utils/generate-confirmation-tok
 import { sendConfirmationEmail } from '@/lib/services/send-confirmation-email'
 
 export async function signUpWithEmail(prevState: unknown, formData: FormData) {
+  const fields = {
+    name: formData.get('name') as string ?? '',
+    email: formData.get('email') as string ?? ''
+  }
+
   const validatedFields = SignUpSchema.safeParse({
-    name: formData.get('name'),
-    email: formData.get('email'),
+    ...fields,
     password: formData.get('password'),
     confirmPassword: formData.get('confirm-password')
   })
 
   if (!validatedFields.success) {
+    const firstError =
+      validatedFields.error.issues[0]?.message ?? 'Invalid fields.'
+
     return {
-      error: 'Invalid fields.',
-      success: ''
+      error: firstError,
+      success: '',
+      fields
     }
   }
 
@@ -26,7 +34,8 @@ export async function signUpWithEmail(prevState: unknown, formData: FormData) {
   if (password !== confirmPassword) {
     return {
       error: 'Passwords must be equal.',
-      success: ''
+      success: '',
+      fields
     }
   }
 
@@ -42,7 +51,8 @@ export async function signUpWithEmail(prevState: unknown, formData: FormData) {
     if (existingUser != null) {
       return {
         error: 'Email already used.',
-        success: ''
+        success: '',
+        fields
       }
     }
 
@@ -66,11 +76,15 @@ export async function signUpWithEmail(prevState: unknown, formData: FormData) {
       error: ''
     }
   } catch (error) {
-    console.error('ACTION_ERROR: ', error instanceof Error ? error.message : error)
+    console.error(
+      'ACTION_ERROR: ',
+      error instanceof Error ? error.message : error
+    )
 
     return {
       error: 'Something went wrong.',
-      success: ''
+      success: '',
+      fields
     }
   }
 }

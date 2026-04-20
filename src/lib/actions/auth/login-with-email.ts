@@ -8,15 +8,23 @@ import { getUserByEmail } from '@/lib/services/get-user-by-email'
 import { sendConfirmationEmail } from '@/lib/services/send-confirmation-email'
 
 export async function logInWithEmail(prevState: unknown, formData: FormData) {
+  const fields = {
+    email: formData.get('email') as string ?? ''
+  }
+
   const validatedFields = LogInSchema.safeParse({
-    email: formData.get('email'),
+    ...fields,
     password: formData.get('password')
   })
 
   if (!validatedFields.success) {
+    const firstError =
+      validatedFields.error.issues[0]?.message ?? 'Invalid fields.'
+
     return {
-      error: 'Invalid fields.',
-      success: ''
+      error: firstError,
+      success: '',
+      fields
     }
   }
 
@@ -27,14 +35,16 @@ export async function logInWithEmail(prevState: unknown, formData: FormData) {
   if (existingUser?.email === undefined) {
     return {
       error: 'User not found.',
-      success: ''
+      success: '',
+      fields
     }
   }
 
   if (existingUser?.password === null) {
     return {
       error: 'Please, use your provider account.',
-      success: ''
+      success: '',
+      fields
     }
   }
 
@@ -66,12 +76,13 @@ export async function logInWithEmail(prevState: unknown, formData: FormData) {
     if (error instanceof AuthError) {
       switch (error.type) {
         case 'CredentialsSignin': {
-          return { error: 'Invalid credentials.', success: '' }
+          return { error: 'Invalid credentials.', success: '', fields }
         }
         default: {
           return {
             error: 'Something went wrong.',
-            success: ''
+            success: '',
+            fields
           }
         }
       }

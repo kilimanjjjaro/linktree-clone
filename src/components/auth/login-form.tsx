@@ -11,7 +11,8 @@ import Link from 'next/link'
 
 const INITIAL_STATE = {
   success: '',
-  error: ''
+  error: '',
+  fields: { email: '' }
 }
 
 export default function LogInForm() {
@@ -29,6 +30,7 @@ export default function LogInForm() {
           name='email'
           placeholder='example@mail.com'
           autoComplete='email'
+          defaultValue={state.fields?.email}
           required
           autoFocus
         />
