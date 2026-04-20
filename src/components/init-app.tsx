@@ -49,7 +49,7 @@ export default function InitApp({ children, trees, treeUrl }: Props) {
     } else {
       const currentTree = useStore.getState().selectedTree
 
-      if (currentTree?.url === treeUrl) return
+      if (currentTree !== null && currentTree.url === treeUrl) return
 
       const hasTrees = treesRef.current.length > 0
       const hasTreeUrl = treeUrl !== undefined && treeUrl.length > 0
