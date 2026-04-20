@@ -1,8 +1,5 @@
-import { Resend } from 'resend'
-
+import { transporter } from '@/lib/email'
 import { BASE_URL } from '@/lib/constants/globals'
-
-const resend = new Resend(process.env.RESEND_API_KEY)
 
 interface Props {
   email: string
@@ -12,8 +9,8 @@ interface Props {
 export async function sendConfirmationEmail({ email, token }: Props) {
   const confirmationLink = `${BASE_URL}/confirm-account?token=${token}`
 
-  const response = await resend.emails.send({
-    from: 'Linktree Clone <onboarding@resend.dev>',
+  const response = await transporter.sendMail({
+    from: `Linktree Clone <${process.env.GMAIL_USER}>`,
     to: email,
     subject: 'Confirm your account of Linktree Clone',
     html: html({ url: confirmationLink }),
