@@ -5,11 +5,15 @@ import { LogOut } from 'lucide-react'
 
 import { DropdownMenuItem } from '@/components/ui/dropdown-menu'
 import { logOut } from '@/lib/actions/auth/logout'
+import { useStore } from '@/lib/store/store'
 
 export default function LogOutButton() {
+  const setSelectedTree = useStore((state) => state.setSelectedTree)
+
   return (
     <DropdownMenuItem
       onClick={async () => {
+        setSelectedTree(null)
         await signOut()
         await logOut()
       }}

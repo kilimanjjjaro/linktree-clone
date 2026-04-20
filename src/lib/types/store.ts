@@ -5,7 +5,7 @@ import { type TreeInterface } from '@/lib/types/trees'
 
 export interface TreesStoreInterface {
   selectedTree: TreeInterface | null
-  setSelectedTree: (selectedTree: TreeInterface) => void
+  setSelectedTree: (selectedTree: TreeInterface | null) => void
   savingTree: boolean
   setSavingTree: (savingTree: boolean) => void
   showSaveTreeDialog: boolean
