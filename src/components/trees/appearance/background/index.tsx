@@ -17,11 +17,10 @@ import { BACKGROUND_TYPES, BG_FLAT_COLOR } from '@/lib/constants/appearance'
 export default function TreeBackground() {
   const selectedTree = useStore((state) => state.selectedTree)
   const setSelectedTree = useStore((state) => state.setSelectedTree)
+  const setHasUnsavedChanges = useStore((state) => state.setHasUnsavedChanges)
   const imageInputRef = useRef<HTMLInputElement>(null)
   const videoInputRef = useRef<HTMLInputElement>(null)
   const [openPopover, setOpenPopover] = useState<number | null>(null)
-
-  if (selectedTree === null) return null
 
   const { type, settings } = selectedTree.appearance.background
 
@@ -48,7 +47,7 @@ export default function TreeBackground() {
     }
 
     setSelectedTree(updatedTree)
-    localStorage.setItem('__LOCAL_TREE__', JSON.stringify(updatedTree))
+    setHasUnsavedChanges(true)
   }
 
   const clearBackground = () => {

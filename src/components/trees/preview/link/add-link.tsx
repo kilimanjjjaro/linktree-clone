@@ -1,7 +1,6 @@
 'use client'
 
-import { useTransition } from 'react'
-import { LoaderCircle, Plus } from 'lucide-react'
+import { Plus } from 'lucide-react'
 
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
@@ -23,30 +22,27 @@ export default function AddLink() {
   const setSelectedLink = useStore((state) => state.setSelectedLink)
   const showAddLinkDialog = useStore((state) => state.showAddLinkDialog)
   const setShowAddLinkDialog = useStore((state) => state.setShowAddLinkDialog)
-  const [isPending, startTransition] = useTransition()
   const { addLink } = useLinks()
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     if (selectedTree === null) return
     event.preventDefault()
 
-    startTransition(async () => {
-      const formData = new FormData(event.currentTarget)
+    const formData = new FormData(event.currentTarget)
 
-      const newLink = {
-        treeId: selectedTree.id,
-        name: formData.get('name') as string,
-        url: formData.get('url') as string,
-        featured: formData.get('featured') !== null
-      }
+    const newLink = {
+      treeId: selectedTree.id,
+      name: formData.get('name') as string,
+      url: formData.get('url') as string,
+      featured: formData.get('featured') !== null
+    }
 
-      const response = await addLink(newLink)
+    const response = await addLink(newLink)
 
-      if (response !== null) {
-        setShowAddLinkDialog(false)
-        setSelectedLink(null)
-      }
-    })
+    if (response !== null) {
+      setShowAddLinkDialog(false)
+      setSelectedLink(null)
+    }
   }
 
   return (
@@ -106,36 +102,8 @@ export default function AddLink() {
                   defaultChecked={selectedLink?.featured}
                 />
               </div>
-              <Button type='submit' className='w-full' disabled={isPending}>
-                {selectedLink !== null ? (
-                  <>
-                    {isPending ? (
-                      <>
-                        Updating
-                        <LoaderCircle
-                          className='size-4 animate-spin'
-                          aria-hidden
-                        />
-                      </>
-                    ) : (
-                      'Update'
-                    )}
-                  </>
-                ) : (
-                  <>
-                    {isPending ? (
-                      <>
-                        Adding
-                        <LoaderCircle
-                          className='size-4 animate-spin'
-                          aria-hidden
-                        />
-                      </>
-                    ) : (
-                      'Add'
-                    )}
-                  </>
-                )}
+              <Button type='submit' className='w-full'>
+                {selectedLink !== null ? 'Update' : 'Add'}
               </Button>
             </form>
           </main>

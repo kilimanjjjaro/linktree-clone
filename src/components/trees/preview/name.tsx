@@ -5,8 +5,9 @@ import { useStore } from '@/lib/store/store'
 
 export default function TreeName() {
   const selectedTree = useStore((state) => state.selectedTree)
+  const isStoreReady = useStore((state) => state.isStoreReady)
 
-  if (selectedTree === null) {
+  if (!isStoreReady) {
     return <Skeleton className='mt-5 h-8 w-36 rounded-full' />
   }
 

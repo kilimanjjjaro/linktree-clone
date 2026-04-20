@@ -3,10 +3,7 @@ import { FilmIcon, ImageIcon } from 'lucide-react'
 
 import GradientSettings from '@/components/trees/appearance/background/gradient-settings'
 import FlatColorSettings from '@/components/trees/appearance/background/flat-color-settings'
-import { Button } from '@/components/ui/button'
 import { Label } from '@/components/ui/label'
-import { useStore } from '@/lib/store/store'
-import useTree from '@/lib/hooks/useTree'
 import {
   BG_GRADIENT,
   BG_FLAT_COLOR,
@@ -37,42 +34,22 @@ export default function BackgroundPopoverContent({
   imageInputRef,
   videoInputRef
 }: Props) {
-  const selectedTree = useStore((state) => state.selectedTree)
-  const { saveTree } = useTree()
-
-  const saveButton = (
-    <Button
-      className='mt-3 w-full'
-      onClick={() => {
-        if (selectedTree) saveTree({ appearance: selectedTree.appearance })
-      }}
-    >
-      Save
-    </Button>
-  )
-
   if (bgType === BG_GRADIENT) {
     return (
-      <>
-        <GradientSettings
-          steps={settings.steps}
-          angle={settings.angle}
-          onChange={(updates) => updatePreview({ settings: updates })}
-        />
-        {saveButton}
-      </>
+      <GradientSettings
+        steps={settings.steps}
+        angle={settings.angle}
+        onChange={(updates) => updatePreview({ settings: updates })}
+      />
     )
   }
 
   if (bgType === BG_FLAT_COLOR) {
     return (
-      <>
-        <FlatColorSettings
-          color={settings.color}
-          onChange={(color) => updatePreview({ settings: { color } })}
-        />
-        {saveButton}
-      </>
+      <FlatColorSettings
+        color={settings.color}
+        onChange={(color) => updatePreview({ settings: { color } })}
+      />
     )
   }
 
@@ -97,7 +74,6 @@ export default function BackgroundPopoverContent({
             />
           </div>
         )}
-        {saveButton}
       </div>
     )
   }
@@ -126,7 +102,6 @@ export default function BackgroundPopoverContent({
             />
           </div>
         )}
-        {saveButton}
       </div>
     )
   }

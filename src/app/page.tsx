@@ -5,7 +5,7 @@ import TreeAppearance from '@/components/trees/appearance'
 import TreePreview from '@/components/trees/preview'
 import TreeSettings from '@/components/trees/settings'
 import { getCurrentUser } from '@/lib/services/get-current-user'
-import { getCachedTrees } from '@/lib/services/get-cached-trees'
+import { getTrees } from '@/lib/services/get-trees'
 
 interface Props {
   searchParams: Promise<{ tree: string | undefined }>
@@ -15,7 +15,7 @@ export default async function Home(props: Props) {
   const searchParams = await props.searchParams
   const treeUrl = searchParams.tree
   const user = await getCurrentUser()
-  const trees = await getCachedTrees(user?.id)
+  const trees = user?.id !== undefined ? await getTrees(user.id) : []
 
   return (
     <InitApp trees={trees} treeUrl={treeUrl}>

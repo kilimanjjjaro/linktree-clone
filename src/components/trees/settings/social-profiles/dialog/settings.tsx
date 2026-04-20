@@ -1,6 +1,3 @@
-import { useTransition } from 'react'
-import { LoaderCircle } from 'lucide-react'
-
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
@@ -14,7 +11,6 @@ interface Props {
 }
 
 export default function SocialProfileSettings({ closeDialog }: Props) {
-  const [isPending, startTransition] = useTransition()
   const setStep = useStore((state) => state.setStep)
   const selectedTree = useStore((state) => state.selectedTree)
   const selectedSocialProfile = useStore((state) => state.selectedSocialProfile)
@@ -25,28 +21,26 @@ export default function SocialProfileSettings({ closeDialog }: Props) {
 
   if (selectedSocialProfile === null) return
 
-  const submitForm = async (event: React.FormEvent<HTMLFormElement>) => {
+  const submitForm = (event: React.FormEvent<HTMLFormElement>) => {
     if (selectedTree === null) return
     event.preventDefault()
 
-    startTransition(async () => {
-      const form = event.target as HTMLFormElement
-      const formData = new FormData(form)
-      const socialProfileValue = formData.get('socialProfileValue') as string
+    const form = event.target as HTMLFormElement
+    const formData = new FormData(form)
+    const socialProfileValue = formData.get('socialProfileValue') as string
 
-      if (socialProfileValue === '') return
+    if (socialProfileValue === '') return
 
-      await saveProfile({
-        treeId: selectedTree.id,
-        type: selectedSocialProfile.type,
-        url: socialProfileValue,
-        name: selectedSocialProfile.name
-      })
+    saveProfile({
+      treeId: selectedTree.id,
+      type: selectedSocialProfile.type,
+      url: socialProfileValue,
+      name: selectedSocialProfile.name
+    })
 
-      closeDialog()
-      void delay(200).then(() => {
-        setStep(1)
-      })
+    closeDialog()
+    void delay(200).then(() => {
+      setStep(1)
     })
   }
 
@@ -85,29 +79,7 @@ export default function SocialProfileSettings({ closeDialog }: Props) {
       </div>
       <footer className='grid grid-cols-2 gap-x-3'>
         <Button type='submit' className='order-2'>
-          {existingSocialProfile !== undefined ? (
-            <>
-              {isPending ? (
-                <>
-                  Updating
-                  <LoaderCircle className='size-4 animate-spin' aria-hidden />
-                </>
-              ) : (
-                'Update'
-              )}
-            </>
-          ) : (
-            <>
-              {isPending ? (
-                <>
-                  Adding
-                  <LoaderCircle className='size-4 animate-spin' aria-hidden />
-                </>
-              ) : (
-                'Add'
-              )}
-            </>
-          )}
+          {existingSocialProfile !== undefined ? 'Update' : 'Add'}
         </Button>
         <Button
           variant='secondary'

@@ -3,6 +3,7 @@ import { FONT_VARIANTS } from '@/lib/constants/appearance'
 export default function useFonts() {
   const setSelectedTree = useStore((state) => state.setSelectedTree)
   const selectedTree = useStore((state) => state.selectedTree)
+  const setHasUnsavedChanges = useStore((state) => state.setHasUnsavedChanges)
 
   const changeFont = (fontSlug: string) => {
     if (selectedTree === null) return
@@ -21,16 +22,7 @@ export default function useFonts() {
       }
     })
 
-    localStorage.setItem(
-      '__LOCAL_TREE__',
-      JSON.stringify({
-        ...selectedTree,
-        appearance: {
-          ...currentAppearance,
-          font: selectedFont.id
-        }
-      })
-    )
+    setHasUnsavedChanges(true)
   }
 
   return {

@@ -8,9 +8,10 @@ import { useStore } from '@/lib/store/store'
 
 export default function TreeSocialProfiles() {
   const selectedTree = useStore((state) => state.selectedTree)
+  const isStoreReady = useStore((state) => state.isStoreReady)
   const [parent] = useAutoAnimate({ duration: 200 })
 
-  if (selectedTree === null) {
+  if (!isStoreReady) {
     return (
       <div className='mt-4 flex flex-wrap items-center justify-center gap-3 px-6'>
         <Skeleton className='size-7 rounded-full' />

@@ -1,39 +1,57 @@
 'use client'
 
-import { Check, Forward, SaveIcon } from 'lucide-react'
+import { useState } from 'react'
 
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
-import { Button } from '@/components/ui/button'
 import { ErrorTooltip } from '@/components/ui/error-tooltip'
 import { HelpPopover } from '@/components/ui/help-popover'
 import { useStore } from '@/lib/store/store'
-import useTree from '@/lib/hooks/useTree'
+import { UpdateTreeSchema } from '@/lib/schemas/tree'
 import { DEMO_TREE_VALUES } from '@/lib/constants/trees'
-import { cn } from '@/lib/utils'
 
 export default function TreeName() {
   const selectedTree = useStore((state) => state.selectedTree)
-  const savingTree = useStore((state) => state.savingTree)
-  const { saveTree, errors } = useTree()
+  const setSelectedTree = useStore((state) => state.setSelectedTree)
+  const setHasUnsavedChanges = useStore((state) => state.setHasUnsavedChanges)
+  const [name, setName] = useState(selectedTree.name)
+  const [prevTree, setPrevTree] = useState(selectedTree)
+  const [errors, setErrors] = useState<string[]>([])
 
-  const updateName = async (event: React.FormEvent<HTMLFormElement>) => {
-    if (savingTree) return
-    event.preventDefault()
+  if (selectedTree !== prevTree) {
+    setPrevTree(selectedTree)
+    if (selectedTree !== null) {
+      setName(selectedTree.name)
+    }
+  }
 
-    const formData = new FormData(event.currentTarget)
-    const name = formData.get('name') as string
+  const savedTree = useStore((state) => state.savedTree)
 
-    await saveTree({ name })
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const value = event.target.value
+    setName(value)
+    setHasUnsavedChanges(value !== savedTree?.name)
+  }
+
+  const handleBlur = () => {
+    if (selectedTree === null) return
+    if (name === selectedTree.name) return
+
+    const validated = UpdateTreeSchema.safeParse({ name })
+
+    if (!validated.success) {
+      setErrors(validated.error.issues.map((issue) => issue.message))
+      return
+    }
+
+    setErrors([])
+
+    setSelectedTree({ ...selectedTree, name })
+    setHasUnsavedChanges(true)
   }
 
   return (
-    <form
-      onSubmit={async (event) => {
-        await updateName(event)
-      }}
-      className='flex flex-col gap-y-3 p-5'
-    >
+    <section className='flex flex-col gap-y-3 p-5'>
       <div className='flex items-center gap-x-2'>
         <Label htmlFor='tree-name'>Name</Label>
         <HelpPopover>
@@ -46,24 +64,15 @@ export default function TreeName() {
           id='tree-name'
           name='name'
           type='text'
-          className='peer pr-7'
-          defaultValue={selectedTree?.name}
+          className='peer'
+          value={name}
+          onChange={handleChange}
+          onBlur={handleBlur}
           placeholder={DEMO_TREE_VALUES.name}
           aria-invalid={errors.length > 0}
         />
         <ErrorTooltip errors={errors} />
-        <Button
-          type='submit'
-          size='icon'
-          className={cn(
-            'absolute right-1.5 size-6 border-none opacity-0 transition-opacity peer-focus-visible:opacity-100 focus-visible:opacity-100',
-            savingTree && 'opacity-0!'
-          )}
-        >
-          <Check className='size-4 translate-y-px' />
-          <span className='sr-only'>Save</span>
-        </Button>
       </div>
-    </form>
+    </section>
   )
 }

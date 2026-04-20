@@ -16,6 +16,8 @@ interface Props {
 
 export default function InitApp({ children, trees, treeUrl }: Props) {
   const setSelectedTree = useStore((state) => state.setSelectedTree)
+  const setSavedTree = useStore((state) => state.setSavedTree)
+  const setIsStoreReady = useStore((state) => state.setIsStoreReady)
   const pathname = usePathname()
   const router = useRouter()
   const treesRef = useRef(trees)
@@ -23,6 +25,7 @@ export default function InitApp({ children, trees, treeUrl }: Props) {
   const updateAppState = useCallback(
     (tree: TreeInterface, updateParams: boolean) => {
       setSelectedTree(tree)
+      setSavedTree(tree)
 
       if (updateParams) {
         const params = new URLSearchParams()
@@ -32,7 +35,7 @@ export default function InitApp({ children, trees, treeUrl }: Props) {
         })
       }
     },
-    [router, pathname, setSelectedTree]
+    [router, pathname, setSelectedTree, setSavedTree]
   )
 
   useEffect(() => {
@@ -74,9 +77,12 @@ export default function InitApp({ children, trees, treeUrl }: Props) {
 
       if (!hasTreeUrl && !hasTrees) {
         setSelectedTree(DEMO_TREE_VALUES)
+        setSavedTree(DEMO_TREE_VALUES)
       }
     }
-  }, [treeUrl, setSelectedTree, updateAppState])
+
+    setIsStoreReady(true)
+  }, [treeUrl, setSelectedTree, setSavedTree, setIsStoreReady, updateAppState])
 
   return <>{children}</>
 }

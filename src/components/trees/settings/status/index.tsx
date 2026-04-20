@@ -11,19 +11,22 @@ import {
   PopoverTrigger
 } from '@/components/ui/popover'
 import { useStore } from '@/lib/store/store'
-import useTree from '@/lib/hooks/useTree'
 import { TREE_STATUS } from '@/lib/constants/trees'
 
 export default function TreeStatus() {
   const selectedTree = useStore((state) => state.selectedTree)
+  const setSelectedTree = useStore((state) => state.setSelectedTree)
+  const setHasUnsavedChanges = useStore((state) => state.setHasUnsavedChanges)
   const [published, setPublished] = useState(false)
-  const { saveTree } = useTree()
 
-  const updateStatus = async (treeStatus: boolean) => {
+  const updateStatus = (treeStatus: boolean) => {
+    if (selectedTree === null) return
+
     setPublished(treeStatus)
 
     const status = treeStatus ? TREE_STATUS.PUBLISHED : TREE_STATUS.DRAFT
-    await saveTree({ status })
+    setSelectedTree({ ...selectedTree, status })
+    setHasUnsavedChanges(true)
   }
 
   useEffect(() => {

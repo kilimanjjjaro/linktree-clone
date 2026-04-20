@@ -2,7 +2,7 @@
 
 import { useTransition } from 'react'
 import { usePathname, useRouter } from 'next/navigation'
-import { LoaderCircle, X } from 'lucide-react'
+import { Check, LoaderCircle, X } from 'lucide-react'
 import { toast } from 'sonner'
 
 import {
@@ -26,8 +26,11 @@ interface Props {
 }
 
 export default function TreeSelectorList({ treeUrl, trees }: Props) {
+  const selectedTree = useStore((state) => state.selectedTree)
   const setShowSaveTreeDialog = useStore((state) => state.setShowSaveTreeDialog)
   const setSelectedTree = useStore((state) => state.setSelectedTree)
+  const setSavedTree = useStore((state) => state.setSavedTree)
+  const setHasUnsavedChanges = useStore((state) => state.setHasUnsavedChanges)
   const [isPending, startTransition] = useTransition()
   const pathname = usePathname()
   const router = useRouter()
@@ -38,6 +41,8 @@ export default function TreeSelectorList({ treeUrl, trees }: Props) {
 
     const updateParams = (tree: TreeInterface) => {
       setSelectedTree(tree)
+      setSavedTree(tree)
+      setHasUnsavedChanges(false)
 
       params.set('tree', tree.url)
       router.replace(`${pathname}?tree=${tree.url}`, {
@@ -99,6 +104,13 @@ export default function TreeSelectorList({ treeUrl, trees }: Props) {
                   handleSelect(value)
                 }}
               >
+                {selectedTree?.id === tree.id && (
+                  <Check
+                    className='mr-2 size-3.5'
+                    strokeWidth={3}
+                    aria-hidden
+                  />
+                )}
                 {tree.name}
                 {isPending && (
                   <LoaderCircle className='text-lt-lightest-gray absolute right-3 size-5 animate-spin opacity-0 group-aria-selected:opacity-100' />

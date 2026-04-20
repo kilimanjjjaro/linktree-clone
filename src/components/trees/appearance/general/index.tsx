@@ -12,8 +12,7 @@ import { cn } from '@/lib/utils'
 export default function TreeGeneral() {
   const selectedTree = useStore((state) => state.selectedTree)
   const setSelectedTree = useStore((state) => state.setSelectedTree)
-
-  if (selectedTree === null) return null
+  const setHasUnsavedChanges = useStore((state) => state.setHasUnsavedChanges)
 
   const { cornerStyle, contentContainer } = selectedTree.appearance.general
 
@@ -32,7 +31,7 @@ export default function TreeGeneral() {
     }
 
     setSelectedTree(updatedTree)
-    localStorage.setItem('__LOCAL_TREE__', JSON.stringify(updatedTree))
+    setHasUnsavedChanges(true)
   }
 
   return (

@@ -4,10 +4,14 @@ import { type SocialProfileInterface } from '@/lib/types/globals'
 import { type TreeInterface } from '@/lib/types/trees'
 
 export interface TreesStoreInterface {
-  selectedTree: TreeInterface | null
-  setSelectedTree: (selectedTree: TreeInterface | null) => void
-  savingTree: boolean
-  setSavingTree: (savingTree: boolean) => void
+  selectedTree: TreeInterface
+  setSelectedTree: (selectedTree: TreeInterface) => void
+  savedTree: TreeInterface
+  setSavedTree: (savedTree: TreeInterface) => void
+  isStoreReady: boolean
+  setIsStoreReady: (isStoreReady: boolean) => void
+  hasUnsavedChanges: boolean
+  setHasUnsavedChanges: (hasUnsavedChanges: boolean) => void
   showSaveTreeDialog: boolean
   setShowSaveTreeDialog: (showSaveTreeDialog: boolean) => void
 }

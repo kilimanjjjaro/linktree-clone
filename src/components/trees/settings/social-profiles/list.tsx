@@ -63,8 +63,8 @@ export default function SocialProfilesList({ setOpen }: Props) {
           <button
             aria-label='Remove'
             className='xl:hover:bg-lt-gray h-auto rounded-full p-1 transition-colors'
-            onClick={async () => {
-              await removeProfile(socialProfile.type)
+            onClick={() => {
+              removeProfile(socialProfile.type)
             }}
           >
             <X className='size-3' aria-hidden />

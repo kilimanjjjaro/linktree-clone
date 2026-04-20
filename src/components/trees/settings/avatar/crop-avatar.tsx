@@ -9,7 +9,6 @@ import { Button } from '@/components/ui/button'
 import { DialogFooter } from '@/components/ui/dialog'
 import { useStore } from '@/lib/store/store'
 import { updateAvatar } from '@/lib/actions/trees/update-avatar'
-import useTree from '@/lib/hooks/useTree'
 import { cropImage } from '@/lib/utils/crop-image'
 import { fetchBlobData } from '@/lib/utils/fetch-blob-data'
 import { CROPPED_AREA_VALUES } from '@/lib/constants/trees'
@@ -26,12 +25,13 @@ export default function CropAvatar({
   setAvatarToCrop
 }: Props) {
   const selectedTree = useStore((state) => state.selectedTree)
+  const setSelectedTree = useStore((state) => state.setSelectedTree)
+  const setHasUnsavedChanges = useStore((state) => state.setHasUnsavedChanges)
   const [isPending, startTransition] = useTransition()
   const [crop, setCrop] = useState({ x: 0, y: 0 })
   const [zoom, setZoom] = useState(1)
   const [croppedAvatar, setCroppedAvatar] = useState('')
   const [croppedArea, setCroppedArea] = useState<Area>(CROPPED_AREA_VALUES)
-  const { saveTree } = useTree()
 
   const onZoomChange = (value: [number]) => {
     setZoom(...value)
@@ -64,9 +64,11 @@ export default function CropAvatar({
       const updatedAvatar = await updateAvatar(formData)
 
       if (updatedAvatar !== null) {
-        await saveTree({
+        setSelectedTree({
+          ...selectedTree,
           avatar: updatedAvatar.eager[0].secure_url
         })
+        setHasUnsavedChanges(true)
 
         closeDialog()
         setCroppedAvatar('')
@@ -75,7 +77,14 @@ export default function CropAvatar({
         toast.error('Something went wrong.')
       }
     })
-  }, [croppedAvatar, setAvatarToCrop, closeDialog, selectedTree, saveTree])
+  }, [
+    croppedAvatar,
+    setAvatarToCrop,
+    closeDialog,
+    selectedTree,
+    setSelectedTree,
+    setHasUnsavedChanges
+  ])
 
   const deleteAvatar = () => {
     setCroppedAvatar('')

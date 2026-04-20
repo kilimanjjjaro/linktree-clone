@@ -19,6 +19,7 @@ export default function SaveTreeDialog() {
   const setShowSaveTreeDialog = useStore((state) => state.setShowSaveTreeDialog)
   const selectedTree = useStore((state) => state.selectedTree)
   const setSelectedTree = useStore((state) => state.setSelectedTree)
+  const setSavedTree = useStore((state) => state.setSavedTree)
   const [isPending, startTransition] = useTransition()
 
   const saveTree = async () => {
@@ -29,6 +30,7 @@ export default function SaveTreeDialog() {
 
       if (data !== null) {
         setSelectedTree(data)
+        setSavedTree(data)
         localStorage.removeItem('__LOCAL_TREE__')
         setShowSaveTreeDialog(false)
       } else {

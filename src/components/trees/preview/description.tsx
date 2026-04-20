@@ -5,8 +5,9 @@ import { useStore } from '@/lib/store/store'
 
 export default function TreeDescription() {
   const selectedTree = useStore((state) => state.selectedTree)
+  const isStoreReady = useStore((state) => state.isStoreReady)
 
-  if (selectedTree === null) {
+  if (!isStoreReady) {
     return (
       <div className='mt-3 grid justify-items-center gap-y-1'>
         <Skeleton className='h-3.5 w-56 rounded-full' />

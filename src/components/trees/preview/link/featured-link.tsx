@@ -45,8 +45,8 @@ export default function FeaturedLink({ link }: Props) {
       <Button
         aria-label='Delete link'
         className='bg-lt-white absolute top-3 left-3 h-auto rounded-full p-1 opacity-0 transition-opacity group-hover:xl:opacity-100'
-        onClick={async () => {
-          await removeLink(link.id)
+        onClick={() => {
+          removeLink(link.id)
         }}
       >
         <Trash className='size-4' strokeWidth={2.5} />

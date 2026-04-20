@@ -1,7 +1,7 @@
 'use client'
 
 import { useTransition } from 'react'
-import { usePathname, useRouter } from 'next/navigation'
+import { useRouter } from 'next/navigation'
 import { LoaderCircle, Plus } from 'lucide-react'
 import { toast } from 'sonner'
 
@@ -10,33 +10,27 @@ import { createDefaultTree } from '@/lib/actions/trees/create-default-tree'
 import { useStore } from '@/lib/store/store'
 
 export default function NewTreeButton() {
-  const setShowSaveTreeDialog = useStore((state) => state.setShowSaveTreeDialog)
+  const hasUnsavedChanges = useStore((state) => state.hasUnsavedChanges)
+  const setSelectedTree = useStore((state) => state.setSelectedTree)
+  const setSavedTree = useStore((state) => state.setSavedTree)
   const [isPending, startTransition] = useTransition()
-  const pathname = usePathname()
   const router = useRouter()
 
-  const createTree = async () => {
+  if (hasUnsavedChanges) return null
+
+  const handleCreate = () => {
     startTransition(async () => {
-      const localTree = localStorage.getItem('__LOCAL_TREE__')
-
-      if (localTree !== null) {
-        setShowSaveTreeDialog(true)
-        return
-      }
-
       const response = await createDefaultTree()
 
       if (response.data === null) {
         toast.error(response.error)
-      } else {
-        const params = new URLSearchParams()
-        const treeUrl = response.data.url
-
-        params.set('tree', treeUrl)
-        router.replace(`${pathname}?tree=${treeUrl}`, {
-          scroll: false
-        })
+        return
       }
+
+      setSelectedTree(response.data)
+      setSavedTree(response.data)
+
+      router.replace(`?tree=${response.data.url}`, { scroll: false })
     })
   }
 
@@ -44,7 +38,7 @@ export default function NewTreeButton() {
     <Button
       variant='secondary'
       className='h-full'
-      onClick={createTree}
+      onClick={handleCreate}
       disabled={isPending}
     >
       {isPending ? (

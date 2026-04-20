@@ -10,9 +10,10 @@ import { useStore } from '@/lib/store/store'
 
 export default function TreeLinks() {
   const selectedTree = useStore((state) => state.selectedTree)
+  const isStoreReady = useStore((state) => state.isStoreReady)
   const [parent] = useAutoAnimate({ duration: 200 })
 
-  if (selectedTree === null) {
+  if (!isStoreReady) {
     return (
       <div className='grid grid-cols-1 gap-y-5'>
         <Skeleton className='aspect-video h-full rounded-2xl' />

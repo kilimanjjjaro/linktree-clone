@@ -5,7 +5,7 @@ import NotificationsTab from '@/components/navbar/notifications-tab'
 import SessionBar from '@/components/navbar/session'
 import NewTreeButton from '@/components/navbar/new-tree-button'
 import LogInButton from '@/components/navbar/login-button'
-import SavingBadge from '@/components/navbar/saving-badge'
+import SaveButton from '@/components/navbar/save-button'
 import LinktreeLogo from '@/components/icons/linktree-logo'
 import { Separator } from '@/components/ui/separator'
 import { getCurrentUser } from '@/lib/services/get-current-user'
@@ -30,9 +30,9 @@ export default async function Navbar({ treeUrl }: Props) {
         <TreeSelector treeUrl={treeUrl} />
       </nav>
       <nav className='flex items-center gap-x-5'>
-        <SavingBadge />
         <NotificationsTab />
         <div className='flex h-full items-center gap-x-3'>
+          <SaveButton />
           <NewTreeButton />
           {user === null ? <LogInButton /> : <SessionBar user={user} />}
         </div>

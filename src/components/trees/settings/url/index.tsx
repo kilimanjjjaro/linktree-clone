@@ -1,10 +1,9 @@
 'use client'
 
 import { useState } from 'react'
-import { usePathname, useRouter } from 'next/navigation'
 import slugify from '@sindresorhus/slugify'
 import { toast } from 'sonner'
-import { Check, Copy } from 'lucide-react'
+import { Copy } from 'lucide-react'
 
 import { ErrorTooltip } from '@/components/ui/error-tooltip'
 import { Button } from '@/components/ui/button'
@@ -12,18 +11,16 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { HelpPopover } from '@/components/ui/help-popover'
 import { useStore } from '@/lib/store/store'
-import useTree from '@/lib/hooks/useTree'
+import { UpdateTreeSchema } from '@/lib/schemas/tree'
 import { BASE_URL } from '@/lib/constants/globals'
-import { cn } from '@/lib/utils'
 
 export default function TreeUrl() {
   const selectedTree = useStore((state) => state.selectedTree)
-  const savingTree = useStore((state) => state.savingTree)
-  const [treeUrl, setTreeUrl] = useState(selectedTree?.url ?? '')
+  const setSelectedTree = useStore((state) => state.setSelectedTree)
+  const setHasUnsavedChanges = useStore((state) => state.setHasUnsavedChanges)
+  const [treeUrl, setTreeUrl] = useState(selectedTree.url)
   const [prevTree, setPrevTree] = useState(selectedTree)
-  const { saveTree, errors } = useTree()
-  const pathname = usePathname()
-  const router = useRouter()
+  const [errors, setErrors] = useState<string[]>([])
 
   if (selectedTree !== prevTree) {
     setPrevTree(selectedTree)
@@ -32,22 +29,33 @@ export default function TreeUrl() {
     }
   }
 
-  const updateUrl = async (event: React.FormEvent<HTMLFormElement>) => {
-    if (savingTree) return
-    event.preventDefault()
+  const savedTree = useStore((state) => state.savedTree)
 
-    const formData = new FormData(event.currentTarget)
-    const url = formData.get('url') as string
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const value = event.target.value
+    setTreeUrl(value)
+    setHasUnsavedChanges(slugify(value) !== savedTree?.url)
+  }
 
-    const response = await saveTree({ url: slugify(url) })
+  const handleBlur = () => {
+    if (selectedTree === null) return
 
-    if (response === null) return
+    const slugifiedUrl = slugify(treeUrl)
+    setTreeUrl(slugifiedUrl)
 
-    const params = new URLSearchParams()
-    params.set('tree', response.url)
-    router.replace(`${pathname}?tree=${response.url}`, {
-      scroll: false
-    })
+    if (slugifiedUrl === selectedTree.url) return
+
+    const validated = UpdateTreeSchema.safeParse({ url: slugifiedUrl })
+
+    if (!validated.success) {
+      setErrors(validated.error.issues.map((issue) => issue.message))
+      return
+    }
+
+    setErrors([])
+
+    setSelectedTree({ ...selectedTree, url: slugifiedUrl })
+    setHasUnsavedChanges(true)
   }
 
   const copyUrl = () => {
@@ -72,10 +80,7 @@ export default function TreeUrl() {
           it as many times as you want.
         </HelpPopover>
       </div>
-      <form
-        onSubmit={updateUrl}
-        className='border-lt-light-gray/60 ring-lt-white ring-offset-lt-gray relative flex h-10 items-center rounded-full border ring-offset-2 has-[:focus-visible]:ring-2 has-[input[aria-invalid=true]]:ring-2 has-[input[aria-invalid=true]]:ring-red-500'
-      >
+      <div className='border-lt-light-gray/60 ring-lt-white ring-offset-lt-gray relative flex h-10 items-center rounded-full border ring-offset-2 has-[:focus-visible]:ring-2 has-[input[aria-invalid=true]]:ring-2 has-[input[aria-invalid=true]]:ring-red-500'>
         <span className='border-lt-light-gray/60 text-lt-lightest-gray flex h-full cursor-not-allowed items-center border-r px-3 text-sm select-none'>
           linktr.ee/
         </span>
@@ -83,26 +88,14 @@ export default function TreeUrl() {
           id='tree-url'
           type='text'
           name='url'
-          className='peer overflow-hidden rounded-full rounded-l-none border-none pr-7 focus-visible:ring-0 focus-visible:ring-offset-0 aria-[invalid=true]:ring-0'
+          className='peer overflow-hidden rounded-full rounded-l-none border-none focus-visible:ring-0 focus-visible:ring-offset-0 aria-[invalid=true]:ring-0'
           value={treeUrl}
-          onChange={(event) => {
-            setTreeUrl(event.target.value)
-          }}
+          onChange={handleChange}
+          onBlur={handleBlur}
           aria-invalid={errors.length > 0}
         />
         <ErrorTooltip errors={errors} />
-        <Button
-          type='submit'
-          size='icon'
-          className={cn(
-            'absolute right-1.5 size-6 border-none opacity-0 transition-opacity peer-focus-visible:opacity-100 focus-visible:opacity-100',
-            savingTree && 'opacity-0!'
-          )}
-        >
-          <Check className='size-4 translate-y-px' />
-          <span className='sr-only'>Save</span>
-        </Button>
-      </form>
+      </div>
       <Button onClick={copyUrl}>
         Copy
         <Copy className='size-3.5' aria-hidden />

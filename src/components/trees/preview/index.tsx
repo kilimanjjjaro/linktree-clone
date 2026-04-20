@@ -22,8 +22,8 @@ import { cn } from '@/lib/utils'
 export default function TreePreview() {
   const selectedTree = useStore((state) => state.selectedTree)
 
-  const appearance = selectedTree?.appearance
-  const fontId = appearance?.font ?? 0
+  const appearance = selectedTree.appearance
+  const fontId = appearance.font ?? 0
 
   useEffect(() => {
     loadFont(fontId)
@@ -41,10 +41,10 @@ export default function TreePreview() {
             maskPosition: 'center',
             maskRepeat: 'no-repeat',
             maskSize: '100%',
-            ...(appearance ? getBackgroundStyle(appearance.background) : {})
+            ...getBackgroundStyle(appearance.background)
           }}
         >
-          {appearance?.background.type === BG_VIDEO &&
+          {appearance.background.type === BG_VIDEO &&
             appearance.background.settings.url && (
               <video
                 src={appearance.background.settings.url}
@@ -66,13 +66,13 @@ export default function TreePreview() {
           >
             <div
               className={cn(
-                appearance?.general.contentContainer.enabled &&
+                appearance.general.contentContainer.enabled &&
                   'mx-auto mt-16 mb-4 px-3 py-4',
-                appearance?.general.contentContainer.enabled &&
+                appearance.general.contentContainer.enabled &&
                   getCornerClassName(appearance.general.cornerStyle)
               )}
               style={
-                appearance?.general.contentContainer.enabled
+                appearance.general.contentContainer.enabled
                   ? {
                       backgroundColor: getContainerColor(
                         appearance.general.contentContainer.color
@@ -84,7 +84,7 @@ export default function TreePreview() {
               <header
                 className={cn(
                   'mb-4 flex flex-col items-center',
-                  appearance?.general.contentContainer.enabled
+                  appearance.general.contentContainer.enabled
                     ? 'mt-4'
                     : 'mt-16'
                 )}
