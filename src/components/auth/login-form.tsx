@@ -5,6 +5,7 @@ import { useAutoAnimate } from '@formkit/auto-animate/react'
 import EmailButton from '@/components/auth/submit-button'
 import Feedback from '@/components/auth/feedback'
 import { Input } from '@/components/ui/input'
+import { PENDING_WELCOME_TOAST_KEY } from '@/components/auth/welcome-toast'
 import { logInWithEmail } from '@/lib/actions/auth/login-with-email'
 import { Label } from '@/components/ui/label'
 import Link from 'next/link'
@@ -20,7 +21,14 @@ export default function LogInForm() {
   const [parent] = useAutoAnimate({ duration: 200 })
 
   return (
-    <form action={formAction} className='grid gap-y-3' ref={parent}>
+    <form
+      action={(formData) => {
+        sessionStorage.setItem(PENDING_WELCOME_TOAST_KEY, '1')
+        formAction(formData)
+      }}
+      className='grid gap-y-3'
+      ref={parent}
+    >
       <Feedback data={state} />
       <div className='grid gap-y-2'>
         <Label htmlFor='email'>Email</Label>
