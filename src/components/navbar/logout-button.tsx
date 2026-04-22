@@ -15,7 +15,7 @@ export default function LogOutButton() {
     <DropdownMenuItem
       onClick={async () => {
         setSelectedTree(DEMO_TREE_VALUES)
-        await signOut()
+        await signOut({ redirectTo: '/' })
         await logOut()
       }}
     >
