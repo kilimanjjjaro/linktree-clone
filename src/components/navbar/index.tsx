@@ -28,11 +28,11 @@ export default async function Navbar({ treeUrl }: Props) {
         </Link>
         <Separator orientation='vertical' className='mr-5 ml-4.5 h-5' />
         <TreeSelector treeUrl={treeUrl} />
+        <SaveButton />
       </nav>
       <nav className='flex items-center gap-x-5'>
         <NotificationsTab />
         <div className='flex h-full items-center gap-x-3'>
-          <SaveButton />
           <NewTreeButton />
           {user === null ? <LogInButton /> : <SessionBar user={user} />}
         </div>

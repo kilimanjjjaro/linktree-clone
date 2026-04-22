@@ -71,7 +71,7 @@ export default function SaveButton() {
   return (
     <Button
       variant={user !== null ? 'default' : 'secondary'}
-      className='h-full'
+      className='ml-5 h-full'
       onClick={handleSave}
       disabled={isPending}
     >
