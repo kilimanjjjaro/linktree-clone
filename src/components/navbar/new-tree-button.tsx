@@ -15,12 +15,20 @@ export default function NewTreeButton() {
   const user = useCurrentUser()
   const setSelectedTree = useStore((state) => state.setSelectedTree)
   const setSavedTree = useStore((state) => state.setSavedTree)
+  const setShowSaveTreeDialog = useStore((state) => state.setShowSaveTreeDialog)
   const [isPending, startTransition] = useTransition()
   const router = useRouter()
 
   if (hasUnsavedChanges) return null
 
   const handleCreate = () => {
+    const localTree = localStorage.getItem('__LOCAL_TREE__')
+
+    if (localTree !== null) {
+      setShowSaveTreeDialog(true)
+      return
+    }
+
     startTransition(async () => {
       const response = await createDefaultTree()
 

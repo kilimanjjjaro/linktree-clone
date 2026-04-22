@@ -13,7 +13,7 @@ import {
 export default async function SignUpPage() {
   return (
     <div className='grid place-items-center gap-y-3'>
-      <Card className='w-[350px]'>
+      <Card className='w-87.5'>
         <CardHeader className='text-center'>
           <CardTitle className='text-2xl font-medium'>
             Create an account

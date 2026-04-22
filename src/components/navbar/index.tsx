@@ -26,7 +26,7 @@ export default async function Navbar({ treeUrl }: Props) {
         >
           <LinktreeLogo className='w-7' />
         </Link>
-        <Separator orientation='vertical' className='mr-5 ml-[18px] h-5' />
+        <Separator orientation='vertical' className='mr-5 ml-4.5 h-5' />
         <TreeSelector treeUrl={treeUrl} />
       </nav>
       <nav className='flex items-center gap-x-5'>
