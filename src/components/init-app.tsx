@@ -12,11 +12,18 @@ interface Props {
   children: ChildrenType
   trees: TreeInterface[]
   treeUrl?: string
+  isAuthenticated: boolean
 }
 
-export default function InitApp({ children, trees, treeUrl }: Props) {
+export default function InitApp({
+  children,
+  trees,
+  treeUrl,
+  isAuthenticated
+}: Props) {
   const setSelectedTree = useStore((state) => state.setSelectedTree)
   const setSavedTree = useStore((state) => state.setSavedTree)
+  const setHasUnsavedChanges = useStore((state) => state.setHasUnsavedChanges)
   const setIsStoreReady = useStore((state) => state.setIsStoreReady)
   const pathname = usePathname()
   const router = useRouter()
@@ -49,10 +56,14 @@ export default function InitApp({ children, trees, treeUrl }: Props) {
       const tree = JSON.parse(localTree) as TreeInterface
 
       updateAppState(tree, false)
-    } else {
-      const currentTree = useStore.getState().selectedTree
 
-      if (currentTree !== null && currentTree.url === treeUrl) return
+      if (isAuthenticated) {
+        setHasUnsavedChanges(true)
+      }
+    } else {
+      const { selectedTree: currentTree, isStoreReady } = useStore.getState()
+
+      if (isStoreReady && currentTree?.url === treeUrl) return
 
       const hasTrees = treesRef.current.length > 0
       const hasTreeUrl = treeUrl !== undefined && treeUrl.length > 0
@@ -82,7 +93,15 @@ export default function InitApp({ children, trees, treeUrl }: Props) {
     }
 
     setIsStoreReady(true)
-  }, [treeUrl, setSelectedTree, setSavedTree, setIsStoreReady, updateAppState])
+  }, [
+    treeUrl,
+    isAuthenticated,
+    setSelectedTree,
+    setSavedTree,
+    setHasUnsavedChanges,
+    setIsStoreReady,
+    updateAppState
+  ])
 
   return <>{children}</>
 }
