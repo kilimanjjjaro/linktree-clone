@@ -82,7 +82,7 @@ export default function SaveButton() {
         </>
       ) : (
         <>
-          Save tree
+          Save
           <Save className='size-4' aria-hidden />
         </>
       )}

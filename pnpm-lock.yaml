@@ -90,7 +90,7 @@ importers:
         specifier: 5.0.0-beta.30
         version: 5.0.0-beta.30(next@16.1.6(@babel/core@7.29.0)(react-dom@19.2.4(react@19.2.4))(react@19.2.4))(nodemailer@8.0.5)(react@19.2.4)
       nodemailer:
-        specifier: ^8.0.5
+        specifier: 8.0.5
         version: 8.0.5
       react:
         specifier: 19.2.4
@@ -133,7 +133,7 @@ importers:
         specifier: 25.2.3
         version: 25.2.3
       '@types/nodemailer':
-        specifier: ^8.0.0
+        specifier: 8.0.0
         version: 8.0.0
       '@types/react':
         specifier: 19.2.14
