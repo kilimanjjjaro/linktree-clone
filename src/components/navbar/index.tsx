@@ -1,7 +1,6 @@
 import Link from 'next/link'
 
 import TreeSelector from '@/components/navbar/tree-selector'
-import NotificationsTab from '@/components/navbar/notifications-tab'
 import SessionBar from '@/components/navbar/session'
 import NewTreeButton from '@/components/navbar/new-tree-button'
 import LogInButton from '@/components/navbar/login-button'
@@ -31,7 +30,6 @@ export default async function Navbar({ treeUrl }: Props) {
         <SaveButton />
       </nav>
       <nav className='flex items-center gap-x-5'>
-        <NotificationsTab />
         <div className='flex h-full items-center gap-x-3'>
           <NewTreeButton />
           {user === null ? <LogInButton /> : <SessionBar user={user} />}
