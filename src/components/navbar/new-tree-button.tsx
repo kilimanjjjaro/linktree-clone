@@ -11,15 +11,12 @@ import { useStore } from '@/lib/store/store'
 import useCurrentUser from '@/lib/hooks/useCurrentUser'
 
 export default function NewTreeButton() {
-  const hasUnsavedChanges = useStore((state) => state.hasUnsavedChanges)
   const user = useCurrentUser()
   const setSelectedTree = useStore((state) => state.setSelectedTree)
   const setSavedTree = useStore((state) => state.setSavedTree)
   const setShowSaveTreeDialog = useStore((state) => state.setShowSaveTreeDialog)
   const [isPending, startTransition] = useTransition()
   const router = useRouter()
-
-  if (hasUnsavedChanges) return null
 
   const handleCreate = () => {
     const localTree = localStorage.getItem('__LOCAL_TREE__')
