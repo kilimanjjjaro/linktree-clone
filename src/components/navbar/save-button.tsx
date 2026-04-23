@@ -20,7 +20,6 @@ export default function SaveButton() {
   const setSelectedTree = useStore((state) => state.setSelectedTree)
   const setSavedTree = useStore((state) => state.setSavedTree)
   const hasUnsavedChanges = useStore((state) => state.hasUnsavedChanges)
-  const setHasUnsavedChanges = useStore((state) => state.setHasUnsavedChanges)
   const user = useCurrentUser()
   const [isPending, startTransition] = useTransition()
   const [hasBeenVisible, setHasBeenVisible] = useState(hasUnsavedChanges)
@@ -34,7 +33,6 @@ export default function SaveButton() {
     if (user === null) {
       localStorage.setItem('__LOCAL_TREE__', JSON.stringify(selectedTree))
       setSavedTree(selectedTree)
-      setHasUnsavedChanges(false)
       return
     }
 
@@ -48,10 +46,7 @@ export default function SaveButton() {
       } else {
         const changes = getTreeChanges(selectedTree, savedTree)
 
-        if (changes === null) {
-          setHasUnsavedChanges(false)
-          return
-        }
+        if (changes === null) return
 
         response = await syncTree(changes)
       }
@@ -64,7 +59,6 @@ export default function SaveButton() {
       setSelectedTree(response.data)
       setSavedTree(response.data)
       localStorage.removeItem('__LOCAL_TREE__')
-      setHasUnsavedChanges(false)
 
       router.replace(`?tree=${response.data.url}`, { scroll: false })
     })

@@ -11,13 +11,11 @@ import { DEMO_TREE_VALUES } from '@/lib/constants/trees'
 export default function TreeAvatar() {
   const selectedTree = useStore((state) => state.selectedTree)
   const setSelectedTree = useStore((state) => state.setSelectedTree)
-  const setHasUnsavedChanges = useStore((state) => state.setHasUnsavedChanges)
 
   const removeAvatar = () => {
     if (selectedTree === null) return
 
     setSelectedTree({ ...selectedTree, avatar: DEMO_TREE_VALUES.avatar })
-    setHasUnsavedChanges(true)
 
     // TODO: Delete avatar from cloudinary
   }

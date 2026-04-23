@@ -13,7 +13,6 @@ import { DEMO_TREE_VALUES } from '@/lib/constants/trees'
 export default function TreeName() {
   const selectedTree = useStore((state) => state.selectedTree)
   const setSelectedTree = useStore((state) => state.setSelectedTree)
-  const setHasUnsavedChanges = useStore((state) => state.setHasUnsavedChanges)
   const [name, setName] = useState(selectedTree.name)
   const [prevTree, setPrevTree] = useState(selectedTree)
   const [errors, setErrors] = useState<string[]>([])
@@ -25,18 +24,15 @@ export default function TreeName() {
     }
   }
 
-  const savedTree = useStore((state) => state.savedTree)
-
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    if (selectedTree === null) return
+
     const value = event.target.value
     setName(value)
-    setHasUnsavedChanges(value !== savedTree?.name)
+    setSelectedTree({ ...selectedTree, name: value })
   }
 
   const handleBlur = () => {
-    if (selectedTree === null) return
-    if (name === selectedTree.name) return
-
     const validated = UpdateTreeSchema.safeParse({ name })
 
     if (!validated.success) {
@@ -45,9 +41,6 @@ export default function TreeName() {
     }
 
     setErrors([])
-
-    setSelectedTree({ ...selectedTree, name })
-    setHasUnsavedChanges(true)
   }
 
   return (

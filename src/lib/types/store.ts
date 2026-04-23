@@ -11,7 +11,6 @@ export interface TreesStoreInterface {
   isStoreReady: boolean
   setIsStoreReady: (isStoreReady: boolean) => void
   hasUnsavedChanges: boolean
-  setHasUnsavedChanges: (hasUnsavedChanges: boolean) => void
   showSaveTreeDialog: boolean
   setShowSaveTreeDialog: (showSaveTreeDialog: boolean) => void
   previewViewport: string

@@ -7,7 +7,6 @@ import { useStore } from '@/lib/store/store'
 export default function useSocialProfiles() {
   const setSelectedTree = useStore((state) => state.setSelectedTree)
   const selectedTree = useStore((state) => state.selectedTree)
-  const setHasUnsavedChanges = useStore((state) => state.setHasUnsavedChanges)
 
   const saveProfile = useCallback(
     (data: Prisma.TreeSocialProfileUncheckedCreateInput) => {
@@ -39,11 +38,10 @@ export default function useSocialProfiles() {
       }
 
       setSelectedTree(treeToSave)
-      setHasUnsavedChanges(true)
 
       return newProfile
     },
-    [selectedTree, setSelectedTree, setHasUnsavedChanges]
+    [selectedTree, setSelectedTree]
   )
 
   const removeProfile = useCallback(
@@ -60,9 +58,8 @@ export default function useSocialProfiles() {
       }
 
       setSelectedTree(treeToSave)
-      setHasUnsavedChanges(true)
     },
-    [selectedTree, setSelectedTree, setHasUnsavedChanges]
+    [selectedTree, setSelectedTree]
   )
 
   return {

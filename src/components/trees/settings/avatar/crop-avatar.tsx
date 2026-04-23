@@ -26,7 +26,6 @@ export default function CropAvatar({
 }: Props) {
   const selectedTree = useStore((state) => state.selectedTree)
   const setSelectedTree = useStore((state) => state.setSelectedTree)
-  const setHasUnsavedChanges = useStore((state) => state.setHasUnsavedChanges)
   const [isPending, startTransition] = useTransition()
   const [crop, setCrop] = useState({ x: 0, y: 0 })
   const [zoom, setZoom] = useState(1)
@@ -68,7 +67,6 @@ export default function CropAvatar({
           ...selectedTree,
           avatar: updatedAvatar.eager[0].secure_url
         })
-        setHasUnsavedChanges(true)
 
         closeDialog()
         setCroppedAvatar('')
@@ -82,8 +80,7 @@ export default function CropAvatar({
     setAvatarToCrop,
     closeDialog,
     selectedTree,
-    setSelectedTree,
-    setHasUnsavedChanges
+    setSelectedTree
   ])
 
   const deleteAvatar = () => {

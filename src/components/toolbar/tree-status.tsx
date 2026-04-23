@@ -9,9 +9,7 @@ import { cn } from '@/lib/utils'
 
 export default function TreeStatus() {
   const selectedTree = useStore((state) => state.selectedTree)
-  const savedTree = useStore((state) => state.savedTree)
   const setSelectedTree = useStore((state) => state.setSelectedTree)
-  const setHasUnsavedChanges = useStore((state) => state.setHasUnsavedChanges)
   const isStoreReady = useStore((state) => state.isStoreReady)
   const [published, setPublished] = useState(false)
 
@@ -23,7 +21,6 @@ export default function TreeStatus() {
 
     const status = next ? TREE_STATUS.PUBLISHED : TREE_STATUS.DRAFT
     setSelectedTree({ ...selectedTree, status })
-    setHasUnsavedChanges(status !== savedTree?.status)
   }
 
   useEffect(() => {

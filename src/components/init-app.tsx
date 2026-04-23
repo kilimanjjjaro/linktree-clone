@@ -23,7 +23,6 @@ export default function InitApp({
 }: Props) {
   const setSelectedTree = useStore((state) => state.setSelectedTree)
   const setSavedTree = useStore((state) => state.setSavedTree)
-  const setHasUnsavedChanges = useStore((state) => state.setHasUnsavedChanges)
   const setIsStoreReady = useStore((state) => state.setIsStoreReady)
   const pathname = usePathname()
   const router = useRouter()
@@ -55,10 +54,11 @@ export default function InitApp({
     if (localTree !== null) {
       const tree = JSON.parse(localTree) as TreeInterface
 
-      updateAppState(tree, false)
-
       if (isAuthenticated) {
-        setHasUnsavedChanges(true)
+        setSelectedTree(tree)
+        setSavedTree(DEMO_TREE_VALUES)
+      } else {
+        updateAppState(tree, false)
       }
     } else {
       const { selectedTree: currentTree, isStoreReady } = useStore.getState()
@@ -98,7 +98,6 @@ export default function InitApp({
     isAuthenticated,
     setSelectedTree,
     setSavedTree,
-    setHasUnsavedChanges,
     setIsStoreReady,
     updateAppState
   ])

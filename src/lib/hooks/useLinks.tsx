@@ -10,7 +10,6 @@ import { AddLinkSchema } from '@/lib/schemas/tree'
 export default function useLinks() {
   const setSelectedTree = useStore((state) => state.setSelectedTree)
   const selectedTree = useStore((state) => state.selectedTree)
-  const setHasUnsavedChanges = useStore((state) => state.setHasUnsavedChanges)
 
   const addLink = useCallback(
     async (data: Prisma.TreeLinkUncheckedCreateInput) => {
@@ -64,11 +63,9 @@ export default function useLinks() {
 
       setSelectedTree(treeToSave)
 
-      setHasUnsavedChanges(true)
-
       return newLink
     },
-    [selectedTree, setSelectedTree, setHasUnsavedChanges]
+    [selectedTree, setSelectedTree]
   )
 
   const removeLink = useCallback(
@@ -83,10 +80,8 @@ export default function useLinks() {
       }
 
       setSelectedTree(treeToSave)
-
-      setHasUnsavedChanges(true)
     },
-    [selectedTree, setSelectedTree, setHasUnsavedChanges]
+    [selectedTree, setSelectedTree]
   )
 
   return {

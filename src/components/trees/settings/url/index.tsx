@@ -17,7 +17,6 @@ import { BASE_URL } from '@/lib/constants/globals'
 export default function TreeUrl() {
   const selectedTree = useStore((state) => state.selectedTree)
   const setSelectedTree = useStore((state) => state.setSelectedTree)
-  const setHasUnsavedChanges = useStore((state) => state.setHasUnsavedChanges)
   const [treeUrl, setTreeUrl] = useState(selectedTree.url)
   const [prevTree, setPrevTree] = useState(selectedTree)
   const [errors, setErrors] = useState<string[]>([])
@@ -29,21 +28,17 @@ export default function TreeUrl() {
     }
   }
 
-  const savedTree = useStore((state) => state.savedTree)
-
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    if (selectedTree === null) return
+
     const value = event.target.value
     setTreeUrl(value)
-    setHasUnsavedChanges(slugify(value) !== savedTree?.url)
+    setSelectedTree({ ...selectedTree, url: slugify(value) })
   }
 
   const handleBlur = () => {
-    if (selectedTree === null) return
-
     const slugifiedUrl = slugify(treeUrl)
     setTreeUrl(slugifiedUrl)
-
-    if (slugifiedUrl === selectedTree.url) return
 
     const validated = UpdateTreeSchema.safeParse({ url: slugifiedUrl })
 
@@ -53,9 +48,6 @@ export default function TreeUrl() {
     }
 
     setErrors([])
-
-    setSelectedTree({ ...selectedTree, url: slugifiedUrl })
-    setHasUnsavedChanges(true)
   }
 
   const copyUrl = () => {

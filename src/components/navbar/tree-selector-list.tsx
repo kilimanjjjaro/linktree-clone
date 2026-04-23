@@ -30,7 +30,6 @@ export default function TreeSelectorList({ treeUrl, trees }: Props) {
   const setShowSaveTreeDialog = useStore((state) => state.setShowSaveTreeDialog)
   const setSelectedTree = useStore((state) => state.setSelectedTree)
   const setSavedTree = useStore((state) => state.setSavedTree)
-  const setHasUnsavedChanges = useStore((state) => state.setHasUnsavedChanges)
   const [isPending, startTransition] = useTransition()
   const pathname = usePathname()
   const router = useRouter()
@@ -42,7 +41,6 @@ export default function TreeSelectorList({ treeUrl, trees }: Props) {
     const updateParams = (tree: TreeInterface) => {
       setSelectedTree(tree)
       setSavedTree(tree)
-      setHasUnsavedChanges(false)
 
       params.set('tree', tree.url)
       router.replace(`${pathname}?tree=${tree.url}`, {

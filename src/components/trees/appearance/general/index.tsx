@@ -10,7 +10,6 @@ import { cn } from '@/lib/utils'
 export default function TreeGeneral() {
   const selectedTree = useStore((state) => state.selectedTree)
   const setSelectedTree = useStore((state) => state.setSelectedTree)
-  const setHasUnsavedChanges = useStore((state) => state.setHasUnsavedChanges)
 
   const { cornerStyle, contentContainer } = selectedTree.appearance.general
 
@@ -29,7 +28,6 @@ export default function TreeGeneral() {
     }
 
     setSelectedTree(updatedTree)
-    setHasUnsavedChanges(true)
   }
 
   return (
