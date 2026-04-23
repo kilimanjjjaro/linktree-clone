@@ -51,7 +51,6 @@ export type TreeAppearanceInterface = {
     cornerStyle: number
     contentContainer: {
       enabled: boolean
-      color: number
     }
   }
 }

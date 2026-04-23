@@ -20,16 +20,7 @@ export const CORNER_VARIANTS = [
   { id: 4, name: 'LG', className: 'rounded-4xl' }
 ]
 
-export const CONTAINER_COLORS = [
-  { id: 0, name: 'White', value: 'rgba(255, 255, 255, 0.15)' },
-  { id: 1, name: 'Black', value: 'rgba(0, 0, 0, 0.3)' },
-  { id: 2, name: 'Blue', value: 'rgba(59, 130, 246, 0.2)' },
-  { id: 3, name: 'Purple', value: 'rgba(147, 51, 234, 0.2)' },
-  { id: 4, name: 'Pink', value: 'rgba(236, 72, 153, 0.2)' },
-  { id: 5, name: 'Green', value: 'rgba(34, 197, 94, 0.2)' },
-  { id: 6, name: 'Orange', value: 'rgba(249, 115, 22, 0.2)' },
-  { id: 7, name: 'Red', value: 'rgba(239, 68, 68, 0.2)' }
-]
+export const CONTAINER_BG_COLOR = 'rgba(255, 255, 255, 0.15)'
 
 export const FONT_VARIANTS = [
   {

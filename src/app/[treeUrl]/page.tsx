@@ -2,16 +2,15 @@ import { notFound } from 'next/navigation'
 import Image from 'next/image'
 import type { Metadata } from 'next'
 
-import FontLoader from '@/components/trees/public/font-loader'
 import PublicSocialProfiles from '@/components/trees/public/social-profiles'
+import FontLoader from '@/components/trees/public/font-loader'
 import PublicLinks from '@/components/trees/public/links'
 import { ScrollArea } from '@/components/ui/scroll-area'
 import { getPublishedTree } from '@/lib/services/get-published-tree'
-import { BG_VIDEO } from '@/lib/constants/appearance'
-import { getFontFamily } from '@/lib/utils/fonts'
-import { getBackgroundStyle } from '@/lib/utils/get-background-style'
+import { BG_VIDEO, CONTAINER_BG_COLOR } from '@/lib/constants/appearance'
 import { getCornerClassName } from '@/lib/utils/get-corner-class-name'
-import { getContainerColor } from '@/lib/utils/get-container-color'
+import { getBackgroundStyle } from '@/lib/utils/get-background-style'
+import { getFontFamily } from '@/lib/utils/fonts'
 import { cn } from '@/lib/utils'
 
 interface Props {
@@ -75,13 +74,7 @@ export default async function PublicTreePage({ params }: Props) {
               hasContainer && getCornerClassName(cornerStyle)
             )}
             style={
-              hasContainer
-                ? {
-                    backgroundColor: getContainerColor(
-                      appearance.general.contentContainer.color
-                    )
-                  }
-                : undefined
+              hasContainer ? { backgroundColor: CONTAINER_BG_COLOR } : undefined
             }
           >
             <header

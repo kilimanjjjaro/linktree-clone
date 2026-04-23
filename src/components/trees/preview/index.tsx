@@ -14,8 +14,7 @@ import { useStore } from '@/lib/store/store'
 import { loadFont, getFontFamily } from '@/lib/utils/fonts'
 import { getBackgroundStyle } from '@/lib/utils/get-background-style'
 import { getCornerClassName } from '@/lib/utils/get-corner-class-name'
-import { getContainerColor } from '@/lib/utils/get-container-color'
-import { BG_VIDEO } from '@/lib/constants/appearance'
+import { BG_VIDEO, CONTAINER_BG_COLOR } from '@/lib/constants/appearance'
 import { PREVIEW_VIEWPORT } from '@/lib/constants/trees'
 import { cn } from '@/lib/utils'
 
@@ -45,11 +44,7 @@ export default function TreePreview() {
       )}
       style={
         appearance.general.contentContainer.enabled
-          ? {
-              backgroundColor: getContainerColor(
-                appearance.general.contentContainer.color
-              )
-            }
+          ? { backgroundColor: CONTAINER_BG_COLOR }
           : undefined
       }
     >
