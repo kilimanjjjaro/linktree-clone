@@ -30,17 +30,11 @@ export default function TreeName() {
     const value = event.target.value
     setName(value)
     setSelectedTree({ ...selectedTree, name: value })
-  }
 
-  const handleBlur = () => {
-    const validated = UpdateTreeSchema.safeParse({ name })
-
-    if (!validated.success) {
-      setErrors(validated.error.issues.map((issue) => issue.message))
-      return
-    }
-
-    setErrors([])
+    const validated = UpdateTreeSchema.safeParse({ name: value })
+    setErrors(
+      validated.success ? [] : validated.error.issues.map((issue) => issue.message)
+    )
   }
 
   return (
@@ -60,7 +54,6 @@ export default function TreeName() {
           className='peer'
           value={name}
           onChange={handleChange}
-          onBlur={handleBlur}
           placeholder={DEMO_TREE_VALUES.name}
           aria-invalid={errors.length > 0}
         />

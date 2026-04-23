@@ -10,6 +10,7 @@ import { useStore } from '@/lib/store/store'
 import { syncTree } from '@/lib/actions/trees/sync-tree'
 import { createTree } from '@/lib/actions/trees/create-tree'
 import useCurrentUser from '@/lib/hooks/useCurrentUser'
+import { UpdateTreeSchema } from '@/lib/schemas/tree'
 import { DEMO_TREE_VALUES } from '@/lib/constants/trees'
 import { getTreeChanges } from '@/lib/utils/get-tree-changes'
 import { cn } from '@/lib/utils'
@@ -25,7 +26,15 @@ export default function SaveButton() {
   const [hasBeenVisible, setHasBeenVisible] = useState(hasUnsavedChanges)
   const router = useRouter()
 
-  if (hasUnsavedChanges && !hasBeenVisible) setHasBeenVisible(true)
+  const isValid = UpdateTreeSchema.safeParse({
+    name: selectedTree.name,
+    url: selectedTree.url,
+    description: selectedTree.description
+  }).success
+
+  const shouldShow = hasUnsavedChanges && isValid
+
+  if (shouldShow && !hasBeenVisible) setHasBeenVisible(true)
 
   const handleSave = () => {
     if (selectedTree === null || savedTree === null || isPending) return
@@ -70,10 +79,9 @@ export default function SaveButton() {
         className={cn(
           'bg-lt-white',
           !hasBeenVisible && 'pointer-events-none opacity-0',
-          hasBeenVisible &&
-            (hasUnsavedChanges
-              ? 'animate-slide-in-from-top'
-              : 'pointer-events-none animate-slide-out-to-bottom')
+          hasBeenVisible && shouldShow
+            ? 'animate-slide-in-from-top'
+            : 'animate-slide-out-to-bottom pointer-events-none'
         )}
         onClick={handleSave}
         disabled={isPending}

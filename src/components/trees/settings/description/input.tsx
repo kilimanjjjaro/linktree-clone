@@ -28,17 +28,11 @@ export default function DescriptionInput() {
     const value = event.target.value
     setDescription(value)
     setSelectedTree({ ...selectedTree, description: value })
-  }
 
-  const handleBlur = () => {
-    const validated = UpdateTreeSchema.safeParse({ description })
-
-    if (!validated.success) {
-      setErrors(validated.error.issues.map((issue) => issue.message))
-      return
-    }
-
-    setErrors([])
+    const validated = UpdateTreeSchema.safeParse({ description: value })
+    setErrors(
+      validated.success ? [] : validated.error.issues.map((issue) => issue.message)
+    )
   }
 
   return (
@@ -49,7 +43,6 @@ export default function DescriptionInput() {
         className='peer min-h-[86px] resize-none'
         value={description}
         onChange={handleChange}
-        onBlur={handleBlur}
         placeholder={DEMO_TREE_VALUES.description}
         aria-invalid={errors.length > 0}
         maxLength={120}

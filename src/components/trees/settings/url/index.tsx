@@ -33,21 +33,18 @@ export default function TreeUrl() {
 
     const value = event.target.value
     setTreeUrl(value)
-    setSelectedTree({ ...selectedTree, url: slugify(value) })
+
+    const slugified = slugify(value)
+    setSelectedTree({ ...selectedTree, url: slugified })
+
+    const validated = UpdateTreeSchema.safeParse({ url: slugified })
+    setErrors(
+      validated.success ? [] : validated.error.issues.map((issue) => issue.message)
+    )
   }
 
   const handleBlur = () => {
-    const slugifiedUrl = slugify(treeUrl)
-    setTreeUrl(slugifiedUrl)
-
-    const validated = UpdateTreeSchema.safeParse({ url: slugifiedUrl })
-
-    if (!validated.success) {
-      setErrors(validated.error.issues.map((issue) => issue.message))
-      return
-    }
-
-    setErrors([])
+    setTreeUrl(slugify(treeUrl))
   }
 
   const copyUrl = () => {
