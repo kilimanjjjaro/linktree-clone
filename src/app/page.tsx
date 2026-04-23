@@ -1,5 +1,5 @@
-// import Footer from '@/components/footer'
 import Navbar from '@/components/navbar'
+import Toolbar from '@/components/toolbar'
 import InitApp from '@/components/init-app'
 import TreeAppearance from '@/components/trees/appearance'
 import TreePreview from '@/components/trees/preview'
@@ -18,18 +18,14 @@ export default async function Home(props: Props) {
   const trees = user?.id !== undefined ? await getTrees(user.id) : []
 
   return (
-    <InitApp
-      trees={trees}
-      treeUrl={treeUrl}
-      isAuthenticated={user !== null}
-    >
+    <InitApp trees={trees} treeUrl={treeUrl} isAuthenticated={user !== null}>
       <Navbar treeUrl={treeUrl} />
       <main className='relative grid h-dvh min-h-dvh grid-cols-[auto_1fr_auto] items-start justify-center p-3 pt-22'>
         <TreeAppearance />
         <TreePreview />
         <TreeSettings />
       </main>
-      {/* <Footer /> */}
+      <Toolbar />
     </InitApp>
   )
 }

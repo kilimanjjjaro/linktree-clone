@@ -1,8 +1,6 @@
 import Link from 'next/link'
 
 import TreeSelector from '@/components/navbar/tree-selector'
-import TreeStatus from '@/components/navbar/tree-status'
-import PreviewViewportToggle from '@/components/navbar/preview-viewport-toggle'
 import SessionBar from '@/components/navbar/session'
 import NewTreeButton from '@/components/navbar/new-tree-button'
 import LogInButton from '@/components/navbar/login-button'
@@ -29,8 +27,6 @@ export default async function Navbar({ treeUrl }: Props) {
         </Link>
         <Separator orientation='vertical' className='mr-5 ml-4.5 h-5' />
         <TreeSelector treeUrl={treeUrl} />
-        <TreeStatus />
-        <PreviewViewportToggle />
         <SaveButton />
       </nav>
       <nav className='flex items-center gap-x-5'>

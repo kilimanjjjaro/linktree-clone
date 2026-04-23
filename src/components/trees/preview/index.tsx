@@ -8,7 +8,6 @@ import TreeName from '@/components/trees/preview/name'
 import TreeDescription from '@/components/trees/preview/description'
 import TreeSocialProfiles from '@/components/trees/preview/social-profiles'
 import TreeLinks from '@/components/trees/preview/links'
-import AddLink from '@/components/trees/preview/link/add-link'
 import { ScrollArea } from '@/components/ui/scroll-area'
 import { useStore } from '@/lib/store/store'
 import { loadFont, getFontFamily } from '@/lib/utils/fonts'
@@ -90,7 +89,6 @@ export default function TreePreview() {
           >
             <div className='mx-auto w-full max-w-120 px-6'>{content}</div>
           </ScrollArea>
-          <AddLink />
         </section>
       </>
     )
@@ -132,7 +130,6 @@ export default function TreePreview() {
           >
             {content}
           </ScrollArea>
-          <AddLink />
         </div>
       </div>
     </section>

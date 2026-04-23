@@ -32,7 +32,7 @@ export default function TreeStatus() {
     setPublished(selectedTree.status === TREE_STATUS.PUBLISHED)
   }, [selectedTree])
 
-  if (!isStoreReady) return <Skeleton className='ml-3 h-9 w-30 rounded-full' />
+  if (!isStoreReady) return <Skeleton className='h-9 w-30 rounded-full' />
 
   return (
     <button
@@ -46,7 +46,7 @@ export default function TreeStatus() {
       }
       onClick={toggleStatus}
       className={cn(
-        'border-lt-light-gray/60 focus-visible:ring-lt-white focus-visible:ring-offset-lt-gray ml-3 flex h-9 cursor-pointer items-center gap-x-2 rounded-full border px-3.5 text-sm font-medium outline-none transition-colors focus-visible:ring-2 focus-visible:ring-offset-2',
+        'border-lt-light-gray/60 focus-visible:ring-lt-white focus-visible:ring-offset-lt-gray flex h-9 cursor-pointer items-center gap-x-2 rounded-full border px-3.5 text-sm font-medium outline-none transition-colors focus-visible:ring-2 focus-visible:ring-offset-2',
         published
           ? 'text-lt-green xl:hover:bg-lt-green/10'
           : 'text-lt-lightest-gray xl:hover:bg-lt-light-gray'

@@ -46,69 +46,67 @@ export default function AddLink() {
   }
 
   return (
-    <footer className='absolute inset-x-[16.5px] bottom-10 z-10 px-4'>
-      <Dialog
-        open={showAddLinkDialog}
-        onOpenChange={(value) => {
-          setShowAddLinkDialog(value)
-          setSelectedLink(null)
-        }}
-      >
-        <DialogTrigger asChild>
-          <Button className='w-full'>
-            Add link <Plus className='size-3.5' aria-hidden />
-          </Button>
-        </DialogTrigger>
-        <DialogContent className='p-0'>
-          <DialogHeader>
-            <DialogTitle>Add link</DialogTitle>
-          </DialogHeader>
-          <main className='mt-12 flex gap-5 p-5'>
-            <form onSubmit={handleSubmit} className='grid grid-cols-1 gap-y-5'>
-              <div className='flex flex-col gap-y-3'>
-                <Label htmlFor='link-name'>Name</Label>
-                <Input
-                  type='text'
-                  id='link-name'
-                  name='name'
-                  defaultValue={selectedLink?.name}
-                  placeholder='Example link'
-                  required
-                  autoFocus
-                />
+    <Dialog
+      open={showAddLinkDialog}
+      onOpenChange={(value) => {
+        setShowAddLinkDialog(value)
+        setSelectedLink(null)
+      }}
+    >
+      <DialogTrigger asChild>
+        <Button size='sm'>
+          Add link <Plus className='size-3.5' aria-hidden />
+        </Button>
+      </DialogTrigger>
+      <DialogContent className='p-0'>
+        <DialogHeader>
+          <DialogTitle>Add link</DialogTitle>
+        </DialogHeader>
+        <main className='mt-12 flex gap-5 p-5'>
+          <form onSubmit={handleSubmit} className='grid grid-cols-1 gap-y-5'>
+            <div className='flex flex-col gap-y-3'>
+              <Label htmlFor='link-name'>Name</Label>
+              <Input
+                type='text'
+                id='link-name'
+                name='name'
+                defaultValue={selectedLink?.name}
+                placeholder='Example link'
+                required
+                autoFocus
+              />
+            </div>
+            <div className='flex flex-col gap-y-3'>
+              <Label htmlFor='link-url'>URL</Label>
+              <Input
+                type='url'
+                id='link-url'
+                name='url'
+                defaultValue={selectedLink?.url}
+                placeholder='https://www.example.com/'
+                required
+              />
+            </div>
+            <div className='border-lt-light-gray/60 flex items-center gap-x-3 rounded-2xl border p-5'>
+              <div className='flex flex-col gap-y-1.5'>
+                <Label htmlFor='featured-link'>Featured link</Label>
+                <p className='text-lt-lightest-gray text-sm text-balance'>
+                  This will be displayed with a background image. We took it
+                  from the link. Soon you will able to upload one.
+                </p>
               </div>
-              <div className='flex flex-col gap-y-3'>
-                <Label htmlFor='link-url'>URL</Label>
-                <Input
-                  type='url'
-                  id='link-url'
-                  name='url'
-                  defaultValue={selectedLink?.url}
-                  placeholder='https://www.example.com/'
-                  required
-                />
-              </div>
-              <div className='border-lt-light-gray/60 flex items-center gap-x-3 rounded-2xl border p-5'>
-                <div className='flex flex-col gap-y-1.5'>
-                  <Label htmlFor='featured-link'>Featured link</Label>
-                  <p className='text-lt-lightest-gray text-sm text-balance'>
-                    This will be displayed with a background image. We took it
-                    from the link. Soon you will able to upload one.
-                  </p>
-                </div>
-                <Switch
-                  id='featured-link'
-                  name='featured'
-                  defaultChecked={selectedLink?.featured}
-                />
-              </div>
-              <Button type='submit' className='w-full'>
-                {selectedLink !== null ? 'Update' : 'Add'}
-              </Button>
-            </form>
-          </main>
-        </DialogContent>
-      </Dialog>
-    </footer>
+              <Switch
+                id='featured-link'
+                name='featured'
+                defaultChecked={selectedLink?.featured}
+              />
+            </div>
+            <Button type='submit' className='w-full'>
+              {selectedLink !== null ? 'Update' : 'Add'}
+            </Button>
+          </form>
+        </main>
+      </DialogContent>
+    </Dialog>
   )
 }

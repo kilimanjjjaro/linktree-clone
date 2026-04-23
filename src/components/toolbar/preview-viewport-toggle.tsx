@@ -14,7 +14,7 @@ export default function PreviewViewportToggle() {
     <div
       role='group'
       aria-label='Preview viewport'
-      className='border-lt-light-gray/60 ml-3 flex h-9 items-center gap-x-0.5 rounded-full border p-0.5'
+      className='border-lt-light-gray/60 flex h-9 items-center gap-x-0.5 rounded-full border p-0.5'
     >
       <button
         type='button'
