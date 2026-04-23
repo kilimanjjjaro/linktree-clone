@@ -28,8 +28,7 @@ interface Props {
 export default function TreeSelectorList({ treeUrl, trees }: Props) {
   const selectedTree = useStore((state) => state.selectedTree)
   const setShowSaveTreeDialog = useStore((state) => state.setShowSaveTreeDialog)
-  const setSelectedTree = useStore((state) => state.setSelectedTree)
-  const setSavedTree = useStore((state) => state.setSavedTree)
+  const loadTree = useStore((state) => state.loadTree)
   const [isPending, startTransition] = useTransition()
   const pathname = usePathname()
   const router = useRouter()
@@ -39,8 +38,7 @@ export default function TreeSelectorList({ treeUrl, trees }: Props) {
     const params = new URLSearchParams()
 
     const updateParams = (tree: TreeInterface) => {
-      setSelectedTree(tree)
-      setSavedTree(tree)
+      loadTree(tree)
 
       params.set('tree', tree.url)
       router.replace(`${pathname}?tree=${tree.url}`, {

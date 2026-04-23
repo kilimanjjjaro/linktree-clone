@@ -18,9 +18,11 @@ import { cn } from '@/lib/utils'
 export default function SaveButton() {
   const selectedTree = useStore((state) => state.selectedTree)
   const savedTree = useStore((state) => state.savedTree)
-  const setSelectedTree = useStore((state) => state.setSelectedTree)
   const setSavedTree = useStore((state) => state.setSavedTree)
-  const hasUnsavedChanges = useStore((state) => state.hasUnsavedChanges)
+  const loadTree = useStore((state) => state.loadTree)
+  const hasUnsavedChanges = useStore(
+    (state) => getTreeChanges(state.selectedTree, state.savedTree) !== null
+  )
   const user = useCurrentUser()
   const [isPending, startTransition] = useTransition()
   const [hasBeenVisible, setHasBeenVisible] = useState(hasUnsavedChanges)
@@ -65,8 +67,7 @@ export default function SaveButton() {
         return
       }
 
-      setSelectedTree(response.data)
-      setSavedTree(response.data)
+      loadTree(response.data)
       localStorage.removeItem('__LOCAL_TREE__')
 
       router.replace(`?tree=${response.data.url}`, { scroll: false })
@@ -79,9 +80,10 @@ export default function SaveButton() {
         className={cn(
           'bg-lt-white',
           !hasBeenVisible && 'pointer-events-none opacity-0',
-          hasBeenVisible && shouldShow
-            ? 'animate-slide-in-from-top'
-            : 'animate-slide-out-to-bottom pointer-events-none'
+          hasBeenVisible &&
+            (shouldShow
+              ? 'animate-slide-in-from-top'
+              : 'animate-slide-out-to-bottom pointer-events-none')
         )}
         onClick={handleSave}
         disabled={isPending}

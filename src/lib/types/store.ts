@@ -8,9 +8,9 @@ export interface TreesStoreInterface {
   setSelectedTree: (selectedTree: TreeInterface) => void
   savedTree: TreeInterface
   setSavedTree: (savedTree: TreeInterface) => void
+  loadTree: (tree: TreeInterface) => void
   isStoreReady: boolean
   setIsStoreReady: (isStoreReady: boolean) => void
-  hasUnsavedChanges: boolean
   showSaveTreeDialog: boolean
   setShowSaveTreeDialog: (showSaveTreeDialog: boolean) => void
   previewViewport: string

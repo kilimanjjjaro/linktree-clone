@@ -12,8 +12,7 @@ import useCurrentUser from '@/lib/hooks/useCurrentUser'
 
 export default function NewTreeButton() {
   const user = useCurrentUser()
-  const setSelectedTree = useStore((state) => state.setSelectedTree)
-  const setSavedTree = useStore((state) => state.setSavedTree)
+  const loadTree = useStore((state) => state.loadTree)
   const setShowSaveTreeDialog = useStore((state) => state.setShowSaveTreeDialog)
   const [isPending, startTransition] = useTransition()
   const router = useRouter()
@@ -34,8 +33,7 @@ export default function NewTreeButton() {
         return
       }
 
-      setSelectedTree(response.data)
-      setSavedTree(response.data)
+      loadTree(response.data)
 
       router.replace(`?tree=${response.data.url}`, { scroll: false })
     })
