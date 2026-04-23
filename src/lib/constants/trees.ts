@@ -53,3 +53,8 @@ export const TREE_STATUS = {
   DRAFT: 0,
   PUBLISHED: 1
 }
+
+export const PREVIEW_VIEWPORT = {
+  MOBILE: 'mobile',
+  DESKTOP: 'desktop'
+} as const

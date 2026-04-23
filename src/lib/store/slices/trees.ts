@@ -1,6 +1,6 @@
 import type { StateCreator } from 'zustand'
 import { type TreesStoreInterface } from '@/lib/types/store'
-import { DEMO_TREE_VALUES } from '@/lib/constants/trees'
+import { DEMO_TREE_VALUES, PREVIEW_VIEWPORT } from '@/lib/constants/trees'
 
 export const createTreesSlice: StateCreator<TreesStoreInterface> = (set) => ({
   selectedTree: DEMO_TREE_VALUES,
@@ -22,5 +22,9 @@ export const createTreesSlice: StateCreator<TreesStoreInterface> = (set) => ({
   showSaveTreeDialog: false,
   setShowSaveTreeDialog: (showSaveTreeDialog) => {
     set(() => ({ showSaveTreeDialog }))
+  },
+  previewViewport: PREVIEW_VIEWPORT.MOBILE,
+  setPreviewViewport: (previewViewport) => {
+    set(() => ({ previewViewport }))
   }
 })

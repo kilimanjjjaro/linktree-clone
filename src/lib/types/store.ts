@@ -14,6 +14,8 @@ export interface TreesStoreInterface {
   setHasUnsavedChanges: (hasUnsavedChanges: boolean) => void
   showSaveTreeDialog: boolean
   setShowSaveTreeDialog: (showSaveTreeDialog: boolean) => void
+  previewViewport: string
+  setPreviewViewport: (previewViewport: string) => void
 }
 
 export interface SocialProfilesSliceInterface {
@@ -33,6 +35,7 @@ export interface LinksSliceInterface {
 }
 
 export interface StoreInterface
-  extends TreesStoreInterface,
+  extends
+    TreesStoreInterface,
     SocialProfilesSliceInterface,
     LinksSliceInterface {}

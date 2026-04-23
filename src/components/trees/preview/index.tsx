@@ -16,18 +16,90 @@ import { getBackgroundStyle } from '@/lib/utils/get-background-style'
 import { getCornerClassName } from '@/lib/utils/get-corner-class-name'
 import { getContainerColor } from '@/lib/utils/get-container-color'
 import { BG_VIDEO } from '@/lib/constants/appearance'
+import { PREVIEW_VIEWPORT } from '@/lib/constants/trees'
 import { cn } from '@/lib/utils'
-
 
 export default function TreePreview() {
   const selectedTree = useStore((state) => state.selectedTree)
+  const previewViewport = useStore((state) => state.previewViewport)
 
   const appearance = selectedTree.appearance
   const fontId = appearance.font ?? 0
+  const isDesktop = previewViewport === PREVIEW_VIEWPORT.DESKTOP
+  const backgroundStyle = getBackgroundStyle(appearance.background)
+  const hasVideoBackground =
+    appearance.background.type === BG_VIDEO &&
+    Boolean(appearance.background.settings.url)
 
   useEffect(() => {
     loadFont(fontId)
   }, [fontId])
+
+  const content = (
+    <div
+      className={cn(
+        appearance.general.contentContainer.enabled &&
+          'mx-auto mt-16 mb-4 px-3 py-4',
+        appearance.general.contentContainer.enabled &&
+          getCornerClassName(appearance.general.cornerStyle)
+      )}
+      style={
+        appearance.general.contentContainer.enabled
+          ? {
+              backgroundColor: getContainerColor(
+                appearance.general.contentContainer.color
+              )
+            }
+          : undefined
+      }
+    >
+      <header
+        className={cn(
+          'mb-4 flex flex-col items-center',
+          appearance.general.contentContainer.enabled ? 'mt-4' : 'mt-16'
+        )}
+      >
+        <TreeAvatar />
+        <TreeName />
+        <TreeDescription />
+        <TreeSocialProfiles />
+      </header>
+      <TreeLinks />
+    </div>
+  )
+
+  if (isDesktop) {
+    return (
+      <>
+        <div
+          aria-hidden
+          className='pointer-events-none fixed inset-0 -z-10 overflow-hidden'
+          style={backgroundStyle}
+        >
+          {hasVideoBackground && (
+            <video
+              src={appearance.background.settings.url}
+              className='size-full object-cover'
+              muted
+              autoPlay
+              loop
+              playsInline
+            />
+          )}
+        </div>
+        <section className='relative flex h-full w-full flex-col items-center justify-start self-stretch'>
+          <ScrollArea
+            className='h-full w-full'
+            scrollHideDelay={0}
+            style={{ fontFamily: getFontFamily(fontId) }}
+          >
+            <div className='mx-auto w-full max-w-120 px-6'>{content}</div>
+          </ScrollArea>
+          <AddLink />
+        </section>
+      </>
+    )
+  }
 
   return (
     <section className='flex flex-col items-center self-center'>
@@ -41,20 +113,19 @@ export default function TreePreview() {
             maskPosition: 'center',
             maskRepeat: 'no-repeat',
             maskSize: '100%',
-            ...getBackgroundStyle(appearance.background)
+            ...backgroundStyle
           }}
         >
-          {appearance.background.type === BG_VIDEO &&
-            appearance.background.settings.url && (
-              <video
-                src={appearance.background.settings.url}
-                className='absolute inset-0 size-full object-cover'
-                muted
-                autoPlay
-                loop
-                playsInline
-              />
-            )}
+          {hasVideoBackground && (
+            <video
+              src={appearance.background.settings.url}
+              className='absolute inset-0 size-full object-cover'
+              muted
+              autoPlay
+              loop
+              playsInline
+            />
+          )}
           <ScrollArea
             className='h-full px-4'
             scrollHideDelay={0}
@@ -64,38 +135,7 @@ export default function TreePreview() {
                 'linear-gradient(to bottom, black 70%, transparent 100%)'
             }}
           >
-            <div
-              className={cn(
-                appearance.general.contentContainer.enabled &&
-                  'mx-auto mt-16 mb-4 px-3 py-4',
-                appearance.general.contentContainer.enabled &&
-                  getCornerClassName(appearance.general.cornerStyle)
-              )}
-              style={
-                appearance.general.contentContainer.enabled
-                  ? {
-                      backgroundColor: getContainerColor(
-                        appearance.general.contentContainer.color
-                      )
-                    }
-                  : undefined
-              }
-            >
-              <header
-                className={cn(
-                  'mb-4 flex flex-col items-center',
-                  appearance.general.contentContainer.enabled
-                    ? 'mt-4'
-                    : 'mt-16'
-                )}
-              >
-                <TreeAvatar />
-                <TreeName />
-                <TreeDescription />
-                <TreeSocialProfiles />
-              </header>
-              <TreeLinks />
-            </div>
+            {content}
           </ScrollArea>
           <AddLink />
         </div>
