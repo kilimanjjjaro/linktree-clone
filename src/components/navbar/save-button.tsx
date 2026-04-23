@@ -1,6 +1,6 @@
 'use client'
 
-import { useTransition } from 'react'
+import { useState, useTransition } from 'react'
 import { useRouter } from 'next/navigation'
 import { LoaderCircle, Save } from 'lucide-react'
 import { toast } from 'sonner'
@@ -10,8 +10,9 @@ import { useStore } from '@/lib/store/store'
 import { syncTree } from '@/lib/actions/trees/sync-tree'
 import { createTree } from '@/lib/actions/trees/create-tree'
 import useCurrentUser from '@/lib/hooks/useCurrentUser'
-import { getTreeChanges } from '@/lib/utils/get-tree-changes'
 import { DEMO_TREE_VALUES } from '@/lib/constants/trees'
+import { getTreeChanges } from '@/lib/utils/get-tree-changes'
+import { cn } from '@/lib/utils'
 
 export default function SaveButton() {
   const selectedTree = useStore((state) => state.selectedTree)
@@ -22,7 +23,10 @@ export default function SaveButton() {
   const setHasUnsavedChanges = useStore((state) => state.setHasUnsavedChanges)
   const user = useCurrentUser()
   const [isPending, startTransition] = useTransition()
+  const [hasBeenVisible, setHasBeenVisible] = useState(hasUnsavedChanges)
   const router = useRouter()
+
+  if (hasUnsavedChanges && !hasBeenVisible) setHasBeenVisible(true)
 
   const handleSave = () => {
     if (selectedTree === null || savedTree === null || isPending) return
@@ -66,26 +70,32 @@ export default function SaveButton() {
     })
   }
 
-  if (!hasUnsavedChanges) return null
-
   return (
-    <Button
-      variant={user !== null ? 'default' : 'secondary'}
-      className='ml-5 h-full'
-      onClick={handleSave}
-      disabled={isPending}
-    >
-      {isPending ? (
-        <>
-          Saving
-          <LoaderCircle className='size-4 animate-spin' aria-hidden />
-        </>
-      ) : (
-        <>
-          Save
-          <Save className='size-4' aria-hidden />
-        </>
-      )}
-    </Button>
+    <div className='fixed inset-x-0 top-15 flex w-screen justify-center'>
+      <Button
+        className={cn(
+          'bg-lt-white',
+          !hasBeenVisible && 'pointer-events-none opacity-0',
+          hasBeenVisible &&
+            (hasUnsavedChanges
+              ? 'animate-slide-in-from-top'
+              : 'pointer-events-none animate-slide-out-to-bottom')
+        )}
+        onClick={handleSave}
+        disabled={isPending}
+      >
+        {isPending ? (
+          <>
+            Saving
+            <LoaderCircle className='size-4 animate-spin' aria-hidden />
+          </>
+        ) : (
+          <>
+            Save changes
+            <Save className='size-4' aria-hidden />
+          </>
+        )}
+      </Button>
+    </div>
   )
 }

@@ -6,13 +6,13 @@ interface Props {
 
 export default function BackgroundThumbnail({ bgType }: Props) {
   if (bgType === 0) {
-    return (
-      <div className='size-full bg-linear-to-t from-red-700 to-yellow-300' />
-    )
+    return <div className='size-full bg-yellow-500' />
   }
 
   if (bgType === 1) {
-    return <div className='size-full bg-yellow-500' />
+    return (
+      <div className='size-full bg-linear-to-t from-red-700 to-yellow-300' />
+    )
   }
 
   if (bgType === 2) {

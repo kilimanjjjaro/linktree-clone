@@ -3,7 +3,6 @@ import TreeName from '@/components/trees/settings/name'
 import TreeUrl from '@/components/trees/settings/url'
 import TreeDescription from '@/components/trees/settings/description'
 import TreeSocialProfiles from '@/components/trees/settings/social-profiles'
-import TreeStatus from '@/components/trees/settings/status'
 import { Separator } from '@/components/ui/separator'
 import { ScrollArea } from '@/components/ui/scroll-area'
 
@@ -24,8 +23,6 @@ export default async function TreeSettings() {
         <TreeDescription />
         <Separator />
         <TreeSocialProfiles />
-        <Separator />
-        <TreeStatus />
       </ScrollArea>
     </aside>
   )
