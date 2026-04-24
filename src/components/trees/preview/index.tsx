@@ -28,38 +28,36 @@ export default function TreePreview() {
   const hasVideoBackground =
     appearance.background.type === BG_VIDEO &&
     Boolean(appearance.background.settings.url)
+  const isContentContainerEnabled = appearance.general.contentContainer.enabled
 
   useEffect(() => {
     loadFont(fontId)
   }, [fontId])
 
   const content = (
-    <div
-      className={cn(
-        appearance.general.contentContainer.enabled &&
-          'mx-auto mt-16 mb-4 px-3 py-4',
-        appearance.general.contentContainer.enabled &&
-          getCornerClassName(appearance.general.cornerStyle)
-      )}
-      style={
-        appearance.general.contentContainer.enabled
-          ? { backgroundColor: CONTAINER_BG_COLOR }
-          : undefined
-      }
-    >
-      <header
-        className={cn(
-          'mb-4 flex flex-col items-center',
-          appearance.general.contentContainer.enabled ? 'mt-4' : 'mt-16'
-        )}
-      >
+    <>
+      <header className='mt-16 mb-4 flex flex-col items-center'>
         <TreeAvatar />
-        <TreeName />
-        <TreeDescription />
-        <TreeSocialProfiles />
+        <div
+          className={cn(
+            'flex w-full flex-col items-center',
+            isContentContainerEnabled && 'mt-4 px-3 py-4',
+            isContentContainerEnabled &&
+              getCornerClassName(appearance.general.cornerStyle)
+          )}
+          style={
+            isContentContainerEnabled
+              ? { backgroundColor: CONTAINER_BG_COLOR }
+              : undefined
+          }
+        >
+          <TreeName />
+          <TreeDescription />
+          <TreeSocialProfiles />
+        </div>
       </header>
       <TreeLinks />
-    </div>
+    </>
   )
 
   if (isDesktop) {

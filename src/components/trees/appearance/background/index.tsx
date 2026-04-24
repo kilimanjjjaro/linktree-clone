@@ -12,7 +12,7 @@ import {
 } from '@/components/ui/popover'
 import { useStore } from '@/lib/store/store'
 import { updateBackground } from '@/lib/actions/trees/update-background'
-import { BACKGROUND_TYPES, BG_FLAT_COLOR } from '@/lib/constants/appearance'
+import { BG_TYPES, BG_FLAT_COLOR } from '@/lib/constants/appearance'
 
 export default function TreeBackground() {
   const selectedTree = useStore((state) => state.selectedTree)
@@ -79,7 +79,7 @@ export default function TreeBackground() {
     <section className='p-5'>
       <h3 className='text-sm leading-none font-medium'>Background</h3>
       <div className='mt-3 grid grid-cols-2 gap-3'>
-        {BACKGROUND_TYPES.map((bg) => {
+        {BG_TYPES.map((bg) => {
           const isSelected = type === bg.id
 
           return (
