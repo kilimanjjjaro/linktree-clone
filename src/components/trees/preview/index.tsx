@@ -123,9 +123,7 @@ export default function TreePreview() {
             className='h-full px-4'
             scrollHideDelay={0}
             style={{
-              fontFamily: getFontFamily(fontId),
-              maskImage:
-                'linear-gradient(to bottom, black 70%, transparent 100%)'
+              fontFamily: getFontFamily(fontId)
             }}
           >
             {content}
