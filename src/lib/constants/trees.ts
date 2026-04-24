@@ -7,7 +7,7 @@ export const DEMO_TREE_VALUES: TreeInterface = {
   name: 'Example Tree',
   url: 'example-tree',
   description:
-    'Full Stack Developer & UX/UI Designer with +6 years of work experience.',
+    'This is an example tree to showcase the features of the app. Feel free to explore and customize it to your liking!',
   avatar:
     'https://res.cloudinary.com/dsvcixsbp/image/upload/c_scale,h_150/v1714920612/linktree/default-tree-avatar_mo72xw.jpg',
   socialProfiles: [
@@ -50,16 +50,6 @@ export const DEMO_TREE_VALUES: TreeInterface = {
       id: 'cd265a51-5b5b-4dec-aeb2-2ee8c7fbd6fd',
       createdAt: new Date('2026-04-24T13:02:32.114Z'),
       updatedAt: new Date('2026-04-24T13:02:32.114Z')
-    },
-    {
-      treeId: 'demo',
-      name: 'Portfolio - Old version',
-      url: 'https://kilimanjjjaro-v1.pages.dev/',
-      featured: true,
-      image: 'https://kilimanjjjaro-v1.pages.dev/img/1.jpg',
-      id: '26cf9be1-efe1-4976-abea-11698510855d',
-      createdAt: new Date('2026-04-24T13:02:41.739Z'),
-      updatedAt: new Date('2026-04-24T13:02:41.739Z')
     }
   ],
   appearance: {
@@ -67,8 +57,8 @@ export const DEMO_TREE_VALUES: TreeInterface = {
       type: 1,
       settings: {
         steps: [
-          [9, 13, 31],
-          [45, 49, 67]
+          [10, 14, 25],
+          [35, 37, 47]
         ],
         angle: 352,
         color: [18, 18, 18],
