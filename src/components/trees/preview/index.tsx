@@ -41,7 +41,7 @@ export default function TreePreview() {
         <div
           className={cn(
             'flex w-full flex-col items-center',
-            isContentContainerEnabled && 'mt-4 px-3 py-4',
+            isContentContainerEnabled && 'mt-4 px-4 py-6',
             isContentContainerEnabled &&
               getCornerClassName(appearance.general.cornerStyle)
           )}
