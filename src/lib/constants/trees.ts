@@ -10,14 +10,67 @@ export const DEMO_TREE_VALUES: TreeInterface = {
     'Full Stack Developer & UX/UI Designer with +6 years of work experience.',
   avatar:
     'https://res.cloudinary.com/dsvcixsbp/image/upload/c_scale,h_150/v1714920612/linktree/default-tree-avatar_mo72xw.jpg',
-  socialProfiles: [],
-  links: [],
+  socialProfiles: [
+    {
+      treeId: 'demo',
+      type: 'EMAIL',
+      url: 'gonzaloemacastillo@gmail.com',
+      name: 'Email',
+      id: 'fcd55224-de57-4091-a7dc-3f72d549fff2',
+      createdAt: new Date('2026-04-24T13:04:46.756Z'),
+      updatedAt: new Date('2026-04-24T13:04:46.756Z')
+    },
+    {
+      treeId: 'demo',
+      type: 'LINKEDIN',
+      url: 'gonzaloemanuelcastillo',
+      name: 'LinkedIn',
+      id: '4f5c57d2-2d70-41bb-82e4-c662a51a4f3f',
+      createdAt: new Date('2026-04-24T13:05:02.646Z'),
+      updatedAt: new Date('2026-04-24T13:05:02.646Z')
+    }
+  ],
+  links: [
+    {
+      treeId: 'demo',
+      name: 'Portfolio',
+      url: 'https://kilimanjjjaro.com/',
+      featured: true,
+      image: 'https://kilimanjjjaro.com/images/og-image.jpg',
+      id: '57d11ebe-fb10-4c3a-8e3e-d3b92c84542d',
+      createdAt: new Date('2026-04-24T13:02:00.539Z'),
+      updatedAt: new Date('2026-04-24T13:02:00.539Z')
+    },
+    {
+      treeId: 'demo',
+      name: 'Full stack app',
+      url: 'https://wrkload.vercel.app/',
+      featured: true,
+      image: 'https://wrkload.vercel.app/images/og.jpg',
+      id: 'cd265a51-5b5b-4dec-aeb2-2ee8c7fbd6fd',
+      createdAt: new Date('2026-04-24T13:02:32.114Z'),
+      updatedAt: new Date('2026-04-24T13:02:32.114Z')
+    },
+    {
+      treeId: 'demo',
+      name: 'Portfolio - Old version',
+      url: 'https://kilimanjjjaro-v1.pages.dev/',
+      featured: true,
+      image: 'https://kilimanjjjaro-v1.pages.dev/img/1.jpg',
+      id: '26cf9be1-efe1-4976-abea-11698510855d',
+      createdAt: new Date('2026-04-24T13:02:41.739Z'),
+      updatedAt: new Date('2026-04-24T13:02:41.739Z')
+    }
+  ],
   appearance: {
     background: {
-      type: 0,
+      type: 1,
       settings: {
-        steps: [],
-        angle: 0,
+        steps: [
+          [9, 13, 31],
+          [45, 49, 67]
+        ],
+        angle: 352,
         color: [18, 18, 18],
         url: ''
       }
