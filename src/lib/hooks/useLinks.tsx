@@ -48,10 +48,14 @@ export default function useLinks() {
       }
 
       if (existingIndex !== -1) {
-        existingLinks[existingIndex].name = validatedFields.data.name
-        existingLinks[existingIndex].url = validatedFields.data.url
-        existingLinks[existingIndex].featured = validatedFields.data.featured
-        existingLinks[existingIndex].updatedAt = new Date()
+        existingLinks[existingIndex] = {
+          ...existingLinks[existingIndex],
+          name: validatedFields.data.name,
+          url: validatedFields.data.url,
+          featured: validatedFields.data.featured,
+          image: validatedFields.data.image ?? null,
+          updatedAt: new Date()
+        }
       } else {
         existingLinks.push(newLink)
       }

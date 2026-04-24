@@ -25,7 +25,7 @@ export default function TextLink({ link }: Props) {
   }
 
   return (
-    <div className='relative flex items-center'>
+    <div className='group relative flex items-center'>
       <a
         className={cn(
           buttonVariants({ variant: 'default' }),
