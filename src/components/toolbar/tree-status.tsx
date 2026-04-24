@@ -1,13 +1,16 @@
 'use client'
 
 import { useEffect, useState } from 'react'
+import { toast } from 'sonner'
 
 import { Skeleton } from '@/components/ui/skeleton'
 import { useStore } from '@/lib/store/store'
 import { TREE_STATUS } from '@/lib/constants/trees'
 import { cn } from '@/lib/utils'
+import useCurrentUser from '@/lib/hooks/useCurrentUser'
 
 export default function TreeStatus() {
+  const user = useCurrentUser()
   const selectedTree = useStore((state) => state.selectedTree)
   const setSelectedTree = useStore((state) => state.setSelectedTree)
   const isStoreReady = useStore((state) => state.isStoreReady)
@@ -15,6 +18,11 @@ export default function TreeStatus() {
 
   const toggleStatus = () => {
     if (selectedTree === null) return
+
+    if (user === null) {
+      toast.error('Must log in to publish trees.')
+      return
+    }
 
     const next = !published
     setPublished(next)

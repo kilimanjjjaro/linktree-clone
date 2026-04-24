@@ -18,6 +18,11 @@ export default function NewTreeButton() {
   const router = useRouter()
 
   const handleCreate = () => {
+    if (user === null) {
+      toast.error('Must log in to create trees.')
+      return
+    }
+
     const localTree = localStorage.getItem('__LOCAL_TREE__')
 
     if (localTree !== null) {
