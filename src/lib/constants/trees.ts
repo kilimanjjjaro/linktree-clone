@@ -7,7 +7,7 @@ export const DEMO_TREE_VALUES: TreeInterface = {
   name: 'Example Tree',
   url: 'example-tree',
   description:
-    'This is an example tree to showcase the features of the app. Feel free to explore and customize it to your liking!',
+    'This is an example tree to showcase the features of the app. Feel free to explore and customize it!',
   avatar:
     'https://res.cloudinary.com/dsvcixsbp/image/upload/c_scale,h_150/v1714920612/linktree/default-tree-avatar_mo72xw.jpg',
   socialProfiles: [
@@ -43,7 +43,7 @@ export const DEMO_TREE_VALUES: TreeInterface = {
     },
     {
       treeId: 'demo',
-      name: 'Full stack app',
+      name: 'Full Stack App',
       url: 'https://wrkload.vercel.app/',
       featured: true,
       image: 'https://wrkload.vercel.app/images/og.jpg',
