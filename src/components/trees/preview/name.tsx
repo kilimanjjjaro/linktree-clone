@@ -12,7 +12,7 @@ export default function TreeName() {
   }
 
   return (
-    <h1 className='mt-5 text-center text-3xl leading-none font-semibold'>
+    <h1 className='mt-5 text-center text-3xl leading-none font-semibold mix-blend-difference'>
       {selectedTree.name}
     </h1>
   )

@@ -17,7 +17,7 @@ export default function TreeDescription() {
   }
 
   return (
-    <p className='mt-3 text-center text-sm text-balance text-zinc-400'>
+    <p className='mt-3 text-center text-sm text-balance text-zinc-400 mix-blend-difference'>
       {selectedTree.description}
     </p>
   )

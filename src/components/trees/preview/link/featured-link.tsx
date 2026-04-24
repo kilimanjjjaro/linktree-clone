@@ -25,7 +25,7 @@ export default function FeaturedLink({ link }: Props) {
   }
 
   return (
-    <div className='group relative'>
+    <div className='group relative transition-transform active:scale-[0.97]'>
       <a href={link.url} target='_blank' rel='noopener noreferrer'>
         <div
           className={cn(

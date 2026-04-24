@@ -23,7 +23,7 @@ export default function TreeLinks() {
   }
 
   return (
-    <main ref={parent} className='mb-4 grid grid-cols-1 gap-y-4'>
+    <main ref={parent} className='mb-6 grid grid-cols-1 gap-y-4'>
       {selectedTree.links.map((link) => (
         <Fragment key={link.id}>
           {link.featured ? (

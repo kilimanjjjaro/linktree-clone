@@ -25,7 +25,7 @@ export default function TextLink({ link }: Props) {
   }
 
   return (
-    <div className='group relative flex items-center'>
+    <div className='group relative flex items-center transition-transform active:scale-[0.97]'>
       <a
         className={cn(
           buttonVariants({ variant: 'default' }),
