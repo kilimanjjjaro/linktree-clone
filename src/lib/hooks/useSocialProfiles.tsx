@@ -26,8 +26,11 @@ export default function useSocialProfiles() {
       }
 
       if (existingIndex !== -1) {
-        existingProfiles[existingIndex].url = data.url
-        existingProfiles[existingIndex].updatedAt = new Date()
+        existingProfiles[existingIndex] = {
+          ...existingProfiles[existingIndex],
+          url: data.url,
+          updatedAt: new Date()
+        }
       } else {
         existingProfiles.push(newProfile)
       }
