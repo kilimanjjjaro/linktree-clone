@@ -54,14 +54,11 @@ export const DEMO_TREE_VALUES: TreeInterface = {
   ],
   appearance: {
     background: {
-      type: 1,
+      type: 0,
       settings: {
-        steps: [
-          [10, 14, 25],
-          [35, 37, 47]
-        ],
-        angle: 352,
-        color: [18, 18, 18],
+        steps: [],
+        angle: 0,
+        color: [40, 44, 52],
         url: ''
       }
     },
