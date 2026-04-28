@@ -9,7 +9,7 @@ interface Props {
 
 export default function PublicLinks({ links, cornerStyle }: Props) {
   return (
-    <main className='mb-8 grid grid-cols-1 gap-y-4'>
+    <main className='grid grid-cols-1 gap-y-4'>
       {links.map((link) =>
         link.featured ? (
           <FeaturedLink key={link.id} link={link} cornerStyle={cornerStyle} />

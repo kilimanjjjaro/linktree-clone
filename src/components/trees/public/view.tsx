@@ -3,6 +3,7 @@ import Image from 'next/image'
 import PublicSocialProfiles from '@/components/trees/public/social-profiles'
 import FontLoader from '@/components/trees/public/font-loader'
 import PublicLinks from '@/components/trees/public/links'
+import PublicFooter from '@/components/trees/public/footer'
 import PrivateNotice from '@/components/trees/public/private-notice'
 import { ScrollArea } from '@/components/ui/scroll-area'
 import { BG_VIDEO, CONTAINER_BG_COLOR } from '@/lib/constants/appearance'
@@ -28,7 +29,7 @@ export default function PublicTreeView({ tree, isPrivate = false }: Props) {
       <FontLoader fontId={fontId} />
       {isPrivate && <PrivateNotice />}
       <main
-        className='relative flex min-h-dvh items-start justify-center'
+        className='relative flex items-start justify-center'
         style={getBackgroundStyle(appearance.background)}
       >
         {appearance.background.type === BG_VIDEO &&
@@ -42,12 +43,11 @@ export default function PublicTreeView({ tree, isPrivate = false }: Props) {
               playsInline
             />
           )}
-        <ScrollArea
-          className='relative h-dvh w-full max-w-140 px-4'
-          scrollHideDelay={0}
+        <section
+          className='max-w-120 py-12'
           style={{ fontFamily: getFontFamily(fontId) }}
         >
-          <header className='mt-12 mb-6 flex flex-col items-center'>
+          <header className='mb-6 flex flex-col items-center'>
             <div className='border-lt-light-gray/60 relative size-28 overflow-hidden rounded-full border'>
               <Image
                 className='absolute size-full object-cover object-center'
@@ -87,7 +87,8 @@ export default function PublicTreeView({ tree, isPrivate = false }: Props) {
             </div>
           </header>
           <PublicLinks links={tree.links} cornerStyle={cornerStyle} />
-        </ScrollArea>
+          <PublicFooter cornerStyle={cornerStyle} />
+        </section>
       </main>
     </>
   )
