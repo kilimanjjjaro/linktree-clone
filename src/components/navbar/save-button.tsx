@@ -2,7 +2,7 @@
 
 import { useState, useTransition } from 'react'
 import { useRouter } from 'next/navigation'
-import { LoaderCircle, Save } from 'lucide-react'
+import { LoaderCircle, Save, Undo2 } from 'lucide-react'
 import { toast } from 'sonner'
 
 import { Button } from '@/components/ui/button'
@@ -18,6 +18,7 @@ import { cn } from '@/lib/utils'
 export default function SaveButton() {
   const selectedTree = useStore((state) => state.selectedTree)
   const savedTree = useStore((state) => state.savedTree)
+  const setSelectedTree = useStore((state) => state.setSelectedTree)
   const setSavedTree = useStore((state) => state.setSavedTree)
   const loadTree = useStore((state) => state.loadTree)
   const hasUnsavedChanges = useStore(
@@ -74,32 +75,49 @@ export default function SaveButton() {
     })
   }
 
+  const handleRevert = () => {
+    if (savedTree === null || isPending) return
+    setSelectedTree(savedTree)
+  }
+
   return (
     <div className='fixed inset-x-0 top-15 flex w-screen justify-center'>
-      <Button
+      <div
         className={cn(
-          'bg-lt-white',
+          'flex gap-x-2',
           !hasBeenVisible && 'pointer-events-none opacity-0',
           hasBeenVisible &&
             (shouldShow
               ? 'animate-slide-in-from-top'
               : 'animate-slide-out-to-bottom pointer-events-none')
         )}
-        onClick={handleSave}
-        disabled={isPending}
       >
-        {isPending ? (
-          <>
-            Saving
-            <LoaderCircle className='size-4 animate-spin' aria-hidden />
-          </>
-        ) : (
-          <>
-            Save changes
-            <Save className='size-4' aria-hidden />
-          </>
-        )}
-      </Button>
+        <Button
+          variant='destructive'
+          onClick={handleRevert}
+          disabled={isPending}
+        >
+          Revert
+          <Undo2 className='size-4' aria-hidden />
+        </Button>
+        <Button
+          className='bg-lt-white'
+          onClick={handleSave}
+          disabled={isPending}
+        >
+          {isPending ? (
+            <>
+              Saving
+              <LoaderCircle className='size-4 animate-spin' aria-hidden />
+            </>
+          ) : (
+            <>
+              Save changes
+              <Save className='size-4' aria-hidden />
+            </>
+          )}
+        </Button>
+      </div>
     </div>
   )
 }
