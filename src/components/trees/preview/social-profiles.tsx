@@ -5,6 +5,7 @@ import { useAutoAnimate } from '@formkit/auto-animate/react'
 import SocialProfileIcon from '@/components/trees/settings/social-profiles/icon'
 import { Skeleton } from '@/components/ui/skeleton'
 import { useStore } from '@/lib/store/store'
+import { getSocialProfileUrl } from '@/lib/utils/get-social-profile-url'
 
 export default function TreeSocialProfiles() {
   const selectedTree = useStore((state) => state.selectedTree)
@@ -33,7 +34,7 @@ export default function TreeSocialProfiles() {
         <a
           key={socialProfile.type}
           className='size-7 rounded-full bg-zinc-400 p-1 text-black transition active:scale-90 xl:hover:bg-zinc-200'
-          href={socialProfile.url}
+          href={getSocialProfileUrl(socialProfile.type, socialProfile.url)}
           target='_blank'
           rel='noopener noreferrer'
         >

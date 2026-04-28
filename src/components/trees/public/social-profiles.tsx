@@ -1,4 +1,5 @@
 import SocialProfileIcon from '@/components/trees/settings/social-profiles/icon'
+import { getSocialProfileUrl } from '@/lib/utils/get-social-profile-url'
 import { type TreeInterface } from '@/lib/types/trees'
 
 interface Props {
@@ -14,7 +15,7 @@ export default function PublicSocialProfiles({ socialProfiles }: Props) {
         <a
           key={socialProfile.type}
           className='size-7 rounded-full bg-zinc-400 p-1 text-black transition-colors xl:hover:bg-zinc-200'
-          href={socialProfile.url}
+          href={getSocialProfileUrl(socialProfile.type, socialProfile.url)}
           target='_blank'
           rel='noopener noreferrer'
         >

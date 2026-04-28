@@ -93,7 +93,7 @@ export default function TreePreview() {
   }
 
   return (
-    <section className='flex flex-col items-center self-center'>
+    <section className='-mt-17 flex flex-col items-center self-center'>
       <div className='relative flex aspect-320/630 w-90 items-start justify-center overflow-hidden'>
         <DeviceOverlay />
         <div
