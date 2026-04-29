@@ -10,7 +10,7 @@ import { Suspense } from 'react'
 
 export default async function ConfirmAccountPage() {
   return (
-    <Card className='w-[350px] border-none bg-transparent'>
+    <Card className='w-full max-w-87.5 border-none bg-transparent'>
       <CardHeader className='text-center'>
         <CardTitle className='text-2xl font-medium'>
           We&apos;re almost done!

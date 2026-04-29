@@ -12,7 +12,7 @@ import Link from 'next/link'
 export default async function NewPasswordPage() {
   return (
     <div className='grid place-items-center gap-y-3'>
-      <Card className='w-[350px]'>
+      <Card className='w-full max-w-87.5'>
         <CardHeader className='text-center'>
           <CardTitle className='text-2xl font-medium'>
             We&apos;re almost done!

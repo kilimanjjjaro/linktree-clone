@@ -44,7 +44,7 @@ export default function PublicTreeView({ tree, isPrivate = false }: Props) {
             />
           )}
         <section
-          className='max-w-120 py-12'
+          className='w-full max-w-120 px-5 py-12'
           style={{ fontFamily: getFontFamily(fontId) }}
         >
           <header className='mb-6 flex flex-col items-center'>
