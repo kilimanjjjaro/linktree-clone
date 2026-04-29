@@ -53,12 +53,12 @@ export default function NewTreeButton() {
     >
       {isPending ? (
         <>
-          Creating
+          <span className='hidden md:inline'>Creating</span>
           <LoaderCircle className='size-4 animate-spin' aria-hidden />
         </>
       ) : (
         <>
-          New tree
+          <span className='hidden md:inline'>New tree</span>
           <Plus className='size-4' aria-hidden />
         </>
       )}

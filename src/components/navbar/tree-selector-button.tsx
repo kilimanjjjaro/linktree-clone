@@ -18,9 +18,11 @@ export default function TreeSelectorButton() {
       <Button
         variant='ghost'
         role='combobox'
-        className='xl:hover:text-lt-lightest-gray h-full p-0 text-xl font-normal xl:hover:bg-transparent'
+        className='xl:hover:text-lt-lightest-gray h-full p-0 text-base font-normal md:text-xl xl:hover:bg-transparent'
       >
-        <span className='max-w-60 truncate text-left'>{selectedTree.name}</span>
+        <span className='max-w-32 truncate text-left md:max-w-60'>
+          {selectedTree.name}
+        </span>
         <ChevronsUpDown className='size-4 shrink-0' aria-hidden />
       </Button>
     </PopoverTrigger>

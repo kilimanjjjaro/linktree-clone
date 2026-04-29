@@ -13,7 +13,7 @@ export default function FeaturedLink({ link, cornerStyle }: Props) {
       href={link.url}
       target='_blank'
       rel='noopener noreferrer'
-      className='transition-transform active:scale-[0.97]'
+      className='transition-transform xl:active:scale-[0.97]'
     >
       <div
         className={cn(

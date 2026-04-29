@@ -17,20 +17,23 @@ export default async function Navbar({ treeUrl }: Props) {
   const user = await getCurrentUser()
 
   return (
-    <header className='border-lt-light-gray/60 bg-lt-gray fixed inset-x-3 top-3 z-50 flex h-16 justify-between rounded-full border py-3 pr-3 pl-6'>
-      <nav className='flex items-center'>
+    <header className='border-lt-light-gray/60 bg-lt-gray fixed inset-x-3 top-3 z-50 flex h-16 justify-between rounded-full border py-3 pr-3 pl-4 md:pl-6'>
+      <nav className='flex min-w-0 items-center'>
         <Link
           className='text-lt-green xl:hover:text-lt-lightest-gray transition-colors'
           href='/'
         >
           <LinktreeLogo className='w-7' />
         </Link>
-        <Separator orientation='vertical' className='mr-5 ml-4.5 h-5' />
+        <Separator
+          orientation='vertical'
+          className='mr-3 ml-3 h-5 md:mr-5 md:ml-4.5'
+        />
         <TreeSelector treeUrl={treeUrl} />
         <SaveButton />
       </nav>
-      <nav className='flex items-center gap-x-5'>
-        <div className='flex h-full items-center gap-x-3'>
+      <nav className='flex items-center gap-x-2 md:gap-x-5'>
+        <div className='flex h-full items-center gap-x-2 md:gap-x-3'>
           <NewTreeButton />
           {user === null ? <LogInButton /> : <SessionBar user={user} />}
         </div>

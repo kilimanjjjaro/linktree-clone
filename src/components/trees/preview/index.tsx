@@ -10,6 +10,7 @@ import TreeSocialProfiles from '@/components/trees/preview/social-profiles'
 import TreeLinks from '@/components/trees/preview/links'
 import { ScrollArea } from '@/components/ui/scroll-area'
 import { useStore } from '@/lib/store/store'
+import useMediaQuery from '@/lib/hooks/useMediaQuery'
 import { loadFont, getFontFamily } from '@/lib/utils/fonts'
 import { getBackgroundStyle } from '@/lib/utils/get-background-style'
 import { getCornerClassName } from '@/lib/utils/get-corner-class-name'
@@ -20,10 +21,12 @@ import { cn } from '@/lib/utils'
 export default function TreePreview() {
   const selectedTree = useStore((state) => state.selectedTree)
   const previewViewport = useStore((state) => state.previewViewport)
+  const isMobileViewport = useMediaQuery('(max-width: 767px)')
 
   const appearance = selectedTree.appearance
   const fontId = appearance.font ?? 0
-  const isDesktop = previewViewport === PREVIEW_VIEWPORT.DESKTOP
+  const isFullscreenPreview =
+    isMobileViewport || previewViewport === PREVIEW_VIEWPORT.DESKTOP
   const backgroundStyle = getBackgroundStyle(appearance.background)
   const hasVideoBackground =
     appearance.background.type === BG_VIDEO &&
@@ -36,7 +39,7 @@ export default function TreePreview() {
 
   const content = (
     <>
-      <header className='mt-16 mb-4 flex flex-col items-center'>
+      <header className='mt-26 mb-4 flex flex-col items-center xl:mt-16'>
         <TreeAvatar />
         <div
           className={cn(
@@ -60,7 +63,7 @@ export default function TreePreview() {
     </>
   )
 
-  if (isDesktop) {
+  if (isFullscreenPreview) {
     return (
       <>
         <div
@@ -85,7 +88,7 @@ export default function TreePreview() {
             scrollHideDelay={0}
             style={{ fontFamily: getFontFamily(fontId) }}
           >
-            <div className='mx-auto w-full max-w-120 px-6'>{content}</div>
+            <div className='mx-auto w-full max-w-120 xl:px-6'>{content}</div>
           </ScrollArea>
         </section>
       </>

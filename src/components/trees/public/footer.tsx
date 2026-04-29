@@ -15,7 +15,7 @@ export default function PublicFooter({ cornerStyle }: Props) {
         href='/signup'
         className={cn(
           buttonVariants({ variant: 'default' }),
-          'bg-lt-white px-6 py-5 text-sm transition-transform active:scale-[0.97]',
+          'bg-lt-white px-6 py-5 text-sm transition-transform xl:active:scale-[0.97]',
           getCornerClassName(cornerStyle)
         )}
       >

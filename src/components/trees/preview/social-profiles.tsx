@@ -33,7 +33,7 @@ export default function TreeSocialProfiles() {
       {selectedTree.socialProfiles.map((socialProfile) => (
         <a
           key={socialProfile.type}
-          className='size-7 rounded-full bg-zinc-400 p-1 text-black transition active:scale-90 xl:hover:bg-zinc-200'
+          className='size-7 rounded-full bg-zinc-400 p-1 text-black transition xl:active:scale-90 xl:hover:bg-zinc-200'
           href={getSocialProfileUrl(socialProfile.type, socialProfile.url)}
           target='_blank'
           rel='noopener noreferrer'

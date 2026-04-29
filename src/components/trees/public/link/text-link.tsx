@@ -13,7 +13,7 @@ export default function TextLink({ link, cornerStyle }: Props) {
     <a
       className={cn(
         buttonVariants({ variant: 'default' }),
-        'bg-lt-white w-full py-7 transition-transform active:scale-[0.97]',
+        'bg-lt-white w-full py-7 transition-transform xl:active:scale-[0.97]',
         getCornerClassName(cornerStyle)
       )}
       href={link.url}

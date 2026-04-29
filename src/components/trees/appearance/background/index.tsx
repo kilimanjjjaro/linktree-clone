@@ -10,7 +10,15 @@ import {
   PopoverTrigger,
   PopoverContent
 } from '@/components/ui/popover'
+import {
+  Sheet,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger
+} from '@/components/ui/sheet'
 import { useStore } from '@/lib/store/store'
+import useMediaQuery from '@/lib/hooks/useMediaQuery'
 import { updateBackground } from '@/lib/actions/trees/update-background'
 import { BG_TYPES, BG_FLAT_COLOR } from '@/lib/constants/appearance'
 
@@ -20,6 +28,7 @@ export default function TreeBackground() {
   const imageInputRef = useRef<HTMLInputElement>(null)
   const videoInputRef = useRef<HTMLInputElement>(null)
   const [openPopover, setOpenPopover] = useState<number | null>(null)
+  const isMobile = useMediaQuery('(max-width: 767px)')
 
   const { type, settings } = selectedTree.appearance.background
 
@@ -81,74 +90,93 @@ export default function TreeBackground() {
       <div className='mt-3 grid grid-cols-2 gap-3'>
         {BG_TYPES.map((bg) => {
           const isSelected = type === bg.id
+          const isOpen = openPopover === bg.id
+          const onOpenChange = (open: boolean) =>
+            setOpenPopover(open ? bg.id : null)
+
+          const trigger = (
+            <div
+              role='button'
+              tabIndex={0}
+              onClick={() => {
+                if (!isSelected) updatePreview({ type: bg.id })
+              }}
+              onKeyDown={(event) => {
+                if (event.key === 'Enter' || event.key === ' ') {
+                  event.preventDefault()
+
+                  if (!isSelected) updatePreview({ type: bg.id })
+                }
+              }}
+            >
+              <div className='relative flex aspect-video cursor-pointer flex-col items-center gap-y-2'>
+                <div className='size-full overflow-hidden rounded-2xl'>
+                  <BackgroundThumbnail bgType={bg.id} />
+                </div>
+                {isSelected && (
+                  <>
+                    <div className='bg-lt-white absolute top-2 right-2 flex size-4 items-center justify-center rounded-full'>
+                      <Check
+                        className='text-lt-black w-2.5 translate-y-px'
+                        strokeWidth={3.5}
+                        aria-hidden
+                      />
+                    </div>
+                    {bg.id !== BG_FLAT_COLOR && (
+                      <button
+                        type='button'
+                        className='absolute top-2 left-2 flex size-4 items-center justify-center rounded-full bg-red-500 transition-opacity xl:hover:bg-red-600'
+                        onClick={(event) => {
+                          event.stopPropagation()
+                          setOpenPopover(null)
+                          clearBackground()
+                        }}
+                      >
+                        <X
+                          className='text-lt-white w-2.5'
+                          strokeWidth={3.5}
+                          aria-hidden
+                        />
+                      </button>
+                    )}
+                  </>
+                )}
+                <span className='text-lt-lightest-gray text-center text-xs'>
+                  {bg.name}
+                </span>
+              </div>
+            </div>
+          )
+
+          const content = (
+            <BackgroundPopoverContent
+              bgType={bg.id}
+              settings={settings}
+              updatePreview={updatePreview}
+              imageInputRef={imageInputRef}
+              videoInputRef={videoInputRef}
+            />
+          )
+
+          if (isMobile) {
+            return (
+              <Sheet key={bg.id} open={isOpen} onOpenChange={onOpenChange}>
+                <SheetTrigger asChild>{trigger}</SheetTrigger>
+                <SheetContent className='flex flex-col'>
+                  <SheetHeader>
+                    <SheetTitle>{bg.name}</SheetTitle>
+                  </SheetHeader>
+                  <div className='p-5'>{content}</div>
+                </SheetContent>
+              </Sheet>
+            )
+          }
 
           return (
-            <Popover
-              key={bg.id}
-              open={openPopover === bg.id}
-              onOpenChange={(open) => setOpenPopover(open ? bg.id : null)}
-            >
-              <PopoverTrigger asChild>
-                <div
-                  role='button'
-                  tabIndex={0}
-                  onClick={() => {
-                    if (!isSelected) updatePreview({ type: bg.id })
-                  }}
-                  onKeyDown={(event) => {
-                    if (event.key === 'Enter' || event.key === ' ') {
-                      event.preventDefault()
-
-                      if (!isSelected) updatePreview({ type: bg.id })
-                    }
-                  }}
-                >
-                  <div className='relative flex aspect-video cursor-pointer flex-col items-center gap-y-2'>
-                    <div className='size-full overflow-hidden rounded-2xl'>
-                      <BackgroundThumbnail bgType={bg.id} />
-                    </div>
-                    {isSelected && (
-                      <>
-                        <div className='bg-lt-white absolute top-2 right-2 flex size-4 items-center justify-center rounded-full'>
-                          <Check
-                            className='text-lt-black w-2.5 translate-y-px'
-                            strokeWidth={3.5}
-                            aria-hidden
-                          />
-                        </div>
-                        {bg.id !== BG_FLAT_COLOR && (
-                          <button
-                            type='button'
-                            className='absolute top-2 left-2 flex size-4 items-center justify-center rounded-full bg-red-500 transition-opacity hover:bg-red-600'
-                            onClick={(event) => {
-                              event.stopPropagation()
-                              setOpenPopover(null)
-                              clearBackground()
-                            }}
-                          >
-                            <X
-                              className='text-lt-white w-2.5'
-                              strokeWidth={3.5}
-                              aria-hidden
-                            />
-                          </button>
-                        )}
-                      </>
-                    )}
-                    <span className='text-lt-lightest-gray text-center text-xs'>
-                      {bg.name}
-                    </span>
-                  </div>
-                </div>
-              </PopoverTrigger>
+            <Popover key={bg.id} open={isOpen} onOpenChange={onOpenChange}>
+              <PopoverTrigger asChild>{trigger}</PopoverTrigger>
               <PopoverContent side='right' sideOffset={12}>
-                <BackgroundPopoverContent
-                  bgType={bg.id}
-                  settings={settings}
-                  updatePreview={updatePreview}
-                  imageInputRef={imageInputRef}
-                  videoInputRef={videoInputRef}
-                />
+                {content}
               </PopoverContent>
             </Popover>
           )
