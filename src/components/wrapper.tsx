@@ -1,3 +1,4 @@
+import { Analytics } from '@vercel/analytics/next'
 import { SessionProvider } from 'next-auth/react'
 
 import SaveTreeDialog from '@/components/trees/save-tree-dialog'
@@ -15,6 +16,7 @@ export default async function Wrapper({ children }: Props) {
 
   return (
     <SessionProvider session={session}>
+      <Analytics />
       <Toaster />
       <WelcomeToast />
       {children}
