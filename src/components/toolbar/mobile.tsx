@@ -1,4 +1,4 @@
-'use client'
+﻿'use client'
 
 import { Eye, Palette, Plus, SlidersHorizontal } from 'lucide-react'
 import { toast } from 'sonner'
@@ -21,7 +21,7 @@ import {
   SheetTitle,
   SheetTrigger
 } from '@/components/ui/sheet'
-import { useStore } from '@/lib/store/store'
+import { useStore } from '@/lib/store/store-provider'
 import useCurrentUser from '@/lib/hooks/useCurrentUser'
 import { cn } from '@/lib/utils'
 

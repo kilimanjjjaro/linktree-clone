@@ -1,7 +1,7 @@
-'use client'
+﻿'use client'
 
 import { Skeleton } from '@/components/ui/skeleton'
-import { useStore } from '@/lib/store/store'
+import { useStore } from '@/lib/store/store-provider'
 import { cn } from '@/lib/utils'
 
 export default function TreeName() {

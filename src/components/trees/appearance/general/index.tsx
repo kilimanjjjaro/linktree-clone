@@ -1,9 +1,9 @@
-'use client'
+﻿'use client'
 
 import { Label } from '@/components/ui/label'
 import { Switch } from '@/components/ui/switch'
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
-import { useStore } from '@/lib/store/store'
+import { useStore } from '@/lib/store/store-provider'
 import { CORNER_VARIANTS } from '@/lib/constants/appearance'
 import { cn } from '@/lib/utils'
 

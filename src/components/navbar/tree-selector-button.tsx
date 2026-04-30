@@ -1,11 +1,11 @@
-'use client'
+﻿'use client'
 
 import { ChevronsUpDown } from 'lucide-react'
 
 import { Button } from '@/components/ui/button'
 import { PopoverTrigger } from '@/components/ui/popover'
 import { Skeleton } from '@/components/ui/skeleton'
-import { useStore } from '@/lib/store/store'
+import { useStore } from '@/lib/store/store-provider'
 
 export default function TreeSelectorButton() {
   const selectedTree = useStore((state) => state.selectedTree)

@@ -1,4 +1,4 @@
-'use client'
+﻿'use client'
 
 import { Fragment } from 'react'
 import { useAutoAnimate } from '@formkit/auto-animate/react'
@@ -6,7 +6,7 @@ import { useAutoAnimate } from '@formkit/auto-animate/react'
 import FeaturedLink from '@/components/trees/preview/link/featured-link'
 import TextLink from '@/components/trees/preview/link/text-link'
 import { Skeleton } from '@/components/ui/skeleton'
-import { useStore } from '@/lib/store/store'
+import { useStore } from '@/lib/store/store-provider'
 
 export default function TreeLinks() {
   const selectedTree = useStore((state) => state.selectedTree)

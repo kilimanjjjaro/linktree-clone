@@ -1,11 +1,11 @@
-'use client'
+﻿'use client'
 
 import Image from 'next/image'
 
 import UploadAvatarDialog from '@/components/trees/settings/avatar/dialog'
 import { Button } from '@/components/ui/button'
 import { Label } from '@/components/ui/label'
-import { useStore } from '@/lib/store/store'
+import { useStore } from '@/lib/store/store-provider'
 import { DEMO_TREE_VALUES } from '@/lib/constants/trees'
 
 export default function TreeAvatar() {

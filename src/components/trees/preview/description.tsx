@@ -1,7 +1,7 @@
-'use client'
+﻿'use client'
 
 import { Skeleton } from '@/components/ui/skeleton'
-import { useStore } from '@/lib/store/store'
+import { useStore } from '@/lib/store/store-provider'
 
 export default function TreeDescription() {
   const selectedTree = useStore((state) => state.selectedTree)

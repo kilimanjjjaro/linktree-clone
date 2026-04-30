@@ -1,4 +1,4 @@
-'use client'
+﻿'use client'
 
 import { useTransition } from 'react'
 import { toast } from 'sonner'
@@ -11,7 +11,7 @@ import {
   DialogTitle
 } from '@/components/ui/dialog'
 import { Button } from '@/components/ui/button'
-import { useStore } from '@/lib/store/store'
+import { useStore } from '@/lib/store/store-provider'
 import { createTree } from '@/lib/actions/trees/create-tree'
 
 export default function SaveTreeDialog() {

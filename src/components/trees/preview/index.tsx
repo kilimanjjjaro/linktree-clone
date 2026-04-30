@@ -1,4 +1,4 @@
-'use client'
+﻿'use client'
 
 import { useEffect } from 'react'
 
@@ -9,7 +9,7 @@ import TreeDescription from '@/components/trees/preview/description'
 import TreeSocialProfiles from '@/components/trees/preview/social-profiles'
 import TreeLinks from '@/components/trees/preview/links'
 import { ScrollArea } from '@/components/ui/scroll-area'
-import { useStore } from '@/lib/store/store'
+import { useStore } from '@/lib/store/store-provider'
 import useMediaQuery from '@/lib/hooks/useMediaQuery'
 import { loadFont, getFontFamily } from '@/lib/utils/fonts'
 import { getBackgroundStyle } from '@/lib/utils/get-background-style'

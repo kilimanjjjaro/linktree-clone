@@ -1,4 +1,4 @@
-'use client'
+﻿'use client'
 
 import { useRef, useState } from 'react'
 import { Check, X } from 'lucide-react'
@@ -17,7 +17,7 @@ import {
   SheetTitle,
   SheetTrigger
 } from '@/components/ui/sheet'
-import { useStore } from '@/lib/store/store'
+import { useStore } from '@/lib/store/store-provider'
 import useMediaQuery from '@/lib/hooks/useMediaQuery'
 import { updateBackground } from '@/lib/actions/trees/update-background'
 import { BG_TYPES, BG_FLAT_COLOR } from '@/lib/constants/appearance'

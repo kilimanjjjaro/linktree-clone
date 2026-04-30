@@ -1,10 +1,10 @@
-'use client'
+﻿'use client'
 
 import { X } from 'lucide-react'
 import { useAutoAnimate } from '@formkit/auto-animate/react'
 import { type Prisma } from '@/generated/prisma/browser'
 
-import { useStore } from '@/lib/store/store'
+import { useStore } from '@/lib/store/store-provider'
 import useSocialProfiles from '@/lib/hooks/useSocialProfiles'
 import { cn } from '@/lib/utils'
 import { SOCIAL_PROFILES } from '@/lib/constants/social-profiles'

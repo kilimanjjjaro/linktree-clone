@@ -1,4 +1,4 @@
-'use client'
+﻿'use client'
 
 import { useState } from 'react'
 
@@ -6,7 +6,7 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { ErrorTooltip } from '@/components/ui/error-tooltip'
 import { HelpPopover } from '@/components/ui/help-popover'
-import { useStore } from '@/lib/store/store'
+import { useStore } from '@/lib/store/store-provider'
 import { UpdateTreeSchema } from '@/lib/schemas/tree'
 import { DEMO_TREE_VALUES } from '@/lib/constants/trees'
 

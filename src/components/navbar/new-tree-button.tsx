@@ -1,4 +1,4 @@
-'use client'
+﻿'use client'
 
 import { useTransition } from 'react'
 import { useRouter } from 'next/navigation'
@@ -7,7 +7,7 @@ import { toast } from 'sonner'
 
 import { Button } from '@/components/ui/button'
 import { createDefaultTree } from '@/lib/actions/trees/create-default-tree'
-import { useStore } from '@/lib/store/store'
+import { useStore } from '@/lib/store/store-provider'
 import useCurrentUser from '@/lib/hooks/useCurrentUser'
 
 export default function NewTreeButton() {

@@ -1,10 +1,10 @@
-'use client'
+﻿'use client'
 
 import { useAutoAnimate } from '@formkit/auto-animate/react'
 
 import SocialProfileIcon from '@/components/trees/settings/social-profiles/icon'
 import { Skeleton } from '@/components/ui/skeleton'
-import { useStore } from '@/lib/store/store'
+import { useStore } from '@/lib/store/store-provider'
 import { getSocialProfileUrl } from '@/lib/utils/get-social-profile-url'
 
 export default function TreeSocialProfiles() {

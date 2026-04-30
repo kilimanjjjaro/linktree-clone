@@ -1,7 +1,7 @@
-'use client'
+﻿'use client'
 
 import { Skeleton } from '@/components/ui/skeleton'
-import { useStore } from '@/lib/store/store'
+import { useStore } from '@/lib/store/store-provider'
 import Image from 'next/image'
 
 export default function TreeAvatar() {

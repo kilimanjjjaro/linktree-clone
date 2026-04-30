@@ -1,8 +1,8 @@
-'use client'
+﻿'use client'
 
 import { Monitor, Smartphone } from 'lucide-react'
 
-import { useStore } from '@/lib/store/store'
+import { useStore } from '@/lib/store/store-provider'
 import { PREVIEW_VIEWPORT } from '@/lib/constants/trees'
 import { cn } from '@/lib/utils'
 

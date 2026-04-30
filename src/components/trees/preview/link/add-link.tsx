@@ -1,4 +1,4 @@
-'use client'
+﻿'use client'
 
 import { Plus } from 'lucide-react'
 
@@ -13,7 +13,7 @@ import {
   DialogTitle,
   DialogTrigger
 } from '@/components/ui/dialog'
-import { useStore } from '@/lib/store/store'
+import { useStore } from '@/lib/store/store-provider'
 import useLinks from '@/lib/hooks/useLinks'
 
 export default function AddLink() {

@@ -1,4 +1,4 @@
-import { Plus } from 'lucide-react'
+﻿import { Plus } from 'lucide-react'
 
 import SocialProfilesSelector from '@/components/trees/settings/social-profiles/dialog/selector'
 import SocialProfileSettings from '@/components/trees/settings/social-profiles/dialog/settings'
@@ -10,7 +10,7 @@ import {
   DialogTitle,
   DialogTrigger
 } from '@/components/ui/dialog'
-import { useStore } from '@/lib/store/store'
+import { useStore } from '@/lib/store/store-provider'
 import { delay } from '@/lib/utils/delay'
 
 interface Props {

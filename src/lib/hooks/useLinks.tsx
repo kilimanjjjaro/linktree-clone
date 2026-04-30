@@ -1,10 +1,10 @@
-import { useCallback } from 'react'
+﻿import { useCallback } from 'react'
 import { v4 as uuidv4 } from 'uuid'
 import { toast } from 'sonner'
 import { type Prisma } from '@/generated/prisma/browser'
 
 import { getOgImage } from '@/lib/actions/trees/get-og-image'
-import { useStore } from '@/lib/store/store'
+import { useStore } from '@/lib/store/store-provider'
 import { AddLinkSchema } from '@/lib/schemas/tree'
 
 export default function useLinks() {

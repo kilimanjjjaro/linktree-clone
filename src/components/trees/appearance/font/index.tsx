@@ -1,8 +1,8 @@
-'use client'
+﻿'use client'
 
 import Font from '@/components/trees/appearance/font/font'
 import { RadioGroup } from '@/components/ui/radio-group'
-import { useStore } from '@/lib/store/store'
+import { useStore } from '@/lib/store/store-provider'
 import useFonts from '@/lib/hooks/useFonts'
 import { FONT_VARIANTS } from '@/lib/constants/appearance'
 export default function TreeFont() {

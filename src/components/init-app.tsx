@@ -3,7 +3,7 @@
 import { useCallback, useEffect, useRef } from 'react'
 import { usePathname, useRouter } from 'next/navigation'
 
-import { useStore } from '@/lib/store/store'
+import { useStoreApi } from '@/lib/store/store-provider'
 import { DEMO_TREE_VALUES } from '@/lib/constants/trees'
 import { type ChildrenType } from '@/lib/types/globals'
 import { type TreeInterface } from '@/lib/types/trees'
@@ -21,17 +21,14 @@ export default function InitApp({
   treeUrl,
   isAuthenticated
 }: Props) {
-  const setSelectedTree = useStore((state) => state.setSelectedTree)
-  const setSavedTree = useStore((state) => state.setSavedTree)
-  const loadTree = useStore((state) => state.loadTree)
-  const setIsStoreReady = useStore((state) => state.setIsStoreReady)
+  const storeApi = useStoreApi()
   const pathname = usePathname()
   const router = useRouter()
   const treesRef = useRef(trees)
 
   const updateAppState = useCallback(
     (tree: TreeInterface, updateParams: boolean) => {
-      loadTree(tree)
+      storeApi.getState().loadTree(tree)
 
       if (updateParams) {
         const params = new URLSearchParams()
@@ -41,7 +38,7 @@ export default function InitApp({
         })
       }
     },
-    [router, pathname, loadTree]
+    [storeApi, router, pathname]
   )
 
   useEffect(() => {
@@ -49,6 +46,15 @@ export default function InitApp({
   }, [trees])
 
   useEffect(() => {
+    const {
+      setSelectedTree,
+      setSavedTree,
+      setIsStoreReady,
+      loadTree,
+      selectedTree,
+      isStoreReady
+    } = storeApi.getState()
+
     const localTree = localStorage.getItem('__LOCAL_TREE__')
 
     if (localTree !== null) {
@@ -61,9 +67,7 @@ export default function InitApp({
         updateAppState(tree, false)
       }
     } else {
-      const { selectedTree: currentTree, isStoreReady } = useStore.getState()
-
-      if (isStoreReady && currentTree?.url === treeUrl) return
+      if (isStoreReady && selectedTree?.url === treeUrl) return
 
       const hasTrees = treesRef.current.length > 0
       const hasTreeUrl = treeUrl !== undefined && treeUrl.length > 0
@@ -92,15 +96,7 @@ export default function InitApp({
     }
 
     setIsStoreReady(true)
-  }, [
-    treeUrl,
-    isAuthenticated,
-    setSelectedTree,
-    setSavedTree,
-    loadTree,
-    setIsStoreReady,
-    updateAppState
-  ])
+  }, [treeUrl, isAuthenticated, storeApi, updateAppState])
 
   return <>{children}</>
 }

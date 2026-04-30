@@ -1,10 +1,9 @@
-'use client'
+﻿'use client'
 
-import { useEffect, useState } from 'react'
 import { toast } from 'sonner'
 
 import { Skeleton } from '@/components/ui/skeleton'
-import { useStore } from '@/lib/store/store'
+import { useStore } from '@/lib/store/store-provider'
 import { TREE_STATUS } from '@/lib/constants/trees'
 import { cn } from '@/lib/utils'
 import useCurrentUser from '@/lib/hooks/useCurrentUser'
@@ -14,7 +13,8 @@ export default function TreeStatus() {
   const selectedTree = useStore((state) => state.selectedTree)
   const setSelectedTree = useStore((state) => state.setSelectedTree)
   const isStoreReady = useStore((state) => state.isStoreReady)
-  const [published, setPublished] = useState(false)
+
+  const published = selectedTree?.status === TREE_STATUS.PUBLISHED
 
   const toggleStatus = () => {
     if (selectedTree === null) return
@@ -24,18 +24,9 @@ export default function TreeStatus() {
       return
     }
 
-    const next = !published
-    setPublished(next)
-
-    const status = next ? TREE_STATUS.PUBLISHED : TREE_STATUS.DRAFT
+    const status = published ? TREE_STATUS.DRAFT : TREE_STATUS.PUBLISHED
     setSelectedTree({ ...selectedTree, status })
   }
-
-  useEffect(() => {
-    if (selectedTree === null) return
-
-    setPublished(selectedTree.status === TREE_STATUS.PUBLISHED)
-  }, [selectedTree])
 
   if (!isStoreReady) return <Skeleton className='h-9 w-30 rounded-full' />
 
@@ -46,8 +37,8 @@ export default function TreeStatus() {
       aria-label={`Tree is ${published ? 'published' : 'in draft'}. Click to ${published ? 'switch to draft' : 'publish'}.`}
       title={
         published
-          ? 'Published — click to switch to draft'
-          : 'Draft — click to publish'
+          ? 'Published â€” click to switch to draft'
+          : 'Draft â€” click to publish'
       }
       onClick={toggleStatus}
       className={cn(

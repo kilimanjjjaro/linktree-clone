@@ -1,4 +1,4 @@
-'use client'
+﻿'use client'
 
 import { useState, useTransition } from 'react'
 import { useRouter } from 'next/navigation'
@@ -6,7 +6,7 @@ import { LoaderCircle, Save, Undo2 } from 'lucide-react'
 import { toast } from 'sonner'
 
 import { Button } from '@/components/ui/button'
-import { useStore } from '@/lib/store/store'
+import { useStore } from '@/lib/store/store-provider'
 import { syncTree } from '@/lib/actions/trees/sync-tree'
 import { createTree } from '@/lib/actions/trees/create-tree'
 import useCurrentUser from '@/lib/hooks/useCurrentUser'

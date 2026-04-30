@@ -1,4 +1,4 @@
-'use client'
+﻿'use client'
 
 import { useTransition } from 'react'
 import { usePathname, useRouter } from 'next/navigation'
@@ -15,7 +15,7 @@ import {
 } from '@/components/ui/command'
 import { Button } from '@/components/ui/button'
 import { PopoverContent } from '@/components/ui/popover'
-import { useStore } from '@/lib/store/store'
+import { useStore } from '@/lib/store/store-provider'
 import { deleteTree } from '@/lib/actions/trees/delete-tree'
 import { DEMO_TREE_VALUES } from '@/lib/constants/trees'
 import { type TreeInterface } from '@/lib/types/trees'

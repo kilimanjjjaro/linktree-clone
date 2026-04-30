@@ -4,6 +4,7 @@ import { SessionProvider } from 'next-auth/react'
 import SaveTreeDialog from '@/components/trees/save-tree-dialog'
 import WelcomeToast from '@/components/auth/welcome-toast'
 import { Toaster } from '@/components/ui/toaster'
+import { StoreProvider } from '@/lib/store/store-provider'
 import { auth } from '@/lib/auth'
 import type { ChildrenType } from '@/lib/types/globals'
 
@@ -16,11 +17,13 @@ export default async function Wrapper({ children }: Props) {
 
   return (
     <SessionProvider session={session}>
-      <Analytics />
-      <Toaster />
-      <WelcomeToast />
-      {children}
-      <SaveTreeDialog />
+      <StoreProvider>
+        <Analytics />
+        <Toaster />
+        <WelcomeToast />
+        {children}
+        <SaveTreeDialog />
+      </StoreProvider>
     </SessionProvider>
   )
 }

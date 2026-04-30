@@ -1,4 +1,4 @@
-import { useStore } from '@/lib/store/store'
+﻿import { useStore } from '@/lib/store/store-provider'
 import { FONT_VARIANTS } from '@/lib/constants/appearance'
 export default function useFonts() {
   const setSelectedTree = useStore((state) => state.setSelectedTree)
