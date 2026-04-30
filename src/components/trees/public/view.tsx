@@ -29,7 +29,7 @@ export default function PublicTreeView({ tree, isPrivate = false }: Props) {
       <FontLoader fontId={fontId} />
       {isPrivate && <PrivateNotice />}
       <main
-        className='relative flex items-start justify-center'
+        className='relative flex h-screen items-start justify-center'
         style={getBackgroundStyle(appearance.background)}
       >
         {appearance.background.type === BG_VIDEO &&
