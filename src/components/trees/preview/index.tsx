@@ -11,11 +11,11 @@ import TreeLinks from '@/components/trees/preview/links'
 import { ScrollArea } from '@/components/ui/scroll-area'
 import { useStore } from '@/lib/store/store-provider'
 import useMediaQuery from '@/lib/hooks/useMediaQuery'
-import { loadFont, getFontFamily } from '@/lib/utils/fonts'
-import { getBackgroundStyle } from '@/lib/utils/get-background-style'
-import { getCornerClassName } from '@/lib/utils/get-corner-class-name'
 import { BG_VIDEO, CONTAINER_BG_COLOR } from '@/lib/constants/appearance'
 import { PREVIEW_VIEWPORT } from '@/lib/constants/trees'
+import { getCornerClassName } from '@/lib/utils/get-corner-class-name'
+import { getBackgroundStyle } from '@/lib/utils/get-background-style'
+import { loadFont, getFontFamily } from '@/lib/utils/fonts'
 import { cn } from '@/lib/utils'
 
 export default function TreePreview() {
@@ -83,13 +83,12 @@ export default function TreePreview() {
           )}
         </div>
         <section className='relative flex h-full w-full flex-col items-center justify-start self-stretch'>
-          <ScrollArea
-            className='h-full w-full'
-            scrollHideDelay={0}
+          <div
+            className='mx-auto w-full max-w-120 xl:px-6'
             style={{ fontFamily: getFontFamily(fontId) }}
           >
-            <div className='mx-auto w-full max-w-120 xl:px-6'>{content}</div>
-          </ScrollArea>
+            {content}
+          </div>
         </section>
       </>
     )
