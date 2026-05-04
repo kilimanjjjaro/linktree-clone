@@ -10,7 +10,7 @@ import { BG_VIDEO, CONTAINER_BG_COLOR } from '@/lib/constants/appearance'
 import { getCornerClassName } from '@/lib/utils/get-corner-class-name'
 import { getBackgroundStyle } from '@/lib/utils/get-background-style'
 import { getFontFamily } from '@/lib/utils/fonts'
-import { cn } from '@/lib/utils'
+import { cn } from '@/lib/utils/cn'
 import { type TreeInterface } from '@/lib/types/trees'
 
 interface Props {

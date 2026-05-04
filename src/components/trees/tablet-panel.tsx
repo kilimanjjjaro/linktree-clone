@@ -9,7 +9,7 @@ import TreeSocialProfiles from '@/components/trees/settings/social-profiles'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { ScrollArea } from '@/components/ui/scroll-area'
 import { Separator } from '@/components/ui/separator'
-import { cn } from '@/lib/utils'
+import { cn } from '@/lib/utils/cn'
 
 export default function TabletPanel({ className }: { className?: string }) {
   return (

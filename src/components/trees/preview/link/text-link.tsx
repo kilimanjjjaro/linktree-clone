@@ -5,7 +5,7 @@ import { Button, buttonVariants } from '@/components/ui/button'
 import { useStore } from '@/lib/store/store-provider'
 import useLinks from '@/lib/hooks/useLinks'
 import { getCornerClassName } from '@/lib/utils/get-corner-class-name'
-import { cn } from '@/lib/utils'
+import { cn } from '@/lib/utils/cn'
 
 interface Props {
   link: TreeLink

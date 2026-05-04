@@ -2,7 +2,7 @@ import Link from 'next/link'
 
 import { buttonVariants } from '@/components/ui/button'
 import { getCornerClassName } from '@/lib/utils/get-corner-class-name'
-import { cn } from '@/lib/utils'
+import { cn } from '@/lib/utils/cn'
 
 interface Props {
   cornerStyle: number

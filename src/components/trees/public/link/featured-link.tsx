@@ -1,6 +1,6 @@
 import { type TreeLink } from '@/generated/prisma/browser'
 import { getCornerClassName } from '@/lib/utils/get-corner-class-name'
-import { cn } from '@/lib/utils'
+import { cn } from '@/lib/utils/cn'
 
 interface Props {
   link: TreeLink

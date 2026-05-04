@@ -8,31 +8,29 @@ import { useDencrypt } from 'use-dencrypt-effect'
 
 import { verifyConfirmationToken } from '@/lib/actions/auth/verifyConfirmationToken'
 import { geistMono } from '@/lib/utils/fonts'
-import { cn } from '@/lib/utils'
+import { cn } from '@/lib/utils/cn'
 
 const DICTIONARY = '0123456789qwertyuiopasdfghjklzxcvbnm!?></a`~+*=@#$%'
 
 export default function ConfirmAccount() {
   const [success, setSuccess] = useState('')
-  const [error, setError] = useState('')
+  const [verificationError, setVerificationError] = useState('')
   const [text, setText] = useDencrypt({ chars: DICTIONARY })
   const [parent] = useAutoAnimate({ duration: 200 })
   const searchParams = useSearchParams()
   const token = searchParams.get('token')
+  const error = token === null ? 'Invalid link' : verificationError
 
   useEffect(() => {
-    if (token === null) {
-      setError('Invalid link')
-      return
-    }
+    if (token === null) return
 
     verifyConfirmationToken(token)
       .then((data) => {
         setSuccess(data.success)
-        setError(data.error)
+        setVerificationError(data.error)
       })
       .catch(() => {
-        setError('Error')
+        setVerificationError('Error')
       })
   }, [token])
 

@@ -5,7 +5,7 @@ import TreeDescription from '@/components/trees/settings/description'
 import TreeSocialProfiles from '@/components/trees/settings/social-profiles'
 import { Separator } from '@/components/ui/separator'
 import { ScrollArea } from '@/components/ui/scroll-area'
-import { cn } from '@/lib/utils'
+import { cn } from '@/lib/utils/cn'
 
 export default async function TreeSettings({
   className

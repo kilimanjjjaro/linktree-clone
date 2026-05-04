@@ -16,7 +16,7 @@ import { PREVIEW_VIEWPORT } from '@/lib/constants/trees'
 import { getCornerClassName } from '@/lib/utils/get-corner-class-name'
 import { getBackgroundStyle } from '@/lib/utils/get-background-style'
 import { loadFont, getFontFamily } from '@/lib/utils/fonts'
-import { cn } from '@/lib/utils'
+import { cn } from '@/lib/utils/cn'
 
 export default function TreePreview() {
   const selectedTree = useStore((state) => state.selectedTree)
