@@ -95,9 +95,9 @@ void main() {
   float feed = fbm2(uv, uTime * 0.05);
   feed = feed * 0.5 - 0.65;
 
-  const float speed     = 0.30;
+  const float speed     = 0.15;
   const float thickness = 0.10;
-  const float dampT     = 1.0;
+  const float dampT     = 0.5;
   const float dampR     = 10.0;
 
   for (int i = 0; i < MAX_CLICKS; ++i) {

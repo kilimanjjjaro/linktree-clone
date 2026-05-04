@@ -6,7 +6,6 @@ import { cloudinary } from '@/lib/cloudinary'
 
 export async function updateBackground(formData: FormData) {
   const file = formData.get('file') as File
-  const resourceType = (formData.get('resourceType') as string) ?? 'image'
   const arrayBuffer = await file.arrayBuffer()
   const buffer = Buffer.from(arrayBuffer)
 
@@ -18,7 +17,7 @@ export async function updateBackground(formData: FormData) {
             {
               upload_preset: 'cgbdjdkz',
               folder: 'linktree/tree-backgrounds',
-              resource_type: resourceType as 'image' | 'video'
+              resource_type: 'image'
             },
             function (error, result) {
               if (error != null) {

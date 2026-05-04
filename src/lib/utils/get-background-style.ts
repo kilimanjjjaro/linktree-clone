@@ -2,7 +2,7 @@ import {
   BG_GRADIENT,
   BG_FLAT_COLOR,
   BG_IMAGE,
-  BG_VIDEO
+  BG_DITHER
 } from '@/lib/constants/appearance'
 import { rgbToString } from '@/lib/utils/rgb-to-string'
 import { type TreeAppearanceInterface } from '@/lib/types/trees'
@@ -12,7 +12,7 @@ export function getBackgroundStyle(
 ) {
   const { type, settings } = background
 
-  if (type === BG_VIDEO) return {}
+  if (type === BG_DITHER) return {}
 
   if (type === BG_GRADIENT) {
     const { steps, angle } = settings

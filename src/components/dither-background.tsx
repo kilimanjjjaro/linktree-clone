@@ -7,15 +7,39 @@ import * as THREE from 'three'
 import {
   FRAGMENT_SHADER,
   MAX_CLICKS,
+  PIXEL_SIZE,
   UNIFORMS,
   VERTEX_SHADER
 } from '@/lib/constants/dither-background'
 
-function DitherShader() {
+interface Props {
+  color?: [number, number, number]
+  interactive?: boolean
+  pixelSize?: number
+}
+
+function DitherShader({
+  color,
+  interactive = true,
+  pixelSize = PIXEL_SIZE
+}: Props) {
   const { gl } = useThree()
+
+  useEffect(() => {
+    if (color !== undefined) {
+      UNIFORMS.uColor.value.setRGB(
+        color[0] / 255,
+        color[1] / 255,
+        color[2] / 255
+      )
+    } else {
+      UNIFORMS.uColor.value.setHSL(142 / 360, 0.64, 0.79)
+    }
+  }, [color])
 
   useFrame((state) => {
     UNIFORMS.uTime.value = state.clock.getElapsedTime()
+    UNIFORMS.uPixelSize.value = pixelSize
     const dpr = state.gl.getPixelRatio()
     UNIFORMS.uResolution.value.set(
       state.size.width * dpr,
@@ -24,6 +48,8 @@ function DitherShader() {
   })
 
   useEffect(() => {
+    if (!interactive) return
+
     const canvas = gl.domElement
     let clickIx = 0
 
@@ -37,10 +63,10 @@ function DitherShader() {
       clickIx = (clickIx + 1) % MAX_CLICKS
     }
 
-    canvas.addEventListener('pointerdown', onPointerDown)
+    window.addEventListener('pointerdown', onPointerDown)
 
-    return () => canvas.removeEventListener('pointerdown', onPointerDown)
-  }, [gl])
+    return () => window.removeEventListener('pointerdown', onPointerDown)
+  }, [gl, interactive])
 
   return (
     <mesh>
@@ -60,14 +86,20 @@ function DitherShader() {
   )
 }
 
-export default function DitherBackground() {
+export default function DitherBackground({
+  color,
+  interactive,
+  pixelSize
+}: Props = {}) {
   return (
-    <Canvas
-      className='absolute inset-0'
-      dpr={[1, 2]}
-      gl={{ antialias: true, alpha: true }}
-    >
-      <DitherShader />
-    </Canvas>
+    <div className='absolute inset-0'>
+      <Canvas dpr={[1, 2]} gl={{ antialias: true, alpha: true }}>
+        <DitherShader
+          color={color}
+          interactive={interactive}
+          pixelSize={pixelSize}
+        />
+      </Canvas>
+    </div>
   )
 }

@@ -1,4 +1,6 @@
-import { FilmIcon, ImageIcon } from 'lucide-react'
+import { ImageIcon } from 'lucide-react'
+
+import DitherBackground from '@/components/dither-background'
 
 interface Props {
   bgType: number
@@ -25,8 +27,8 @@ export default function BackgroundThumbnail({ bgType }: Props) {
 
   if (bgType === 3) {
     return (
-      <div className='bg-lt-light-gray flex size-full items-center justify-center'>
-        <FilmIcon className='text-lt-white size-10' />
+      <div className='bg-lt-light-gray relative size-full overflow-hidden'>
+        <DitherBackground interactive={false} pixelSize={3.5} />
       </div>
     )
   }

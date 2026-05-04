@@ -3,7 +3,6 @@
 import { cloudinary } from '@/lib/cloudinary'
 import {
   getCloudinaryPublicId,
-  getCloudinaryResourceType,
   isUserUploadedAsset
 } from '@/lib/utils/cloudinary'
 
@@ -16,7 +15,7 @@ export async function deleteCloudinaryAsset(url: string) {
 
   try {
     await cloudinary.uploader.destroy(publicId, {
-      resource_type: getCloudinaryResourceType(url),
+      resource_type: 'image',
       invalidate: true
     })
 

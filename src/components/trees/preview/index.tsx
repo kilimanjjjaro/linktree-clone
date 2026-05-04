@@ -8,10 +8,11 @@ import TreeName from '@/components/trees/preview/name'
 import TreeDescription from '@/components/trees/preview/description'
 import TreeSocialProfiles from '@/components/trees/preview/social-profiles'
 import TreeLinks from '@/components/trees/preview/links'
+import DitherBackground from '@/components/dither-background'
 import { ScrollArea } from '@/components/ui/scroll-area'
 import { useStore } from '@/lib/store/store-provider'
 import useMediaQuery from '@/lib/hooks/useMediaQuery'
-import { BG_VIDEO, CONTAINER_BG_COLOR } from '@/lib/constants/appearance'
+import { BG_DITHER, CONTAINER_BG_COLOR } from '@/lib/constants/appearance'
 import { PREVIEW_VIEWPORT } from '@/lib/constants/trees'
 import { getCornerClassName } from '@/lib/utils/get-corner-class-name'
 import { getBackgroundStyle } from '@/lib/utils/get-background-style'
@@ -28,9 +29,7 @@ export default function TreePreview() {
   const isFullscreenPreview =
     isMobileViewport || previewViewport === PREVIEW_VIEWPORT.DESKTOP
   const backgroundStyle = getBackgroundStyle(appearance.background)
-  const hasVideoBackground =
-    appearance.background.type === BG_VIDEO &&
-    Boolean(appearance.background.settings.url)
+  const hasDitherBackground = appearance.background.type === BG_DITHER
   const isContentContainerEnabled = appearance.general.contentContainer.enabled
 
   useEffect(() => {
@@ -68,18 +67,11 @@ export default function TreePreview() {
       <>
         <div
           aria-hidden
-          className='pointer-events-none fixed inset-0 -z-10 overflow-hidden'
+          className='fixed inset-0 -z-10 overflow-hidden'
           style={backgroundStyle}
         >
-          {hasVideoBackground && (
-            <video
-              src={appearance.background.settings.url}
-              className='size-full object-cover'
-              muted
-              autoPlay
-              loop
-              playsInline
-            />
+          {hasDitherBackground && (
+            <DitherBackground color={appearance.background.settings.color} />
           )}
         </div>
         <section className='relative flex h-full w-full flex-col items-center justify-start self-stretch'>
@@ -109,15 +101,8 @@ export default function TreePreview() {
             ...backgroundStyle
           }}
         >
-          {hasVideoBackground && (
-            <video
-              src={appearance.background.settings.url}
-              className='absolute inset-0 size-full object-cover'
-              muted
-              autoPlay
-              loop
-              playsInline
-            />
+          {hasDitherBackground && (
+            <DitherBackground color={appearance.background.settings.color} />
           )}
           <ScrollArea
             className='h-full px-4'

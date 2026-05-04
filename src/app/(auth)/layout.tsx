@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { ArrowLeft } from 'lucide-react'
-import DitherBackground from '@/components/auth/dither-background'
+
+import DitherBackground from '@/components/dither-background'
 import LinktreeLogo from '@/components/icons/linktree-logo'
 import { type ChildrenType } from '@/lib/types/globals'
 

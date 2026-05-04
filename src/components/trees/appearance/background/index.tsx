@@ -28,7 +28,6 @@ export default function TreeBackground() {
   const selectedTree = useStore((state) => state.selectedTree)
   const setSelectedTree = useStore((state) => state.setSelectedTree)
   const imageInputRef = useRef<HTMLInputElement>(null)
-  const videoInputRef = useRef<HTMLInputElement>(null)
   const [openPopover, setOpenPopover] = useState<number | null>(null)
   const isMobile = useMediaQuery('(max-width: 767px)')
 
@@ -77,13 +76,9 @@ export default function TreeBackground() {
     })
   }
 
-  const handleFileUpload = async (
-    file: File,
-    resourceType: 'image' | 'video'
-  ) => {
+  const handleFileUpload = async (file: File) => {
     const formData = new FormData()
     formData.append('file', file)
-    formData.append('resourceType', resourceType)
 
     const response = await updateBackground(formData)
 
@@ -168,7 +163,6 @@ export default function TreeBackground() {
               settings={settings}
               updatePreview={updatePreview}
               imageInputRef={imageInputRef}
-              videoInputRef={videoInputRef}
             />
           )
 
@@ -205,18 +199,7 @@ export default function TreeBackground() {
         onChange={(e) => {
           const file = e.target.files?.[0]
 
-          if (file) handleFileUpload(file, 'image')
-        }}
-      />
-      <input
-        ref={videoInputRef}
-        type='file'
-        accept='video/*'
-        className='hidden'
-        onChange={(e) => {
-          const file = e.target.files?.[0]
-
-          if (file) handleFileUpload(file, 'video')
+          if (file) handleFileUpload(file)
         }}
       />
     </section>

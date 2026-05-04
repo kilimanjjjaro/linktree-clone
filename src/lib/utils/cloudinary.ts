@@ -12,10 +12,6 @@ export function getCloudinaryPublicId(url: string): string | null {
   return match?.[1] ?? null
 }
 
-export function getCloudinaryResourceType(url: string): 'image' | 'video' {
-  return url.includes('/video/upload/') ? 'video' : 'image'
-}
-
 export function isUserUploadedAsset(url: string | null | undefined): boolean {
   if (url == null || url.length === 0) return false
 

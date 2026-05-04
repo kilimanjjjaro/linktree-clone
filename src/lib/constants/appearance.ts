@@ -1,16 +1,16 @@
 export const GEIST_FONT_FAMILY = 'var(--font-geist-sans)'
 
-export const BG_TYPES = [
-  { id: 0, name: 'Flat Color', slug: 'flat-color' },
-  { id: 1, name: 'Gradient Color', slug: 'gradient-color' },
-  { id: 2, name: 'Image', slug: 'image' },
-  { id: 3, name: 'Video', slug: 'video' }
-]
+export const BG_FLAT_COLOR = 0
+export const BG_GRADIENT = 1
+export const BG_IMAGE = 2
+export const BG_DITHER = 3
 
-export const BG_FLAT_COLOR = BG_TYPES[0].id
-export const BG_GRADIENT = BG_TYPES[1].id
-export const BG_IMAGE = BG_TYPES[2].id
-export const BG_VIDEO = BG_TYPES[3].id
+export const BG_TYPES = [
+  { id: BG_DITHER, name: 'Animated', slug: 'dither' },
+  { id: BG_FLAT_COLOR, name: 'Flat Color', slug: 'flat-color' },
+  { id: BG_GRADIENT, name: 'Gradient Color', slug: 'gradient-color' },
+  { id: BG_IMAGE, name: 'Image', slug: 'image' }
+]
 
 export const CORNER_VARIANTS = [
   { id: 0, name: 'None', className: 'rounded-none' },

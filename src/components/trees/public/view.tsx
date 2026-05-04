@@ -5,8 +5,8 @@ import FontLoader from '@/components/trees/public/font-loader'
 import PublicLinks from '@/components/trees/public/links'
 import PublicFooter from '@/components/trees/public/footer'
 import PrivateNotice from '@/components/trees/public/private-notice'
-import { ScrollArea } from '@/components/ui/scroll-area'
-import { BG_VIDEO, CONTAINER_BG_COLOR } from '@/lib/constants/appearance'
+import DitherBackground from '@/components/dither-background'
+import { BG_DITHER, CONTAINER_BG_COLOR } from '@/lib/constants/appearance'
 import { getCornerClassName } from '@/lib/utils/get-corner-class-name'
 import { getBackgroundStyle } from '@/lib/utils/get-background-style'
 import { getFontFamily } from '@/lib/utils/fonts'
@@ -32,17 +32,11 @@ export default function PublicTreeView({ tree, isPrivate = false }: Props) {
         className='relative flex h-screen items-start justify-center'
         style={getBackgroundStyle(appearance.background)}
       >
-        {appearance.background.type === BG_VIDEO &&
-          appearance.background.settings.url && (
-            <video
-              src={appearance.background.settings.url}
-              className='fixed inset-0 size-full object-cover'
-              muted
-              autoPlay
-              loop
-              playsInline
-            />
-          )}
+        {appearance.background.type === BG_DITHER && (
+          <div aria-hidden className='fixed inset-0 -z-10 overflow-hidden'>
+            <DitherBackground color={appearance.background.settings.color} />
+          </div>
+        )}
         <section
           className='w-full max-w-120 px-5 py-12'
           style={{ fontFamily: getFontFamily(fontId) }}

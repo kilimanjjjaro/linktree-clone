@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import { FilmIcon, ImageIcon } from 'lucide-react'
+import { ImageIcon } from 'lucide-react'
 
 import GradientSettings from '@/components/trees/appearance/background/gradient-settings'
 import FlatColorSettings from '@/components/trees/appearance/background/flat-color-settings'
@@ -8,7 +8,7 @@ import {
   BG_GRADIENT,
   BG_FLAT_COLOR,
   BG_IMAGE,
-  BG_VIDEO
+  BG_DITHER
 } from '@/lib/constants/appearance'
 import { type TreeAppearanceInterface } from '@/lib/types/trees'
 
@@ -24,15 +24,13 @@ interface Props {
     }>
   ) => void
   imageInputRef: React.RefObject<HTMLInputElement | null>
-  videoInputRef: React.RefObject<HTMLInputElement | null>
 }
 
 export default function BackgroundPopoverContent({
   bgType,
   settings,
   updatePreview,
-  imageInputRef,
-  videoInputRef
+  imageInputRef
 }: Props) {
   if (bgType === BG_GRADIENT) {
     return (
@@ -44,7 +42,7 @@ export default function BackgroundPopoverContent({
     )
   }
 
-  if (bgType === BG_FLAT_COLOR) {
+  if (bgType === BG_FLAT_COLOR || bgType === BG_DITHER) {
     return (
       <FlatColorSettings
         color={settings.color}
@@ -71,34 +69,6 @@ export default function BackgroundPopoverContent({
               src={settings.url}
               alt='Background preview'
               className='size-full object-cover'
-            />
-          </div>
-        )}
-      </div>
-    )
-  }
-
-  if (bgType === BG_VIDEO) {
-    return (
-      <div className='flex flex-col gap-3'>
-        <Label className='text-lt-lightest-gray'>Upload video</Label>
-        <button
-          type='button'
-          className='border-lt-light-gray/60 xl:hover:bg-lt-light-gray/30 flex cursor-pointer items-center justify-center gap-2 rounded-lg border px-4 py-2 text-sm transition-colors'
-          onClick={() => videoInputRef.current?.click()}
-        >
-          <FilmIcon className='size-4' aria-hidden />
-          Choose video
-        </button>
-        {settings.url && (
-          <div className='relative aspect-video overflow-hidden rounded-lg'>
-            <video
-              src={settings.url}
-              className='size-full object-cover'
-              muted
-              autoPlay
-              loop
-              playsInline
             />
           </div>
         )}
