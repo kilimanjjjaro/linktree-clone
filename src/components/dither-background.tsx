@@ -26,6 +26,13 @@ function DitherShader({
   const { gl } = useThree()
 
   useEffect(() => {
+    for (let i = 0; i < MAX_CLICKS; i++) {
+      UNIFORMS.uClickPos.value[i].set(-1, -1)
+      UNIFORMS.uClickTimes.value[i] = 0
+    }
+  }, [])
+
+  useEffect(() => {
     if (color !== undefined) {
       UNIFORMS.uColor.value.setRGB(
         color[0] / 255,
