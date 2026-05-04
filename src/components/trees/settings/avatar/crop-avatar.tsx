@@ -9,8 +9,10 @@ import { Button } from '@/components/ui/button'
 import { DialogFooter } from '@/components/ui/dialog'
 import { useStore } from '@/lib/store/store-provider'
 import { updateAvatar } from '@/lib/actions/trees/update-avatar'
+import { deleteCloudinaryAsset } from '@/lib/actions/trees/delete-cloudinary-asset'
 import { cropImage } from '@/lib/utils/crop-image'
 import { fetchBlobData } from '@/lib/utils/fetch-blob-data'
+import { isUserUploadedAsset } from '@/lib/utils/cloudinary'
 import { CROPPED_AREA_VALUES } from '@/lib/constants/trees'
 
 interface Props {
@@ -63,6 +65,10 @@ export default function CropAvatar({
       const updatedAvatar = await updateAvatar(formData)
 
       if (updatedAvatar !== null) {
+        if (isUserUploadedAsset(selectedTree.avatar)) {
+          void deleteCloudinaryAsset(selectedTree.avatar)
+        }
+
         setSelectedTree({
           ...selectedTree,
           avatar: updatedAvatar.eager[0].secure_url

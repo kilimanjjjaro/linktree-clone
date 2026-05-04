@@ -7,6 +7,8 @@ import { Button } from '@/components/ui/button'
 import { Label } from '@/components/ui/label'
 import { useStore } from '@/lib/store/store-provider'
 import { DEMO_TREE_VALUES } from '@/lib/constants/trees'
+import { deleteCloudinaryAsset } from '@/lib/actions/trees/delete-cloudinary-asset'
+import { isUserUploadedAsset } from '@/lib/utils/cloudinary'
 
 export default function TreeAvatar() {
   const selectedTree = useStore((state) => state.selectedTree)
@@ -15,9 +17,11 @@ export default function TreeAvatar() {
   const removeAvatar = () => {
     if (selectedTree === null) return
 
-    setSelectedTree({ ...selectedTree, avatar: DEMO_TREE_VALUES.avatar })
+    if (isUserUploadedAsset(selectedTree.avatar)) {
+      void deleteCloudinaryAsset(selectedTree.avatar)
+    }
 
-    // TODO: Delete avatar from cloudinary
+    setSelectedTree({ ...selectedTree, avatar: DEMO_TREE_VALUES.avatar })
   }
 
   return (

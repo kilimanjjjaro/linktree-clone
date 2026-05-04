@@ -20,6 +20,8 @@ import {
 import { useStore } from '@/lib/store/store-provider'
 import useMediaQuery from '@/lib/hooks/useMediaQuery'
 import { updateBackground } from '@/lib/actions/trees/update-background'
+import { deleteCloudinaryAsset } from '@/lib/actions/trees/delete-cloudinary-asset'
+import { isUserUploadedAsset } from '@/lib/utils/cloudinary'
 import { BG_TYPES, BG_FLAT_COLOR } from '@/lib/constants/appearance'
 
 export default function TreeBackground() {
@@ -58,6 +60,12 @@ export default function TreeBackground() {
   }
 
   const clearBackground = () => {
+    const currentUrl = selectedTree.appearance.background.settings.url
+
+    if (isUserUploadedAsset(currentUrl)) {
+      void deleteCloudinaryAsset(currentUrl)
+    }
+
     updatePreview({
       type: BG_FLAT_COLOR,
       settings: {
@@ -80,6 +88,12 @@ export default function TreeBackground() {
     const response = await updateBackground(formData)
 
     if (response !== null) {
+      const previousUrl = selectedTree.appearance.background.settings.url
+
+      if (isUserUploadedAsset(previousUrl)) {
+        void deleteCloudinaryAsset(previousUrl)
+      }
+
       updatePreview({ settings: { url: response.secure_url } })
     }
   }
