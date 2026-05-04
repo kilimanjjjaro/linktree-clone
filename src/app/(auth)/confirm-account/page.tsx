@@ -1,3 +1,5 @@
+import { Suspense } from 'react'
+import type { Metadata } from 'next'
 import {
   Card,
   CardContent,
@@ -6,11 +8,23 @@ import {
   CardTitle
 } from '@/components/ui/card'
 import ConfirmAccount from '@/components/auth/confirm-account'
-import { Suspense } from 'react'
+
+export const metadata: Metadata = {
+  title: 'Confirm Account',
+  description: 'Confirm your Linktree Clone account.',
+  alternates: {
+    canonical: '/confirm-account'
+  },
+  openGraph: {
+    title: 'Confirm Account',
+    description: 'Confirm your Linktree Clone account.',
+    url: '/confirm-account'
+  }
+}
 
 export default async function ConfirmAccountPage() {
   return (
-    <Card className='w-full max-w-87.5 border-none bg-transparent'>
+    <Card className='w-86 border-none bg-transparent'>
       <CardHeader className='text-center'>
         <CardTitle className='text-2xl font-medium'>
           We&apos;re almost done!

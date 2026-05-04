@@ -1,4 +1,6 @@
 import { Suspense } from 'react'
+import Link from 'next/link'
+import type { Metadata } from 'next'
 import {
   Card,
   CardContent,
@@ -7,12 +9,24 @@ import {
   CardTitle
 } from '@/components/ui/card'
 import NewPasswordForm from '@/components/auth/new-password-form'
-import Link from 'next/link'
+
+export const metadata: Metadata = {
+  title: 'New Password',
+  description: 'Set a new password for your Linktree Clone account.',
+  alternates: {
+    canonical: '/new-password'
+  },
+  openGraph: {
+    title: 'New Password',
+    description: 'Set a new password for your Linktree Clone account.',
+    url: '/new-password'
+  }
+}
 
 export default async function NewPasswordPage() {
   return (
     <div className='grid place-items-center gap-y-3'>
-      <Card className='w-full max-w-87.5'>
+      <Card className='w-86'>
         <CardHeader className='text-center'>
           <CardTitle className='text-2xl font-medium'>
             We&apos;re almost done!

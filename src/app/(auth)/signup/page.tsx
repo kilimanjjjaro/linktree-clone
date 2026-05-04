@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import type { Metadata } from 'next'
 import SignUpForm from '@/components/auth/signup-form'
 import GoogleButton from '@/components/auth/google-button'
 import GitHubButton from '@/components/auth/github-button'
@@ -10,10 +11,23 @@ import {
   CardTitle
 } from '@/components/ui/card'
 
+export const metadata: Metadata = {
+  title: 'Sign Up',
+  description: 'Create your Linktree Clone account.',
+  alternates: {
+    canonical: '/signup'
+  },
+  openGraph: {
+    title: 'Sign Up',
+    description: 'Create your Linktree Clone account.',
+    url: '/signup'
+  }
+}
+
 export default async function SignUpPage() {
   return (
     <div className='grid place-items-center gap-y-3'>
-      <Card className='w-full max-w-87.5'>
+      <Card className='w-86'>
         <CardHeader className='text-center'>
           <CardTitle className='text-2xl font-medium'>
             Create an account

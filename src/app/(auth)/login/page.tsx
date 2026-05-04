@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import type { Metadata } from 'next'
 import LogInForm from '@/components/auth/login-form'
 import GoogleButton from '@/components/auth/google-button'
 import GitHubButton from '@/components/auth/github-button'
@@ -10,10 +11,23 @@ import {
   CardTitle
 } from '@/components/ui/card'
 
+export const metadata: Metadata = {
+  title: 'Log In',
+  description: 'Log in to your Linktree Clone account.',
+  alternates: {
+    canonical: '/login'
+  },
+  openGraph: {
+    title: 'Log In',
+    description: 'Log in to your Linktree Clone account.',
+    url: '/login'
+  }
+}
+
 export default async function LogInPage() {
   return (
     <div className='grid place-items-center gap-y-3'>
-      <Card className='w-full max-w-87.5'>
+      <Card className='w-86'>
         <CardHeader className='text-center'>
           <CardTitle className='text-2xl font-medium'>Welcome back</CardTitle>
           <CardDescription>Enter your data below to continue.</CardDescription>

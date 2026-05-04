@@ -19,12 +19,16 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!tree) return {}
 
   return {
-    title: `${tree.name} - Linktree`,
+    title: tree.name,
     description: tree.description,
+    alternates: {
+      canonical: `/${treeUrl}`
+    },
     openGraph: {
       title: tree.name,
       description: tree.description,
-      images: [tree.avatar]
+      images: [tree.avatar],
+      url: `/${treeUrl}`
     }
   }
 }
