@@ -1,18 +1,11 @@
 'use server'
 
-import { v2 as cloudinary } from 'cloudinary'
-
+import { cloudinary } from '@/lib/cloudinary'
 import {
   getCloudinaryPublicId,
   getCloudinaryResourceType,
   isUserUploadedAsset
 } from '@/lib/utils/cloudinary'
-
-cloudinary.config({
-  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
-  api_key: process.env.CLOUDINARY_API_KEY,
-  api_secret: process.env.CLOUDINARY_API_SECRET
-})
 
 export async function deleteCloudinaryAsset(url: string) {
   if (!isUserUploadedAsset(url)) return false
