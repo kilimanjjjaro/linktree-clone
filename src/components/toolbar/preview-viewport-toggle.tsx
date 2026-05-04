@@ -4,7 +4,7 @@ import { Monitor, Smartphone } from 'lucide-react'
 
 import { useStore } from '@/lib/store/store-provider'
 import { PREVIEW_VIEWPORT } from '@/lib/constants/trees'
-import { cn } from '@/lib/utils'
+import { cn } from '@/lib/utils/cn'
 
 export default function PreviewViewportToggle() {
   const previewViewport = useStore((state) => state.previewViewport)
@@ -23,7 +23,7 @@ export default function PreviewViewportToggle() {
         title='Mobile preview'
         onClick={() => setPreviewViewport(PREVIEW_VIEWPORT.MOBILE)}
         className={cn(
-          'focus-visible:ring-lt-white focus-visible:ring-offset-lt-gray flex size-8 cursor-pointer items-center justify-center rounded-full outline-none transition-colors focus-visible:ring-2 focus-visible:ring-offset-2',
+          'focus-visible:ring-lt-white focus-visible:ring-offset-lt-gray flex size-8 cursor-pointer items-center justify-center rounded-full transition-colors outline-none focus-visible:ring-2 focus-visible:ring-offset-2',
           previewViewport === PREVIEW_VIEWPORT.MOBILE
             ? 'bg-lt-light-gray text-lt-white'
             : 'text-lt-lightest-gray xl:hover:bg-lt-light-gray/50'
@@ -38,7 +38,7 @@ export default function PreviewViewportToggle() {
         title='Desktop preview'
         onClick={() => setPreviewViewport(PREVIEW_VIEWPORT.DESKTOP)}
         className={cn(
-          'focus-visible:ring-lt-white focus-visible:ring-offset-lt-gray flex size-8 cursor-pointer items-center justify-center rounded-full outline-none transition-colors focus-visible:ring-2 focus-visible:ring-offset-2',
+          'focus-visible:ring-lt-white focus-visible:ring-offset-lt-gray flex size-8 cursor-pointer items-center justify-center rounded-full transition-colors outline-none focus-visible:ring-2 focus-visible:ring-offset-2',
           previewViewport === PREVIEW_VIEWPORT.DESKTOP
             ? 'bg-lt-light-gray text-lt-white'
             : 'text-lt-lightest-gray xl:hover:bg-lt-light-gray/50'

@@ -3,7 +3,7 @@ import TreeFont from '@/components/trees/appearance/font'
 import TreeBackground from '@/components/trees/appearance/background'
 import { Separator } from '@/components/ui/separator'
 import { ScrollArea } from '@/components/ui/scroll-area'
-import { cn } from '@/lib/utils'
+import { cn } from '@/lib/utils/cn'
 
 export default function TreeAppearance({ className }: { className?: string }) {
   return (

@@ -2,7 +2,7 @@
 import { CommandItem } from '@/components/ui/command'
 import SocialProfileIcon from '@/components/trees/settings/social-profiles/icon'
 import { useStore } from '@/lib/store/store-provider'
-import { cn } from '@/lib/utils'
+import { cn } from '@/lib/utils/cn'
 import type { SocialProfileInterface } from '@/lib/types/globals'
 
 interface Props {

@@ -5,7 +5,7 @@ import { Switch } from '@/components/ui/switch'
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
 import { useStore } from '@/lib/store/store-provider'
 import { CORNER_VARIANTS } from '@/lib/constants/appearance'
-import { cn } from '@/lib/utils'
+import { cn } from '@/lib/utils/cn'
 
 export default function TreeGeneral() {
   const selectedTree = useStore((state) => state.selectedTree)

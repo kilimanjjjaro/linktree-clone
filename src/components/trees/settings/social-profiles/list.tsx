@@ -6,7 +6,7 @@ import { type Prisma } from '@/generated/prisma/browser'
 
 import { useStore } from '@/lib/store/store-provider'
 import useSocialProfiles from '@/lib/hooks/useSocialProfiles'
-import { cn } from '@/lib/utils'
+import { cn } from '@/lib/utils/cn'
 import { SOCIAL_PROFILES } from '@/lib/constants/social-profiles'
 
 interface Props {

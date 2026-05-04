@@ -23,7 +23,7 @@ import {
 } from '@/components/ui/sheet'
 import { useStore } from '@/lib/store/store-provider'
 import useCurrentUser from '@/lib/hooks/useCurrentUser'
-import { cn } from '@/lib/utils'
+import { cn } from '@/lib/utils/cn'
 
 export default function MobileToolbar({ className }: { className?: string }) {
   const selectedTree = useStore((state) => state.selectedTree)

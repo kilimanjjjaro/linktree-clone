@@ -3,7 +3,7 @@ import ViewTree from '@/components/toolbar/view-tree'
 import PreviewViewportToggle from '@/components/toolbar/preview-viewport-toggle'
 import AddLink from '@/components/trees/preview/link/add-link'
 import { Separator } from '@/components/ui/separator'
-import { cn } from '@/lib/utils'
+import { cn } from '@/lib/utils/cn'
 
 export default function Toolbar({ className }: { className?: string }) {
   return (

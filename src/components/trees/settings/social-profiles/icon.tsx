@@ -12,7 +12,7 @@ import { TwitchIcon } from '@/components/icons/twitch-icon'
 import { TwitterIcon } from '@/components/icons/twitter-icon'
 import { WhatsAppIcon } from '@/components/icons/whatsapp-icon'
 import { YouTubeIcon } from '@/components/icons/youtube-icon'
-import { cn } from '@/lib/utils'
+import { cn } from '@/lib/utils/cn'
 import { SocialProfileTypes } from '@/generated/prisma/browser'
 
 interface Props {

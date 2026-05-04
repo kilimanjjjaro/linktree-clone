@@ -2,7 +2,7 @@
 
 import { Skeleton } from '@/components/ui/skeleton'
 import { useStore } from '@/lib/store/store-provider'
-import { cn } from '@/lib/utils'
+import { cn } from '@/lib/utils/cn'
 
 export default function TreeName() {
   const selectedTree = useStore((state) => state.selectedTree)
@@ -14,7 +14,10 @@ export default function TreeName() {
   if (!isStoreReady) {
     return (
       <Skeleton
-        className={cn('h-8 w-36 rounded-full', !isContentContainerEnabled && 'mt-5')}
+        className={cn(
+          'h-8 w-36 rounded-full',
+          !isContentContainerEnabled && 'mt-5'
+        )}
       />
     )
   }

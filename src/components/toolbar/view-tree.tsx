@@ -13,7 +13,7 @@ import { createTree } from '@/lib/actions/trees/create-tree'
 import { UpdateTreeSchema } from '@/lib/schemas/tree'
 import { DEMO_TREE_VALUES } from '@/lib/constants/trees'
 import { getTreeChanges } from '@/lib/utils/get-tree-changes'
-import { cn } from '@/lib/utils'
+import { cn } from '@/lib/utils/cn'
 
 export default function ViewTree() {
   const selectedTree = useStore((state) => state.selectedTree)
@@ -99,7 +99,7 @@ export default function ViewTree() {
       aria-label='View tree in a new tab'
       title='View tree'
       className={cn(
-        'border-lt-light-gray/60 focus-visible:ring-lt-white focus-visible:ring-offset-lt-gray flex size-9 items-center justify-center rounded-full border outline-none transition-colors focus-visible:ring-2 focus-visible:ring-offset-2',
+        'border-lt-light-gray/60 focus-visible:ring-lt-white focus-visible:ring-offset-lt-gray flex size-9 items-center justify-center rounded-full border transition-colors outline-none focus-visible:ring-2 focus-visible:ring-offset-2',
         isDisabled
           ? 'text-lt-lightest-gray/40 cursor-not-allowed'
           : 'text-lt-lightest-gray xl:hover:bg-lt-light-gray xl:hover:text-lt-white cursor-pointer'

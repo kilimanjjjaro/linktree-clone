@@ -13,7 +13,7 @@ import useCurrentUser from '@/lib/hooks/useCurrentUser'
 import { UpdateTreeSchema } from '@/lib/schemas/tree'
 import { DEMO_TREE_VALUES } from '@/lib/constants/trees'
 import { getTreeChanges } from '@/lib/utils/get-tree-changes'
-import { cn } from '@/lib/utils'
+import { cn } from '@/lib/utils/cn'
 
 export default function SaveButton() {
   const selectedTree = useStore((state) => state.selectedTree)
