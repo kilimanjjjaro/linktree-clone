@@ -1,9 +1,7 @@
-﻿import { useCallback } from 'react'
+import { useCallback } from 'react'
 import { v4 as uuidv4 } from 'uuid'
-import { toast } from 'sonner'
 import { type Prisma } from '@/generated/prisma/browser'
 
-import { getOgImage } from '@/lib/actions/trees/get-og-image'
 import { useStore } from '@/lib/store/store-provider'
 import { AddLinkSchema } from '@/lib/schemas/tree'
 
@@ -17,17 +15,7 @@ export default function useLinks() {
 
       const rawData = { ...data, treeId: selectedTree.id }
 
-      if (rawData.featured) {
-        const response = await getOgImage(rawData.url)
-
-        if (response !== null) {
-          rawData.image = response.url
-        } else {
-          toast.error(
-            'Something went wrong extraction the image from the site. Please try again.'
-          )
-        }
-      } else {
+      if (!rawData.featured) {
         rawData.image = null
       }
 
