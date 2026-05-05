@@ -3,6 +3,7 @@
 import { revalidateTag } from 'next/cache'
 
 import db from '@/lib/database'
+import { signOut } from '@/lib/auth'
 import { getCurrentUser } from '@/lib/services/get-current-user'
 import { deleteCloudinaryAsset } from '@/lib/actions/trees/delete-cloudinary-asset'
 
@@ -49,6 +50,8 @@ export async function deleteAccount() {
     await db.user.delete({ where: { id: user.id } })
 
     revalidateTag('trees', 'max')
+
+    await signOut({ redirect: false })
 
     return {
       error: '',

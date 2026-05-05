@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useTransition } from 'react'
-import { signOut } from 'next-auth/react'
+import { useRouter } from 'next/navigation'
 import { toast } from 'sonner'
 import { LoaderCircle, UserX } from 'lucide-react'
 
@@ -13,13 +13,10 @@ import {
   DialogTitle
 } from '@/components/ui/dialog'
 import { Button } from '@/components/ui/button'
-import { PENDING_DELETED_ACCOUNT_TOAST_KEY } from '@/components/auth/deleted-account-toast'
 import { deleteAccount } from '@/lib/actions/auth/delete-account'
-import { useStore } from '@/lib/store/store-provider'
-import { DEMO_TREE_VALUES } from '@/lib/constants/trees'
 
 export default function DeleteAccountButton() {
-  const setSelectedTree = useStore((state) => state.setSelectedTree)
+  const router = useRouter()
   const [open, setOpen] = useState(false)
   const [isPending, startTransition] = useTransition()
 
@@ -32,9 +29,9 @@ export default function DeleteAccountButton() {
         return
       }
 
-      setSelectedTree(DEMO_TREE_VALUES)
-      sessionStorage.setItem(PENDING_DELETED_ACCOUNT_TOAST_KEY, '1')
-      await signOut({ redirectTo: '/' })
+      toast.success('Account deleted.')
+      router.replace('/')
+      router.refresh()
     })
   }
 
