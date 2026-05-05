@@ -14,7 +14,7 @@ export default function PublicSocialProfiles({ socialProfiles }: Props) {
       {socialProfiles.map((socialProfile) => (
         <a
           key={socialProfile.type}
-          className='size-7 rounded-full bg-zinc-400 p-1 text-black transition-colors xl:hover:bg-zinc-200'
+          className='bg-lt-white size-7 rounded-full p-1 text-black transition xl:hover:bg-zinc-400 xl:active:scale-90'
           href={getSocialProfileUrl(socialProfile.type, socialProfile.url)}
           target='_blank'
           rel='noopener noreferrer'
