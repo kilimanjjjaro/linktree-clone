@@ -1,7 +1,7 @@
 'use client'
 
 import { useRef, useState } from 'react'
-import { Globe, ImageIcon, LoaderCircle, Plus, Upload, X } from 'lucide-react'
+import { Globe, ImageIcon, LoaderCircle, Link2, Upload, X } from 'lucide-react'
 import { toast } from 'sonner'
 
 import { Button } from '@/components/ui/button'
@@ -131,7 +131,7 @@ export default function AddLink() {
     >
       <DialogTrigger asChild>
         <Button size='sm'>
-          Add link <Plus className='size-3.5' aria-hidden />
+          Add link <Link2 className='size-3.5' aria-hidden />
         </Button>
       </DialogTrigger>
       <DialogContent className='p-0'>
