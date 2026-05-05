@@ -9,12 +9,12 @@ import { useStore } from '@/lib/store/store-provider'
 import { DEMO_TREE_VALUES } from '@/lib/constants/trees'
 
 export default function LogOutButton() {
-  const setSelectedTree = useStore((state) => state.setSelectedTree)
+  const loadTree = useStore((state) => state.loadTree)
 
   return (
     <DropdownMenuItem
       onClick={async () => {
-        setSelectedTree(DEMO_TREE_VALUES)
+        loadTree(DEMO_TREE_VALUES)
         await signOut({ redirectTo: '/' })
         await logOut()
       }}
