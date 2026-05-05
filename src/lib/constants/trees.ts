@@ -74,6 +74,8 @@ export const ACCEPTED_FILE_TYPES = {
   'image/jpeg': ['.jpeg']
 }
 
+export const MAX_IMAGE_UPLOAD_SIZE = 2 * 1024 * 1024
+
 export const CROPPED_AREA_VALUES = {
   width: 0,
   height: 0,

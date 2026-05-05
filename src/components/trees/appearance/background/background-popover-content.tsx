@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import { ImageIcon } from 'lucide-react'
+import { ImageIcon, LoaderCircle } from 'lucide-react'
 
 import GradientSettings from '@/components/trees/appearance/background/gradient-settings'
 import FlatColorSettings from '@/components/trees/appearance/background/flat-color-settings'
@@ -24,13 +24,15 @@ interface Props {
     }>
   ) => void
   imageInputRef: React.RefObject<HTMLInputElement | null>
+  isUploading: boolean
 }
 
 export default function BackgroundPopoverContent({
   bgType,
   settings,
   updatePreview,
-  imageInputRef
+  imageInputRef,
+  isUploading
 }: Props) {
   if (bgType === BG_GRADIENT) {
     return (
@@ -57,11 +59,21 @@ export default function BackgroundPopoverContent({
         <Label className='text-lt-lightest-gray'>Upload image</Label>
         <button
           type='button'
-          className='border-lt-light-gray/60 xl:hover:bg-lt-light-gray/30 flex cursor-pointer items-center justify-center gap-2 rounded-lg border px-4 py-2 text-sm transition-colors'
+          className='border-lt-light-gray/60 xl:hover:bg-lt-light-gray/30 flex cursor-pointer items-center justify-center gap-2 rounded-lg border px-4 py-2 text-sm transition-colors disabled:cursor-not-allowed disabled:opacity-60'
           onClick={() => imageInputRef.current?.click()}
+          disabled={isUploading}
         >
-          <ImageIcon className='size-4' aria-hidden />
-          Choose image
+          {isUploading ? (
+            <>
+              <LoaderCircle className='size-4 animate-spin' aria-hidden />
+              Uploading
+            </>
+          ) : (
+            <>
+              <ImageIcon className='size-4' aria-hidden />
+              Choose image
+            </>
+          )}
         </button>
         {settings.url && (
           <div className='relative aspect-video overflow-hidden rounded-lg'>

@@ -1,7 +1,8 @@
 ﻿'use client'
 
-import { useRef, useState } from 'react'
+import { useRef, useState, useTransition } from 'react'
 import { Check, X } from 'lucide-react'
+import { toast } from 'sonner'
 
 import BackgroundThumbnail from '@/components/trees/appearance/background/background-thumbnail'
 import BackgroundPopoverContent from '@/components/trees/appearance/background/background-popover-content'
@@ -27,12 +28,17 @@ import {
   BG_DITHER,
   DEFAULT_BACKGROUND
 } from '@/lib/constants/appearance'
+import {
+  ACCEPTED_FILE_TYPES,
+  MAX_IMAGE_UPLOAD_SIZE
+} from '@/lib/constants/trees'
 
 export default function TreeBackground() {
   const selectedTree = useStore((state) => state.selectedTree)
   const setSelectedTree = useStore((state) => state.setSelectedTree)
   const imageInputRef = useRef<HTMLInputElement>(null)
   const [openPopover, setOpenPopover] = useState<number | null>(null)
+  const [isUploading, startUpload] = useTransition()
   const isMobile = useMediaQuery('(max-width: 767px)')
 
   const { type, settings } = selectedTree.appearance.background
@@ -75,21 +81,25 @@ export default function TreeBackground() {
     })
   }
 
-  const handleFileUpload = async (file: File) => {
-    const formData = new FormData()
-    formData.append('file', file)
+  const handleFileUpload = (file: File) => {
+    startUpload(async () => {
+      const formData = new FormData()
+      formData.append('file', file)
 
-    const response = await updateBackground(formData)
+      const response = await updateBackground(formData)
 
-    if (response !== null) {
-      const previousUrl = selectedTree.appearance.background.settings.url
+      if (response !== null) {
+        const previousUrl = selectedTree.appearance.background.settings.url
 
-      if (isUserUploadedAsset(previousUrl)) {
-        void deleteCloudinaryAsset(previousUrl)
+        if (isUserUploadedAsset(previousUrl)) {
+          void deleteCloudinaryAsset(previousUrl)
+        }
+
+        updatePreview({ settings: { url: response.secure_url } })
+      } else {
+        toast.error('Something went wrong.')
       }
-
-      updatePreview({ settings: { url: response.secure_url } })
-    }
+    })
   }
 
   return (
@@ -162,6 +172,7 @@ export default function TreeBackground() {
               settings={settings}
               updatePreview={updatePreview}
               imageInputRef={imageInputRef}
+              isUploading={isUploading}
             />
           )
 
@@ -193,12 +204,25 @@ export default function TreeBackground() {
       <input
         ref={imageInputRef}
         type='file'
-        accept='image/*'
+        accept={Object.keys(ACCEPTED_FILE_TYPES).join(',')}
         className='hidden'
         onChange={(e) => {
           const file = e.target.files?.[0]
+          e.target.value = ''
 
-          if (file) handleFileUpload(file)
+          if (!file) return
+
+          if (!Object.keys(ACCEPTED_FILE_TYPES).includes(file.type)) {
+            toast.error('Only PNG and JPEG images are allowed.')
+            return
+          }
+
+          if (file.size > MAX_IMAGE_UPLOAD_SIZE) {
+            toast.error('Image must be 2 MB or smaller.')
+            return
+          }
+
+          handleFileUpload(file)
         }}
       />
     </section>
