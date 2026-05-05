@@ -3,6 +3,7 @@ import { SessionProvider } from 'next-auth/react'
 
 import SaveTreeDialog from '@/components/trees/save-tree-dialog'
 import WelcomeToast from '@/components/auth/welcome-toast'
+import DeletedAccountToast from '@/components/auth/deleted-account-toast'
 import { Toaster } from '@/components/ui/toaster'
 import { StoreProvider } from '@/lib/store/store-provider'
 import { auth } from '@/lib/auth'
@@ -21,6 +22,7 @@ export default async function Wrapper({ children }: Props) {
         <Analytics />
         <Toaster />
         <WelcomeToast />
+        <DeletedAccountToast />
         {children}
         <SaveTreeDialog />
       </StoreProvider>
