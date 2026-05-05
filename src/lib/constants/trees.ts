@@ -59,7 +59,7 @@ export const DEMO_TREE_VALUES: TreeInterface = {
     general: {
       cornerStyle: 3,
       contentContainer: {
-        enabled: false
+        enabled: true
       }
     }
   },
