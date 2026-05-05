@@ -1,22 +1,25 @@
-﻿import { useStore } from '@/lib/store/store-provider'
+import { useStore, useStoreApi } from '@/lib/store/store-provider'
 import { FONT_VARIANTS } from '@/lib/constants/appearance'
+import { loadFont } from '@/lib/utils/fonts'
 export default function useFonts() {
   const setSelectedTree = useStore((state) => state.setSelectedTree)
-  const selectedTree = useStore((state) => state.selectedTree)
+  const storeApi = useStoreApi()
 
-  const changeFont = (fontSlug: string) => {
-    if (selectedTree === null) return
-
+  const changeFont = async (fontSlug: string) => {
     const selectedFont = FONT_VARIANTS.find((item) => item.slug === fontSlug)
 
     if (selectedFont === undefined) return
 
-    const currentAppearance = selectedTree.appearance
+    await loadFont(selectedFont.id)
+
+    const currentTree = storeApi.getState().selectedTree
+
+    if (currentTree === null) return
 
     setSelectedTree({
-      ...selectedTree,
+      ...currentTree,
       appearance: {
-        ...currentAppearance,
+        ...currentTree.appearance,
         font: selectedFont.id
       }
     })
