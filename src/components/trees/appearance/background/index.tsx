@@ -22,7 +22,11 @@ import useMediaQuery from '@/lib/hooks/useMediaQuery'
 import { updateBackground } from '@/lib/actions/trees/update-background'
 import { deleteCloudinaryAsset } from '@/lib/actions/trees/delete-cloudinary-asset'
 import { isUserUploadedAsset } from '@/lib/utils/cloudinary'
-import { BG_TYPES, BG_FLAT_COLOR } from '@/lib/constants/appearance'
+import {
+  BG_TYPES,
+  BG_DITHER,
+  DEFAULT_BACKGROUND
+} from '@/lib/constants/appearance'
 
 export default function TreeBackground() {
   const selectedTree = useStore((state) => state.selectedTree)
@@ -66,13 +70,8 @@ export default function TreeBackground() {
     }
 
     updatePreview({
-      type: BG_FLAT_COLOR,
-      settings: {
-        steps: [],
-        angle: 0,
-        color: [18, 18, 18],
-        url: ''
-      }
+      type: DEFAULT_BACKGROUND.type,
+      settings: DEFAULT_BACKGROUND.settings
     })
   }
 
@@ -131,7 +130,7 @@ export default function TreeBackground() {
                         aria-hidden
                       />
                     </div>
-                    {bg.id !== BG_FLAT_COLOR && (
+                    {bg.id !== BG_DITHER && (
                       <button
                         type='button'
                         className='absolute top-2 left-2 flex size-4 items-center justify-center rounded-full bg-red-500 transition-opacity xl:hover:bg-red-600'

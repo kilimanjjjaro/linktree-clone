@@ -12,6 +12,24 @@ export const BG_TYPES = [
   { id: BG_IMAGE, name: 'Image', slug: 'image' }
 ]
 
+export const DEFAULT_BACKGROUND: {
+  type: number
+  settings: {
+    steps: Array<[number, number, number]>
+    angle: number
+    color: [number, number, number]
+    url: string
+  }
+} = {
+  type: BG_DITHER,
+  settings: {
+    steps: [],
+    angle: 0,
+    color: [167, 236, 192],
+    url: ''
+  }
+}
+
 export const CORNER_VARIANTS = [
   { id: 0, name: 'None', className: 'rounded-none' },
   { id: 1, name: 'XS', className: 'rounded-sm' },

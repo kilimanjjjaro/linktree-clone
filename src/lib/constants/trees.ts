@@ -1,4 +1,5 @@
 import { type TreeInterface } from '@/lib/types/trees'
+import { DEFAULT_BACKGROUND } from '@/lib/constants/appearance'
 
 export const DEMO_TREE_VALUES: TreeInterface = {
   id: 'demo',
@@ -53,15 +54,7 @@ export const DEMO_TREE_VALUES: TreeInterface = {
     }
   ],
   appearance: {
-    background: {
-      type: 3,
-      settings: {
-        steps: [],
-        angle: 0,
-        color: [167, 236, 192],
-        url: ''
-      }
-    },
+    background: DEFAULT_BACKGROUND,
     font: 0,
     general: {
       cornerStyle: 3,
