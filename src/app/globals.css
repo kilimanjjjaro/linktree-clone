@@ -8,15 +8,14 @@
 }
 
 @theme {
-  --color-lt-black: hsl(0deg 0% 7%);
+  --color-lt-black: hsl(0deg 0% 9%);
   --color-lt-white: hsl(0deg 0% 98%);
-  --color-lt-gray: hsl(0deg 0% 8.5%);
-  --color-lt-light-gray: hsl(0deg 0% 15%);
+  --color-lt-gray: hsl(0deg 0% 11%);
+  --color-lt-light-gray: hsl(0deg 0% 17%);
   --color-lt-lightest-gray: hsl(0deg 0% 50%);
-  --color-lt-dark-gray: hsl(0deg 0% 6%);
-  --color-lt-darkest-gray: hsl(0deg 0% 6%);
+  --color-lt-dark-gray: hsl(0deg 0% 8%);
+  --color-lt-darkest-gray: hsl(0deg 0% 8%);
   --color-lt-green: hsl(142deg 64% 79%);
-  --color-lt-light-gray: hsl(0deg 0% 15%);
 
   --font-geist-sans: var(--font-geist-sans), sans-serif;
   --font-geist-mono: var(--font-geist-mono), monospace;
