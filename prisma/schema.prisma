@@ -13,7 +13,7 @@ model User {
   email         String    @unique
   emailVerified DateTime? @map("email_verified")
   password      String?
-  image         String    @default("https://res.cloudinary.com/dsvcixsbp/image/upload/c_scale,h_150/v1714920612/linktree/default-user-avatar_zujorl.jpg")
+  image         String    @default("/images/default-user-avatar.svg")
   accounts      Account[]
   trees         Tree[]
 

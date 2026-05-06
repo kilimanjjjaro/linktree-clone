@@ -9,8 +9,7 @@ export const DEMO_TREE_VALUES: TreeInterface = {
   url: 'example-tree',
   description:
     'This is an example tree to showcase the features of the app. Feel free to explore and customize it!',
-  avatar:
-    'https://res.cloudinary.com/dsvcixsbp/image/upload/c_scale,h_150/v1714920612/linktree/default-tree-avatar_mo72xw.jpg',
+  avatar: '/images/default-tree-avatar.svg',
   socialProfiles: [
     {
       treeId: 'demo',

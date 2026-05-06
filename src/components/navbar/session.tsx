@@ -11,7 +11,6 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger
 } from '@/components/ui/dropdown-menu'
-import { DEMO_TREE_VALUES } from '@/lib/constants/trees'
 
 interface Props {
   user: DefaultSession['user']
@@ -25,7 +24,7 @@ export default async function SessionBar({ user }: Props) {
           {user !== undefined ? (
             <Image
               className='absolute size-full object-cover object-center'
-              src={user.image ?? DEMO_TREE_VALUES.avatar}
+              src={user.image ?? '/images/default-user-avatar.svg'}
               alt={`${user.name}'s avatar`}
               width={50}
               height={50}
