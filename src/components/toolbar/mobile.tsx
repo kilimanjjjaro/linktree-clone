@@ -12,7 +12,6 @@ import TreeUrl from '@/components/trees/settings/url'
 import TreeDescription from '@/components/trees/settings/description'
 import TreeSocialProfiles from '@/components/trees/settings/social-profiles'
 import TreeStatus from '@/components/toolbar/tree-status'
-import { ScrollArea } from '@/components/ui/scroll-area'
 import { Separator } from '@/components/ui/separator'
 import {
   Sheet,
@@ -89,7 +88,7 @@ export default function MobileToolbar({ className }: { className?: string }) {
             <SheetHeader>
               <SheetTitle>Settings</SheetTitle>
             </SheetHeader>
-            <ScrollArea className='min-h-0 flex-1' scrollHideDelay={0}>
+            <div className='scrollbar-hidden min-h-0 flex-1 overflow-y-auto overscroll-contain'>
               <TreeAvatar />
               <Separator />
               <TreeName />
@@ -99,7 +98,7 @@ export default function MobileToolbar({ className }: { className?: string }) {
               <TreeDescription />
               <Separator />
               <TreeSocialProfiles />
-            </ScrollArea>
+            </div>
           </SheetContent>
         </Sheet>
         <Sheet>
@@ -116,13 +115,13 @@ export default function MobileToolbar({ className }: { className?: string }) {
             <SheetHeader>
               <SheetTitle>Appearance</SheetTitle>
             </SheetHeader>
-            <ScrollArea className='min-h-0 flex-1' scrollHideDelay={0}>
+            <div className='scrollbar-hidden min-h-0 flex-1 overflow-y-auto overscroll-contain'>
               <TreeBackground />
               <Separator />
               <TreeFont />
               <Separator />
               <TreeGeneral />
-            </ScrollArea>
+            </div>
           </SheetContent>
         </Sheet>
         <button

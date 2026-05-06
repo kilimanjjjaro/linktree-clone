@@ -23,6 +23,7 @@ export default function TreePreview() {
   const selectedTree = useStore((state) => state.selectedTree)
   const previewViewport = useStore((state) => state.previewViewport)
   const isMobileViewport = useMediaQuery('(max-width: 767px)')
+  const isDesktopViewport = useMediaQuery('(min-width: 1280px)')
 
   const appearance = selectedTree.appearance
   const fontId = appearance.font ?? 0
@@ -104,15 +105,26 @@ export default function TreePreview() {
           {hasDitherBackground && (
             <DitherBackground color={appearance.background.settings.color} />
           )}
-          <ScrollArea
-            className='h-full px-4'
-            scrollHideDelay={0}
-            style={{
-              fontFamily: getFontFamily(fontId)
-            }}
-          >
-            {content}
-          </ScrollArea>
+          {isDesktopViewport ? (
+            <ScrollArea
+              className='h-full px-4'
+              scrollHideDelay={0}
+              style={{
+                fontFamily: getFontFamily(fontId)
+              }}
+            >
+              {content}
+            </ScrollArea>
+          ) : (
+            <div
+              className='scrollbar-hidden h-full overflow-y-auto overscroll-contain px-4'
+              style={{
+                fontFamily: getFontFamily(fontId)
+              }}
+            >
+              {content}
+            </div>
+          )}
         </div>
       </div>
     </section>
