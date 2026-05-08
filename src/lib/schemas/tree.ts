@@ -1,14 +1,5 @@
 import z from 'zod'
 
-// const SocialProfileSchema = z.object({
-//   id: z.string().cuid(),
-//   treeId: z.string().cuid(),
-//   type: z.number(),
-//   url: z.string().url(),
-//   createdAt: z.string().datetime(),
-//   updatedAt: z.string().datetime()
-// })
-
 export const AddLinkSchema = z.object({
   treeId: z.string(),
   name: z
@@ -24,21 +15,6 @@ export const AddLinkSchema = z.object({
   featured: z.boolean(),
   image: z.string().url().nullable()
 })
-
-// const AppearanceSchema = z.object({
-//   background: z.object({
-//     type: z.number(),
-//     settings: z.object({
-//       steps: z.array(z.array(z.number())),
-//       angle: z.number()
-//     })
-//   }),
-//   font: z.number(),
-//   general: z.object({
-//     cornerStyle: z.number(),
-//     contentContainer: z.boolean()
-//   })
-// })
 
 export const UpdateTreeSchema = z.object({
   status: z.number().optional(),

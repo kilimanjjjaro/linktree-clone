@@ -20,7 +20,6 @@ export async function syncTree(changes: TreeChanges) {
 
   try {
     const response = await db.$transaction(async (tx) => {
-      // Update tree fields (only if there are changes)
       if (changes.fields !== undefined) {
         const updateData: Record<string, unknown> = {}
 
@@ -45,7 +44,6 @@ export async function syncTree(changes: TreeChanges) {
         })
       }
 
-      // Delete removed social profiles
       if (changes.deleteProfileTypes.length > 0) {
         await tx.treeSocialProfile.deleteMany({
           where: {
@@ -55,7 +53,6 @@ export async function syncTree(changes: TreeChanges) {
         })
       }
 
-      // Upsert new/modified social profiles
       for (const profile of changes.upsertProfiles) {
         await tx.treeSocialProfile.upsert({
           where: {
@@ -74,7 +71,6 @@ export async function syncTree(changes: TreeChanges) {
         })
       }
 
-      // Delete removed links
       if (changes.deleteLinkUrls.length > 0) {
         await tx.treeLink.deleteMany({
           where: {
@@ -84,7 +80,6 @@ export async function syncTree(changes: TreeChanges) {
         })
       }
 
-      // Upsert new/modified links
       for (const link of changes.upsertLinks) {
         await tx.treeLink.upsert({
           where: {

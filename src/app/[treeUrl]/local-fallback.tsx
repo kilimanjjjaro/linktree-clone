@@ -26,9 +26,7 @@ export default function LocalTreeFallback({ treeUrl }: Props) {
       const parsed = JSON.parse(raw) as TreeInterface
       if (parsed.url === treeUrl) tree = parsed
     }
-  } catch {
-    // ignore parse errors
-  }
+  } catch {}
 
   if (tree === null) notFound()
 

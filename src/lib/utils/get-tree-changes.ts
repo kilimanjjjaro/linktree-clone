@@ -17,11 +17,8 @@ export function getTreeChanges(
 
   const hasFieldChanges = Object.keys(fields).length > 0
 
-  // Social profiles diff (by type)
   const savedProfileTypes = new Set(saved.socialProfiles.map((p) => p.type))
-  const currentProfileTypes = new Set(
-    current.socialProfiles.map((p) => p.type)
-  )
+  const currentProfileTypes = new Set(current.socialProfiles.map((p) => p.type))
 
   const upsertProfiles: TreeChanges['upsertProfiles'] = []
   for (const profile of current.socialProfiles) {
@@ -48,7 +45,6 @@ export function getTreeChanges(
     }
   }
 
-  // Links diff (by url, since @@unique([treeId, url]))
   const savedLinkUrls = new Set(saved.links.map((l) => l.url))
   const currentLinkUrls = new Set(current.links.map((l) => l.url))
 
