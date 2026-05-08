@@ -30,6 +30,7 @@ export default function AddLink() {
   const setShowAddLinkDialog = useStore((state) => state.setShowAddLinkDialog)
   const { addLink } = useLinks()
   const fileInputRef = useRef<HTMLInputElement>(null)
+  const [name, setName] = useState(selectedLink?.name ?? '')
   const [url, setUrl] = useState(selectedLink?.url ?? '')
   const [featured, setFeatured] = useState(selectedLink?.featured ?? false)
   const [imageUrl, setImageUrl] = useState<string | null>(
@@ -44,6 +45,7 @@ export default function AddLink() {
     setPrevDialogOpen(showAddLinkDialog)
 
     if (showAddLinkDialog) {
+      setName(selectedLink?.name ?? '')
       setUrl(selectedLink?.url ?? '')
       setFeatured(selectedLink?.featured ?? false)
       setImageUrl(selectedLink?.image ?? null)
@@ -112,12 +114,10 @@ export default function AddLink() {
     if (selectedTree === null) return
     event.preventDefault()
 
-    const formData = new FormData(event.currentTarget)
-
     const newLink = {
       treeId: selectedTree.id,
-      name: formData.get('name') as string,
-      url: formData.get('url') as string,
+      name,
+      url,
       featured,
       image: featured ? imageUrl : null
     }
@@ -130,7 +130,11 @@ export default function AddLink() {
     }
   }
 
-  const isSubmitDisabled = isBusy || (featured && imageUrl === null)
+  const isSubmitDisabled =
+    isBusy ||
+    name.trim() === '' ||
+    url.trim() === '' ||
+    (featured && imageUrl === null)
 
   return (
     <Dialog
@@ -157,7 +161,8 @@ export default function AddLink() {
                 type='text'
                 id='link-name'
                 name='name'
-                defaultValue={selectedLink?.name}
+                value={name}
+                onChange={(event) => setName(event.target.value)}
                 placeholder='Example link'
                 required
                 autoFocus
