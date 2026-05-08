@@ -37,7 +37,18 @@ export default function AddLink() {
   )
   const [isUploading, setIsUploading] = useState(false)
   const [isExtracting, setIsExtracting] = useState(false)
+  const [prevDialogOpen, setPrevDialogOpen] = useState(showAddLinkDialog)
   const isBusy = isUploading || isExtracting
+
+  if (showAddLinkDialog !== prevDialogOpen) {
+    setPrevDialogOpen(showAddLinkDialog)
+
+    if (showAddLinkDialog) {
+      setUrl(selectedLink?.url ?? '')
+      setFeatured(selectedLink?.featured ?? false)
+      setImageUrl(selectedLink?.image ?? null)
+    }
+  }
 
   const replaceImage = (nextUrl: string) => {
     if (imageUrl !== null && isUserUploadedAsset(imageUrl)) {
