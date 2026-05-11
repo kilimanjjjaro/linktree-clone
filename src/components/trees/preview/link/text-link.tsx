@@ -40,7 +40,7 @@ export default function TextLink({ link }: Props) {
       </a>
       <Button
         aria-label='Delete link'
-        className='bg-lt-white absolute left-3 h-auto rounded-full p-1 opacity-0 transition-opacity group-hover:xl:opacity-100'
+        className='bg-lt-white absolute left-3 h-auto rounded-full p-1 transition-opacity xl:opacity-0 xl:group-hover:opacity-100'
         onClick={() => {
           removeLink(link.id)
         }}
@@ -49,7 +49,7 @@ export default function TextLink({ link }: Props) {
       </Button>
       <Button
         aria-label='Update link'
-        className='bg-lt-white absolute right-3 h-auto rounded-full p-1 opacity-0 transition-opacity group-hover:xl:opacity-100'
+        className='bg-lt-white absolute right-3 h-auto rounded-full p-1 transition-opacity xl:opacity-0 xl:group-hover:opacity-100'
         onClick={() => {
           updateLink(link)
         }}
