@@ -81,10 +81,10 @@ export default function SaveButton() {
   }
 
   return (
-    <div className='fixed inset-x-0 top-15 flex w-screen justify-center'>
+    <div className='pointer-events-none fixed inset-x-0 top-15 z-60 flex justify-center'>
       <div
         className={cn(
-          'flex gap-x-2',
+          'pointer-events-auto flex gap-x-2',
           !hasBeenVisible && 'pointer-events-none opacity-0',
           hasBeenVisible &&
             (shouldShow

@@ -9,7 +9,7 @@ const KNOWN_ROUTES = new Set([...GUEST_ROUTES, ...AUTH_ROUTES])
 
 function isTreeRoute(pathname: string) {
   if (KNOWN_ROUTES.has(pathname)) return false
-  // Single-segment paths like /my-tree (no nested slashes, no file extension)
+
   return /^\/[^/.]+$/.test(pathname)
 }
 

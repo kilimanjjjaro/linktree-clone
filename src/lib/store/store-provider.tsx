@@ -12,9 +12,7 @@ const StoreContext = createContext<AppStore | null>(null)
 export function StoreProvider({ children }: { children: ReactNode }) {
   const [store] = useState(() => createAppStore())
 
-  return (
-    <StoreContext.Provider value={store}>{children}</StoreContext.Provider>
-  )
+  return <StoreContext.Provider value={store}>{children}</StoreContext.Provider>
 }
 
 export function useStore<T>(selector: (state: StoreInterface) => T): T {

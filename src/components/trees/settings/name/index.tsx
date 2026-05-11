@@ -33,7 +33,9 @@ export default function TreeName() {
 
     const validated = UpdateTreeSchema.safeParse({ name: value })
     setErrors(
-      validated.success ? [] : validated.error.issues.map((issue) => issue.message)
+      validated.success
+        ? []
+        : validated.error.issues.map((issue) => issue.message)
     )
   }
 

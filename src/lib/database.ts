@@ -7,7 +7,9 @@ declare global {
 }
 
 const prismaClientSingleton = () => {
-  const adapter = new PrismaNeon({ connectionString: process.env.DATABASE_URL! })
+  const adapter = new PrismaNeon({
+    connectionString: process.env.DATABASE_URL!
+  })
   return new PrismaClient({ adapter })
 }
 

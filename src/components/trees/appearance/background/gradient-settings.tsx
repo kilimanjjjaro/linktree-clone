@@ -40,7 +40,7 @@ export default function GradientSettings({ steps, angle, onChange }: Props) {
             {canRemove && (
               <button
                 type='button'
-                className='cursor-pointer text-lt-lightest-gray xl:hover:text-lt-white transition-colors'
+                className='text-lt-lightest-gray xl:hover:text-lt-white cursor-pointer transition-colors'
                 onClick={() => {
                   const newSteps = steps.filter((_, i) => i !== index)
                   onChange({ steps: newSteps })

@@ -31,7 +31,9 @@ export default function DescriptionInput() {
 
     const validated = UpdateTreeSchema.safeParse({ description: value })
     setErrors(
-      validated.success ? [] : validated.error.issues.map((issue) => issue.message)
+      validated.success
+        ? []
+        : validated.error.issues.map((issue) => issue.message)
     )
   }
 

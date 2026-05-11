@@ -1,4 +1,7 @@
-import { type Prisma, type SocialProfileTypes } from '@/generated/prisma/browser'
+import {
+  type Prisma,
+  type SocialProfileTypes
+} from '@/generated/prisma/browser'
 
 type PrismaTree = Prisma.TreeGetPayload<{
   include: {

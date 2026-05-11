@@ -9,7 +9,7 @@ import { sendConfirmationEmail } from '@/lib/services/send-confirmation-email'
 
 export async function logInWithEmail(prevState: unknown, formData: FormData) {
   const fields = {
-    email: formData.get('email') as string ?? ''
+    email: (formData.get('email') as string) ?? ''
   }
 
   const validatedFields = LogInSchema.safeParse({

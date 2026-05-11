@@ -8,8 +8,8 @@ import { sendConfirmationEmail } from '@/lib/services/send-confirmation-email'
 
 export async function signUpWithEmail(prevState: unknown, formData: FormData) {
   const fields = {
-    name: formData.get('name') as string ?? '',
-    email: formData.get('email') as string ?? ''
+    name: (formData.get('name') as string) ?? '',
+    email: (formData.get('email') as string) ?? ''
   }
 
   const validatedFields = SignUpSchema.safeParse({

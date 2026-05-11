@@ -1,6 +1,9 @@
 ﻿import { useCallback } from 'react'
 import { v4 as uuidv4 } from 'uuid'
-import { type SocialProfileTypes, type Prisma } from '@/generated/prisma/browser'
+import {
+  type SocialProfileTypes,
+  type Prisma
+} from '@/generated/prisma/browser'
 
 import { useStore } from '@/lib/store/store-provider'
 
