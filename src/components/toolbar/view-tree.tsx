@@ -1,19 +1,19 @@
-﻿'use client'
+﻿"use client"
 
-import { useTransition } from 'react'
-import { useRouter } from 'next/navigation'
-import { Eye, LoaderCircle } from 'lucide-react'
-import { toast } from 'sonner'
+import { useTransition } from "react"
+import { useRouter } from "next/navigation"
+import { Eye, LoaderCircle } from "lucide-react"
+import { toast } from "sonner"
 
-import { Skeleton } from '@/components/ui/skeleton'
-import { useStore } from '@/lib/store/store-provider'
-import useCurrentUser from '@/lib/hooks/useCurrentUser'
-import { syncTree } from '@/lib/actions/trees/sync-tree'
-import { createTree } from '@/lib/actions/trees/create-tree'
-import { UpdateTreeSchema } from '@/lib/schemas/tree'
-import { DEMO_TREE_VALUES } from '@/lib/constants/trees'
-import { getTreeChanges } from '@/lib/utils/get-tree-changes'
-import { cn } from '@/lib/utils/cn'
+import { Skeleton } from "@/components/ui/skeleton"
+import { useStore } from "@/lib/store/store-provider"
+import useCurrentUser from "@/lib/hooks/useCurrentUser"
+import { syncTree } from "@/lib/actions/trees/sync-tree"
+import { createTree } from "@/lib/actions/trees/create-tree"
+import { UpdateTreeSchema } from "@/lib/schemas/tree"
+import { DEMO_TREE_VALUES } from "@/lib/constants/trees"
+import { getTreeChanges } from "@/lib/utils/get-tree-changes"
+import { cn } from "@/lib/utils/cn"
 
 export default function ViewTree() {
   const selectedTree = useStore((state) => state.selectedTree)
@@ -24,7 +24,7 @@ export default function ViewTree() {
   const [isPending, startTransition] = useTransition()
   const router = useRouter()
 
-  if (!isStoreReady) return <Skeleton className='size-9 rounded-full' />
+  if (!isStoreReady) return <Skeleton className="size-9 rounded-full" />
 
   const isDisabled =
     selectedTree === null || selectedTree.url.length === 0 || isPending
@@ -35,14 +35,14 @@ export default function ViewTree() {
       return
     }
 
-    window.open(url, '_blank', 'noopener,noreferrer')
+    window.open(url, "_blank", "noopener,noreferrer")
   }
 
   const handleClick = () => {
     if (isDisabled) return
 
     if (user === null) {
-      localStorage.setItem('__LOCAL_TREE__', JSON.stringify(selectedTree))
+      localStorage.setItem("__LOCAL_TREE__", JSON.stringify(selectedTree))
       openInNewTab(`/${selectedTree.url}`)
       return
     }
@@ -66,11 +66,11 @@ export default function ViewTree() {
     }).success
 
     if (!isValid) {
-      toast.error('Tree has invalid fields. Please fix them before viewing.')
+      toast.error("Tree has invalid fields. Please fix them before viewing.")
       return
     }
 
-    const pendingTab = window.open('about:blank', '_blank')
+    const pendingTab = window.open("about:blank", "_blank")
 
     startTransition(async () => {
       const response = isNewTree
@@ -84,7 +84,7 @@ export default function ViewTree() {
       }
 
       loadTree(response.data)
-      localStorage.removeItem('__LOCAL_TREE__')
+      localStorage.removeItem("__LOCAL_TREE__")
       router.replace(`?tree=${response.data.url}`, { scroll: false })
 
       openInNewTab(`/${response.data.url}`, pendingTab)
@@ -93,22 +93,22 @@ export default function ViewTree() {
 
   return (
     <button
-      type='button'
+      type="button"
       disabled={isDisabled}
       onClick={handleClick}
-      aria-label='View tree in a new tab'
-      title='View tree'
+      aria-label="View tree in a new tab"
+      title="View tree"
       className={cn(
-        'border-lt-light-gray/60 focus-visible:ring-lt-white focus-visible:ring-offset-lt-gray flex size-9 items-center justify-center rounded-full border transition-colors outline-none focus-visible:ring-2 focus-visible:ring-offset-2',
+        "border-lt-light-gray/60 focus-visible:ring-lt-white focus-visible:ring-offset-lt-gray flex size-9 items-center justify-center rounded-full border transition-colors outline-none focus-visible:ring-2 focus-visible:ring-offset-2",
         isDisabled
-          ? 'text-lt-lightest-gray/40 cursor-not-allowed'
-          : 'text-lt-lightest-gray xl:hover:bg-lt-light-gray xl:hover:text-lt-white cursor-pointer'
+          ? "text-lt-lightest-gray/40 cursor-not-allowed"
+          : "text-lt-lightest-gray xl:hover:bg-lt-light-gray xl:hover:text-lt-white cursor-pointer"
       )}
     >
       {isPending ? (
-        <LoaderCircle className='size-4 animate-spin' aria-hidden />
+        <LoaderCircle className="size-4 animate-spin" aria-hidden />
       ) : (
-        <Eye className='size-4' aria-hidden />
+        <Eye className="size-4" aria-hidden />
       )}
     </button>
   )

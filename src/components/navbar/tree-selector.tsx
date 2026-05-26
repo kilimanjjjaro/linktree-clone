@@ -1,8 +1,8 @@
-import TreeSelectorButton from '@/components/navbar/tree-selector-button'
-import TreeSelectorList from '@/components/navbar/tree-selector-list'
-import { Popover } from '@/components/ui/popover'
-import { getTrees } from '@/lib/services/get-trees'
-import { getCurrentUser } from '@/lib/services/get-current-user'
+import TreeSelectorButton from "@/components/navbar/tree-selector-button"
+import TreeSelectorList from "@/components/navbar/tree-selector-list"
+import { Popover } from "@/components/ui/popover"
+import { getTrees } from "@/lib/services/get-trees"
+import { getCurrentUser } from "@/lib/services/get-current-user"
 
 interface Props {
   treeUrl: string | undefined

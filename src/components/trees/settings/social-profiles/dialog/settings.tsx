@@ -1,10 +1,10 @@
-﻿import { Button } from '@/components/ui/button'
-import { Input } from '@/components/ui/input'
-import { Label } from '@/components/ui/label'
-import { useStore } from '@/lib/store/store-provider'
-import useSocialProfiles from '@/lib/hooks/useSocialProfiles'
-import { generateInputAttributes } from '@/lib/utils/generate-input-attributes'
-import { delay } from '@/lib/utils/delay'
+﻿import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label"
+import { useStore } from "@/lib/store/store-provider"
+import useSocialProfiles from "@/lib/hooks/useSocialProfiles"
+import { generateInputAttributes } from "@/lib/utils/generate-input-attributes"
+import { delay } from "@/lib/utils/delay"
 
 interface Props {
   closeDialog: () => void
@@ -27,9 +27,9 @@ export default function SocialProfileSettings({ closeDialog }: Props) {
 
     const form = event.target as HTMLFormElement
     const formData = new FormData(form)
-    const socialProfileValue = formData.get('socialProfileValue') as string
+    const socialProfileValue = formData.get("socialProfileValue") as string
 
-    if (socialProfileValue === '') return
+    if (socialProfileValue === "") return
 
     saveProfile({
       treeId: selectedTree.id,
@@ -56,20 +56,20 @@ export default function SocialProfileSettings({ closeDialog }: Props) {
   )
 
   return (
-    <form onSubmit={submitForm} className='mt-12 flex flex-col gap-y-3 p-5'>
-      <Label htmlFor='social-profile-input'>
+    <form onSubmit={submitForm} className="mt-12 flex flex-col gap-y-3 p-5">
+      <Label htmlFor="social-profile-input">
         {selectedSocialProfile?.form.label}
       </Label>
-      <div className='border-lt-light-gray/60 flex h-10 items-center overflow-hidden rounded-full border'>
+      <div className="border-lt-light-gray/60 flex h-10 items-center overflow-hidden rounded-full border">
         {selectedSocialProfile.form.disabledText.length > 0 && (
-          <span className='border-lt-light-gray/60 text-lt-lightest-gray flex h-full cursor-not-allowed items-center border-r px-3 text-sm select-none'>
+          <span className="border-lt-light-gray/60 text-lt-lightest-gray flex h-full cursor-not-allowed items-center border-r px-3 text-sm select-none">
             {selectedSocialProfile?.form.disabledText}
           </span>
         )}
         <Input
-          id='social-profile-input'
-          className='rounded-none border-none focus-visible:ring-0 focus-visible:ring-offset-0'
-          name='socialProfileValue'
+          id="social-profile-input"
+          className="rounded-none border-none focus-visible:ring-0 focus-visible:ring-offset-0"
+          name="socialProfileValue"
           placeholder={selectedSocialProfile?.form.placeholder}
           defaultValue={existingSocialProfile?.url ?? undefined}
           required
@@ -77,13 +77,13 @@ export default function SocialProfileSettings({ closeDialog }: Props) {
           {...generateInputAttributes(selectedSocialProfile.form.inputType)}
         />
       </div>
-      <footer className='grid grid-cols-2 gap-x-3'>
-        <Button type='submit' className='order-2'>
-          {existingSocialProfile !== undefined ? 'Update' : 'Add'}
+      <footer className="grid grid-cols-2 gap-x-3">
+        <Button type="submit" className="order-2">
+          {existingSocialProfile !== undefined ? "Update" : "Add"}
         </Button>
         <Button
-          variant='secondary'
-          className='order-1'
+          variant="secondary"
+          className="order-1"
           onClick={(event) => {
             goPrevStep(event)
           }}

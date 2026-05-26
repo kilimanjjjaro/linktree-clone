@@ -1,15 +1,15 @@
 export const BASE_URL =
-  process.env.NODE_ENV === 'production'
-    ? 'https://linktree-clone-amber.vercel.app'
-    : 'http://localhost:3000'
+  process.env.NODE_ENV === "production"
+    ? "https://linktree-clone-amber.vercel.app"
+    : "http://localhost:3000"
 
-export const GUEST_ROUTES = ['/']
+export const GUEST_ROUTES = ["/"]
 export const AUTH_ROUTES = [
-  '/login',
-  '/signup',
-  '/reset-password',
-  '/new-password',
-  '/confirm-account'
+  "/login",
+  "/signup",
+  "/reset-password",
+  "/new-password",
+  "/confirm-account"
 ]
 
 export const DIALOG = {

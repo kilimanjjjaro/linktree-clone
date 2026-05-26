@@ -1,4 +1,4 @@
-import * as THREE from 'three'
+import * as THREE from "three"
 
 export const MAX_CLICKS = 10
 export const PIXEL_SIZE = 4

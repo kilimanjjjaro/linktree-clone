@@ -1,8 +1,8 @@
-'use client'
+"use client"
 
-import { useEffect } from 'react'
-import { Canvas, useFrame, useThree } from '@react-three/fiber'
-import * as THREE from 'three'
+import { useEffect } from "react"
+import { Canvas, useFrame, useThree } from "@react-three/fiber"
+import * as THREE from "three"
 
 import {
   FRAGMENT_SHADER,
@@ -10,7 +10,7 @@ import {
   PIXEL_SIZE,
   UNIFORMS,
   VERTEX_SHADER
-} from '@/lib/constants/dither-background'
+} from "@/lib/constants/dither-background"
 
 interface Props {
   color?: [number, number, number]
@@ -70,9 +70,9 @@ function DitherShader({
       clickIx = (clickIx + 1) % MAX_CLICKS
     }
 
-    window.addEventListener('pointerdown', onPointerDown)
+    window.addEventListener("pointerdown", onPointerDown)
 
-    return () => window.removeEventListener('pointerdown', onPointerDown)
+    return () => window.removeEventListener("pointerdown", onPointerDown)
   }, [gl, interactive])
 
   return (
@@ -99,7 +99,7 @@ export default function DitherBackground({
   pixelSize
 }: Props = {}) {
   return (
-    <div className='absolute inset-0'>
+    <div className="absolute inset-0">
       <Canvas dpr={[1, 2]} gl={{ antialias: true, alpha: true }}>
         <DitherShader
           color={color}

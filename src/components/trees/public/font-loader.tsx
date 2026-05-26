@@ -1,7 +1,7 @@
-'use client'
+"use client"
 
-import { useEffect } from 'react'
-import { loadFont } from '@/lib/utils/fonts'
+import { useEffect } from "react"
+import { loadFont } from "@/lib/utils/fonts"
 
 interface Props {
   fontId: number

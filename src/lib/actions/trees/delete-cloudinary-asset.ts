@@ -1,10 +1,10 @@
-'use server'
+"use server"
 
-import { cloudinary } from '@/lib/cloudinary'
+import { cloudinary } from "@/lib/cloudinary"
 import {
   getCloudinaryPublicId,
   isUserUploadedAsset
-} from '@/lib/utils/cloudinary'
+} from "@/lib/utils/cloudinary"
 
 export async function deleteCloudinaryAsset(url: string) {
   if (!isUserUploadedAsset(url)) return false
@@ -15,13 +15,13 @@ export async function deleteCloudinaryAsset(url: string) {
 
   try {
     await cloudinary.uploader.destroy(publicId, {
-      resource_type: 'image',
+      resource_type: "image",
       invalidate: true
     })
 
     return true
   } catch (error) {
-    console.error('DELETE_CLOUDINARY_ASSET: ', error)
+    console.error("DELETE_CLOUDINARY_ASSET: ", error)
     return false
   }
 }

@@ -1,6 +1,6 @@
-'use server'
+"use server"
 
-import { signOut } from '@/lib/auth'
+import { signOut } from "@/lib/auth"
 
 export async function logOut() {
   await signOut()

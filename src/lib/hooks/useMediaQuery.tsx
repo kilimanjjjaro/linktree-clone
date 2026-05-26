@@ -1,6 +1,6 @@
-'use client'
+"use client"
 
-import { useEffect, useState } from 'react'
+import { useEffect, useState } from "react"
 
 export default function useMediaQuery(query: string): boolean {
   const [matches, setMatches] = useState(false)
@@ -10,9 +10,9 @@ export default function useMediaQuery(query: string): boolean {
     const onChange = () => setMatches(mql.matches)
 
     onChange()
-    mql.addEventListener('change', onChange)
+    mql.addEventListener("change", onChange)
 
-    return () => mql.removeEventListener('change', onChange)
+    return () => mql.removeEventListener("change", onChange)
   }, [query])
 
   return matches

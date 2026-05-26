@@ -1,5 +1,5 @@
-import { Alert, AlertDescription } from '@/components/ui/alert'
-import { ShieldAlert, ShieldCheck } from 'lucide-react'
+import { Alert, AlertDescription } from "@/components/ui/alert"
+import { ShieldAlert, ShieldCheck } from "lucide-react"
 
 interface Props {
   data: {
@@ -14,7 +14,7 @@ export default function Feedback({ data }: Props) {
 
   if (isError) {
     return (
-      <Alert variant='error'>
+      <Alert variant="error">
         <ShieldAlert aria-hidden />
         <AlertDescription>{data.error}</AlertDescription>
       </Alert>
@@ -23,7 +23,7 @@ export default function Feedback({ data }: Props) {
 
   if (isSuccess) {
     return (
-      <Alert variant='success'>
+      <Alert variant="success">
         <ShieldCheck aria-hidden />
         <AlertDescription>{data.success}</AlertDescription>
       </Alert>

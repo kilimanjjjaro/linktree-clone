@@ -1,10 +1,10 @@
-import { type TreeInterface, type TreeChanges } from '@/lib/types/trees'
+import { type TreeInterface, type TreeChanges } from "@/lib/types/trees"
 
 export function getTreeChanges(
   current: TreeInterface,
   saved: TreeInterface
 ): TreeChanges | null {
-  const fields: TreeChanges['fields'] = {}
+  const fields: TreeChanges["fields"] = {}
 
   if (current.name !== saved.name) fields.name = current.name
   if (current.url !== saved.url) fields.url = current.url
@@ -20,7 +20,7 @@ export function getTreeChanges(
   const savedProfileTypes = new Set(saved.socialProfiles.map((p) => p.type))
   const currentProfileTypes = new Set(current.socialProfiles.map((p) => p.type))
 
-  const upsertProfiles: TreeChanges['upsertProfiles'] = []
+  const upsertProfiles: TreeChanges["upsertProfiles"] = []
   for (const profile of current.socialProfiles) {
     const savedProfile = saved.socialProfiles.find(
       (p) => p.type === profile.type
@@ -38,7 +38,7 @@ export function getTreeChanges(
     }
   }
 
-  const deleteProfileTypes: TreeChanges['deleteProfileTypes'] = []
+  const deleteProfileTypes: TreeChanges["deleteProfileTypes"] = []
   for (const type of savedProfileTypes) {
     if (!currentProfileTypes.has(type)) {
       deleteProfileTypes.push(type)
@@ -48,7 +48,7 @@ export function getTreeChanges(
   const savedLinkUrls = new Set(saved.links.map((l) => l.url))
   const currentLinkUrls = new Set(current.links.map((l) => l.url))
 
-  const upsertLinks: TreeChanges['upsertLinks'] = []
+  const upsertLinks: TreeChanges["upsertLinks"] = []
   for (const link of current.links) {
     const savedLink = saved.links.find((l) => l.url === link.url)
     if (
@@ -66,7 +66,7 @@ export function getTreeChanges(
     }
   }
 
-  const deleteLinkUrls: TreeChanges['deleteLinkUrls'] = []
+  const deleteLinkUrls: TreeChanges["deleteLinkUrls"] = []
   for (const url of savedLinkUrls) {
     if (!currentLinkUrls.has(url)) {
       deleteLinkUrls.push(url)

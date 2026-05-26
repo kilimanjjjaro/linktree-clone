@@ -1,12 +1,12 @@
-import { Analytics } from '@vercel/analytics/next'
-import { SessionProvider } from 'next-auth/react'
+import { Analytics } from "@vercel/analytics/next"
+import { SessionProvider } from "next-auth/react"
 
-import SaveTreeDialog from '@/components/trees/save-tree-dialog'
-import WelcomeToast from '@/components/auth/welcome-toast'
-import { Toaster } from '@/components/ui/toaster'
-import { StoreProvider } from '@/lib/store/store-provider'
-import { auth } from '@/lib/auth'
-import type { ChildrenType } from '@/lib/types/globals'
+import SaveTreeDialog from "@/components/trees/save-tree-dialog"
+import WelcomeToast from "@/components/auth/welcome-toast"
+import { Toaster } from "@/components/ui/toaster"
+import { StoreProvider } from "@/lib/store/store-provider"
+import { auth } from "@/lib/auth"
+import type { ChildrenType } from "@/lib/types/globals"
 
 interface Props {
   children: ChildrenType

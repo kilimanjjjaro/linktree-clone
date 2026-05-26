@@ -1,8 +1,8 @@
-﻿'use client'
+﻿"use client"
 
-import { Skeleton } from '@/components/ui/skeleton'
-import { useStore } from '@/lib/store/store-provider'
-import { cn } from '@/lib/utils/cn'
+import { Skeleton } from "@/components/ui/skeleton"
+import { useStore } from "@/lib/store/store-provider"
+import { cn } from "@/lib/utils/cn"
 
 export default function TreeName() {
   const selectedTree = useStore((state) => state.selectedTree)
@@ -15,8 +15,8 @@ export default function TreeName() {
     return (
       <Skeleton
         className={cn(
-          'h-8 w-36 rounded-full',
-          !isContentContainerEnabled && 'mt-5'
+          "h-8 w-36 rounded-full",
+          !isContentContainerEnabled && "mt-5"
         )}
       />
     )
@@ -25,8 +25,8 @@ export default function TreeName() {
   return (
     <h1
       className={cn(
-        'text-center text-3xl leading-none font-semibold mix-blend-difference',
-        !isContentContainerEnabled && 'mt-5'
+        "text-center text-3xl leading-none font-semibold mix-blend-difference",
+        !isContentContainerEnabled && "mt-5"
       )}
     >
       {selectedTree.name}

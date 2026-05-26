@@ -1,12 +1,12 @@
-'use server'
+"use server"
 
-import { revalidateTag } from 'next/cache'
-import { Prisma } from '@/generated/prisma/client'
+import { revalidateTag } from "next/cache"
+import { Prisma } from "@/generated/prisma/client"
 
-import db from '@/lib/database'
-import { getCurrentUser } from '@/lib/services/get-current-user'
-import { generateRawDataToCreate } from '@/lib/utils/generate-raw-data'
-import { type TreeInterface } from '@/lib/types/trees'
+import db from "@/lib/database"
+import { getCurrentUser } from "@/lib/services/get-current-user"
+import { generateRawDataToCreate } from "@/lib/utils/generate-raw-data"
+import { type TreeInterface } from "@/lib/types/trees"
 
 export async function createTree(tree: TreeInterface) {
   const user = await getCurrentUser()
@@ -14,8 +14,8 @@ export async function createTree(tree: TreeInterface) {
   if (user?.id === undefined) {
     return {
       data: null,
-      error: 'Must log in to create trees.',
-      success: ''
+      error: "Must log in to create trees.",
+      success: ""
     }
   }
 
@@ -31,30 +31,30 @@ export async function createTree(tree: TreeInterface) {
       }
     })
 
-    revalidateTag('trees', 'max')
+    revalidateTag("trees", "max")
 
     return {
       data: response as TreeInterface,
-      error: '',
-      success: 'Tree created.'
+      error: "",
+      success: "Tree created."
     }
   } catch (error) {
-    console.error('ACTION_ERROR: ', error)
+    console.error("ACTION_ERROR: ", error)
 
     if (error instanceof Prisma.PrismaClientKnownRequestError) {
-      if (error.code === 'P2002') {
+      if (error.code === "P2002") {
         return {
           data: null,
-          error: 'A tree with this URL already exists.',
-          success: ''
+          error: "A tree with this URL already exists.",
+          success: ""
         }
       }
     }
 
     return {
       data: null,
-      error: 'Something went wrong.',
-      success: ''
+      error: "Something went wrong.",
+      success: ""
     }
   }
 }

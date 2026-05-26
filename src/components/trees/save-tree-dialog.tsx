@@ -1,18 +1,18 @@
-﻿'use client'
+﻿"use client"
 
-import { useTransition } from 'react'
-import { toast } from 'sonner'
-import { LoaderCircle } from 'lucide-react'
+import { useTransition } from "react"
+import { toast } from "sonner"
+import { LoaderCircle } from "lucide-react"
 
 import {
   Dialog,
   DialogContent,
   DialogHeader,
   DialogTitle
-} from '@/components/ui/dialog'
-import { Button } from '@/components/ui/button'
-import { useStore } from '@/lib/store/store-provider'
-import { createTree } from '@/lib/actions/trees/create-tree'
+} from "@/components/ui/dialog"
+import { Button } from "@/components/ui/button"
+import { useStore } from "@/lib/store/store-provider"
+import { createTree } from "@/lib/actions/trees/create-tree"
 
 export default function SaveTreeDialog() {
   const showSaveTreeDialog = useStore((state) => state.showSaveTreeDialog)
@@ -29,7 +29,7 @@ export default function SaveTreeDialog() {
 
       if (data !== null) {
         loadTree(data)
-        localStorage.removeItem('__LOCAL_TREE__')
+        localStorage.removeItem("__LOCAL_TREE__")
         setShowSaveTreeDialog(false)
       } else {
         toast.error(error)
@@ -38,29 +38,29 @@ export default function SaveTreeDialog() {
   }
 
   const discardTree = () => {
-    localStorage.removeItem('__LOCAL_TREE__')
+    localStorage.removeItem("__LOCAL_TREE__")
     setShowSaveTreeDialog(false)
   }
 
-  const saveButtonText = isPending ? 'Saving' : 'Save'
+  const saveButtonText = isPending ? "Saving" : "Save"
 
   return (
     <Dialog open={showSaveTreeDialog} onOpenChange={setShowSaveTreeDialog}>
-      <DialogContent className='max-w-sm p-0'>
+      <DialogContent className="max-w-sm p-0">
         <DialogHeader>
           <DialogTitle>Save tree</DialogTitle>
         </DialogHeader>
-        <main className='mt-12 grid gap-y-5 p-5'>
-          <p className='text-lt-lightest-gray text-center'>
+        <main className="mt-12 grid gap-y-5 p-5">
+          <p className="text-lt-lightest-gray text-center">
             Before continue, save or discard this tree.
           </p>
-          <div className='grid grid-cols-2 gap-x-3'>
-            <Button variant='secondary' onClick={discardTree}>
+          <div className="grid grid-cols-2 gap-x-3">
+            <Button variant="secondary" onClick={discardTree}>
               Discard
             </Button>
             <Button onClick={saveTree} disabled={isPending}>
               {isPending && (
-                <LoaderCircle className='size-4 animate-spin' aria-hidden />
+                <LoaderCircle className="size-4 animate-spin" aria-hidden />
               )}
               {saveButtonText}
             </Button>

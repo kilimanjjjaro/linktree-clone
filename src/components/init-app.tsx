@@ -1,12 +1,12 @@
-'use client'
+"use client"
 
-import { useCallback, useEffect, useRef } from 'react'
-import { usePathname, useRouter } from 'next/navigation'
+import { useCallback, useEffect, useRef } from "react"
+import { usePathname, useRouter } from "next/navigation"
 
-import { useStoreApi } from '@/lib/store/store-provider'
-import { DEMO_TREE_VALUES } from '@/lib/constants/trees'
-import { type ChildrenType } from '@/lib/types/globals'
-import { type TreeInterface } from '@/lib/types/trees'
+import { useStoreApi } from "@/lib/store/store-provider"
+import { DEMO_TREE_VALUES } from "@/lib/constants/trees"
+import { type ChildrenType } from "@/lib/types/globals"
+import { type TreeInterface } from "@/lib/types/trees"
 
 interface Props {
   children: ChildrenType
@@ -32,7 +32,7 @@ export default function InitApp({
 
       if (updateParams) {
         const params = new URLSearchParams()
-        params.set('tree', tree.url)
+        params.set("tree", tree.url)
         router.replace(`${pathname}?tree=${tree.url}`, {
           scroll: false
         })
@@ -55,7 +55,7 @@ export default function InitApp({
       isStoreReady
     } = storeApi.getState()
 
-    const localTree = localStorage.getItem('__LOCAL_TREE__')
+    const localTree = localStorage.getItem("__LOCAL_TREE__")
 
     if (localTree !== null) {
       const tree = JSON.parse(localTree) as TreeInterface

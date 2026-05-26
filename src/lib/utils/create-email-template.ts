@@ -1,4 +1,4 @@
-import { BASE_URL } from '@/lib/constants/globals'
+import { BASE_URL } from "@/lib/constants/globals"
 
 interface Props {
   heading: string

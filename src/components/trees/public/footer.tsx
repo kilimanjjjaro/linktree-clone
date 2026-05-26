@@ -1,8 +1,8 @@
-import Link from 'next/link'
+import Link from "next/link"
 
-import { buttonVariants } from '@/components/ui/button'
-import { getCornerClassName } from '@/lib/utils/get-corner-class-name'
-import { cn } from '@/lib/utils/cn'
+import { buttonVariants } from "@/components/ui/button"
+import { getCornerClassName } from "@/lib/utils/get-corner-class-name"
+import { cn } from "@/lib/utils/cn"
 
 interface Props {
   cornerStyle: number
@@ -10,12 +10,12 @@ interface Props {
 
 export default function PublicFooter({ cornerStyle }: Props) {
   return (
-    <footer className='mt-12 flex justify-center'>
+    <footer className="mt-12 flex justify-center">
       <Link
-        href='/signup'
+        href="/signup"
         className={cn(
-          buttonVariants({ variant: 'default' }),
-          'bg-lt-white px-6 py-5 text-sm transition-transform xl:active:scale-[0.97]',
+          buttonVariants({ variant: "default" }),
+          "bg-lt-white px-6 py-5 text-sm transition-transform xl:active:scale-[0.97]",
           getCornerClassName(cornerStyle)
         )}
       >

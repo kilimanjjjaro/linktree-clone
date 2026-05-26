@@ -1,9 +1,9 @@
-﻿'use client'
+﻿"use client"
 
-import { useTransition } from 'react'
-import { usePathname, useRouter } from 'next/navigation'
-import { Check, LoaderCircle, X } from 'lucide-react'
-import { toast } from 'sonner'
+import { useTransition } from "react"
+import { usePathname, useRouter } from "next/navigation"
+import { Check, LoaderCircle, X } from "lucide-react"
+import { toast } from "sonner"
 
 import {
   Command,
@@ -12,13 +12,13 @@ import {
   CommandInput,
   CommandItem,
   CommandList
-} from '@/components/ui/command'
-import { Button } from '@/components/ui/button'
-import { PopoverContent } from '@/components/ui/popover'
-import { useStore } from '@/lib/store/store-provider'
-import { deleteTree } from '@/lib/actions/trees/delete-tree'
-import { DEMO_TREE_VALUES } from '@/lib/constants/trees'
-import { type TreeInterface } from '@/lib/types/trees'
+} from "@/components/ui/command"
+import { Button } from "@/components/ui/button"
+import { PopoverContent } from "@/components/ui/popover"
+import { useStore } from "@/lib/store/store-provider"
+import { deleteTree } from "@/lib/actions/trees/delete-tree"
+import { DEMO_TREE_VALUES } from "@/lib/constants/trees"
+import { type TreeInterface } from "@/lib/types/trees"
 
 interface Props {
   treeUrl: string | undefined
@@ -40,7 +40,7 @@ export default function TreeSelectorList({ treeUrl, trees }: Props) {
     const updateParams = (tree: TreeInterface) => {
       loadTree(tree)
 
-      params.set('tree', tree.url)
+      params.set("tree", tree.url)
       router.replace(`${pathname}?tree=${tree.url}`, {
         scroll: false
       })
@@ -69,7 +69,7 @@ export default function TreeSelectorList({ treeUrl, trees }: Props) {
   }
 
   const handleSelect = (treeUrl: string) => {
-    const localTree = localStorage.getItem('__LOCAL_TREE__')
+    const localTree = localStorage.getItem("__LOCAL_TREE__")
 
     if (localTree !== null) {
       setShowSaveTreeDialog(true)
@@ -77,22 +77,22 @@ export default function TreeSelectorList({ treeUrl, trees }: Props) {
     }
 
     const params = new URLSearchParams()
-    params.set('tree', treeUrl)
+    params.set("tree", treeUrl)
     router.replace(`${pathname}?tree=${treeUrl}`, {
       scroll: false
     })
   }
 
   return (
-    <PopoverContent align='start' className='w-60 p-0'>
+    <PopoverContent align="start" className="w-60 p-0">
       <Command value={treeUrl ?? DEMO_TREE_VALUES.url}>
-        <CommandInput placeholder='Search tree...' />
+        <CommandInput placeholder="Search tree..." />
         <CommandList>
           <CommandEmpty>No trees found.</CommandEmpty>
           <CommandGroup>
             {trees.map((tree) => (
               <CommandItem
-                className='group'
+                className="group"
                 key={tree.url}
                 value={tree.url}
                 disabled={isPending}
@@ -102,25 +102,25 @@ export default function TreeSelectorList({ treeUrl, trees }: Props) {
               >
                 {selectedTree?.id === tree.id && (
                   <Check
-                    className='mr-2 size-3.5'
+                    className="mr-2 size-3.5"
                     strokeWidth={3}
                     aria-hidden
                   />
                 )}
                 {tree.name}
                 {isPending && (
-                  <LoaderCircle className='text-lt-lightest-gray absolute right-3 size-5 animate-spin opacity-0 group-aria-selected:opacity-100' />
+                  <LoaderCircle className="text-lt-lightest-gray absolute right-3 size-5 animate-spin opacity-0 group-aria-selected:opacity-100" />
                 )}
                 {!isPending && (
                   <Button
-                    aria-label='deleteTree'
-                    className='bg-lt-lightest-gray absolute right-3 h-auto rounded-full p-0.5 opacity-0 xl:group-hover:opacity-100'
+                    aria-label="deleteTree"
+                    className="bg-lt-lightest-gray absolute right-3 h-auto rounded-full p-0.5 opacity-0 xl:group-hover:opacity-100"
                     onClick={async () => {
                       await handleDelete(tree.id)
                     }}
                     disabled={isPending}
                   >
-                    <X className='size-3' strokeWidth={3} aria-hidden />
+                    <X className="size-3" strokeWidth={3} aria-hidden />
                   </Button>
                 )}
               </CommandItem>

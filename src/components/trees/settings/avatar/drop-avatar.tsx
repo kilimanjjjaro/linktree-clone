@@ -1,7 +1,7 @@
-import { useCallback } from 'react'
-import { type FileWithPath, useDropzone } from 'react-dropzone'
-import { ImageIcon } from 'lucide-react'
-import { ACCEPTED_FILE_TYPES } from '@/lib/constants/trees'
+import { useCallback } from "react"
+import { type FileWithPath, useDropzone } from "react-dropzone"
+import { ImageIcon } from "lucide-react"
+import { ACCEPTED_FILE_TYPES } from "@/lib/constants/trees"
 
 interface Props {
   setAvatarToCrop: (value: string) => void
@@ -30,13 +30,13 @@ export default function DropAvatar({ setAvatarToCrop }: Props) {
 
   return (
     <section
-      {...getRootProps({ className: 'dropzone' })}
-      className='border-lt-light-gray/60 bg-lt-black text-lt-white xl:hover:border-lt-lightest-gray flex aspect-square cursor-pointer items-center justify-center rounded-2xl border-2 border-dashed p-24 transition-colors outline-none focus-visible:border-white'
+      {...getRootProps({ className: "dropzone" })}
+      className="border-lt-light-gray/60 bg-lt-black text-lt-white xl:hover:border-lt-lightest-gray flex aspect-square cursor-pointer items-center justify-center rounded-2xl border-2 border-dashed p-24 transition-colors outline-none focus-visible:border-white"
     >
       <input {...getInputProps()} />
-      <div className='flex flex-col items-center gap-y-4'>
-        <ImageIcon className='size-10' aria-hidden />
-        <span className='text-center text-sm text-balance'>
+      <div className="flex flex-col items-center gap-y-4">
+        <ImageIcon className="size-10" aria-hidden />
+        <span className="text-center text-sm text-balance">
           Click to select your image or drag-and-drop here to upload it.
         </span>
       </div>

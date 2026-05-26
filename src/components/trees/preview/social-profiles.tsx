@@ -1,11 +1,11 @@
-﻿'use client'
+﻿"use client"
 
-import { useAutoAnimate } from '@formkit/auto-animate/react'
+import { useAutoAnimate } from "@formkit/auto-animate/react"
 
-import SocialProfileIcon from '@/components/trees/settings/social-profiles/icon'
-import { Skeleton } from '@/components/ui/skeleton'
-import { useStore } from '@/lib/store/store-provider'
-import { getSocialProfileUrl } from '@/lib/utils/get-social-profile-url'
+import SocialProfileIcon from "@/components/trees/settings/social-profiles/icon"
+import { Skeleton } from "@/components/ui/skeleton"
+import { useStore } from "@/lib/store/store-provider"
+import { getSocialProfileUrl } from "@/lib/utils/get-social-profile-url"
 
 export default function TreeSocialProfiles() {
   const selectedTree = useStore((state) => state.selectedTree)
@@ -14,11 +14,11 @@ export default function TreeSocialProfiles() {
 
   if (!isStoreReady) {
     return (
-      <div className='mt-4 flex flex-wrap items-center justify-center gap-3 px-6'>
-        <Skeleton className='size-7 rounded-full' />
-        <Skeleton className='size-7 rounded-full' />
-        <Skeleton className='size-7 rounded-full' />
-        <Skeleton className='size-7 rounded-full' />
+      <div className="mt-4 flex flex-wrap items-center justify-center gap-3 px-6">
+        <Skeleton className="size-7 rounded-full" />
+        <Skeleton className="size-7 rounded-full" />
+        <Skeleton className="size-7 rounded-full" />
+        <Skeleton className="size-7 rounded-full" />
       </div>
     )
   }
@@ -28,17 +28,17 @@ export default function TreeSocialProfiles() {
   return (
     <ul
       ref={parent}
-      className='mt-4 flex flex-wrap items-center justify-center gap-3 px-6 mix-blend-difference'
+      className="mt-4 flex flex-wrap items-center justify-center gap-3 px-6 mix-blend-difference"
     >
       {selectedTree.socialProfiles.map((socialProfile) => (
         <a
           key={socialProfile.type}
-          className='bg-lt-white size-7 rounded-full p-1 text-black transition xl:hover:bg-zinc-400 xl:active:scale-90'
+          className="bg-lt-white size-7 rounded-full p-1 text-black transition xl:hover:bg-zinc-400 xl:active:scale-90"
           href={getSocialProfileUrl(socialProfile.type, socialProfile.url)}
-          target='_blank'
-          rel='noopener noreferrer'
+          target="_blank"
+          rel="noopener noreferrer"
         >
-          <SocialProfileIcon icon={socialProfile.type} className='size-full' />
+          <SocialProfileIcon icon={socialProfile.type} className="size-full" />
         </a>
       ))}
     </ul>

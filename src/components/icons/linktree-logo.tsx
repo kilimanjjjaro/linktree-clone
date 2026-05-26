@@ -6,12 +6,12 @@ export default function LinktreeLogo({ className }: Props) {
   return (
     <svg
       className={className}
-      xmlns='http://www.w3.org/2000/svg'
-      viewBox='0 0 24 24'
-      fill='currentColor'
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      fill="currentColor"
       aria-hidden
     >
-      <path d='m13.51 5.853 4.006-4.117 2.324 2.381-4.2 4.005h5.909v3.305H15.61l4.23 4.107-2.325 2.334-5.742-5.769-5.741 5.77-2.325-2.325 4.23-4.108H2V8.122h5.91L3.707 4.117l2.325-2.38 4.005 4.116V0h3.473v5.853ZM10.039 16.16h3.473v7.842h-3.473V16.16Z' />
+      <path d="m13.51 5.853 4.006-4.117 2.324 2.381-4.2 4.005h5.909v3.305H15.61l4.23 4.107-2.325 2.334-5.742-5.769-5.741 5.77-2.325-2.325 4.23-4.108H2V8.122h5.91L3.707 4.117l2.325-2.38 4.005 4.116V0h3.473v5.853ZM10.039 16.16h3.473v7.842h-3.473V16.16Z" />
     </svg>
   )
 }

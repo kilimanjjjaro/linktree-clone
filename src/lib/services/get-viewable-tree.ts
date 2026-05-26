@@ -1,6 +1,6 @@
-import db from '@/lib/database'
-import { TREE_STATUS } from '@/lib/constants/trees'
-import { type TreeInterface } from '@/lib/types/trees'
+import db from "@/lib/database"
+import { TREE_STATUS } from "@/lib/constants/trees"
+import { type TreeInterface } from "@/lib/types/trees"
 
 export async function getViewableTree(url: string, viewerId?: string) {
   try {

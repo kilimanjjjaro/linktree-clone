@@ -1,13 +1,13 @@
 body::before {
-  content: '';
+  content: "";
   position: fixed;
   top: -10rem;
   left: -10rem;
   width: calc(100vw + 20rem);
   height: calc(100vh + 20rem);
   background-image: image-set(
-    '/images/noise.avif' type('image/avif'),
-    '/images/noise.png' type('image/png')
+    "/images/noise.avif" type("image/avif"),
+    "/images/noise.png" type("image/png")
   );
   background-position: 50%;
   opacity: 0.15;

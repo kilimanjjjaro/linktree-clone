@@ -1,28 +1,28 @@
-﻿'use client'
+﻿"use client"
 
-import { Eye, Link2, Palette, SlidersHorizontal } from 'lucide-react'
-import { toast } from 'sonner'
+import { Eye, Link2, Palette, SlidersHorizontal } from "lucide-react"
+import { toast } from "sonner"
 
-import TreeBackground from '@/components/trees/appearance/background'
-import TreeFont from '@/components/trees/appearance/font'
-import TreeGeneral from '@/components/trees/appearance/general'
-import TreeAvatar from '@/components/trees/settings/avatar'
-import TreeName from '@/components/trees/settings/name'
-import TreeUrl from '@/components/trees/settings/url'
-import TreeDescription from '@/components/trees/settings/description'
-import TreeSocialProfiles from '@/components/trees/settings/social-profiles'
-import TreeStatus from '@/components/toolbar/tree-status'
-import { Separator } from '@/components/ui/separator'
+import TreeBackground from "@/components/trees/appearance/background"
+import TreeFont from "@/components/trees/appearance/font"
+import TreeGeneral from "@/components/trees/appearance/general"
+import TreeAvatar from "@/components/trees/settings/avatar"
+import TreeName from "@/components/trees/settings/name"
+import TreeUrl from "@/components/trees/settings/url"
+import TreeDescription from "@/components/trees/settings/description"
+import TreeSocialProfiles from "@/components/trees/settings/social-profiles"
+import TreeStatus from "@/components/toolbar/tree-status"
+import { Separator } from "@/components/ui/separator"
 import {
   Sheet,
   SheetContent,
   SheetHeader,
   SheetTitle,
   SheetTrigger
-} from '@/components/ui/sheet'
-import { useStore } from '@/lib/store/store-provider'
-import useCurrentUser from '@/lib/hooks/useCurrentUser'
-import { cn } from '@/lib/utils/cn'
+} from "@/components/ui/sheet"
+import { useStore } from "@/lib/store/store-provider"
+import useCurrentUser from "@/lib/hooks/useCurrentUser"
+import { cn } from "@/lib/utils/cn"
 
 export default function MobileToolbar({ className }: { className?: string }) {
   const selectedTree = useStore((state) => state.selectedTree)
@@ -36,15 +36,15 @@ export default function MobileToolbar({ className }: { className?: string }) {
     if (isViewDisabled) return
 
     if (user === null) {
-      localStorage.setItem('__LOCAL_TREE__', JSON.stringify(selectedTree))
+      localStorage.setItem("__LOCAL_TREE__", JSON.stringify(selectedTree))
     }
 
-    window.open(`/${selectedTree.url}`, '_blank', 'noopener,noreferrer')
+    window.open(`/${selectedTree.url}`, "_blank", "noopener,noreferrer")
   }
 
   const handleAddLink = () => {
     if (selectedTree === null) {
-      toast.error('Select a tree first.')
+      toast.error("Select a tree first.")
       return
     }
     setSelectedLink(null)
@@ -54,41 +54,41 @@ export default function MobileToolbar({ className }: { className?: string }) {
   return (
     <div
       className={cn(
-        'fixed inset-x-3 bottom-[max(env(safe-area-inset-bottom),12px)] z-40',
+        "fixed inset-x-3 bottom-[max(env(safe-area-inset-bottom),12px)] z-40",
         className
       )}
     >
-      <div className='border-lt-light-gray/60 bg-lt-gray mx-auto flex h-14 items-center justify-center gap-1 rounded-full border p-2.5'>
+      <div className="border-lt-light-gray/60 bg-lt-gray mx-auto flex h-14 items-center justify-center gap-1 rounded-full border p-2.5">
         <TreeStatus />
         <button
-          type='button'
-          aria-label='View tree'
+          type="button"
+          aria-label="View tree"
           disabled={isViewDisabled}
           onClick={handleView}
           className={cn(
-            'focus-visible:ring-lt-white focus-visible:ring-offset-lt-gray flex size-11 shrink-0 items-center justify-center rounded-full transition-colors outline-none focus-visible:ring-2 focus-visible:ring-offset-2',
+            "focus-visible:ring-lt-white focus-visible:ring-offset-lt-gray flex size-11 shrink-0 items-center justify-center rounded-full transition-colors outline-none focus-visible:ring-2 focus-visible:ring-offset-2",
             isViewDisabled
-              ? 'text-lt-lightest-gray/40 cursor-not-allowed'
-              : 'text-lt-lightest-gray xl:active:bg-lt-light-gray/40 cursor-pointer'
+              ? "text-lt-lightest-gray/40 cursor-not-allowed"
+              : "text-lt-lightest-gray xl:active:bg-lt-light-gray/40 cursor-pointer"
           )}
         >
-          <Eye className='size-5' aria-hidden />
+          <Eye className="size-5" aria-hidden />
         </button>
         <Sheet>
           <SheetTrigger asChild>
             <button
-              type='button'
-              aria-label='Settings'
-              className='focus-visible:ring-lt-white focus-visible:ring-offset-lt-gray text-lt-lightest-gray xl:active:bg-lt-light-gray/40 flex size-11 shrink-0 cursor-pointer items-center justify-center rounded-full transition-colors outline-none focus-visible:ring-2 focus-visible:ring-offset-2'
+              type="button"
+              aria-label="Settings"
+              className="focus-visible:ring-lt-white focus-visible:ring-offset-lt-gray text-lt-lightest-gray xl:active:bg-lt-light-gray/40 flex size-11 shrink-0 cursor-pointer items-center justify-center rounded-full transition-colors outline-none focus-visible:ring-2 focus-visible:ring-offset-2"
             >
-              <SlidersHorizontal className='size-5' aria-hidden />
+              <SlidersHorizontal className="size-5" aria-hidden />
             </button>
           </SheetTrigger>
-          <SheetContent className='flex flex-col p-0'>
+          <SheetContent className="flex flex-col p-0">
             <SheetHeader>
               <SheetTitle>Settings</SheetTitle>
             </SheetHeader>
-            <div className='scrollbar-hidden min-h-0 flex-1 overflow-y-auto overscroll-contain'>
+            <div className="scrollbar-hidden min-h-0 flex-1 overflow-y-auto overscroll-contain">
               <TreeAvatar />
               <Separator />
               <TreeName />
@@ -104,18 +104,18 @@ export default function MobileToolbar({ className }: { className?: string }) {
         <Sheet>
           <SheetTrigger asChild>
             <button
-              type='button'
-              aria-label='Appearance'
-              className='focus-visible:ring-lt-white focus-visible:ring-offset-lt-gray text-lt-lightest-gray xl:active:bg-lt-light-gray/40 flex size-11 shrink-0 cursor-pointer items-center justify-center rounded-full transition-colors outline-none focus-visible:ring-2 focus-visible:ring-offset-2'
+              type="button"
+              aria-label="Appearance"
+              className="focus-visible:ring-lt-white focus-visible:ring-offset-lt-gray text-lt-lightest-gray xl:active:bg-lt-light-gray/40 flex size-11 shrink-0 cursor-pointer items-center justify-center rounded-full transition-colors outline-none focus-visible:ring-2 focus-visible:ring-offset-2"
             >
-              <Palette className='size-5' aria-hidden />
+              <Palette className="size-5" aria-hidden />
             </button>
           </SheetTrigger>
-          <SheetContent className='flex flex-col p-0'>
+          <SheetContent className="flex flex-col p-0">
             <SheetHeader>
               <SheetTitle>Appearance</SheetTitle>
             </SheetHeader>
-            <div className='scrollbar-hidden min-h-0 flex-1 overflow-y-auto overscroll-contain'>
+            <div className="scrollbar-hidden min-h-0 flex-1 overflow-y-auto overscroll-contain">
               <TreeBackground />
               <Separator />
               <TreeFont />
@@ -125,12 +125,12 @@ export default function MobileToolbar({ className }: { className?: string }) {
           </SheetContent>
         </Sheet>
         <button
-          type='button'
-          aria-label='Add link'
+          type="button"
+          aria-label="Add link"
           onClick={handleAddLink}
-          className='bg-lt-white text-lt-black focus-visible:ring-lt-white focus-visible:ring-offset-lt-gray xl:active:bg-lt-white/85 flex h-9 w-11 shrink-0 cursor-pointer items-center justify-center rounded-full transition-colors outline-none focus-visible:ring-2 focus-visible:ring-offset-2'
+          className="bg-lt-white text-lt-black focus-visible:ring-lt-white focus-visible:ring-offset-lt-gray xl:active:bg-lt-white/85 flex h-9 w-11 shrink-0 cursor-pointer items-center justify-center rounded-full transition-colors outline-none focus-visible:ring-2 focus-visible:ring-offset-2"
         >
-          <Link2 className='size-5' aria-hidden strokeWidth={2.5} />
+          <Link2 className="size-5" aria-hidden strokeWidth={2.5} />
         </button>
       </div>
     </div>

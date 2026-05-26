@@ -1,5 +1,5 @@
-import db from '@/lib/database'
-import { type TreeInterface } from '@/lib/types/trees'
+import db from "@/lib/database"
+import { type TreeInterface } from "@/lib/types/trees"
 
 export async function getTrees(authorId: string) {
   try {
@@ -10,7 +10,7 @@ export async function getTrees(authorId: string) {
         socialProfiles: true
       },
       orderBy: {
-        name: 'asc'
+        name: "asc"
       }
     })
 

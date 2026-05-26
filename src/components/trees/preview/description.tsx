@@ -1,7 +1,7 @@
-﻿'use client'
+﻿"use client"
 
-import { Skeleton } from '@/components/ui/skeleton'
-import { useStore } from '@/lib/store/store-provider'
+import { Skeleton } from "@/components/ui/skeleton"
+import { useStore } from "@/lib/store/store-provider"
 
 export default function TreeDescription() {
   const selectedTree = useStore((state) => state.selectedTree)
@@ -9,15 +9,15 @@ export default function TreeDescription() {
 
   if (!isStoreReady) {
     return (
-      <div className='mt-3 grid justify-items-center gap-y-1'>
-        <Skeleton className='h-3.5 w-56 rounded-full' />
-        <Skeleton className='h-3.5 w-48 rounded-full' />
+      <div className="mt-3 grid justify-items-center gap-y-1">
+        <Skeleton className="h-3.5 w-56 rounded-full" />
+        <Skeleton className="h-3.5 w-48 rounded-full" />
       </div>
     )
   }
 
   return (
-    <p className='mt-3 text-center text-sm text-balance text-zinc-400 mix-blend-difference'>
+    <p className="mt-3 text-center text-sm text-balance text-zinc-400 mix-blend-difference">
       {selectedTree.description}
     </p>
   )

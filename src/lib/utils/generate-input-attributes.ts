@@ -1,18 +1,18 @@
-import { INPUT_TYPES } from '@/lib/types/globals'
+import { INPUT_TYPES } from "@/lib/types/globals"
 
 export function generateInputAttributes(inputType: number) {
   let attributes = {}
 
   if (inputType === INPUT_TYPES.TEXT) {
     attributes = {
-      type: 'text',
+      type: "text",
       maxLength: 80
     }
   }
 
   if (inputType === INPUT_TYPES.TEL) {
     attributes = {
-      type: 'tel',
+      type: "tel",
       minLength: 7,
       maxLength: 20
     }
@@ -20,7 +20,7 @@ export function generateInputAttributes(inputType: number) {
 
   if (inputType === INPUT_TYPES.EMAIL) {
     attributes = {
-      type: 'email'
+      type: "email"
     }
   }
 

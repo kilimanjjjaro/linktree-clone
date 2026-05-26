@@ -1,14 +1,14 @@
-﻿'use client'
+﻿"use client"
 
-import Image from 'next/image'
+import Image from "next/image"
 
-import UploadAvatarDialog from '@/components/trees/settings/avatar/dialog'
-import { Button } from '@/components/ui/button'
-import { Label } from '@/components/ui/label'
-import { useStore } from '@/lib/store/store-provider'
-import { DEMO_TREE_VALUES } from '@/lib/constants/trees'
-import { deleteCloudinaryAsset } from '@/lib/actions/trees/delete-cloudinary-asset'
-import { isUserUploadedAsset } from '@/lib/utils/cloudinary'
+import UploadAvatarDialog from "@/components/trees/settings/avatar/dialog"
+import { Button } from "@/components/ui/button"
+import { Label } from "@/components/ui/label"
+import { useStore } from "@/lib/store/store-provider"
+import { DEMO_TREE_VALUES } from "@/lib/constants/trees"
+import { deleteCloudinaryAsset } from "@/lib/actions/trees/delete-cloudinary-asset"
+import { isUserUploadedAsset } from "@/lib/utils/cloudinary"
 
 export default function TreeAvatar() {
   const selectedTree = useStore((state) => state.selectedTree)
@@ -25,21 +25,21 @@ export default function TreeAvatar() {
   }
 
   return (
-    <section className='p-5'>
-      <Label htmlFor='tree-avatar'>Profile picture</Label>
-      <div className='mt-2 flex items-center gap-x-5'>
-        <div className='border-lt-light-gray/60 relative flex size-20 items-center justify-center overflow-hidden rounded-full border'>
+    <section className="p-5">
+      <Label htmlFor="tree-avatar">Profile picture</Label>
+      <div className="mt-2 flex items-center gap-x-5">
+        <div className="border-lt-light-gray/60 relative flex size-20 items-center justify-center overflow-hidden rounded-full border">
           <Image
-            className='absolute size-full object-cover object-center'
+            className="absolute size-full object-cover object-center"
             src={selectedTree.avatar}
             alt={`${selectedTree.name}'s profile picture`}
             width={100}
             height={100}
           />
         </div>
-        <div className='grid flex-1 grid-cols-2 gap-x-3'>
+        <div className="grid flex-1 grid-cols-2 gap-x-3">
           <UploadAvatarDialog />
-          <Button variant='secondary' onClick={removeAvatar}>
+          <Button variant="secondary" onClick={removeAvatar}>
             Remove
           </Button>
         </div>

@@ -1,9 +1,9 @@
-﻿import { ChevronRight } from 'lucide-react'
-import { CommandItem } from '@/components/ui/command'
-import SocialProfileIcon from '@/components/trees/settings/social-profiles/icon'
-import { useStore } from '@/lib/store/store-provider'
-import { cn } from '@/lib/utils/cn'
-import type { SocialProfileInterface } from '@/lib/types/globals'
+﻿import { ChevronRight } from "lucide-react"
+import { CommandItem } from "@/components/ui/command"
+import SocialProfileIcon from "@/components/trees/settings/social-profiles/icon"
+import { useStore } from "@/lib/store/store-provider"
+import { cn } from "@/lib/utils/cn"
+import type { SocialProfileInterface } from "@/lib/types/globals"
 
 interface Props {
   socialProfile: SocialProfileInterface
@@ -35,20 +35,20 @@ export default function SocialProfile({ socialProfile }: Props) {
         selectSocialProfile(socialProfile)
       }}
     >
-      <span className='flex items-center gap-x-2'>
-        <SocialProfileIcon className='size-5' icon={socialProfile.type} />
+      <span className="flex items-center gap-x-2">
+        <SocialProfileIcon className="size-5" icon={socialProfile.type} />
         {socialProfile.name}
       </span>
-      <div className='flex items-center gap-x-1'>
+      <div className="flex items-center gap-x-1">
         <span
           className={cn(
-            'border-lt-lightest-gray rounded-full border px-2 py-1 text-xs leading-none opacity-0',
-            isAdded && 'opacity-100'
+            "border-lt-lightest-gray rounded-full border px-2 py-1 text-xs leading-none opacity-0",
+            isAdded && "opacity-100"
           )}
         >
           Added
         </span>
-        <ChevronRight className='ml-auto size-4' aria-hidden />
+        <ChevronRight className="ml-auto size-4" aria-hidden />
       </div>
     </CommandItem>
   )

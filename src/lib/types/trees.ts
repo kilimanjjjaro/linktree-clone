@@ -1,7 +1,7 @@
 import {
   type Prisma,
   type SocialProfileTypes
-} from '@/generated/prisma/browser'
+} from "@/generated/prisma/browser"
 
 type PrismaTree = Prisma.TreeGetPayload<{
   include: {
@@ -10,7 +10,7 @@ type PrismaTree = Prisma.TreeGetPayload<{
   }
 }>
 
-export type TreeInterface = Omit<PrismaTree, 'appearance'> & {
+export type TreeInterface = Omit<PrismaTree, "appearance"> & {
   appearance: TreeAppearanceInterface
 }
 

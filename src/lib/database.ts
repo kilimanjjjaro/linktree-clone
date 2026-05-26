@@ -1,5 +1,5 @@
-import { PrismaClient } from '@/generated/prisma/client'
-import { PrismaNeon } from '@prisma/adapter-neon'
+import { PrismaClient } from "@/generated/prisma/client"
+import { PrismaNeon } from "@prisma/adapter-neon"
 
 declare global {
   // eslint-disable-next-line no-var
@@ -17,4 +17,4 @@ const db = globalThis.prismaGlobal ?? prismaClientSingleton()
 
 export default db
 
-if (process.env.NODE_ENV !== 'production') globalThis.prismaGlobal = db
+if (process.env.NODE_ENV !== "production") globalThis.prismaGlobal = db
