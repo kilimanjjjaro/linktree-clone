@@ -1,7 +1,7 @@
 const USER_CONTENT_PREFIXES = [
-  "linktree/links-avatar/",
-  "linktree/links-image/",
-  "linktree/tree-backgrounds/"
+  'linktree/links-avatar/',
+  'linktree/links-image/',
+  'linktree/tree-backgrounds/'
 ]
 
 export function getCloudinaryPublicId(url: string): string | null {

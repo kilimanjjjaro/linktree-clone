@@ -1,17 +1,17 @@
-﻿import { Plus } from "lucide-react"
+﻿import { Plus } from 'lucide-react'
 
-import SocialProfilesSelector from "@/components/trees/settings/social-profiles/dialog/selector"
-import SocialProfileSettings from "@/components/trees/settings/social-profiles/dialog/settings"
-import { Button } from "@/components/ui/button"
+import SocialProfilesSelector from '@/components/trees/settings/social-profiles/dialog/selector'
+import SocialProfileSettings from '@/components/trees/settings/social-profiles/dialog/settings'
+import { Button } from '@/components/ui/button'
 import {
   Dialog,
   DialogContent,
   DialogHeader,
   DialogTitle,
   DialogTrigger
-} from "@/components/ui/dialog"
-import { useStore } from "@/lib/store/store-provider"
-import { delay } from "@/lib/utils/delay"
+} from '@/components/ui/dialog'
+import { useStore } from '@/lib/store/store-provider'
+import { delay } from '@/lib/utils/delay'
 
 interface Props {
   open: boolean
@@ -33,11 +33,11 @@ export default function SocialProfilesDialog({ open, setOpen }: Props) {
       }}
     >
       <DialogTrigger asChild>
-        <Button id="tree-social-profiles">
-          Add <Plus className="size-3.5" aria-hidden />
+        <Button id='tree-social-profiles'>
+          Add <Plus className='size-3.5' aria-hidden />
         </Button>
       </DialogTrigger>
-      <DialogContent className="p-0">
+      <DialogContent className='p-0'>
         <DialogHeader>
           <DialogTitle>Add social profiles</DialogTitle>
         </DialogHeader>

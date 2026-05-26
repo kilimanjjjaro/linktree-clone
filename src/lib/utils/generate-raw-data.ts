@@ -1,6 +1,6 @@
-import { Prisma } from "@/generated/prisma/client"
-import { DEMO_TREE_VALUES } from "@/lib/constants/trees"
-import type { TreeInterface } from "@/lib/types/trees"
+import { Prisma } from '@/generated/prisma/client'
+import { DEMO_TREE_VALUES } from '@/lib/constants/trees'
+import type { TreeInterface } from '@/lib/types/trees'
 
 export function generateRawDataToCreate(tree?: Partial<TreeInterface>) {
   const appearance = tree?.appearance ?? DEMO_TREE_VALUES.appearance

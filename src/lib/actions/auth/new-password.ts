@@ -1,11 +1,11 @@
-"use server"
+'use server'
 
-import bcrypt from "bcryptjs"
+import bcrypt from 'bcryptjs'
 
-import db from "@/lib/database"
-import { NewPasswordSchema } from "@/lib/schemas/auth"
-import { getPasswordResetTokenByToken } from "@/lib/services/password-reset-tokens"
-import { getUserByEmail } from "@/lib/services/get-user-by-email"
+import db from '@/lib/database'
+import { NewPasswordSchema } from '@/lib/schemas/auth'
+import { getPasswordResetTokenByToken } from '@/lib/services/password-reset-tokens'
+import { getUserByEmail } from '@/lib/services/get-user-by-email'
 
 interface PrevStateInterface {
   success: string
@@ -18,15 +18,15 @@ export async function newPassword(
   formData: FormData
 ) {
   const validatedFields = NewPasswordSchema.safeParse({
-    password: formData.get("password"),
-    confirmPassword: formData.get("confirm-password")
+    password: formData.get('password'),
+    confirmPassword: formData.get('confirm-password')
   })
 
   if (!validatedFields.success) {
     return {
-      error: "Invalid fields.",
-      success: "",
-      token: ""
+      error: 'Invalid fields.',
+      success: '',
+      token: ''
     }
   }
 
@@ -34,9 +34,9 @@ export async function newPassword(
 
   if (password !== confirmPassword) {
     return {
-      error: "Passwords must be equal.",
-      success: "",
-      token: ""
+      error: 'Passwords must be equal.',
+      success: '',
+      token: ''
     }
   }
 
@@ -44,9 +44,9 @@ export async function newPassword(
 
   if (existingToken === null) {
     return {
-      error: "Invalid link.",
-      success: "",
-      token: ""
+      error: 'Invalid link.',
+      success: '',
+      token: ''
     }
   }
 
@@ -54,9 +54,9 @@ export async function newPassword(
 
   if (hasExpired) {
     return {
-      error: "Expired link.",
-      success: "",
-      token: ""
+      error: 'Expired link.',
+      success: '',
+      token: ''
     }
   }
 
@@ -64,9 +64,9 @@ export async function newPassword(
 
   if (existingUser === null) {
     return {
-      error: "User not found.",
-      success: "",
-      token: ""
+      error: 'User not found.',
+      success: '',
+      token: ''
     }
   }
 
@@ -87,20 +87,20 @@ export async function newPassword(
     })
 
     return {
-      success: "Password updated.",
-      error: "",
-      token: ""
+      success: 'Password updated.',
+      error: '',
+      token: ''
     }
   } catch (error) {
     console.error(
-      "ACTION_ERROR: ",
+      'ACTION_ERROR: ',
       error instanceof Error ? error.message : error
     )
 
     return {
-      error: "Something went wrong.",
-      success: "",
-      token: ""
+      error: 'Something went wrong.',
+      success: '',
+      token: ''
     }
   }
 }

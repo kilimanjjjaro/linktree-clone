@@ -1,16 +1,16 @@
-import bcrypt from "bcryptjs"
-import NextAuth from "next-auth"
-import Credentials from "next-auth/providers/credentials"
-import { PrismaAdapter } from "@auth/prisma-adapter"
-import db from "@/lib/database"
-import authConfig from "@/lib/auth/auth.config"
-import { getUserById } from "@/lib/services/get-user-by-id"
-import { LogInSchema } from "@/lib/schemas/auth"
+import bcrypt from 'bcryptjs'
+import NextAuth from 'next-auth'
+import Credentials from 'next-auth/providers/credentials'
+import { PrismaAdapter } from '@auth/prisma-adapter'
+import db from '@/lib/database'
+import authConfig from '@/lib/auth/auth.config'
+import { getUserById } from '@/lib/services/get-user-by-id'
+import { LogInSchema } from '@/lib/schemas/auth'
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
   ...authConfig,
   adapter: PrismaAdapter(db),
-  session: { strategy: "jwt" },
+  session: { strategy: 'jwt' },
   providers: [
     ...authConfig.providers,
     Credentials({
@@ -41,7 +41,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     async signIn({ user, account }) {
       if (user.id === undefined) return false
 
-      if (account?.provider === "credentials") {
+      if (account?.provider === 'credentials') {
         const existingUser = await getUserById(user.id)
 
         if (existingUser?.emailVerified == null) return false

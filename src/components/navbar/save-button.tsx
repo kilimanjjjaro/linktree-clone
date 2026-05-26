@@ -1,19 +1,19 @@
-﻿"use client"
+﻿'use client'
 
-import { useState, useTransition } from "react"
-import { useRouter } from "next/navigation"
-import { LoaderCircle, Save, Undo2 } from "lucide-react"
-import { toast } from "sonner"
+import { useState, useTransition } from 'react'
+import { useRouter } from 'next/navigation'
+import { LoaderCircle, Save, Undo2 } from 'lucide-react'
+import { toast } from 'sonner'
 
-import { Button } from "@/components/ui/button"
-import { useStore } from "@/lib/store/store-provider"
-import { syncTree } from "@/lib/actions/trees/sync-tree"
-import { createTree } from "@/lib/actions/trees/create-tree"
-import useCurrentUser from "@/lib/hooks/useCurrentUser"
-import { UpdateTreeSchema } from "@/lib/schemas/tree"
-import { DEMO_TREE_VALUES } from "@/lib/constants/trees"
-import { getTreeChanges } from "@/lib/utils/get-tree-changes"
-import { cn } from "@/lib/utils/cn"
+import { Button } from '@/components/ui/button'
+import { useStore } from '@/lib/store/store-provider'
+import { syncTree } from '@/lib/actions/trees/sync-tree'
+import { createTree } from '@/lib/actions/trees/create-tree'
+import useCurrentUser from '@/lib/hooks/useCurrentUser'
+import { UpdateTreeSchema } from '@/lib/schemas/tree'
+import { DEMO_TREE_VALUES } from '@/lib/constants/trees'
+import { getTreeChanges } from '@/lib/utils/get-tree-changes'
+import { cn } from '@/lib/utils/cn'
 
 export default function SaveButton() {
   const selectedTree = useStore((state) => state.selectedTree)
@@ -43,7 +43,7 @@ export default function SaveButton() {
     if (selectedTree === null || savedTree === null || isPending) return
 
     if (user === null) {
-      localStorage.setItem("__LOCAL_TREE__", JSON.stringify(selectedTree))
+      localStorage.setItem('__LOCAL_TREE__', JSON.stringify(selectedTree))
       setSavedTree(selectedTree)
       return
     }
@@ -69,7 +69,7 @@ export default function SaveButton() {
       }
 
       loadTree(response.data)
-      localStorage.removeItem("__LOCAL_TREE__")
+      localStorage.removeItem('__LOCAL_TREE__')
 
       router.replace(`?tree=${response.data.url}`, { scroll: false })
     })
@@ -81,39 +81,39 @@ export default function SaveButton() {
   }
 
   return (
-    <div className="pointer-events-none fixed inset-x-0 top-15 z-60 flex justify-center">
+    <div className='pointer-events-none fixed inset-x-0 top-15 z-60 flex justify-center'>
       <div
         className={cn(
-          "pointer-events-auto flex gap-x-2",
-          !hasBeenVisible && "pointer-events-none opacity-0",
+          'pointer-events-auto flex gap-x-2',
+          !hasBeenVisible && 'pointer-events-none opacity-0',
           hasBeenVisible &&
             (shouldShow
-              ? "animate-slide-in-from-top"
-              : "animate-slide-out-to-bottom pointer-events-none")
+              ? 'animate-slide-in-from-top'
+              : 'animate-slide-out-to-bottom pointer-events-none')
         )}
       >
         <Button
-          variant="destructive"
+          variant='destructive'
           onClick={handleRevert}
           disabled={isPending}
         >
           Revert
-          <Undo2 className="size-4" aria-hidden />
+          <Undo2 className='size-4' aria-hidden />
         </Button>
         <Button
-          className="bg-lt-white"
+          className='bg-lt-white'
           onClick={handleSave}
           disabled={isPending}
         >
           {isPending ? (
             <>
               Saving
-              <LoaderCircle className="size-4 animate-spin" aria-hidden />
+              <LoaderCircle className='size-4 animate-spin' aria-hidden />
             </>
           ) : (
             <>
               Save changes
-              <Save className="size-4" aria-hidden />
+              <Save className='size-4' aria-hidden />
             </>
           )}
         </Button>

@@ -1,9 +1,9 @@
-"use server"
+'use server'
 
-import { getConfirmationTokenByToken } from "@/lib/services/confirmation-token"
-import { getUserByEmail } from "@/lib/services/get-user-by-email"
-import db from "@/lib/database"
-import { delay } from "@/lib/utils/delay"
+import { getConfirmationTokenByToken } from '@/lib/services/confirmation-token'
+import { getUserByEmail } from '@/lib/services/get-user-by-email'
+import db from '@/lib/database'
+import { delay } from '@/lib/utils/delay'
 
 export async function verifyConfirmationToken(token: string) {
   // Delay for aesthetic purposes, the server response is too fast and the animation is not appreciated
@@ -13,8 +13,8 @@ export async function verifyConfirmationToken(token: string) {
 
   if (existingToken === null) {
     return {
-      error: "Invalid link",
-      success: ""
+      error: 'Invalid link',
+      success: ''
     }
   }
 
@@ -22,8 +22,8 @@ export async function verifyConfirmationToken(token: string) {
 
   if (hasExpired) {
     return {
-      error: "Expired link",
-      success: ""
+      error: 'Expired link',
+      success: ''
     }
   }
 
@@ -31,8 +31,8 @@ export async function verifyConfirmationToken(token: string) {
 
   if (existingUser === null) {
     return {
-      error: "Error",
-      success: ""
+      error: 'Error',
+      success: ''
     }
   }
 
@@ -49,13 +49,13 @@ export async function verifyConfirmationToken(token: string) {
     await db.confirmationToken.delete({ where: { id: existingToken.id } })
 
     return {
-      error: "",
-      success: "Account verified"
+      error: '',
+      success: 'Account verified'
     }
   } catch {
     return {
-      error: "Error",
-      success: ""
+      error: 'Error',
+      success: ''
     }
   }
 }

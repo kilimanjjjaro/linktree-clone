@@ -1,13 +1,13 @@
-﻿"use client"
+﻿'use client'
 
-import { X } from "lucide-react"
-import { useAutoAnimate } from "@formkit/auto-animate/react"
-import { type Prisma } from "@/generated/prisma/browser"
+import { X } from 'lucide-react'
+import { useAutoAnimate } from '@formkit/auto-animate/react'
+import { type Prisma } from '@/generated/prisma/browser'
 
-import { useStore } from "@/lib/store/store-provider"
-import useSocialProfiles from "@/lib/hooks/useSocialProfiles"
-import { cn } from "@/lib/utils/cn"
-import { SOCIAL_PROFILES } from "@/lib/constants/social-profiles"
+import { useStore } from '@/lib/store/store-provider'
+import useSocialProfiles from '@/lib/hooks/useSocialProfiles'
+import { cn } from '@/lib/utils/cn'
+import { SOCIAL_PROFILES } from '@/lib/constants/social-profiles'
 
 interface Props {
   setOpen: (open: boolean) => void
@@ -42,18 +42,18 @@ export default function SocialProfilesList({ setOpen }: Props) {
     <ul
       ref={parent}
       className={cn(
-        "hidden flex-wrap gap-2",
-        selectedTree.socialProfiles.length > 0 && "flex"
+        'hidden flex-wrap gap-2',
+        selectedTree.socialProfiles.length > 0 && 'flex'
       )}
     >
       {selectedTree.socialProfiles.map((socialProfile) => (
         <li
-          className="border-lt-light-gray/60 has-[:hover]:bg-lt-light-gray flex items-center gap-x-1 rounded-full border pr-1 text-sm leading-none transition-colors"
+          className='border-lt-light-gray/60 has-[:hover]:bg-lt-light-gray flex items-center gap-x-1 rounded-full border pr-1 text-sm leading-none transition-colors'
           key={socialProfile.type}
         >
           <button
-            aria-label="Update URL"
-            className="cursor-pointer py-1.5 pl-3"
+            aria-label='Update URL'
+            className='cursor-pointer py-1.5 pl-3'
             onClick={() => {
               updateSocialProfile(socialProfile)
             }}
@@ -61,13 +61,13 @@ export default function SocialProfilesList({ setOpen }: Props) {
             {socialProfile.name}
           </button>
           <button
-            aria-label="Remove"
-            className="xl:hover:bg-lt-gray h-auto cursor-pointer rounded-full p-1 transition-colors"
+            aria-label='Remove'
+            className='xl:hover:bg-lt-gray h-auto cursor-pointer rounded-full p-1 transition-colors'
             onClick={() => {
               removeProfile(socialProfile.type)
             }}
           >
-            <X className="size-3" aria-hidden />
+            <X className='size-3' aria-hidden />
           </button>
         </li>
       ))}

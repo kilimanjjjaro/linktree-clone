@@ -1,11 +1,11 @@
-"use server"
+'use server'
 
-import { revalidateTag } from "next/cache"
+import { revalidateTag } from 'next/cache'
 
-import { Prisma } from "@/generated/prisma/client"
-import db from "@/lib/database"
-import { getCurrentUser } from "@/lib/services/get-current-user"
-import { type TreeInterface, type TreeChanges } from "@/lib/types/trees"
+import { Prisma } from '@/generated/prisma/client'
+import db from '@/lib/database'
+import { getCurrentUser } from '@/lib/services/get-current-user'
+import { type TreeInterface, type TreeChanges } from '@/lib/types/trees'
 
 export async function syncTree(changes: TreeChanges) {
   const user = await getCurrentUser()
@@ -13,8 +13,8 @@ export async function syncTree(changes: TreeChanges) {
   if (user?.id === undefined) {
     return {
       data: null,
-      error: "Must log in to sync trees.",
-      success: ""
+      error: 'Must log in to sync trees.',
+      success: ''
     }
   }
 
@@ -109,30 +109,30 @@ export async function syncTree(changes: TreeChanges) {
       })
     })
 
-    revalidateTag("trees", "max")
+    revalidateTag('trees', 'max')
 
     return {
       data: response as TreeInterface,
-      error: "",
-      success: "Tree synced."
+      error: '',
+      success: 'Tree synced.'
     }
   } catch (error) {
-    console.error("ACTION_ERROR: ", error)
+    console.error('ACTION_ERROR: ', error)
 
     if (error instanceof Prisma.PrismaClientKnownRequestError) {
-      if (error.code === "P2002") {
+      if (error.code === 'P2002') {
         return {
           data: null,
-          error: "A tree with this URL already exists.",
-          success: ""
+          error: 'A tree with this URL already exists.',
+          success: ''
         }
       }
     }
 
     return {
       data: null,
-      error: "Something went wrong.",
-      success: ""
+      error: 'Something went wrong.',
+      success: ''
     }
   }
 }

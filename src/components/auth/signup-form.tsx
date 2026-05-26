@@ -1,17 +1,17 @@
-"use client"
+'use client'
 
-import { useActionState } from "react"
-import { useAutoAnimate } from "@formkit/auto-animate/react"
-import EmailButton from "@/components/auth/submit-button"
-import Feedback from "@/components/auth/feedback"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { signUpWithEmail } from "@/lib/actions/auth/signup-with-email"
+import { useActionState } from 'react'
+import { useAutoAnimate } from '@formkit/auto-animate/react'
+import EmailButton from '@/components/auth/submit-button'
+import Feedback from '@/components/auth/feedback'
+import { Input } from '@/components/ui/input'
+import { Label } from '@/components/ui/label'
+import { signUpWithEmail } from '@/lib/actions/auth/signup-with-email'
 
 const INITIAL_STATE = {
-  error: "",
-  success: "",
-  fields: { name: "", email: "" }
+  error: '',
+  success: '',
+  fields: { name: '', email: '' }
 }
 
 export default function SignUpForm() {
@@ -19,56 +19,56 @@ export default function SignUpForm() {
   const [parent] = useAutoAnimate({ duration: 200 })
 
   return (
-    <form action={formAction} className="grid gap-y-3" ref={parent}>
+    <form action={formAction} className='grid gap-y-3' ref={parent}>
       <Feedback data={state} />
-      <div className="grid gap-y-2">
-        <Label htmlFor="email">Name</Label>
+      <div className='grid gap-y-2'>
+        <Label htmlFor='email'>Name</Label>
         <Input
-          id="name"
-          type="text"
-          name="name"
-          placeholder="Hugo"
-          autoComplete="name"
+          id='name'
+          type='text'
+          name='name'
+          placeholder='Hugo'
+          autoComplete='name'
           defaultValue={state.fields?.name}
           required
           autoFocus
         />
       </div>
-      <div className="grid gap-y-2">
-        <Label htmlFor="email">Email</Label>
+      <div className='grid gap-y-2'>
+        <Label htmlFor='email'>Email</Label>
         <Input
-          id="email"
-          type="email"
-          name="email"
-          placeholder="example@mail.com"
-          autoComplete="email"
+          id='email'
+          type='email'
+          name='email'
+          placeholder='example@mail.com'
+          autoComplete='email'
           defaultValue={state.fields?.email}
           required
         />
       </div>
-      <div className="grid gap-y-2">
-        <Label htmlFor="password">Password</Label>
+      <div className='grid gap-y-2'>
+        <Label htmlFor='password'>Password</Label>
         <Input
-          id="password"
-          type="password"
-          name="password"
-          placeholder="••••••••••••"
-          autoComplete="new-password"
+          id='password'
+          type='password'
+          name='password'
+          placeholder='••••••••••••'
+          autoComplete='new-password'
           required
         />
       </div>
-      <div className="grid gap-y-2">
-        <Label htmlFor="password">Confirm Password</Label>
+      <div className='grid gap-y-2'>
+        <Label htmlFor='password'>Confirm Password</Label>
         <Input
-          id="confirm-password"
-          type="password"
-          name="confirm-password"
-          placeholder="••••••••••••"
-          autoComplete="new-password"
+          id='confirm-password'
+          type='password'
+          name='confirm-password'
+          placeholder='••••••••••••'
+          autoComplete='new-password'
           required
         />
       </div>
-      <EmailButton text="Sign Up" />
+      <EmailButton text='Sign Up' />
     </form>
   )
 }

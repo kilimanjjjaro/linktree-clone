@@ -1,12 +1,12 @@
 /** @type {import("prettier").Config} */
 const prettierConfig = {
-  plugins: ["prettier-plugin-tailwindcss"],
+  plugins: ['prettier-plugin-tailwindcss'],
   tabWidth: 2,
   semi: false,
-  singleQuote: false,
-  jsxSingleQuote: false,
-  trailingComma: "none",
-  endOfLine: "lf"
+  singleQuote: true,
+  jsxSingleQuote: true,
+  trailingComma: 'none',
+  endOfLine: 'lf'
 }
 
 export default prettierConfig

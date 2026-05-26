@@ -1,19 +1,19 @@
-"use server"
+'use server'
 
-import { ResetPasswordSchema } from "@/lib/schemas/auth"
-import { getUserByEmail } from "@/lib/services/get-user-by-email"
-import { generatePasswordResetToken } from "@/lib/utils/generate-password-reset-token"
-import { sendPasswordResetEmail } from "@/lib/services/send-password-reset-email"
+import { ResetPasswordSchema } from '@/lib/schemas/auth'
+import { getUserByEmail } from '@/lib/services/get-user-by-email'
+import { generatePasswordResetToken } from '@/lib/utils/generate-password-reset-token'
+import { sendPasswordResetEmail } from '@/lib/services/send-password-reset-email'
 
 export async function resetPassword(prevState: unknown, formData: FormData) {
   const validatedFields = ResetPasswordSchema.safeParse({
-    email: formData.get("email")
+    email: formData.get('email')
   })
 
   if (!validatedFields.success) {
     return {
-      error: "Invalid email.",
-      success: ""
+      error: 'Invalid email.',
+      success: ''
     }
   }
 
@@ -23,8 +23,8 @@ export async function resetPassword(prevState: unknown, formData: FormData) {
 
   if (existingUser?.email === undefined) {
     return {
-      error: "User not found.",
-      success: ""
+      error: 'User not found.',
+      success: ''
     }
   }
 
@@ -36,16 +36,16 @@ export async function resetPassword(prevState: unknown, formData: FormData) {
       token: passwordResetToken.token
     })
 
-    return { success: "Reset password email sent.", error: "" }
+    return { success: 'Reset password email sent.', error: '' }
   } catch (error) {
     console.error(
-      "ACTION_ERROR: ",
+      'ACTION_ERROR: ',
       error instanceof Error ? error.message : error
     )
 
     return {
-      error: "Something went wrong.",
-      success: ""
+      error: 'Something went wrong.',
+      success: ''
     }
   }
 }

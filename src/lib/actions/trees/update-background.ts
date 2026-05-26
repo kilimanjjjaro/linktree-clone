@@ -1,11 +1,11 @@
-"use server"
+'use server'
 
-import type { UploadApiResponse } from "cloudinary"
+import type { UploadApiResponse } from 'cloudinary'
 
-import { cloudinary } from "@/lib/cloudinary"
+import { cloudinary } from '@/lib/cloudinary'
 
 export async function updateBackground(formData: FormData) {
-  const file = formData.get("file") as File
+  const file = formData.get('file') as File
   const arrayBuffer = await file.arrayBuffer()
   const buffer = Buffer.from(arrayBuffer)
 
@@ -15,9 +15,9 @@ export async function updateBackground(formData: FormData) {
         cloudinary.uploader
           .upload_stream(
             {
-              upload_preset: "cgbdjdkz",
-              folder: "linktree/tree-backgrounds",
-              resource_type: "image"
+              upload_preset: 'cgbdjdkz',
+              folder: 'linktree/tree-backgrounds',
+              resource_type: 'image'
             },
             function (error, result) {
               if (error != null) {
@@ -37,7 +37,7 @@ export async function updateBackground(formData: FormData) {
       return null
     }
   } catch (error) {
-    console.error("ACTION_ERROR: ", error)
+    console.error('ACTION_ERROR: ', error)
 
     return null
   }

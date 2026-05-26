@@ -1,9 +1,9 @@
-"use server"
+'use server'
 
-import { signIn } from "@/lib/auth"
+import { signIn } from '@/lib/auth'
 
 export async function logInWithGitHub() {
-  await signIn("github", {
-    redirectTo: "/"
+  await signIn('github', {
+    redirectTo: '/'
   })
 }

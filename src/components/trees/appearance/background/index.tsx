@@ -1,37 +1,37 @@
-﻿"use client"
+﻿'use client'
 
-import { useRef, useState, useTransition } from "react"
-import { Check, X } from "lucide-react"
-import { toast } from "sonner"
+import { useRef, useState, useTransition } from 'react'
+import { Check, X } from 'lucide-react'
+import { toast } from 'sonner'
 
-import BackgroundThumbnail from "@/components/trees/appearance/background/background-thumbnail"
-import BackgroundPopoverContent from "@/components/trees/appearance/background/background-popover-content"
+import BackgroundThumbnail from '@/components/trees/appearance/background/background-thumbnail'
+import BackgroundPopoverContent from '@/components/trees/appearance/background/background-popover-content'
 import {
   Popover,
   PopoverTrigger,
   PopoverContent
-} from "@/components/ui/popover"
+} from '@/components/ui/popover'
 import {
   Sheet,
   SheetContent,
   SheetHeader,
   SheetTitle,
   SheetTrigger
-} from "@/components/ui/sheet"
-import { useStore } from "@/lib/store/store-provider"
-import useMediaQuery from "@/lib/hooks/useMediaQuery"
-import { updateBackground } from "@/lib/actions/trees/update-background"
-import { deleteCloudinaryAsset } from "@/lib/actions/trees/delete-cloudinary-asset"
-import { isUserUploadedAsset } from "@/lib/utils/cloudinary"
+} from '@/components/ui/sheet'
+import { useStore } from '@/lib/store/store-provider'
+import useMediaQuery from '@/lib/hooks/useMediaQuery'
+import { updateBackground } from '@/lib/actions/trees/update-background'
+import { deleteCloudinaryAsset } from '@/lib/actions/trees/delete-cloudinary-asset'
+import { isUserUploadedAsset } from '@/lib/utils/cloudinary'
 import {
   BG_TYPES,
   BG_DITHER,
   DEFAULT_BACKGROUND
-} from "@/lib/constants/appearance"
+} from '@/lib/constants/appearance'
 import {
   ACCEPTED_FILE_TYPES,
   MAX_IMAGE_UPLOAD_SIZE
-} from "@/lib/constants/trees"
+} from '@/lib/constants/trees'
 
 export default function TreeBackground() {
   const selectedTree = useStore((state) => state.selectedTree)
@@ -39,13 +39,13 @@ export default function TreeBackground() {
   const imageInputRef = useRef<HTMLInputElement>(null)
   const [openPopover, setOpenPopover] = useState<number | null>(null)
   const [isUploading, startUpload] = useTransition()
-  const isMobile = useMediaQuery("(max-width: 767px)")
+  const isMobile = useMediaQuery('(max-width: 767px)')
 
   const { type, settings } = selectedTree.appearance.background
 
   const updatePreview = (
     updates: Partial<
-      Omit<typeof selectedTree.appearance.background, "settings"> & {
+      Omit<typeof selectedTree.appearance.background, 'settings'> & {
         settings: Partial<typeof selectedTree.appearance.background.settings>
       }
     >
@@ -84,7 +84,7 @@ export default function TreeBackground() {
   const handleFileUpload = (file: File) => {
     startUpload(async () => {
       const formData = new FormData()
-      formData.append("file", file)
+      formData.append('file', file)
 
       const response = await updateBackground(formData)
 
@@ -97,15 +97,15 @@ export default function TreeBackground() {
 
         updatePreview({ settings: { url: response.secure_url } })
       } else {
-        toast.error("Something went wrong.")
+        toast.error('Something went wrong.')
       }
     })
   }
 
   return (
-    <section className="p-5">
-      <h3 className="text-sm leading-none font-medium">Background</h3>
-      <div className="mt-3 grid grid-cols-2 gap-3">
+    <section className='p-5'>
+      <h3 className='text-sm leading-none font-medium'>Background</h3>
+      <div className='mt-3 grid grid-cols-2 gap-3'>
         {BG_TYPES.map((bg) => {
           const isSelected = type === bg.id
           const isOpen = openPopover === bg.id
@@ -114,36 +114,36 @@ export default function TreeBackground() {
 
           const trigger = (
             <div
-              role="button"
+              role='button'
               tabIndex={0}
               onClick={() => {
                 if (!isSelected) updatePreview({ type: bg.id })
               }}
               onKeyDown={(event) => {
-                if (event.key === "Enter" || event.key === " ") {
+                if (event.key === 'Enter' || event.key === ' ') {
                   event.preventDefault()
 
                   if (!isSelected) updatePreview({ type: bg.id })
                 }
               }}
             >
-              <div className="relative flex aspect-video cursor-pointer flex-col items-center gap-y-2">
-                <div className="size-full overflow-hidden rounded-2xl">
+              <div className='relative flex aspect-video cursor-pointer flex-col items-center gap-y-2'>
+                <div className='size-full overflow-hidden rounded-2xl'>
                   <BackgroundThumbnail bgType={bg.id} />
                 </div>
                 {isSelected && (
                   <>
-                    <div className="bg-lt-white absolute top-2 right-2 flex size-4 items-center justify-center rounded-full">
+                    <div className='bg-lt-white absolute top-2 right-2 flex size-4 items-center justify-center rounded-full'>
                       <Check
-                        className="text-lt-black w-2.5 translate-y-px"
+                        className='text-lt-black w-2.5 translate-y-px'
                         strokeWidth={3.5}
                         aria-hidden
                       />
                     </div>
                     {bg.id !== BG_DITHER && (
                       <button
-                        type="button"
-                        className="absolute top-2 left-2 flex size-4 items-center justify-center rounded-full bg-red-500 transition-opacity xl:hover:bg-red-600"
+                        type='button'
+                        className='absolute top-2 left-2 flex size-4 items-center justify-center rounded-full bg-red-500 transition-opacity xl:hover:bg-red-600'
                         onClick={(event) => {
                           event.stopPropagation()
                           setOpenPopover(null)
@@ -151,7 +151,7 @@ export default function TreeBackground() {
                         }}
                       >
                         <X
-                          className="text-lt-white w-2.5"
+                          className='text-lt-white w-2.5'
                           strokeWidth={3.5}
                           aria-hidden
                         />
@@ -159,7 +159,7 @@ export default function TreeBackground() {
                     )}
                   </>
                 )}
-                <span className="text-lt-lightest-gray text-center text-xs">
+                <span className='text-lt-lightest-gray text-center text-xs'>
                   {bg.name}
                 </span>
               </div>
@@ -180,11 +180,11 @@ export default function TreeBackground() {
             return (
               <Sheet key={bg.id} open={isOpen} onOpenChange={onOpenChange}>
                 <SheetTrigger asChild>{trigger}</SheetTrigger>
-                <SheetContent className="flex flex-col">
+                <SheetContent className='flex flex-col'>
                   <SheetHeader>
                     <SheetTitle>{bg.name}</SheetTitle>
                   </SheetHeader>
-                  <div className="p-5">{content}</div>
+                  <div className='p-5'>{content}</div>
                 </SheetContent>
               </Sheet>
             )
@@ -193,7 +193,7 @@ export default function TreeBackground() {
           return (
             <Popover key={bg.id} open={isOpen} onOpenChange={onOpenChange}>
               <PopoverTrigger asChild>{trigger}</PopoverTrigger>
-              <PopoverContent side="right" sideOffset={12}>
+              <PopoverContent side='right' sideOffset={12}>
                 {content}
               </PopoverContent>
             </Popover>
@@ -203,22 +203,22 @@ export default function TreeBackground() {
 
       <input
         ref={imageInputRef}
-        type="file"
-        accept={Object.keys(ACCEPTED_FILE_TYPES).join(",")}
-        className="hidden"
+        type='file'
+        accept={Object.keys(ACCEPTED_FILE_TYPES).join(',')}
+        className='hidden'
         onChange={(e) => {
           const file = e.target.files?.[0]
-          e.target.value = ""
+          e.target.value = ''
 
           if (!file) return
 
           if (!Object.keys(ACCEPTED_FILE_TYPES).includes(file.type)) {
-            toast.error("Only PNG and JPEG images are allowed.")
+            toast.error('Only PNG and JPEG images are allowed.')
             return
           }
 
           if (file.size > MAX_IMAGE_UPLOAD_SIZE) {
-            toast.error("Image must be 2 MB or smaller.")
+            toast.error('Image must be 2 MB or smaller.')
             return
           }
 

@@ -1,19 +1,19 @@
-"use server"
+'use server'
 
-import { revalidateTag } from "next/cache"
+import { revalidateTag } from 'next/cache'
 
-import db from "@/lib/database"
-import { signOut } from "@/lib/auth"
-import { getCurrentUser } from "@/lib/services/get-current-user"
-import { deleteCloudinaryAsset } from "@/lib/actions/trees/delete-cloudinary-asset"
+import db from '@/lib/database'
+import { signOut } from '@/lib/auth'
+import { getCurrentUser } from '@/lib/services/get-current-user'
+import { deleteCloudinaryAsset } from '@/lib/actions/trees/delete-cloudinary-asset'
 
 export async function deleteAccount() {
   const user = await getCurrentUser()
 
   if (user?.id === undefined) {
     return {
-      error: "Must log in to delete your account.",
-      success: ""
+      error: 'Must log in to delete your account.',
+      success: ''
     }
   }
 
@@ -49,20 +49,20 @@ export async function deleteAccount() {
 
     await db.user.delete({ where: { id: user.id } })
 
-    revalidateTag("trees", "max")
+    revalidateTag('trees', 'max')
 
     await signOut({ redirect: false })
 
     return {
-      error: "",
-      success: "Account deleted."
+      error: '',
+      success: 'Account deleted.'
     }
   } catch (error) {
-    console.error("ACTION_ERROR: ", error)
+    console.error('ACTION_ERROR: ', error)
 
     return {
-      error: "Something went wrong.",
-      success: ""
+      error: 'Something went wrong.',
+      success: ''
     }
   }
 }

@@ -1,19 +1,19 @@
-import { DiscordIcon } from "@/components/icons/discord-icon"
-import { EmailIcon } from "@/components/icons/email-icon"
-import { FacebookIcon } from "@/components/icons/facebook-icon"
-import { InstagramIcon } from "@/components/icons/instagram-icon"
-import { LinkedInIcon } from "@/components/icons/linkedin-icon"
-import { PinterestIcon } from "@/components/icons/pinterest-icon"
-import { RedditIcon } from "@/components/icons/reddit-icon"
-import { TelegramIcon } from "@/components/icons/telegram-icon"
-import { ThreadsIcon } from "@/components/icons/threads-icon"
-import { TikTokIcon } from "@/components/icons/tiktok-icon"
-import { TwitchIcon } from "@/components/icons/twitch-icon"
-import { TwitterIcon } from "@/components/icons/twitter-icon"
-import { WhatsAppIcon } from "@/components/icons/whatsapp-icon"
-import { YouTubeIcon } from "@/components/icons/youtube-icon"
-import { cn } from "@/lib/utils/cn"
-import { SocialProfileTypes } from "@/generated/prisma/browser"
+import { DiscordIcon } from '@/components/icons/discord-icon'
+import { EmailIcon } from '@/components/icons/email-icon'
+import { FacebookIcon } from '@/components/icons/facebook-icon'
+import { InstagramIcon } from '@/components/icons/instagram-icon'
+import { LinkedInIcon } from '@/components/icons/linkedin-icon'
+import { PinterestIcon } from '@/components/icons/pinterest-icon'
+import { RedditIcon } from '@/components/icons/reddit-icon'
+import { TelegramIcon } from '@/components/icons/telegram-icon'
+import { ThreadsIcon } from '@/components/icons/threads-icon'
+import { TikTokIcon } from '@/components/icons/tiktok-icon'
+import { TwitchIcon } from '@/components/icons/twitch-icon'
+import { TwitterIcon } from '@/components/icons/twitter-icon'
+import { WhatsAppIcon } from '@/components/icons/whatsapp-icon'
+import { YouTubeIcon } from '@/components/icons/youtube-icon'
+import { cn } from '@/lib/utils/cn'
+import { SocialProfileTypes } from '@/generated/prisma/browser'
 
 interface Props {
   className?: string
@@ -57,7 +57,7 @@ const getIcon = (icon: SocialProfileTypes) => {
 
 export default function SocialProfileIcon({ className, icon }: Props) {
   return (
-    <i aria-hidden className={cn("inline-block", className)}>
+    <i aria-hidden className={cn('inline-block', className)}>
       {getIcon(icon)}
     </i>
   )

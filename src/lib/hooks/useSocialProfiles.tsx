@@ -1,11 +1,11 @@
-﻿import { useCallback } from "react"
-import { v4 as uuidv4 } from "uuid"
+﻿import { useCallback } from 'react'
+import { v4 as uuidv4 } from 'uuid'
 import {
   type SocialProfileTypes,
   type Prisma
-} from "@/generated/prisma/browser"
+} from '@/generated/prisma/browser'
 
-import { useStore } from "@/lib/store/store-provider"
+import { useStore } from '@/lib/store/store-provider'
 
 export default function useSocialProfiles() {
   const setSelectedTree = useStore((state) => state.setSelectedTree)

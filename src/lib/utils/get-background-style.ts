@@ -3,12 +3,12 @@ import {
   BG_FLAT_COLOR,
   BG_IMAGE,
   BG_DITHER
-} from "@/lib/constants/appearance"
-import { rgbToString } from "@/lib/utils/rgb-to-string"
-import { type TreeAppearanceInterface } from "@/lib/types/trees"
+} from '@/lib/constants/appearance'
+import { rgbToString } from '@/lib/utils/rgb-to-string'
+import { type TreeAppearanceInterface } from '@/lib/types/trees'
 
 export function getBackgroundStyle(
-  background: TreeAppearanceInterface["background"]
+  background: TreeAppearanceInterface['background']
 ) {
   const { type, settings } = background
 
@@ -25,7 +25,7 @@ export function getBackgroundStyle(
 
     const gradientStops = steps
       .map((s, i) => `${rgbToString(s)} ${Math.round(i * stopPercent)}%`)
-      .join(", ")
+      .join(', ')
 
     return { background: `linear-gradient(${angle}deg, ${gradientStops})` }
   }
@@ -39,8 +39,8 @@ export function getBackgroundStyle(
 
     return {
       backgroundImage: `url(${settings.url})`,
-      backgroundSize: "cover",
-      backgroundPosition: "center"
+      backgroundSize: 'cover',
+      backgroundPosition: 'center'
     }
   }
 

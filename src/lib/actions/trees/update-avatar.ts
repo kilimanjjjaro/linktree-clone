@@ -1,11 +1,11 @@
-"use server"
+'use server'
 
-import type { UploadApiResponse } from "cloudinary"
+import type { UploadApiResponse } from 'cloudinary'
 
-import { cloudinary } from "@/lib/cloudinary"
+import { cloudinary } from '@/lib/cloudinary'
 
 export async function updateAvatar(formData: FormData) {
-  const file = formData.get("file") as File
+  const file = formData.get('file') as File
   const arrayBuffer = await file.arrayBuffer()
   const buffer = Buffer.from(arrayBuffer)
 
@@ -15,8 +15,8 @@ export async function updateAvatar(formData: FormData) {
         cloudinary.uploader
           .upload_stream(
             {
-              upload_preset: "cgbdjdkz",
-              folder: "linktree/links-avatar"
+              upload_preset: 'cgbdjdkz',
+              folder: 'linktree/links-avatar'
             },
             function (error, result) {
               if (error != null) {
@@ -36,7 +36,7 @@ export async function updateAvatar(formData: FormData) {
       return null
     }
   } catch (error) {
-    console.error("ACTION_ERROR: ", error)
+    console.error('ACTION_ERROR: ', error)
 
     return null
   }

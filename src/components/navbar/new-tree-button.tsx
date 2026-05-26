@@ -1,14 +1,14 @@
-﻿"use client"
+﻿'use client'
 
-import { useTransition } from "react"
-import { useRouter } from "next/navigation"
-import { LoaderCircle, Plus } from "lucide-react"
-import { toast } from "sonner"
+import { useTransition } from 'react'
+import { useRouter } from 'next/navigation'
+import { LoaderCircle, Plus } from 'lucide-react'
+import { toast } from 'sonner'
 
-import { Button } from "@/components/ui/button"
-import { createDefaultTree } from "@/lib/actions/trees/create-default-tree"
-import { useStore } from "@/lib/store/store-provider"
-import useCurrentUser from "@/lib/hooks/useCurrentUser"
+import { Button } from '@/components/ui/button'
+import { createDefaultTree } from '@/lib/actions/trees/create-default-tree'
+import { useStore } from '@/lib/store/store-provider'
+import useCurrentUser from '@/lib/hooks/useCurrentUser'
 
 export default function NewTreeButton() {
   const user = useCurrentUser()
@@ -19,11 +19,11 @@ export default function NewTreeButton() {
 
   const handleCreate = () => {
     if (user === null) {
-      toast.error("Must log in to create trees.")
+      toast.error('Must log in to create trees.')
       return
     }
 
-    const localTree = localStorage.getItem("__LOCAL_TREE__")
+    const localTree = localStorage.getItem('__LOCAL_TREE__')
 
     if (localTree !== null) {
       setShowSaveTreeDialog(true)
@@ -46,20 +46,20 @@ export default function NewTreeButton() {
 
   return (
     <Button
-      variant={user !== null ? "default" : "secondary"}
-      className="h-full"
+      variant={user !== null ? 'default' : 'secondary'}
+      className='h-full'
       onClick={handleCreate}
       disabled={isPending}
     >
       {isPending ? (
         <>
-          <span className="hidden md:inline">Creating</span>
-          <LoaderCircle className="size-4 animate-spin" aria-hidden />
+          <span className='hidden md:inline'>Creating</span>
+          <LoaderCircle className='size-4 animate-spin' aria-hidden />
         </>
       ) : (
         <>
-          <span className="hidden md:inline">New tree</span>
-          <Plus className="size-4" aria-hidden />
+          <span className='hidden md:inline'>New tree</span>
+          <Plus className='size-4' aria-hidden />
         </>
       )}
     </Button>

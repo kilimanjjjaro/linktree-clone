@@ -1,11 +1,11 @@
-import { notFound } from "next/navigation"
-import type { Metadata } from "next"
+import { notFound } from 'next/navigation'
+import type { Metadata } from 'next'
 
-import PublicTreeView from "@/components/trees/public/view"
-import LocalTreeFallback from "@/app/[treeUrl]/local-fallback"
-import { getViewableTree } from "@/lib/services/get-viewable-tree"
-import { getCurrentUser } from "@/lib/services/get-current-user"
-import { TREE_STATUS } from "@/lib/constants/trees"
+import PublicTreeView from '@/components/trees/public/view'
+import LocalTreeFallback from '@/app/[treeUrl]/local-fallback'
+import { getViewableTree } from '@/lib/services/get-viewable-tree'
+import { getCurrentUser } from '@/lib/services/get-current-user'
+import { TREE_STATUS } from '@/lib/constants/trees'
 
 interface Props {
   params: Promise<{ treeUrl: string }>

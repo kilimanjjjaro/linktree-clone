@@ -1,17 +1,17 @@
-import SocialProfile from "@/components/trees/settings/social-profiles/dialog/item"
+import SocialProfile from '@/components/trees/settings/social-profiles/dialog/item'
 import {
   Command,
   CommandEmpty,
   CommandGroup,
   CommandInput,
   CommandList
-} from "@/components/ui/command"
-import { SOCIAL_PROFILES } from "@/lib/constants/social-profiles"
+} from '@/components/ui/command'
+import { SOCIAL_PROFILES } from '@/lib/constants/social-profiles'
 
 export default function SocialProfilesSelector() {
   return (
-    <Command className="mt-12">
-      <CommandInput placeholder="Type to search..." />
+    <Command className='mt-12'>
+      <CommandInput placeholder='Type to search...' />
       <CommandList>
         <CommandEmpty>No social profiles found.</CommandEmpty>
         <CommandGroup>

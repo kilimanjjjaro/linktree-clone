@@ -1,14 +1,14 @@
-"use server"
+'use server'
 
-import { revalidateTag } from "next/cache"
-import slugify from "@sindresorhus/slugify"
-import { Prisma } from "@/generated/prisma/client"
+import { revalidateTag } from 'next/cache'
+import slugify from '@sindresorhus/slugify'
+import { Prisma } from '@/generated/prisma/client'
 
-import db from "@/lib/database"
-import { getCurrentUser } from "@/lib/services/get-current-user"
-import { DEFAULT_TREE_NAME } from "@/lib/constants/trees"
-import { generateRawDataToCreate } from "@/lib/utils/generate-raw-data"
-import { type TreeInterface } from "@/lib/types/trees"
+import db from '@/lib/database'
+import { getCurrentUser } from '@/lib/services/get-current-user'
+import { DEFAULT_TREE_NAME } from '@/lib/constants/trees'
+import { generateRawDataToCreate } from '@/lib/utils/generate-raw-data'
+import { type TreeInterface } from '@/lib/types/trees'
 
 async function getNextTreeName(userId: string) {
   const existingTrees = await db.tree.findMany({
@@ -39,8 +39,8 @@ export async function createDefaultTree() {
   if (user?.id === undefined) {
     return {
       data: null,
-      error: "Must log in to create trees.",
-      success: ""
+      error: 'Must log in to create trees.',
+      success: ''
     }
   }
 
@@ -60,30 +60,30 @@ export async function createDefaultTree() {
       }
     })
 
-    revalidateTag("trees", "max")
+    revalidateTag('trees', 'max')
 
     return {
       data: response as TreeInterface,
-      error: "",
-      success: "Task created."
+      error: '',
+      success: 'Task created.'
     }
   } catch (error) {
-    console.error("ACTION_ERROR: ", error)
+    console.error('ACTION_ERROR: ', error)
 
     if (error instanceof Prisma.PrismaClientKnownRequestError) {
-      if (error.code === "P2002") {
+      if (error.code === 'P2002') {
         return {
           data: null,
-          error: "A tree with this URL already exists.",
-          success: ""
+          error: 'A tree with this URL already exists.',
+          success: ''
         }
       }
     }
 
     return {
       data: null,
-      error: "Something went wrong.",
-      success: ""
+      error: 'Something went wrong.',
+      success: ''
     }
   }
 }

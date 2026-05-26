@@ -1,17 +1,17 @@
-"use client"
+'use client'
 
-import { useSyncExternalStore } from "react"
-import { notFound } from "next/navigation"
+import { useSyncExternalStore } from 'react'
+import { notFound } from 'next/navigation'
 
-import PublicTreeView from "@/components/trees/public/view"
-import { type TreeInterface } from "@/lib/types/trees"
+import PublicTreeView from '@/components/trees/public/view'
+import { type TreeInterface } from '@/lib/types/trees'
 
 interface Props {
   treeUrl: string
 }
 
 const subscribe = () => () => {}
-const getSnapshot = () => localStorage.getItem("__LOCAL_TREE__")
+const getSnapshot = () => localStorage.getItem('__LOCAL_TREE__')
 const getServerSnapshot = () => undefined
 
 export default function LocalTreeFallback({ treeUrl }: Props) {

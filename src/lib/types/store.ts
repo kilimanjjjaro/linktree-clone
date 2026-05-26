@@ -1,7 +1,7 @@
-import { type TreeLink } from "@/generated/prisma/browser"
+import { type TreeLink } from '@/generated/prisma/browser'
 
-import { type SocialProfileInterface } from "@/lib/types/globals"
-import { type TreeInterface } from "@/lib/types/trees"
+import { type SocialProfileInterface } from '@/lib/types/globals'
+import { type TreeInterface } from '@/lib/types/trees'
 
 export interface TreesStoreInterface {
   selectedTree: TreeInterface

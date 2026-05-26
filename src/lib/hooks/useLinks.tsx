@@ -1,9 +1,9 @@
-import { useCallback } from "react"
-import { v4 as uuidv4 } from "uuid"
-import { type Prisma } from "@/generated/prisma/browser"
+import { useCallback } from 'react'
+import { v4 as uuidv4 } from 'uuid'
+import { type Prisma } from '@/generated/prisma/browser'
 
-import { useStore } from "@/lib/store/store-provider"
-import { AddLinkSchema } from "@/lib/schemas/tree"
+import { useStore } from '@/lib/store/store-provider'
+import { AddLinkSchema } from '@/lib/schemas/tree'
 
 export default function useLinks() {
   const setSelectedTree = useStore((state) => state.setSelectedTree)

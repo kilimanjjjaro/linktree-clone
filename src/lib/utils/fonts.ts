@@ -1,6 +1,6 @@
-import { GeistSans } from "geist/font/sans"
-import { GeistMono } from "geist/font/mono"
-import { FONT_VARIANTS, GEIST_FONT_FAMILY } from "@/lib/constants/appearance"
+import { GeistSans } from 'geist/font/sans'
+import { GeistMono } from 'geist/font/mono'
+import { FONT_VARIANTS, GEIST_FONT_FAMILY } from '@/lib/constants/appearance'
 
 export const geistSans = GeistSans.variable
 export const geistMono = GeistMono.variable
@@ -32,7 +32,7 @@ export async function loadFont(fontId: number) {
       `url(/fonts/${variant.slug}.woff2)`,
       {
         weight: `${variant.weights[0]} ${variant.weights.at(-1)}`,
-        display: "swap"
+        display: 'swap'
       }
     )
 
@@ -44,7 +44,7 @@ export async function loadFont(fontId: number) {
       const face = new FontFace(
         variant.family!,
         `url(/fonts/${variant.slug}-${weight}.woff2)`,
-        { weight: String(weight), display: "swap" }
+        { weight: String(weight), display: 'swap' }
       )
 
       document.fonts.add(face)

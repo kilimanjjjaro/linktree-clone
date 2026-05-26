@@ -1,11 +1,11 @@
-﻿import { Settings2, Trash } from "lucide-react"
-import { type TreeLink } from "@/generated/prisma/browser"
+﻿import { Settings2, Trash } from 'lucide-react'
+import { type TreeLink } from '@/generated/prisma/browser'
 
-import { Button, buttonVariants } from "@/components/ui/button"
-import { useStore } from "@/lib/store/store-provider"
-import useLinks from "@/lib/hooks/useLinks"
-import { getCornerClassName } from "@/lib/utils/get-corner-class-name"
-import { cn } from "@/lib/utils/cn"
+import { Button, buttonVariants } from '@/components/ui/button'
+import { useStore } from '@/lib/store/store-provider'
+import useLinks from '@/lib/hooks/useLinks'
+import { getCornerClassName } from '@/lib/utils/get-corner-class-name'
+import { cn } from '@/lib/utils/cn'
 
 interface Props {
   link: TreeLink
@@ -25,36 +25,36 @@ export default function TextLink({ link }: Props) {
   }
 
   return (
-    <div className="group relative flex items-center transition-transform xl:active:scale-[0.97]">
+    <div className='group relative flex items-center transition-transform xl:active:scale-[0.97]'>
       <a
         className={cn(
-          buttonVariants({ variant: "default" }),
-          "bg-lt-white w-full py-7",
+          buttonVariants({ variant: 'default' }),
+          'bg-lt-white w-full py-7',
           getCornerClassName(cornerStyle)
         )}
         href={link.url}
-        target="_blank"
-        rel="noopener noreferrer"
+        target='_blank'
+        rel='noopener noreferrer'
       >
         {link.name}
       </a>
       <Button
-        aria-label="Delete link"
-        className="bg-lt-white absolute left-3 h-auto rounded-full p-1 transition-opacity xl:opacity-0 xl:group-hover:opacity-100"
+        aria-label='Delete link'
+        className='bg-lt-white absolute left-3 h-auto rounded-full p-1 transition-opacity xl:opacity-0 xl:group-hover:opacity-100'
         onClick={() => {
           removeLink(link.id)
         }}
       >
-        <Trash className="size-4" strokeWidth={2.5} />
+        <Trash className='size-4' strokeWidth={2.5} />
       </Button>
       <Button
-        aria-label="Update link"
-        className="bg-lt-white absolute right-3 h-auto rounded-full p-1 transition-opacity xl:opacity-0 xl:group-hover:opacity-100"
+        aria-label='Update link'
+        className='bg-lt-white absolute right-3 h-auto rounded-full p-1 transition-opacity xl:opacity-0 xl:group-hover:opacity-100'
         onClick={() => {
           updateLink(link)
         }}
       >
-        <Settings2 className="size-4" strokeWidth={2.5} />
+        <Settings2 className='size-4' strokeWidth={2.5} />
       </Button>
     </div>
   )
