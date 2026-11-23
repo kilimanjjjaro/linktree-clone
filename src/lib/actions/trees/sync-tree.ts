@@ -20,6 +20,11 @@ export async function syncTree(changes: TreeChanges) {
 
   try {
     const response = await db.$transaction(async (tx) => {
+      await tx.tree.findFirstOrThrow({
+        where: { id: changes.treeId, authorId: user.id },
+        select: { id: true }
+      })
+
       if (changes.fields !== undefined) {
         const updateData: Record<string, unknown> = {}
 
