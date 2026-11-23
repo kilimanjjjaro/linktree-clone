@@ -1,0 +1,33 @@
+[
+  {
+    "type": "LINKEDIN",
+    "url": "ada",
+    "expected": "https://www.linkedin.com/in/ada"
+  },
+  {
+    "type": "EMAIL",
+    "url": "ada@example.com",
+    "expected": "mailto:ada@example.com"
+  },
+  {
+    "type": "WHATSAPP",
+    "url": "5491100000000",
+    "expected": "https://api.whatsapp.com/send?phone=5491100000000"
+  },
+  {
+    "type": "DISCORD",
+    "url": "https://discord.gg/abc",
+    "expected": "https://discord.gg/abc"
+  },
+  {
+    "type": "LINKEDIN",
+    "url": "https://www.linkedin.com/in/ada",
+    "expected": "https://www.linkedin.com/in/ada"
+  },
+  {
+    "type": "EMAIL",
+    "url": "MAILTO:ada@example.com",
+    "expected": "MAILTO:ada@example.com"
+  },
+  { "type": "TELEGRAM", "url": "tel:123", "expected": "tel:123" }
+]
