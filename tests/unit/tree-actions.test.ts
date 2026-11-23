@@ -192,7 +192,7 @@ describe('createDefaultTree', () => {
     }
   )
 
-  it.fails('picks a url that no other user has taken', async () => {
+  it('picks a url that no other user has taken', async () => {
     mockSession()
     const takenUrls = ['example-tree', 'example-tree-2', 'example-tree-x']
     databaseMock.tree.findMany.mockImplementation(
@@ -202,14 +202,6 @@ describe('createDefaultTree', () => {
           : takenUrls
               .filter((url) => url.startsWith(where.url?.startsWith ?? ''))
               .map((url) => ({ url }))
-    )
-    databaseMock.tree.findFirst.mockImplementation(
-      async ({ where }: { where: { url?: string } }) =>
-        takenUrls.includes(where.url ?? '') ? { url: where.url } : null
-    )
-    databaseMock.tree.findUnique.mockImplementation(
-      async ({ where }: { where: { url?: string } }) =>
-        takenUrls.includes(where.url ?? '') ? { url: where.url } : null
     )
     databaseMock.tree.create.mockImplementation(async ({ data }) => data)
 

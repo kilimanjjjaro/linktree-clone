@@ -33,6 +33,23 @@ async function getNextTreeName(userId: string) {
   return `${DEFAULT_TREE_NAME} ${maxNumber + 1}`
 }
 
+async function getAvailableTreeUrl(baseUrl: string) {
+  const existingTrees = await db.tree.findMany({
+    where: { url: { startsWith: baseUrl } },
+    select: { url: true }
+  })
+
+  const takenUrls = new Set(existingTrees.map((tree) => tree.url))
+
+  if (!takenUrls.has(baseUrl)) return baseUrl
+
+  let suffix = 2
+
+  while (takenUrls.has(`${baseUrl}-${suffix}`)) suffix++
+
+  return `${baseUrl}-${suffix}`
+}
+
 export async function createDefaultTree() {
   const user = await getCurrentUser()
 
@@ -45,6 +62,7 @@ export async function createDefaultTree() {
   }
 
   const name = await getNextTreeName(user.id)
+  const url = await getAvailableTreeUrl(slugify(name))
 
   try {
     const response = await db.tree.create({
@@ -52,7 +70,7 @@ export async function createDefaultTree() {
         ...generateRawDataToCreate(),
         authorId: user.id,
         name,
-        url: slugify(name)
+        url
       },
       include: {
         links: true,
