@@ -77,7 +77,7 @@ describe('DropAvatar', () => {
     })
   })
 
-  it.fails('ignores files that are not images', async () => {
+  it('ignores files that are not images', async () => {
     const setAvatarToCrop = vi.fn()
     render(<DropAvatar setAvatarToCrop={setAvatarToCrop} />)
 

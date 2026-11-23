@@ -25,7 +25,7 @@ export default function DropAvatar({ setAvatarToCrop }: Props) {
     accept: ACCEPTED_FILE_TYPES,
     multiple: false,
     maxFiles: 1,
-    onDrop
+    onDropAccepted: onDrop
   })
 
   return (
