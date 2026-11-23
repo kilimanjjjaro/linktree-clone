@@ -18,7 +18,8 @@ pnpm dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-`pnpm install` also generates the Prisma client in `src/generated/prisma`.
+`pnpm install` and `pnpm build` generate the Prisma client in
+`src/generated/prisma`.
 Run `pnpm dlx prisma studio` to browse the database.
 
 ## Environment Variables
