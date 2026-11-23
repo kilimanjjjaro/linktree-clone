@@ -9,3 +9,6 @@ peerDependencyRules:
   allowedVersions:
     '@auth/core>nodemailer': '10'
     next-auth>nodemailer: '10'
+    eslint-plugin-import>eslint: '10'
+    eslint-plugin-jsx-a11y>eslint: '10'
+    eslint-plugin-react>eslint: '10'
