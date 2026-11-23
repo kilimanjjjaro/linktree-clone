@@ -451,7 +451,7 @@ describe('verifyConfirmationToken', () => {
     vi.useRealTimers()
   })
 
-  it.fails('answers after at least 2 seconds', async () => {
+  it('answers after at least 2 seconds', async () => {
     databaseMock.confirmationToken.findUnique.mockResolvedValue(null)
     let answered = false
 
