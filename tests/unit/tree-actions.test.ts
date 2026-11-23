@@ -250,7 +250,7 @@ describe('deleteTree', () => {
     expect(revalidateTagMock).toHaveBeenCalledWith('trees', 'max')
   })
 
-  it.fails('only deletes trees of the current user', async () => {
+  it('only deletes trees of the current user', async () => {
     mockSession()
 
     await deleteTree(TREE_ID)
@@ -375,24 +375,21 @@ describe('syncTree', () => {
     expect(revalidateTagMock).not.toHaveBeenCalled()
   })
 
-  it.fails(
-    'does not change the links or social profiles of trees of other users',
-    async () => {
-      mockSession()
-      mockTreeOwnedBy(OTHER_USER_ID)
+  it('does not change the links or social profiles of trees of other users', async () => {
+    mockSession()
+    mockTreeOwnedBy(OTHER_USER_ID)
 
-      const result = await syncTree(
-        createChanges({
-          deleteProfileTypes: ['EMAIL'],
-          deleteLinkUrls: [LINK_URL]
-        })
-      )
+    const result = await syncTree(
+      createChanges({
+        deleteProfileTypes: ['EMAIL'],
+        deleteLinkUrls: [LINK_URL]
+      })
+    )
 
-      expect(result.data).toBeNull()
-      expect(databaseMock.treeSocialProfile.deleteMany).not.toHaveBeenCalled()
-      expect(databaseMock.treeLink.deleteMany).not.toHaveBeenCalled()
-    }
-  )
+    expect(result.data).toBeNull()
+    expect(databaseMock.treeSocialProfile.deleteMany).not.toHaveBeenCalled()
+    expect(databaseMock.treeLink.deleteMany).not.toHaveBeenCalled()
+  })
 
   it('reports a url that is already used', async () => {
     mockSession()
