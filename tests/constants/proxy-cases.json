@@ -1,0 +1,15 @@
+[
+  { "path": "/", "loggedIn": false, "redirect": null },
+  { "path": "/", "loggedIn": true, "redirect": null },
+  { "path": "/login", "loggedIn": false, "redirect": null },
+  { "path": "/login", "loggedIn": true, "redirect": "/" },
+  { "path": "/signup", "loggedIn": true, "redirect": "/" },
+  { "path": "/reset-password", "loggedIn": true, "redirect": "/" },
+  { "path": "/new-password", "loggedIn": true, "redirect": "/" },
+  { "path": "/confirm-account", "loggedIn": true, "redirect": "/" },
+  { "path": "/api/auth/session", "loggedIn": false, "redirect": null },
+  { "path": "/example-tree", "loggedIn": false, "redirect": null },
+  { "path": "/example-tree", "loggedIn": true, "redirect": null },
+  { "path": "/settings/account", "loggedIn": false, "redirect": "/login" },
+  { "path": "/settings/account", "loggedIn": true, "redirect": null }
+]

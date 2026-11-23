@@ -1,0 +1,8 @@
+[
+  { "hex": "#ffffff", "expected": [255, 255, 255] },
+  { "hex": "#000000", "expected": [0, 0, 0] },
+  { "hex": "a7ecc0", "expected": [167, 236, 192] },
+  { "hex": "#A7ECC0", "expected": [167, 236, 192] },
+  { "hex": "#fff", "expected": [0, 0, 0] },
+  { "hex": "not-a-color", "expected": [0, 0, 0] }
+]

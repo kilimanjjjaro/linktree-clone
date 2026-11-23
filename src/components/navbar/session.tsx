@@ -28,7 +28,7 @@ export default async function SessionBar({ user }: Props) {
               alt={`${user.name}'s avatar`}
               width={50}
               height={50}
-              priority
+              preload
             />
           ) : (
             <Skeleton className='aspect-square h-full rounded-full' />

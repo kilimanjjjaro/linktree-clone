@@ -1,0 +1,16 @@
+[
+  {
+    "url": "https://res.cloudinary.com/demo/image/upload/v1713570951/linktree/links-avatar/abc.png",
+    "expected": "linktree/links-avatar/abc"
+  },
+  {
+    "url": "https://res.cloudinary.com/demo/image/upload/c_fill,w_100/v1713570951/linktree/links-image/abc.jpg",
+    "expected": "linktree/links-image/abc"
+  },
+  {
+    "url": "https://res.cloudinary.com/demo/image/upload/v1/abc.webp",
+    "expected": "abc"
+  },
+  { "url": "https://example.com/abc.png", "expected": null },
+  { "url": "", "expected": null }
+]

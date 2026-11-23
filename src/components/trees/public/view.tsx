@@ -49,7 +49,7 @@ export default function PublicTreeView({ tree, isPrivate = false }: Props) {
                 alt={`${tree.name}'s avatar`}
                 width={150}
                 height={150}
-                priority
+                preload
               />
             </div>
             <div

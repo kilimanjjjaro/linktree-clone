@@ -1,0 +1,21 @@
+[
+  {
+    "url": "https://res.cloudinary.com/demo/image/upload/v1/linktree/links-avatar/abc.png",
+    "expected": true
+  },
+  {
+    "url": "https://res.cloudinary.com/demo/image/upload/v1/linktree/links-image/abc.png",
+    "expected": true
+  },
+  {
+    "url": "https://res.cloudinary.com/demo/image/upload/v1/linktree/tree-backgrounds/abc.png",
+    "expected": true
+  },
+  {
+    "url": "https://res.cloudinary.com/demo/image/upload/v1/linktree/logo.png",
+    "expected": false
+  },
+  { "url": "/images/default-tree-avatar.svg", "expected": false },
+  { "url": "", "expected": false },
+  { "url": null, "expected": false }
+]

@@ -1,5 +1,5 @@
 import { useCallback } from 'react'
-import { type FileWithPath, useDropzone } from 'react-dropzone'
+import { useDropzone } from 'react-dropzone'
 import { ImageIcon } from 'lucide-react'
 import { ACCEPTED_FILE_TYPES } from '@/lib/constants/trees'
 
@@ -9,7 +9,7 @@ interface Props {
 
 export default function DropAvatar({ setAvatarToCrop }: Props) {
   const onDrop = useCallback(
-    (files: FileWithPath[]) => {
+    (files: File[]) => {
       const image = URL.createObjectURL(files[0])
 
       setAvatarToCrop(image)
