@@ -99,7 +99,7 @@ test('logging in with an unknown email shows an error', async ({ page }) => {
   await expect(page.getByLabel('Email')).toHaveValue(E2E_EMAIL)
 })
 
-test.fail('signing up requires both passwords to match', async ({ page }) => {
+test('signing up requires both passwords to match', async ({ page }) => {
   await page.goto('/signup')
 
   await page.getByLabel('Name', { exact: true }).fill(LOCAL_TREE_NAME)
@@ -111,18 +111,15 @@ test.fail('signing up requires both passwords to match', async ({ page }) => {
   await expect(page.getByText('Passwords must be equal.')).toBeVisible()
 })
 
-test.fail(
-  'a new password requires both passwords to match',
-  async ({ page }) => {
-    await page.goto('/new-password')
+test('a new password requires both passwords to match', async ({ page }) => {
+  await page.goto('/new-password')
 
-    await page.getByLabel('Password', { exact: true }).fill(E2E_PASSWORD)
-    await page.getByLabel('Confirm Password').fill(E2E_OTHER_PASSWORD)
-    await page.getByRole('button', { name: 'Reset Password' }).click()
+  await page.getByLabel('Password', { exact: true }).fill(E2E_PASSWORD)
+  await page.getByLabel('Confirm Password').fill(E2E_OTHER_PASSWORD)
+  await page.getByRole('button', { name: 'Reset Password' }).click()
 
-    await expect(page.getByText('Passwords must be equal.')).toBeVisible()
-  }
-)
+  await expect(page.getByText('Passwords must be equal.')).toBeVisible()
+})
 
 test('a confirmation link without a token is invalid', async ({ page }) => {
   await page.goto('/confirm-account')

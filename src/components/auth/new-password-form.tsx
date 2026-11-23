@@ -34,7 +34,7 @@ export default function NewPasswordForm() {
         />
       </div>
       <div className='grid gap-y-2'>
-        <Label htmlFor='password'>Confirm Password</Label>
+        <Label htmlFor='confirm-password'>Confirm Password</Label>
         <Input
           id='confirm-password'
           type='password'

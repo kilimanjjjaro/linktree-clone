@@ -22,7 +22,7 @@ export default function SignUpForm() {
     <form action={formAction} className='grid gap-y-3' ref={parent}>
       <Feedback data={state} />
       <div className='grid gap-y-2'>
-        <Label htmlFor='email'>Name</Label>
+        <Label htmlFor='name'>Name</Label>
         <Input
           id='name'
           type='text'
@@ -58,7 +58,7 @@ export default function SignUpForm() {
         />
       </div>
       <div className='grid gap-y-2'>
-        <Label htmlFor='password'>Confirm Password</Label>
+        <Label htmlFor='confirm-password'>Confirm Password</Label>
         <Input
           id='confirm-password'
           type='password'
