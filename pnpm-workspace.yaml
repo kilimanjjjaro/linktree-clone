@@ -12,3 +12,5 @@ peerDependencyRules:
     eslint-plugin-import>eslint: '10'
     eslint-plugin-jsx-a11y>eslint: '10'
     eslint-plugin-react>eslint: '10'
+overrides:
+  '@prisma/config>effect': 3.22.5
