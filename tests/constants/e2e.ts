@@ -27,3 +27,4 @@ export const UNKNOWN_TREE_URL = 'a-tree-that-does-not-exist'
 export const E2E_EMAIL = 'nobody@example.com'
 export const E2E_PASSWORD = 'correct-horse'
 export const E2E_OTHER_PASSWORD = 'battery-staple'
+export const IGNORED_ERROR_URLS = ['/_vercel/insights/']
