@@ -36,7 +36,7 @@
     "@radix-ui/react-tabs": "1.2.1",
     "@radix-ui/react-tooltip": "1.4.1",
     "@react-three/fiber": "9.8.2",
-    "@sindresorhus/slugify": "3.0.0",
+    "@sindresorhus/slugify": "4.0.1",
     "@vercel/analytics": "2.0.1",
     "bcryptjs": "3.0.3",
     "class-variance-authority": "0.7.1",
