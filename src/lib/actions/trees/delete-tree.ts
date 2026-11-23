@@ -17,7 +17,8 @@ export async function deleteTree(treeId: string) {
   try {
     await db.tree.delete({
       where: {
-        id: treeId
+        id: treeId,
+        authorId: user.id
       }
     })
 

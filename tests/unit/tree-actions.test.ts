@@ -229,7 +229,7 @@ describe('deleteTree', () => {
     expect(revalidateTagMock).toHaveBeenCalledWith('trees', 'max')
   })
 
-  it.fails('only deletes trees of the current user', async () => {
+  it('only deletes trees of the current user', async () => {
     mockSession()
 
     await deleteTree(TREE_ID)
