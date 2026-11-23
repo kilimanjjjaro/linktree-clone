@@ -5,3 +5,7 @@ allowBuilds:
   sharp: true
   unrs-resolver: true
 saveExact: true
+peerDependencyRules:
+  allowedVersions:
+    '@auth/core>nodemailer': '10'
+    next-auth>nodemailer: '10'
