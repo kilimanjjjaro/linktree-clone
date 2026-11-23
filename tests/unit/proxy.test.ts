@@ -1,7 +1,7 @@
 import { describe, expect, it, vi } from 'vitest'
-import middleware, { config } from '@/middleware'
+import proxy, { config } from '@/proxy'
 import { BASE_URL, USER_ID } from '../constants/unit'
-import MIDDLEWARE_CASES from '../constants/middleware-cases.json'
+import PROXY_CASES from '../constants/proxy-cases.json'
 
 vi.mock('next-auth', () => ({
   default: () => ({ auth: (handler: unknown) => handler })
@@ -12,14 +12,14 @@ type Handler = (request: { nextUrl: URL; auth: object | null }) => Response
 const REDIRECT_STATUS = 307
 
 function run(path: string, loggedIn: boolean) {
-  return (middleware as unknown as Handler)({
+  return (proxy as unknown as Handler)({
     nextUrl: new URL(path, BASE_URL),
     auth: loggedIn ? { user: { id: USER_ID } } : null
   })
 }
 
-describe('middleware', () => {
-  it.each(MIDDLEWARE_CASES)(
+describe('proxy', () => {
+  it.each(PROXY_CASES)(
     '$path when logged in is $loggedIn redirects to $redirect',
     ({ path, loggedIn, redirect }) => {
       const response = run(path, loggedIn)

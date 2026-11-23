@@ -16,7 +16,7 @@ export default function Avatar({ image, name }: Props) {
         alt={`${name}'s avatar`}
         width={50}
         height={50}
-        priority
+        preload
       />
     </button>
   )

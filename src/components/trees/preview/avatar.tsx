@@ -18,7 +18,7 @@ export default function TreeAvatar() {
         alt={`${selectedTree.name}'s avatar`}
         width={150}
         height={150}
-        priority
+        preload
       />
     </div>
   )
