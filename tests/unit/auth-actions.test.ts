@@ -1,4 +1,4 @@
-import { beforeEach, describe, expect, it, vi } from 'vitest'
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import bcrypt from 'bcryptjs'
 import { AuthError, CredentialsSignin } from 'next-auth'
 import { signUpWithEmail } from '@/lib/actions/auth/signup-with-email'
@@ -434,10 +434,44 @@ describe('newPassword', () => {
 })
 
 describe('verifyConfirmationToken', () => {
+  const CONFIRMATION_DELAY_MS = 2000
+  const ONE_MS = 1
+
+  async function verify(token: string) {
+    const result = verifyConfirmationToken(token)
+    await vi.runAllTimersAsync()
+    return await result
+  }
+
+  beforeEach(() => {
+    vi.useFakeTimers({ toFake: ['setTimeout'] })
+  })
+
+  afterEach(() => {
+    vi.useRealTimers()
+  })
+
+  it('answers after at least 2 seconds', async () => {
+    databaseMock.confirmationToken.findUnique.mockResolvedValue(null)
+    let answered = false
+
+    const result = verifyConfirmationToken(TOKEN).then((value) => {
+      answered = true
+      return value
+    })
+
+    await vi.advanceTimersByTimeAsync(CONFIRMATION_DELAY_MS - ONE_MS)
+    expect(answered).toBe(false)
+
+    await vi.advanceTimersByTimeAsync(ONE_MS)
+    await result
+    expect(answered).toBe(true)
+  })
+
   it('rejects unknown tokens', async () => {
     databaseMock.confirmationToken.findUnique.mockResolvedValue(null)
 
-    expect(await verifyConfirmationToken(TOKEN)).toEqual({
+    expect(await verify(TOKEN)).toEqual({
       error: 'Invalid link',
       success: ''
     })
@@ -448,14 +482,14 @@ describe('verifyConfirmationToken', () => {
       createToken({ expires_at: PAST() })
     )
 
-    expect((await verifyConfirmationToken(TOKEN)).error).toBe('Expired link')
+    expect((await verify(TOKEN)).error).toBe('Expired link')
   })
 
   it('rejects tokens of deleted users', async () => {
     databaseMock.confirmationToken.findUnique.mockResolvedValue(createToken())
     databaseMock.user.findUnique.mockResolvedValue(null)
 
-    expect((await verifyConfirmationToken(TOKEN)).error).toBe('Error')
+    expect((await verify(TOKEN)).error).toBe('Error')
   })
 
   it('verifies the email and deletes the token', async () => {
@@ -464,7 +498,7 @@ describe('verifyConfirmationToken', () => {
       await createUser({ emailVerified: null })
     )
 
-    expect(await verifyConfirmationToken(TOKEN)).toEqual({
+    expect(await verify(TOKEN)).toEqual({
       error: '',
       success: 'Account verified'
     })
@@ -482,7 +516,7 @@ describe('verifyConfirmationToken', () => {
     databaseMock.user.findUnique.mockResolvedValue(await createUser())
     databaseMock.user.update.mockRejectedValue(new Error('down'))
 
-    expect((await verifyConfirmationToken(TOKEN)).error).toBe('Error')
+    expect((await verify(TOKEN)).error).toBe('Error')
   })
 })
 
