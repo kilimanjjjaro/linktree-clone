@@ -7,19 +7,19 @@ them.
 
 ## Getting Started
 
-Requirements: Node.js 26 (pinned with Volta) and pnpm 11. pnpm runs the
-project scripts with the Node.js version declared in `devEngines`.
+Requirements: Node.js 26 and npm 11, both pinned with Volta.
 
 ```bash
 cp .env.example .env
-pnpm install
-pnpm dev
+npm install
+npm run dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-`pnpm install` also generates the Prisma client in `src/generated/prisma`.
-Run `pnpm dlx prisma studio` to browse the database.
+`npm install` and `npm run build` generate the Prisma client in
+`src/generated/prisma`.
+Run `npx prisma studio` to browse the database.
 
 ## Environment Variables
 
@@ -50,18 +50,18 @@ Run `pnpm dlx prisma studio` to browse the database.
 ## Checks
 
 ```bash
-pnpm format:check  # Prettier (pnpm format fixes the files)
-pnpm typecheck     # TypeScript
-pnpm lint          # ESLint
-pnpm test          # Unit tests (Vitest)
-pnpm build         # Production build
-pnpm test:e2e      # End-to-end tests (Playwright, needs a build first)
-pnpm test:all      # All of the above, in order
+npm run format:check  # Prettier (npm run format fixes the files)
+npm run typecheck     # TypeScript
+npm run lint          # ESLint
+npm test              # Unit tests (Vitest)
+npm run build         # Production build
+npm run test:e2e      # End-to-end tests (Playwright, needs a build first)
+npm run test:all      # All of the above, in order
 ```
 
 Before the first e2e run, install the browser with
-`pnpm exec playwright install chromium`. The unit tests mock the database,
+`npx playwright install chromium`. The unit tests mock the database,
 Auth.js, the mailer and Cloudinary, and the e2e tests run the production
 build with a dummy database url, so neither needs real credentials nor
-sends emails. The same checks, plus `pnpm audit`, run in CI on every pull
+sends emails. The same checks, plus `npm audit`, run in CI on every pull
 request (`.github/workflows/ci.yml`).
