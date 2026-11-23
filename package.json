@@ -19,7 +19,7 @@
   "dependencies": {
     "@auth/prisma-adapter": "2.11.3",
     "@formkit/auto-animate": "0.10.3",
-    "@microlink/mql": "0.14.2",
+    "@microlink/mql": "0.20.1",
     "@neondatabase/serverless": "1.2.1",
     "@prisma/adapter-neon": "7.10.1",
     "@prisma/client": "7.10.1",
